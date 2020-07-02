@@ -39,7 +39,7 @@ namespace ProyectoMatricula.Controllers
 
                 return RedirectToAction("Index" , "Login");
             }
-            return View();
+
         }
         
     }

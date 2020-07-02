@@ -1,4 +1,22 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    ///Variable que posee datos del usuario
+    ProyectoMatricula.Modelos.pa_Administrador_Select_Result modelo =
+         (ProyectoMatricula.Modelos.pa_Administrador_Select_Result)this.Session["datosUsuario"];
+
+    ///variable con la direccion de la vista del login 
+    string urlLogin = Url.Action("Index", "Login");
+
+
+    string urlCerrarSesion = Url.Action("CerrarSesion", "Login");
+
+    /// variable para preguntar si la sesion se inició
+    bool sesionIniciada = false;
+    if (this.Session["logueado"] != null)
+    {
+        sesionIniciada = Convert.ToBoolean(this.Session["logueado"]);
+    }
+}
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -6,14 +24,28 @@
     <title>@ViewBag.Title</title>
     <meta charset="utf-8"/>
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/bundles/modernizr")
+    @Styles.Render("~/Content/bundles/Modernizr")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 </head>
 <body>
     <header class="text-center">
         <h1>Matricula UMCA</h1>
     </header>
-    <div class="container">
-        @RenderBody()
+    <div class="container body-content">
+        @{
+            /// si es verdadero cargar el cuerpo de la pagina hija
+            if (sesionIniciada)
+            {
+                @RenderBody();
+            }
+            else
+            {
+                ///de lo contrario redireccionar al
+                ///controlador de login y a su metodo index
+                ///para que solicite los datos de inicio de sesion
+                this.Response.Redirect(urlLogin);
+            }
+        }
     </div>
     <!-- Footer -->
     <footer class="page-footer font-small pt-4 bg-primary">
@@ -36,6 +68,6 @@
         </div>
     </footer>
     <!-- Footer -->
-    @Scripts.Render("~/bundles/script_JQ_BO_JQV")
+
 </body>
 </html>

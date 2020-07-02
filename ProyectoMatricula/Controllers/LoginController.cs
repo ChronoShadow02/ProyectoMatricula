@@ -43,8 +43,22 @@ namespace ProyectoMatricula.Controllers
                 ///index del controlador IndexMatricula
                 return RedirectToAction("IndexMatricula", "Matricula");
             }
+        }
+        /// <summary>
+        /// Cierra la sesion y establece os valores de las variables de sesion en null
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult CerrarSesion()
+        {
+            ///establecer los datos de sesion para que 
+            ///cuando el layout consulte por dichos datos 
+            ///redireccione al login
 
-            
+            this.Session.Add("logueado", null);
+
+            this.Session.Add("datosUsuario", null);
+
+            return RedirectToAction("Index", "Login");
         }
     }
 }
