@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7771fcad25714170bd03500ea9bedead" Name="Diagram1">
+        <EntityTypeShape EntityType="matriculaBDModel.Canton" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Carreras_universitarias" Width="1.5" PointX="15" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Cuatrimestre" Width="1.5" PointX="7.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Cuatrimestre_x_Sede" Width="1.5" PointX="15" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Curso_x_Cuatrimestre" Width="1.5" PointX="9.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Curso_x_Sede" Width="1.5" PointX="15" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Cursos" Width="1.5" PointX="7.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.CursosXCarrera" Width="1.5" PointX="17.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.CursosXEstudiante" Width="1.5" PointX="12.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Direcciones_de_carrera" Width="1.5" PointX="12.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Distrito" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Estudiantes" Width="1.5" PointX="7.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Funcionarios" Width="1.5" PointX="10.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Provincia" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Sedes_Universitarias" Width="1.5" PointX="12.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Administadores" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="matriculaBDModel.Canton_ref_Provincia" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.Distrito_ref_Canton" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Estudiantes_Canton" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Funcionarios_Canton" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Sedes_Universitarias_Canton" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Carreras_universitarias_Direcciones_de_carrera" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_CursosXCarrera_Carreras_universitarias" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Cuatrimestre_x_Sede_Cuatrimestre1" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Curso_x_Cuatrimestre_Cuatrimestre" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Cuatrimestre_x_Sede_Sedes_Universitarias" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Curso_x_Cuatrimestre_Cursos" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Curso_x_Cuatrimestre_Estudiantes" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Curso_x_Sede_Cursos" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Curso_x_Sede_Sedes_Universitarias" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Cursos_Cursos" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_CursosXCarrera_Cursos" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_CursosXEstudiante_Cursos" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_CursosXEstudiante_Estudiantes" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Direcciones_de_carrera_Funcionarios" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Direcciones_de_carrera_Funcionarios1" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Estudiantes_Distrito" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Funcionarios_Distrito" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Sedes_Universitarias_Distrito" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Estudiantes_Provincia" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Funcionarios_Provincia" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Sedes_Universitarias_Funcionarios" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Sedes_Universitarias_Provincia" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
