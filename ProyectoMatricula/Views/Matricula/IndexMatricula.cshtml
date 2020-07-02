@@ -1,25 +1,44 @@
-﻿
+﻿@model  ProyectoMatricula.Modelos.pa_Administrador_Select_Result
 @{
     ViewBag.Title = "Matricula UMCA | Inicio de Sesión";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
+
 }
-<!--Login-->
-        <h2 class="text-center">Inicio de Sesión</h2>
-        <div class="container-fluid h-100">
-            <div class="row justify-content-center align-items-center h-100">
-                <div class="col col-sm-6 col-md-6 col-lg-4 ">
-                    <div class="form-group">
-                        <label>Usuario</label>
-                        <input type="text" name="txtUsuario" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label>Contraseña</label>
-                        <input type="password" name="txtContrasena" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" ID="btnAceptar" class="btn btn-primary btn-lg btn-block" />
-                    </div>
-                </div>
-            </div>
+@*
+     Crear el formulario e indicarle el action y el método
+    "action = variable" creada en la línea 6
+    method tiene que ser post, ya que el get nos direcciona a la vista
+*@
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label col-sm-1"></label>
+        <div class="col-sm-12">
+            <h2>Bienvenido(a)</h2>
         </div>
+    </div>
+    <div class="form-group">
+        <label for="Nombre_Usuario" class="control-label col-sm-4">Usuario:</label>
+        <div class="col-sm-4">
+            @Html.DisplayFor(model => model.Nombre_Usuario)
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Nombre_Usuario" class="control-label col-sm-4">Nombre:</label>
+        <div class="col-sm-4">
+            @Html.DisplayFor(model => model.Primer_Nombre)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Iniciar Sesión</button>
+        </div>
+    </div>
+    @*
+        Mostrar los mensajes que se envian desde el controlador (Ej:controlador):
+        this.ModelState.AddModelError("","Usuario o contraseña inválidos.Por favor inténtelo de nuevo");
+
+        Preguntar para que sirve la siguiente linea de codigo
+    *@
+    @Html.ValidationSummary(true);
+</form>
 <!--Login-->

@@ -6,6 +6,7 @@
     <title>@ViewBag.Title</title>
     <meta charset="utf-8"/>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bundles/modernizr")
 </head>
 <body>
     <header class="text-center">
@@ -15,7 +16,7 @@
         @RenderBody()
     </div>
     <!-- Footer -->
-    <footer class="page-footer font-small blue pt-4">
+    <footer class="page-footer font-small pt-4 bg-primary">
         <!-- Footer Links -->
         <div class="container-fluid text-center text-md-left">
             <!-- Grid row -->
@@ -23,7 +24,7 @@
                 <!-- Grid column -->
                 <div class="col-md-12 mt-md-0 mt-3 text-center">
                     <!-- Content -->
-                    <p><em><strong>Marticula UMCA</strong></em></p>
+                    <p><em><strong>Matricula UMCA</strong></em></p>
                 </div>
             </div>
             <!-- Copyright -->
@@ -35,6 +36,6 @@
         </div>
     </footer>
     <!-- Footer -->
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/script_JQ_BO_JQV")
 </body>
 </html>
