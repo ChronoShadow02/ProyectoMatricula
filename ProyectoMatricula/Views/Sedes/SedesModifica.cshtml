@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Matrícul UMCA | Modificación de Sedes";
+    Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
+}
+
+<h2 class="text-center">Modificar Sede</h2>
+
+<form method="post" id="frmSedes">
+    <div class="form-group">
+        <label>Nombre de sede:</label>
+        <input type="text" value="" class="form-control" name="Nombre_Sede" />
+    </div>
+    <div class="form-group">
+        <label>Código de sede:</label>
+        <input type="text" value="" class="form-control" name="Codigo_Sede" />
+    </div>
+    <div class="form-group">
+        <label>Director</label>
+        <select class="form-control" name="Id_Director">
+            <option value="">Seleccione un director</option>
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Provincia</label>
+        <select class="form-control" name="Id_Provincia">
+            <option value="">Seleccione una provincia</option>
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Cantón</label>
+        <select class="form-control" name="Id_Canton">
+            <option value="">Seleccione un cantón</option>
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Distrito</label>
+        <select class="form-control" name="Id_Distrito">
+            <option value="">Seleccione un distrito</option>
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Dirección física:</label>
+        <input type="text" value="" class="form-control" name="Direccion_Fisica" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Modificar</button>
+    </div>
+
+</form>
+@section scripts{
+    <script src="~/Scripts/Sedes/validarSedes.js"></script>
+}
+
