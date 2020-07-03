@@ -272,7 +272,6 @@
     <Content Include="Scripts\Login\ValidarLogin.js" />
     <Content Include="Scripts\Matricula\validarMatricula.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\prueba.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -294,6 +293,9 @@
     <Content Include="Views\Funcionario\FuncionarioLista.cshtml" />
     <Content Include="Views\Funcionario\FuncionarioNuevo.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Estudiante\EstudianteNuevo.cshtml" />
+    <Content Include="Views\Estudiante\EstudianteModifica.cshtml" />
+    <Content Include="Views\Funcionario\FuncionarioModifica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

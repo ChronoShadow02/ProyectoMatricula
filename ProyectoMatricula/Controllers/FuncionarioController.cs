@@ -29,5 +29,14 @@ namespace ProyectoMatricula.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// Metodo que Modifica los funcionarios
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FuncionarioModifica()
+        {
+            return View();
+        }
     }
 }

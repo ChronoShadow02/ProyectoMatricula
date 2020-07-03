@@ -22,19 +22,41 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
+    @Scripts.Render("~/bundles/Modernizr")
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/bundles/Modernizr")
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 </head>
 <body>
-    <header class="text-center">
-        <h1>Matricula UMCA</h1>
-    </header>
     <div class="container body-content">
+        <header class="text-center">
+            <h1>Matricula UMCA</h1>
+        </header>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top ">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="~/Matricula/IndexMatricula">Matricula UMCA</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="~/Matricula/IndexMatricula">Inicio</a></li>
+                    @{
+                        if (sesionIniciada == true)
+                        {
+                            if (modelo.Tipo_Usuario.ToString() == "ADM")
+                            {
+                                <li><a href="~/Estudiante/EstudianteLista">Estudiantes</a></li>
+                                <li><a href="~/Funcionario/FuncionarioLista">Funcionarios</a></li>
+                                <li><a href="~/Sedes/SedesLista">Sedes Universitarias</a></li>
+                            }
+                            <li><a href="#" id="linkCierreSesion">Salir</a></li>
+                        }
+                    }
+                </ul>
+            </div>
+        </nav>
         @{
             /// si es verdadero cargar el cuerpo de la pagina hija
-            if (sesionIniciada)
+            if (sesionIniciada == true)
             {
                 @RenderBody();
             }
@@ -46,28 +68,36 @@
                 this.Response.Redirect(urlLogin);
             }
         }
-    </div>
-    <!-- Footer -->
-    <footer class="page-footer font-small pt-4 bg-primary">
-        <!-- Footer Links -->
-        <div class="container-fluid text-center text-md-left">
-            <!-- Grid row -->
-            <div class="row">
-                <!-- Grid column -->
+        <div class="divCerrarSesion" hidden>
+            <p>
+                ¿Desea cerrar la sesión?
+                <button id="btnSi" class="btn btn-success">Si</button>
+                <button id="btnNo" class="btn btn-danger">No</button>
+            </p>
+        </div>
+        <!-- Footer -->
+        <footer class="page-footer font-small pt-4 bg-primary">
+            <!-- Footer Links -->
+            <div class="container-fluid text-center text-md-left">
+                <!-- Grid row -->
+                <div class="row">
+                    <!-- Grid column -->
+                    <div class="col-md-12 mt-md-0 mt-3 text-center">
+                        <!-- Content -->
+                        <p><em><strong>Matricula UMCA</strong></em></p>
+                    </div>
+                </div>
+                <!-- Copyright -->
                 <div class="col-md-12 mt-md-0 mt-3 text-center">
                     <!-- Content -->
-                    <p><em><strong>Matricula UMCA</strong></em></p>
+                    <p><em><strong>© 2020 Copyright</strong></em></p>
                 </div>
+                <!-- Copyright -->
             </div>
-            <!-- Copyright -->
-            <div class="col-md-12 mt-md-0 mt-3 text-center">
-                <!-- Content -->
-                <p><em><strong>© 2020 Copyright</strong></em></p>
-            </div>
-            <!-- Copyright -->
-        </div>
-    </footer>
+        </footer>
+    </div>
     <!-- Footer -->
-
+    @Scripts.Render("~/bundles/script_JQ_BO_JQV")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

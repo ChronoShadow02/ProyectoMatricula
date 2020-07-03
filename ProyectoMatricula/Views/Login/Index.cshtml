@@ -15,67 +15,69 @@
     @Scripts.Render("~/bundles/Modernizr")
 </head>
 <body>
-    <h1 class="text-center">Matricula UMCA</h1>
-    @*
+    <div class="container">
+        <h1 class="text-center">Matricula UMCA</h1>
+        @*
          Crear el formulario e indicarle el action y el método
         "action = variable" creada en la línea 6
         method tiene que ser post, ya que el get nos direcciona a la vista
-    *@
-    <form action="@UrlMetodoFormulario" method="post" class="form-horizontal" id="frmLogin">
-        <div class="form-group">
-            <label class="control-label col-sm-2"></label>
-            <div class="col-sm-10">
-                <h2>Inicio de Sesión</h2>
+        *@
+        <form action="@UrlMetodoFormulario" method="post" class="form-horizontal" id="frmLogin">
+            <div class="form-group">
+                <label class="control-label col-sm-2"></label>
+                <div class="col-sm-10">
+                    <h2>Inicio de Sesión</h2>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="Nombre_Usuario" class="control-label col-sm-2">Usuario:</label>
-            <div class="col-sm-10">
-                <input type="text" name="Nombre_Usuario" id="Nombre_Usuario" class="form-control"
-                       placeholder="Ingrese su usuario">
+            <div class="form-group">
+                <label for="Nombre_Usuario" class="control-label col-sm-2">Usuario:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="Nombre_Usuario" id="Nombre_Usuario" class="form-control"
+                           placeholder="Ingrese su usuario">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="Contrasena" class="control-label col-sm-2">Contraseña</label>
-            <div class="col-sm-10">
-                <input type="password" name="Contrasena" id="Contrasena" class="form-control" placeholder="Ingrese su contraseña">
+            <div class="form-group">
+                <label for="Contrasena" class="control-label col-sm-2">Contraseña</label>
+                <div class="col-sm-10">
+                    <input type="password" name="Contrasena" id="Contrasena" class="form-control" placeholder="Ingrese su contraseña">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Iniciar Sesión</button>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Iniciar Sesión</button>
+                </div>
             </div>
-        </div>
-        @*
+            @*
             Mostrar los mensajes que se envian desde el controlador (Ej:controlador):
             this.ModelState.AddModelError("","Usuario o contraseña inválidos.Por favor inténtelo de nuevo");
 
             Preguntar para que sirve la siguiente linea de codigo
-        *@
-        @Html.ValidationSummary(true)
-    </form>
-    <!--Login-->
-    <!-- Footer -->
-    <footer class="page-footer font-small pt-4 bg-primary">
-        <!-- Footer Links -->
-        <div class="container-fluid text-center text-md-left">
-            <!-- Grid row -->
-            <div class="row">
-                <!-- Grid column -->
+            *@
+            @Html.ValidationSummary(true)
+        </form>
+        <!--Login-->
+        <!-- Footer -->
+        <footer class="page-footer font-small pt-4 bg-primary">
+            <!-- Footer Links -->
+            <div class="container-fluid text-center text-md-left">
+                <!-- Grid row -->
+                <div class="row">
+                    <!-- Grid column -->
+                    <div class="col-md-12 mt-md-0 mt-3 text-center">
+                        <!-- Content -->
+                        <p><em><strong>Marticula UMCA</strong></em></p>
+                    </div>
+                </div>
+                <!-- Copyright -->
                 <div class="col-md-12 mt-md-0 mt-3 text-center">
                     <!-- Content -->
-                    <p><em><strong>Marticula UMCA</strong></em></p>
+                    <p><em><strong>© 2020 Copyright</strong></em></p>
                 </div>
+                <!-- Copyright -->
             </div>
-            <!-- Copyright -->
-            <div class="col-md-12 mt-md-0 mt-3 text-center">
-                <!-- Content -->
-                <p><em><strong>© 2020 Copyright</strong></em></p>
-            </div>
-            <!-- Copyright -->
-        </div>
-    </footer>
-    <!-- Footer -->
+        </footer>
+        <!-- Footer -->
+    </div>
     @Scripts.Render("~/bundles/script_JQ_BO_JQV")
     <script src="~/Scripts/Login/ValidarLogin.js"></script>
 

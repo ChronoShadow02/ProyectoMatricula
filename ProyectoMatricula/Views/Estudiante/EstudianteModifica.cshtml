@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Matriucla UMCA | Modificación de estudiantes";
+    Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
+}
+
+<h2 class="text-center">Modificación de estudiante</h2>
+<form method="post" id="frmEstudiante">
+    <div class="form-group">
+        <label for="txtNombre">Nombre Completo</label>
+        <input type="text" id="txtNombre" name="Nombre_Estudiante" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="txtCedula">Cédula</label>
+        <input type="text" id="txtCedula" name="Cedula_Estudiante" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="">Provincia</label>
+        <select name="Id_Provincia" class="form-control">
+            <option value="">Seleccione una provincia</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="">Cantón</label>
+        <select name="Id_Canton" class="form-control">
+            <option value="">Seleccione un cantón</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="">Distrito</label>
+        <select name="Id_Distrito" class="form-control">
+            <option value="">Seleccione un distrito</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="txtFecha">Fecha de Inicio</label>
+        <input type="date" value="" id="txtFecha" name="Fecha_Inicio_U" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+    </div>
+</form>
+@section scripts{
+    <script src="~/Scripts/Estudiante/validarEstudiante.js"></script>
+}
+

@@ -29,5 +29,14 @@ namespace ProyectoMatricula.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// Metodo que Ingresa los estudiantes
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult EstudianteModifica()
+        {
+            return View();
+        }
     }
 }

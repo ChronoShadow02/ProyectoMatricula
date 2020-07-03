@@ -1,6 +1,6 @@
 ﻿@model  ProyectoMatricula.Modelos.pa_Administrador_Select_Result
 @{
-    ViewBag.Title = "Matricula UMCA | Inicio de Sesión";
+    ViewBag.Title = "Matricula UMCA | Página Principal";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
 
 }
@@ -9,68 +9,58 @@
     "action = variable" creada en la línea 6
     method tiene que ser post, ya que el get nos direcciona a la vista
 *@
-    <nav class="navbar navbar-inverse navbar-fixed-top ">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Matricula UMCA</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="~/Matricula/IndexMatricula">Inicio</a></li>
-                <li><a href="~/Estudiante/EstudianteLista">Estudiantes</a></li>
-                <li><a href="~/Funcionario/FuncionarioLista">Funcionarios</a></li>
-                <li><a href="~/Sedes/SedesLista">Sedes Universitarias</a></li>
-            </ul>
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label col-sm-1"></label>
+        <div class="col-sm-7">
+            <h2>Bienvenido(a) @Html.DisplayFor(model => model.Primer_Apellido) @Html.DisplayFor(model => model.Segundo_Apellido) @Html.DisplayFor(model => model.Primer_Nombre),
+            última vez: </h2>
         </div>
-    </nav>
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label class="control-label col-sm-1"></label>
-            <div class="col-sm-7">
-                <h2>Bienvenido(a) @Html.DisplayFor(model => model.Primer_Apellido) @Html.DisplayFor(model => model.Segundo_Apellido) @Html.DisplayFor(model => model.Primer_Nombre)</h2>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="Nombre_Usuario" class="control-label col-sm-4">Nombre:</label>
-            <div class="col-sm-4">
-
-            </div>
-        </div>
-    </form>
-        @*
-            Mostrar los mensajes que se envian desde el controlador (Ej:controlador):
-            this.ModelState.AddModelError("","Usuario o contraseña inválidos.Por favor inténtelo de nuevo");
-
-            Preguntar para que sirve la siguiente linea de codigo
-        *@
-        @Html.ValidationSummary(true)
-    <div id="demo" class="carousel slide" data-ride="carousel">
-
-        <!-- Indicators -->
-        <ul class="carousel-indicators">
-            <li data-target="#demo" data-slide-to="0" class="active"></li>
-            <li data-target="#demo" data-slide-to="1"></li>
-            <li data-target="#demo" data-slide-to="2"></li>
-        </ul>
-
-        <!-- The slideshow -->
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="~/img/imgSlider1.jpg" width="1100" height="500"/>
-            </div>
-            <div class="carousel-item">
-                <img src="~/img/imgSlider2.jpg" width="1100" height="500"/>
-            </div>
-            <div class="carousel-item">
-                <img src="~/img/imgSlider3.jpg" width="1100" height="500"/>
-            </div>
-        </div>
-
-        <!-- Left and right controls -->
-        <a class="carousel-control-prev" href="#demo" data-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#demo" data-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </a>
-
     </div>
+    <div class="form-group">
+        <label for="Nombre_Usuario" class="control-label col-sm-4">Nombre:</label>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+</form>
+@*
+    Mostrar los mensajes que se envian desde el controlador (Ej:controlador):
+    this.ModelState.AddModelError("","Usuario o contraseña inválidos.Por favor inténtelo de nuevo");
+
+    Preguntar para que sirve la siguiente linea de codigo
+    @Html.ValidationSummary(true)
+*@
+
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/img/imgSlider1.jpg" width="1100" height="500" />
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/imgSlider2.jpg" width="1100" height="500" />
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/imgSlider3.jpg" width="1100" height="500" />
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>
