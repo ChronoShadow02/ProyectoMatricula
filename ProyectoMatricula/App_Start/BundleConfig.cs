@@ -26,11 +26,10 @@ namespace ProyectoMatricula
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/script_JQ_BO_JQV").Include(
+            bundles.Add(new ScriptBundle("~/bundles/script_JQ_BO_PO_JQV").Include(
                 "~/Scripts/jquery-3.4.1.js",
                 "~/Scripts/jquery.validate.js",
                 "~/Scripts/bootstrap.js"));
-
 
         }
     }
