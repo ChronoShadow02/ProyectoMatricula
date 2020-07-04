@@ -502,5 +502,31 @@ namespace ProyectoMatricula.Modelos
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<pa_Estudiantes_Select_Result> pa_Estudiantes_Select(string nombre_Estudiante, string carne)
+        {
+            var nombre_EstudianteParameter = nombre_Estudiante != null ?
+                new ObjectParameter("Nombre_Estudiante", nombre_Estudiante) :
+                new ObjectParameter("Nombre_Estudiante", typeof(string));
+    
+            var carneParameter = carne != null ?
+                new ObjectParameter("Carne", carne) :
+                new ObjectParameter("Carne", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Estudiantes_Select_Result>("pa_Estudiantes_Select", nombre_EstudianteParameter, carneParameter);
+        }
+    
+        public virtual ObjectResult<pa_Funcionarios_Select_Result> pa_Funcionarios_Select(string nombre_Funcionario, string cedula_Funcionario)
+        {
+            var nombre_FuncionarioParameter = nombre_Funcionario != null ?
+                new ObjectParameter("Nombre_Funcionario", nombre_Funcionario) :
+                new ObjectParameter("Nombre_Funcionario", typeof(string));
+    
+            var cedula_FuncionarioParameter = cedula_Funcionario != null ?
+                new ObjectParameter("Cedula_Funcionario", cedula_Funcionario) :
+                new ObjectParameter("Cedula_Funcionario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Funcionarios_Select_Result>("pa_Funcionarios_Select", nombre_FuncionarioParameter, cedula_FuncionarioParameter);
+        }
     }
 }

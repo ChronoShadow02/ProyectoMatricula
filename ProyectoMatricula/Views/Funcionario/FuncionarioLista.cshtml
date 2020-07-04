@@ -1,4 +1,4 @@
-﻿
+﻿@model List<ProyectoMatricula.Modelos.pa_Funcionarios_Select_Result>
 @{
     ViewBag.Title = "Matricula UMCA | Lista de funcionarios";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
@@ -6,7 +6,7 @@
 
 <h2 class="text-center">Lista de funcionarios</h2>
 
-<table class="table">
+<table class="table text-center table-hover table-bordered table-striped">
     <tr>
         <th>Identificador</th>
         <th>Funcionario</th>
@@ -15,12 +15,23 @@
         <th>Canton</th>
         <th>Distrito</th>
         <th>Fecha de contratación</th>
-        <th rowspan="2">Acciones</th>
+        <th colspan="2">Acciones</th>
     </tr>
     @{
-        int r = 4;
+        foreach (ProyectoMatricula.Modelos.pa_Funcionarios_Select_Result posicionModelo in this.Model)
+        {
+        <tr>
+            <td>@posicionModelo.Id_Funcionario</td>
+            <td>@posicionModelo.Nombre_Funcionario</td>
+            <td>@posicionModelo.Cedula_Funcionario</td>
+            <td>@posicionModelo.Id_Provincia</td>
+            <td>@posicionModelo.Id_Canton</td>
+            <td>@posicionModelo.Id_Distrito</td>
+            <td>@posicionModelo.Fecha_Contratacion.ToString("yyyy-mm-dd")</td>
+            <td><a href="~/Funcionario/FuncionarioModifica">Modificar</a></td>
+            <td><a href="~/Funcionario/FuncionarioElimina">Eliminar</a></td>
+        </tr>
+        }
     }
-
-
 </table>
 

@@ -203,6 +203,12 @@
     <Compile Include="Modelos\pa_Estudiantes_Cursos_Select_Result.cs">
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_Estudiantes_Select_Result.cs">
+      <DependentUpon>ModeloBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_Funcionarios_Select_Result.cs">
+      <DependentUpon>ModeloBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\Provincia.cs">
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>

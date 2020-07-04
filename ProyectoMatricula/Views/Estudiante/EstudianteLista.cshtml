@@ -1,12 +1,12 @@
-﻿
+﻿@model List<ProyectoMatricula.Modelos.pa_Estudiantes_Select_Result>
 @{
     ViewBag.Title = "Matricula UMCA | Lista de estudiantes";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
 }
 
 <h2 class="text-center">Lista de estudiantes</h2>
-
-<table class="table">
+<br />
+<table class="table text-center table-hover table-bordered  table-striped">
     <tr>
         <th>Identificador</th>
         <th>Estudiante</th>
@@ -16,11 +16,28 @@
         <th>Distrito</th>
         <th>Fecha de inicio</th>
         <th>Carné de Estudiante</th>
-        <th rowspan="2">Acciones</th>
+        <th colspan="2">Acciones</th>
     </tr>
     @{
-        int wdasda= 0;
-
+        foreach (ProyectoMatricula.Modelos.pa_Estudiantes_Select_Result posicionModelo in this.Model)
+        {
+        <tr>
+            <td>@posicionModelo.Id_Estudiante</td>
+            <td>@posicionModelo.Nombre_Estudiante</td>
+            <td>@posicionModelo.Cedula_Estudiante</td>
+            <td>@posicionModelo.Id_Provincia</td>
+            <td>@posicionModelo.Id_Canton</td>
+            <td>@posicionModelo.Id_Distrito</td>
+            <td>@posicionModelo.Fecha_Inicio_U.ToString("yyyy-mm-dd")</td>
+            <td>@posicionModelo.Carne</td>
+            <td>
+                <a href="~/Estudiante/EstudianteModifica?Id_Estudiante=@posicionModelo.Id_Estudiante">Modificar</a>
+            </td>
+            <td>
+                <a href="~/Estudiante/EstudianteEliminar?Id_Estudiante=@posicionModelo.Id_Estudiante">Eliminar</a>
+            </td>
+        </tr>
+        }
     }
     
 

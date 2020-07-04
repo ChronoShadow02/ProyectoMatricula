@@ -1,13 +1,18 @@
-﻿using System;
+﻿using ProyectoMatricula.Modelos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 namespace ProyectoMatricula.Controllers
 {
     public class FuncionarioController : Controller
     {
+        /// <summary>
+        /// Instancia de la base de datos
+        /// </summary>
+        matriculaBDEntities matriculaBD = new matriculaBDEntities();
+
         // GET: Funcionario
         public ActionResult Index()
         {
@@ -19,7 +24,11 @@ namespace ProyectoMatricula.Controllers
         /// <returns></returns>
         public ActionResult FuncionarioLista()
         {
-            return View();
+            ///crear la variable que contiene los registros al 
+            ///invocar el procedimiento
+            List<pa_Funcionarios_Select_Result> modeloVista = matriculaBD.pa_Funcionarios_Select(null, null).ToList();
+
+            return View(modeloVista);
         }
         /// <summary>
         /// Metodo que Ingresa los funcionarios
