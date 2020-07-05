@@ -47,5 +47,31 @@ namespace ProyectoMatricula.Controllers
         {
             return View();
         }
+
+
+        /// <summary>
+        /// Metodo que Modifica los funcionarios
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FuncionarioElimina(int Id_Funcionario)
+        {
+            ///Se obtiene el registro que se desea eliminar mediante el procedimiento almacenado
+            pa_FuncionariosID_Select_Result modeloVista = new pa_FuncionariosID_Select_Result();
+            modeloVista = matriculaBD.pa_FuncionariosID_Select(Id_Funcionario).FirstOrDefault();
+
+            /// se agregan los datos de las provincias, cantones y distritos
+            return View();
+        }
+
+        /// <summary>
+        /// Metodo que devuelve las provincias
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RetornaProvincias()
+        {
+            List<RetornaProvincias_Result> Provincias = matriculaBD.RetornaProvincias(null).ToList();
+
+            return Json(Provincias);
+        }
     }
 }

@@ -528,5 +528,14 @@ namespace ProyectoMatricula.Modelos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Funcionarios_Select_Result>("pa_Funcionarios_Select", nombre_FuncionarioParameter, cedula_FuncionarioParameter);
         }
+    
+        public virtual ObjectResult<pa_FuncionariosID_Select_Result> pa_FuncionariosID_Select(Nullable<int> id_Funcionario)
+        {
+            var id_FuncionarioParameter = id_Funcionario.HasValue ?
+                new ObjectParameter("Id_Funcionario", id_Funcionario) :
+                new ObjectParameter("Id_Funcionario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FuncionariosID_Select_Result>("pa_FuncionariosID_Select", id_FuncionarioParameter);
+        }
     }
 }

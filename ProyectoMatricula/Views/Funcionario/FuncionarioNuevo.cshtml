@@ -15,19 +15,20 @@
         <input type="text" value="" class="form-control" name="Cedula_Funcionario" />
     </div>
     <div class="form-group">
-        <select class="form-control" name="Id_Provincia">
-            <option value="">Seleccione una provincia</option>
+        <label>Provincia</label>
+        <select class="form-control" name="Id_Provincia" id="Provincia">
+            
 
         </select>
     </div>
     <div class="form-group">
-        <select class="form-control" name="Id_Canton">
+        <select class="form-control" name="Id_Canton" id="Canton">
             <option value="">Seleccione un cantón</option>
 
         </select>
     </div>
     <div class="form-group">
-        <select class="form-control" name="Id_Distrito">
+        <select class="form-control" name="Id_Distrito" id="Distrito">
             <option value="">Seleccione un distrito</option>
 
         </select>
@@ -41,6 +42,7 @@
     </div>
 </form>
 @section scripts{
+    <script src="~/Scripts/Funcionario/cargaGeografia.js"></script>
     <script src="~/Scripts/Funcionario/validarFuncionario.js"></script>
 }
 
