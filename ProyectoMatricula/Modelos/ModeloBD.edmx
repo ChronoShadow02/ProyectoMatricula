@@ -665,6 +665,13 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_RetornaDistritos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="id_Canton" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_RetornaDistritos_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Distrito" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="matriculaBDModelStoreContainer">
           <EntitySet Name="Canton" EntityType="Self.Canton" Schema="dbo" store:Type="Tables" />
@@ -1644,7 +1651,14 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="Cedula_Funcionario" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pa_FuncionariosID_Select" ReturnType="Collection(matriculaBDModel.pa_FuncionariosID_Select_Result)">
-            <Parameter Name="Id_Funcionario" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Funcionario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RetornaDistritos">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="id_Canton" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RetornaDistritos_ID">
+            <Parameter Name="id_Distrito" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="pa_Administrador_Select_Result">
@@ -2101,6 +2115,8 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RetornaDistritos" FunctionName="matriculaBDModel.Store.sp_RetornaDistritos" />
+          <FunctionImportMapping FunctionImportName="sp_RetornaDistritos_ID" FunctionName="matriculaBDModel.Store.sp_RetornaDistritos_ID" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

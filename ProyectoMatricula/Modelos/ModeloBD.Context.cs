@@ -537,5 +537,27 @@ namespace ProyectoMatricula.Modelos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FuncionariosID_Select_Result>("pa_FuncionariosID_Select", id_FuncionarioParameter);
         }
+    
+        public virtual int sp_RetornaDistritos(string nombre, Nullable<int> id_Canton)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var id_CantonParameter = id_Canton.HasValue ?
+                new ObjectParameter("id_Canton", id_Canton) :
+                new ObjectParameter("id_Canton", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RetornaDistritos", nombreParameter, id_CantonParameter);
+        }
+    
+        public virtual int sp_RetornaDistritos_ID(Nullable<int> id_Distrito)
+        {
+            var id_DistritoParameter = id_Distrito.HasValue ?
+                new ObjectParameter("id_Distrito", id_Distrito) :
+                new ObjectParameter("id_Distrito", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RetornaDistritos_ID", id_DistritoParameter);
+        }
     }
 }

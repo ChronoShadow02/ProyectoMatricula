@@ -25,17 +25,16 @@
     <meta charset="utf-8" />
     @Scripts.Render("~/bundles/Modernizr")
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/jquery")
     <script src="~/Scripts/popper.min.js"></script>
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/script_JQ_BO_PO_JQV")
 
 </head>
-<body>
+<body class="bg-light">
     <div class="container body-content">
         <header class="text-center">
-            <h1>Matricula UMCA</h1>
+            <img src="~/img/imgLogo.png" class="img-fluid rounded mx-auto d-block" />
         </header>
-
+        <br />
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <div class="navbar-header">
                 <a class="navbar-brand" href="~/Matricula/IndexMatricula">Matricula UMCA</a>
@@ -50,7 +49,7 @@
                         if (modelo.Tipo_Usuario.ToString() == "ADM")
                         {
                             <li><a href="~/Estudiante/EstudianteLista" class="nav-link">Estudiantes</a></li>
-                            <li><a href="~/Funcionario/FuncionarioLista"class="nav-link">Funcionarios</a></li>
+                            <li><a href="~/Funcionario/FuncionarioLista" class="nav-link">Funcionarios</a></li>
                             <li><a href="~/Sedes/SedesLista" class="nav-link">Sedes Universitarias</a></li>
                         }
                         <li><a href="#" id="linkCierreSesion" class="nav-link">Salir</a></li>
@@ -80,25 +79,13 @@
             </p>
         </div>
         <!-- Footer -->
-        <footer class="page-footer font-small pt-4 bg-primary">
-            <!-- Footer Links -->
-            <div class="container-fluid text-center text-md-left">
-                <!-- Grid row -->
-                <div class="row">
-                    <!-- Grid column -->
-                    <div class="col-md-12 mt-md-0 mt-3 text-center">
-                        <!-- Content -->
-                        <p><em><strong>Matricula UMCA</strong></em></p>
-                    </div>
-                </div>
-                <!-- Copyright -->
-                <div class="col-md-12 mt-md-0 mt-3 text-center">
-                    <!-- Content -->
-                    <p><em><strong>© 2020 Copyright</strong></em></p>
-                </div>
-                <!-- Copyright -->
+        <div class="footer-bottom bg-secondary text-white text-center font-weight-bolder">
+            <div class="container">
+                <br />
+                <p class="pull-left copyright"> Copyright © 2020. Matrícula UMCA. </p>
+                <br />
             </div>
-        </footer>
+        </div>
     </div>
     <!-- Footer -->
     @RenderSection("scripts", required: false)
