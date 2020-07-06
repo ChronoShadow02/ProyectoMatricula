@@ -31,6 +31,22 @@ namespace ProyectoMatricula.Controllers
 
                 return View(modeloVista);
             }
+
+        /// <summary>
+        /// Funcion que realiza busqueda de funcionarios por medio de nombre y cedula
+        /// </summary>
+        /// <param name="modeloBusqueda">modelo a buscar </param>
+        /// <returns></returns>
+            [HttpPost]
+                public ActionResult FuncionarioLista(pa_Funcionarios_Select_Result modeloBusqueda)
+                {
+                    ///crear la variable que contiene los registros al 
+                    ///invocar el procedimiento
+                    List<pa_Funcionarios_Select_Result> modeloVista = 
+                        matriculaBD.pa_Funcionarios_Select(modeloBusqueda.Nombre_Funcionario,modeloBusqueda.Cedula_Funcionario).ToList();
+
+                    return View(modeloVista);
+                }
         #endregion
 
         /// <summary>
@@ -133,16 +149,17 @@ namespace ProyectoMatricula.Controllers
             }
         #endregion
 
-        /// <summary>
-        /// Metodo que retorna los distritos
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult RetornaDistritos()
-        {
-            
-            
-            return View();
-        }
+        #region RetornaDiatritos
+            /// <summary>
+            /// Metodo que retorna los distritos
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult RetornaDistritos(int Id_Canton)
+            {
+                List<sp_RetornaDistritos_Result> Distritos = matriculaBD.sp_RetornaDistritos(null, Id_Canton).ToList();
+                return Json(Distritos);
+            }
+        #endregion
 
     }
 }

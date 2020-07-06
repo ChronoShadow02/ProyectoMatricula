@@ -17,6 +17,13 @@ function estableceEventosChange() {
         ///llamar la funcion de cargar cantones asociados a la provincia seleccionada
         cargaDropdownListCantones(provincia);
     });
+
+    $("#Canton").change(function () {
+
+        var Canton = $("#Canton").val();
+
+        cargaDropdownListDistritos(Canton);
+    });
 }
 
 
@@ -123,7 +130,7 @@ function procesarResultadoCantones(data) {
 }
 
 
-function CargaddlDistritos(pId_Canton) {
+function cargaDropdownListDistritos(pId_Canton) {
 
     var url = "/Funcionario/RetornaDistritos";
     var parametros = {

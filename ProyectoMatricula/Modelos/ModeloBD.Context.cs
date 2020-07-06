@@ -135,6 +135,19 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Estudiantes_Insert", nombre_EstudianteParameter, cedula_EstudianteParameter, id_ProvinciaParameter, id_CantonParameter, id_DistritoParameter, fecha_Inicio_UParameter, carneParameter);
         }
     
+        public virtual ObjectResult<pa_Estudiantes_Select_Result> pa_Estudiantes_Select(string nombre_Estudiante, string carne)
+        {
+            var nombre_EstudianteParameter = nombre_Estudiante != null ?
+                new ObjectParameter("Nombre_Estudiante", nombre_Estudiante) :
+                new ObjectParameter("Nombre_Estudiante", typeof(string));
+    
+            var carneParameter = carne != null ?
+                new ObjectParameter("Carne", carne) :
+                new ObjectParameter("Carne", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Estudiantes_Select_Result>("pa_Estudiantes_Select", nombre_EstudianteParameter, carneParameter);
+        }
+    
         public virtual int pa_Estudiantes_Update(Nullable<int> id_Estudiante, string nombre_Estudiante, string cedula_Estudiante, Nullable<int> id_Provincia, Nullable<int> id_Canton, Nullable<int> id_Distrito, string fecha_Inicio_U, string carne)
         {
             var id_EstudianteParameter = id_Estudiante.HasValue ?
@@ -210,6 +223,19 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Funcionarios_Insert", nombre_FuncionarioParameter, cedula_FuncionarioParameter, id_ProvinciaParameter, id_CantonParameter, id_DistritoParameter, fecha_ContratacionParameter);
         }
     
+        public virtual ObjectResult<pa_Funcionarios_Select_Result> pa_Funcionarios_Select(string nombre_Funcionario, string cedula_Funcionario)
+        {
+            var nombre_FuncionarioParameter = nombre_Funcionario != null ?
+                new ObjectParameter("Nombre_Funcionario", nombre_Funcionario) :
+                new ObjectParameter("Nombre_Funcionario", typeof(string));
+    
+            var cedula_FuncionarioParameter = cedula_Funcionario != null ?
+                new ObjectParameter("Cedula_Funcionario", cedula_Funcionario) :
+                new ObjectParameter("Cedula_Funcionario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Funcionarios_Select_Result>("pa_Funcionarios_Select", nombre_FuncionarioParameter, cedula_FuncionarioParameter);
+        }
+    
         public virtual int pa_Funcionarios_Update(Nullable<int> id_Funcionario, string nombre_Funcionario, string cedula_Funcionario, Nullable<int> id_Provincia, Nullable<int> id_Canton, Nullable<int> id_Distrito, Nullable<System.DateTime> fecha_Contratacion)
         {
             var id_FuncionarioParameter = id_Funcionario.HasValue ?
@@ -241,6 +267,15 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Fecha_Contratacion", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Funcionarios_Update", id_FuncionarioParameter, nombre_FuncionarioParameter, cedula_FuncionarioParameter, id_ProvinciaParameter, id_CantonParameter, id_DistritoParameter, fecha_ContratacionParameter);
+        }
+    
+        public virtual ObjectResult<pa_FuncionariosID_Select_Result> pa_FuncionariosID_Select(Nullable<int> id_Funcionario)
+        {
+            var id_FuncionarioParameter = id_Funcionario.HasValue ?
+                new ObjectParameter("Id_Funcionario", id_Funcionario) :
+                new ObjectParameter("Id_Funcionario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FuncionariosID_Select_Result>("pa_FuncionariosID_Select", id_FuncionarioParameter);
         }
     
         public virtual int pa_Sedes_Universitarias_Delete(Nullable<int> iD_Sede_Universitaria)
@@ -498,47 +533,7 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
         }
     
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
-        public virtual ObjectResult<pa_Estudiantes_Select_Result> pa_Estudiantes_Select(string nombre_Estudiante, string carne)
-        {
-            var nombre_EstudianteParameter = nombre_Estudiante != null ?
-                new ObjectParameter("Nombre_Estudiante", nombre_Estudiante) :
-                new ObjectParameter("Nombre_Estudiante", typeof(string));
-    
-            var carneParameter = carne != null ?
-                new ObjectParameter("Carne", carne) :
-                new ObjectParameter("Carne", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Estudiantes_Select_Result>("pa_Estudiantes_Select", nombre_EstudianteParameter, carneParameter);
-        }
-    
-        public virtual ObjectResult<pa_Funcionarios_Select_Result> pa_Funcionarios_Select(string nombre_Funcionario, string cedula_Funcionario)
-        {
-            var nombre_FuncionarioParameter = nombre_Funcionario != null ?
-                new ObjectParameter("Nombre_Funcionario", nombre_Funcionario) :
-                new ObjectParameter("Nombre_Funcionario", typeof(string));
-    
-            var cedula_FuncionarioParameter = cedula_Funcionario != null ?
-                new ObjectParameter("Cedula_Funcionario", cedula_Funcionario) :
-                new ObjectParameter("Cedula_Funcionario", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Funcionarios_Select_Result>("pa_Funcionarios_Select", nombre_FuncionarioParameter, cedula_FuncionarioParameter);
-        }
-    
-        public virtual ObjectResult<pa_FuncionariosID_Select_Result> pa_FuncionariosID_Select(Nullable<int> id_Funcionario)
-        {
-            var id_FuncionarioParameter = id_Funcionario.HasValue ?
-                new ObjectParameter("Id_Funcionario", id_Funcionario) :
-                new ObjectParameter("Id_Funcionario", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FuncionariosID_Select_Result>("pa_FuncionariosID_Select", id_FuncionarioParameter);
-        }
-    
-        public virtual int sp_RetornaDistritos(string nombre, Nullable<int> id_Canton)
+        public virtual ObjectResult<sp_RetornaDistritos_Result> sp_RetornaDistritos(string nombre, Nullable<int> id_Canton)
         {
             var nombreParameter = nombre != null ?
                 new ObjectParameter("nombre", nombre) :
@@ -548,16 +543,21 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("id_Canton", id_Canton) :
                 new ObjectParameter("id_Canton", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RetornaDistritos", nombreParameter, id_CantonParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDistritos_Result>("sp_RetornaDistritos", nombreParameter, id_CantonParameter);
         }
     
-        public virtual int sp_RetornaDistritos_ID(Nullable<int> id_Distrito)
+        public virtual ObjectResult<sp_RetornaDistritos_ID_Result> sp_RetornaDistritos_ID(Nullable<int> id_Distrito)
         {
             var id_DistritoParameter = id_Distrito.HasValue ?
                 new ObjectParameter("id_Distrito", id_Distrito) :
                 new ObjectParameter("id_Distrito", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RetornaDistritos_ID", id_DistritoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDistritos_ID_Result>("sp_RetornaDistritos_ID", id_DistritoParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     }
 }

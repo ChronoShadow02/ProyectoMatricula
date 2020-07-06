@@ -233,6 +233,12 @@
     <Compile Include="Modelos\sp_helpdiagrams_Result.cs">
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\sp_RetornaDistritos_ID_Result.cs">
+      <DependentUpon>ModeloBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\sp_RetornaDistritos_Result.cs">
+      <DependentUpon>ModeloBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\sysdiagrams.cs">
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
@@ -254,20 +260,13 @@
     <Content Include="img\imgSlider3.jpg" />
     <Content Include="Modelos\ModeloBD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModeloBD.Context.cs</LastGenOutput>
       <DependentUpon>ModeloBD.edmx</DependentUpon>
+      <LastGenOutput>ModeloBD.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Modelos\ModeloBD.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModeloBD.edmx</DependentUpon>
       <LastGenOutput>ModeloBD.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Modelos\ModeloBD.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModeloBD.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Modelos\ModeloBD.edmx.diagram">
-      <DependentUpon>ModeloBD.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -293,6 +292,13 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <EntityDeploy Include="Modelos\ModeloBD.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModeloBD.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Modelos\ModeloBD.edmx.diagram">
+      <DependentUpon>ModeloBD.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Estudiante\validarEstudiante.js" />
     <Content Include="Scripts\Funcionario\validarFuncionario.js" />

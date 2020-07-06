@@ -5,8 +5,16 @@
 }
 
 <h2 class="text-center">Lista de funcionarios</h2>
-<table class="table">
-</table>
+<form class="form-horizontal" method="post">
+    <div class="form-group d-flex">
+        <label for="Funcionario">Nombre de funcionario:</label>&nbsp;
+        <input type="text" value="" id="Funcionario" class="form-control" name="Nombre_Funcionario"/> &nbsp;
+        <label>Cedula de Funcionario:</label>&nbsp;
+        <input type="text" value="" class="form-control" name="Cedula_Funcionario" />&nbsp;
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
+
 <table class="table text-center table-hover table-bordered table-striped">
     <tr>
         <th>Identificador</th>

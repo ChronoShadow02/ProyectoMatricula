@@ -5,42 +5,48 @@
 }
 
 <h2 class="text-center">Modificación de funcionarios</h2>
+<div class="row justify-content-center align-items-center h-100">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <form action="" method="post" id="frmFuncionario">
+            <div class="form-group">
+                <label>Nombre de funcionario:</label>
+                <input type="text" value="" class="form-control" name="Nombre_Funcionario" />
+            </div>
+            <div class="form-group">
+                <label>Cédula:</label>
+                <input type="text" value="" class="form-control" name="Cedula_Funcionario" />
+            </div>
+            <div class="form-group">
+                <label>Provincia</label>
+                <select class="form-control" name="Id_Provincia">
+                    <option value="">Seleccione una provincia</option>
 
-<form action="" method="post" id="frmFuncionario">
-    <div class="form-group">
-        <label>Nombre de funcionario:</label>
-        <input type="text" value="" class="form-control" name="Nombre_Funcionario" />
-    </div>
-    <div class="form-group">
-        <label>Cédula:</label>
-        <input type="text" value="" class="form-control" name="Cedula_Funcionario" />
-    </div>
-    <div class="form-group">
-        <select class="form-control" name="Id_Provincia">
-            <option value="">Seleccione una provincia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cantón</label>
+                <select class="form-control" name="Id_Canton">
+                    <option value="">Seleccione un cantón</option>
 
-        </select>
-    </div>
-    <div class="form-group">
-        <select class="form-control" name="Id_Canton">
-            <option value="">Seleccione un cantón</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Distrito</label>
+                <select class="form-control" name="Id_Distrito">
+                    <option value="">Seleccione un distrito</option>
 
-        </select>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Fecha de contratación:</label>
+                <input type="date" value="" class="form-control" name="Fecha_Contratacion" />
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Modificar</button>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <select class="form-control" name="Id_Distrito">
-            <option value="">Seleccione un distrito</option>
-
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Fecha de contratación:</label>
-        <input type="date" value="" class="form-control" name="Fecha_Contratacion" />
-    </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Ingresar</button>
-    </div>
-</form>
+</div>
 @section scripts{
     <script src="~/Scripts/Funcionario/validarFuncionario.js"></script>
 }
