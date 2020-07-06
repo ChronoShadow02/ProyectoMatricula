@@ -212,6 +212,9 @@
     <Compile Include="Modelos\pa_Funcionarios_Select_Result.cs">
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_RetornaEstudianteID_Select_Result.cs">
+      <DependentUpon>ModeloBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\Provincia.cs">
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>

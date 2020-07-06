@@ -76,6 +76,19 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Cursos_x_Carrera_Select_Result>("pa_Cursos_x_Carrera_Select", id_CursoParameter, nombre_CursoParameter, codigo_CursoParameter);
         }
     
+        public virtual int pa_Estudiante_IngresarCarne_Update(string cedula_Estudiante, string carne)
+        {
+            var cedula_EstudianteParameter = cedula_Estudiante != null ?
+                new ObjectParameter("Cedula_Estudiante", cedula_Estudiante) :
+                new ObjectParameter("Cedula_Estudiante", typeof(string));
+    
+            var carneParameter = carne != null ?
+                new ObjectParameter("Carne", carne) :
+                new ObjectParameter("Carne", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Estudiante_IngresarCarne_Update", cedula_EstudianteParameter, carneParameter);
+        }
+    
         public virtual ObjectResult<pa_Estudiantes_Cursos_Select_Result> pa_Estudiantes_Cursos_Select(string nombre_Estudiante, string cedula_Estudiante, string codigo_Curso)
         {
             var nombre_EstudianteParameter = nombre_Estudiante != null ?
@@ -276,6 +289,15 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Id_Funcionario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FuncionariosID_Select_Result>("pa_FuncionariosID_Select", id_FuncionarioParameter);
+        }
+    
+        public virtual ObjectResult<pa_RetornaEstudianteID_Select_Result> pa_RetornaEstudianteID_Select(string cedulaEstudianteNuevo)
+        {
+            var cedulaEstudianteNuevoParameter = cedulaEstudianteNuevo != null ?
+                new ObjectParameter("CedulaEstudianteNuevo", cedulaEstudianteNuevo) :
+                new ObjectParameter("CedulaEstudianteNuevo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_RetornaEstudianteID_Select_Result>("pa_RetornaEstudianteID_Select", cedulaEstudianteNuevoParameter);
         }
     
         public virtual int pa_Sedes_Universitarias_Delete(Nullable<int> iD_Sede_Universitaria)

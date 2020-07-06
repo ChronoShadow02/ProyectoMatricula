@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="matriculaBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="matriculaBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Administadores">
@@ -532,6 +532,10 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Parameter Name="Nombre_Curso" Type="varchar" Mode="In" />
           <Parameter Name="Codigo_Curso" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="pa_Estudiante_IngresarCarne_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Cedula_Estudiante" Type="varchar" Mode="In" />
+          <Parameter Name="Carne" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="pa_Estudiantes_Cursos_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre_Estudiante" Type="varchar" Mode="In" />
           <Parameter Name="Cedula_Estudiante" Type="varchar" Mode="In" />
@@ -589,6 +593,9 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
         </Function>
         <Function Name="pa_FuncionariosID_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Funcionario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_RetornaEstudianteID_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CedulaEstudianteNuevo" Type="varchar" Mode="In" />
         </Function>
         <Function Name="pa_Sedes_Universitarias_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_Sede_Universitaria" Type="int" Mode="In" />
@@ -811,8 +818,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <End Role="Sedes_Universitarias" EntitySet="Sedes_Universitarias" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="matriculaBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1520,13 +1526,17 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
             <Parameter Name="Codigo_Curso" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="pa_Estudiante_IngresarCarne_Update">
+            <Parameter Name="Cedula_Estudiante" Mode="In" Type="String" />
+            <Parameter Name="Carne" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="pa_Estudiantes_Cursos_Select" ReturnType="Collection(matriculaBDModel.pa_Estudiantes_Cursos_Select_Result)">
             <Parameter Name="Nombre_Estudiante" Mode="In" Type="String" />
             <Parameter Name="Cedula_Estudiante" Mode="In" Type="String" />
             <Parameter Name="Codigo_Curso" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pa_Estudiantes_Delete">
-            <Parameter Name="Id_Estudiante" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Estudiante" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_Estudiantes_Insert">
             <Parameter Name="Nombre_Estudiante" Mode="In" Type="String" />
@@ -1552,7 +1562,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="Carne" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pa_Funcionarios_Delete">
-            <Parameter Name="ID_Funcionarios" Mode="In" Type="Int32" />
+          <Parameter Name="ID_Funcionarios" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_Funcionarios_Insert">
             <Parameter Name="Nombre_Funcionario" Mode="In" Type="String" />
@@ -1576,10 +1586,13 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="Fecha_Contratacion" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="pa_FuncionariosID_Select" ReturnType="Collection(matriculaBDModel.pa_FuncionariosID_Select_Result)">
-            <Parameter Name="Id_Funcionario" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Funcionario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_RetornaEstudianteID_Select" ReturnType="Collection(matriculaBDModel.pa_RetornaEstudianteID_Select_Result)">
+          <Parameter Name="CedulaEstudianteNuevo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pa_Sedes_Universitarias_Delete">
-            <Parameter Name="ID_Sede_Universitaria" Mode="In" Type="Int32" />
+          <Parameter Name="ID_Sede_Universitaria" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_Sedes_Universitarias_Insert">
             <Parameter Name="Nombre_Sede" Mode="In" Type="String" />
@@ -1605,10 +1618,10 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="id_Provincia" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RetornaCantonesID" ReturnType="Collection(matriculaBDModel.RetornaCantonesID_Result)">
-            <Parameter Name="id_Canton" Mode="In" Type="Int32" />
+          <Parameter Name="id_Canton" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RetornaProvincias" ReturnType="Collection(matriculaBDModel.RetornaProvincias_Result)">
-            <Parameter Name="nombre" Mode="In" Type="String" />
+          <Parameter Name="nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1627,7 +1640,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminaCanton">
-            <Parameter Name="id_Canton" Mode="In" Type="Int32" />
+          <Parameter Name="id_Canton" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(matriculaBDModel.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1658,7 +1671,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="id_Canton" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RetornaDistritos_ID" ReturnType="Collection(matriculaBDModel.sp_RetornaDistritos_ID_Result)">
-            <Parameter Name="id_Distrito" Mode="In" Type="Int32" />
+          <Parameter Name="id_Distrito" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
@@ -1710,6 +1723,16 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Type="Int32" Name="Id_Canton" Nullable="false" />
           <Property Type="Int32" Name="Id_Distrito" Nullable="false" />
           <Property Type="DateTime" Name="Fecha_Contratacion" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="pa_RetornaEstudianteID_Select_Result">
+          <Property Type="Int32" Name="Id_Estudiante" Nullable="false" />
+          <Property Type="String" Name="Nombre_Estudiante" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Cedula_Estudiante" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Provincia" Nullable="false" />
+          <Property Type="Int32" Name="Id_Canton" Nullable="false" />
+          <Property Type="Int32" Name="Id_Distrito" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha_Inicio_U" Nullable="false" />
+          <Property Type="String" Name="Carne" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -2010,6 +2033,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_Estudiante_IngresarCarne_Update" FunctionName="matriculaBDModel.Store.pa_Estudiante_IngresarCarne_Update" />
           <FunctionImportMapping FunctionImportName="pa_Estudiantes_Cursos_Select" FunctionName="matriculaBDModel.Store.pa_Estudiantes_Cursos_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="matriculaBDModel.pa_Estudiantes_Cursos_Select_Result">
@@ -2062,6 +2086,20 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
                 <ScalarProperty Name="Id_Canton" ColumnName="Id_Canton" />
                 <ScalarProperty Name="Id_Distrito" ColumnName="Id_Distrito" />
                 <ScalarProperty Name="Fecha_Contratacion" ColumnName="Fecha_Contratacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_RetornaEstudianteID_Select" FunctionName="matriculaBDModel.Store.pa_RetornaEstudianteID_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_RetornaEstudianteID_Select_Result">
+                <ScalarProperty Name="Id_Estudiante" ColumnName="Id_Estudiante" />
+                <ScalarProperty Name="Nombre_Estudiante" ColumnName="Nombre_Estudiante" />
+                <ScalarProperty Name="Cedula_Estudiante" ColumnName="Cedula_Estudiante" />
+                <ScalarProperty Name="Id_Provincia" ColumnName="Id_Provincia" />
+                <ScalarProperty Name="Id_Canton" ColumnName="Id_Canton" />
+                <ScalarProperty Name="Id_Distrito" ColumnName="Id_Distrito" />
+                <ScalarProperty Name="Fecha_Inicio_U" ColumnName="Fecha_Inicio_U" />
+                <ScalarProperty Name="Carne" ColumnName="Carne" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
