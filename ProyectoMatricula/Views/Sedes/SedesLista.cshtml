@@ -1,4 +1,4 @@
-﻿@model List<ProyectoMatricula.Modelos.Vista_Sedes_Universitarias>
+﻿@model List<ProyectoMatricula.Modelos.pa_Sedes_Universitarias_Select_Result>
 @{
     ViewBag.Title = "Matrícula UMCA | Lista de sedes";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
@@ -27,7 +27,7 @@
         <th rowspan="2">Acciones</th>
     </tr>
     @{
-        foreach (ProyectoMatricula.Modelos.Vista_Sedes_Universitarias posicionModelo in this.Model)
+        foreach (ProyectoMatricula.Modelos.pa_Sedes_Universitarias_Select_Result posicionModelo in this.Model)
         {
         <tr>
             <td>@posicionModelo.Id_Sedes_universitarias</td>

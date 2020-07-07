@@ -22,7 +22,10 @@ namespace ProyectoMatricula.Controllers
             /// <returns></returns>
             public ActionResult SedesLista()
             {
-                return View();
+                List<pa_Sedes_Universitarias_Select_Result> modeloVista = new List<pa_Sedes_Universitarias_Select_Result>();
+
+                modeloVista = matriculaBD.pa_Sedes_Universitarias_Select(null).ToList();
+                return View(modeloVista);
             }
             [HttpPost]
             /// <summary>
