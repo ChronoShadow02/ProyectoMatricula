@@ -74,9 +74,9 @@ namespace ProyectoMatricula.Controllers
 				///Se ejecuta el procedimiento almacennado
 					cantidadRegistrosAgectados = matriculaBD.pa_Estudiantes_Insert(modeloVista.Nombre_Estudiante,
 																				   modeloVista.Cedula_Estudiante,
-																				   modeloVista.Id_Provincia,
-																				   modeloVista.Id_Canton,
-																				   modeloVista.Id_Distrito,
+																				   Convert.ToInt16(modeloVista.Provincia),
+																				   Convert.ToInt16(modeloVista.Canton),
+																				   Convert.ToInt16(modeloVista.Distrito),
 																				   modeloVista.Fecha_Inicio_U,
 																				   carneEstudiante);
 					///almacenamos en una variable la cedula del estudiante recien ingresado

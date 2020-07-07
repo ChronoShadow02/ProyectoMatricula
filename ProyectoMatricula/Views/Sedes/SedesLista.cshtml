@@ -1,11 +1,19 @@
-﻿
+﻿@model List<ProyectoMatricula.Modelos.Vista_Sedes_Universitarias>
 @{
     ViewBag.Title = "Matrícula UMCA | Lista de sedes";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
 }
 
-<h2 class="text-center">Lista de sedes</h2>
-
+<br />
+<h1 class="text-center">Lista de sedes</h1>
+<br />
+<form class="form-horizontal" method="post">
+    <div class="form-group d-flex">
+        <label for="Nombre_Sede">Nombre de Estudiante:</label>&nbsp;
+        <input type="text" value="" id="Nombre_Sede" class="form-control" name="Nombre_Sede" /> &nbsp;
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
 <table class="table">
     <tr>
         <th>Identificador</th>
@@ -18,4 +26,21 @@
         <th>Dirección</th>
         <th rowspan="2">Acciones</th>
     </tr>
+    @{
+        foreach (ProyectoMatricula.Modelos.Vista_Sedes_Universitarias posicionModelo in this.Model)
+        {
+        <tr>
+            <td>@posicionModelo.Id_Sedes_universitarias</td>
+            <td>@posicionModelo.Nombre_Sede</td>
+            <td>@posicionModelo.Codigo_Sede</td>
+            <td>@posicionModelo.Nombre_Funcionario</td>
+            <td>@posicionModelo.Provincia</td>
+            <td>@posicionModelo.Canton</td>
+            <td>@posicionModelo.Distrito</td>
+            <td>@posicionModelo.Direccion_Fisica</td>
+            <td></td>
+            <td></td>
+        </tr>
+        }
+    }
 </table>

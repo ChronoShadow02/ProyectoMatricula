@@ -8,22 +8,35 @@ namespace ProyectoMatricula.Controllers
 {
     public class SedesController : Controller
     {
-
+        matriculaBDEntities matriculaBD = new matriculaBDEntities();
 
         // GET: Sedes
         public ActionResult Index()
         {
             return View();
         }
+        #region SedesLista
+            /// <summary>
+            /// Muestra la lista de las sedes
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult SedesLista()
+            {
+                return View();
+            }
+            [HttpPost]
+            /// <summary>
+            /// Muestra la lista de las sedes con 
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult SedesLista(pa_Sedes_Universitarias_Select_Result ModeloBusqueda)
+            {
+                List<pa_Sedes_Universitarias_Select_Result> modeloVista = this.matriculaBD.pa_Sedes_Universitarias_Select(ModeloBusqueda.Nombre_Sede).ToList();
 
-        /// <summary>
-        /// Muestra la lista de las sedes
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult SedesLista()
-        {
-            return View();
-        }
+                return View(modeloVista);
+            }
+        #endregion
+
 
 
         /// <summary>

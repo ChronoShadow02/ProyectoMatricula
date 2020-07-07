@@ -1804,6 +1804,7 @@ FROM [dbo].[Vista_Sedes_Universitarias] AS [Vista_Sedes_Universitarias]</Definin
           <Property Type="String" Name="Provincia" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Canton" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Distrito" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Direccion_Fisica" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -2200,6 +2201,7 @@ FROM [dbo].[Vista_Sedes_Universitarias] AS [Vista_Sedes_Universitarias]</Definin
                 <ScalarProperty Name="Provincia" ColumnName="Provincia" />
                 <ScalarProperty Name="Canton" ColumnName="Canton" />
                 <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+                <ScalarProperty Name="Direccion_Fisica" ColumnName="Direccion_Fisica" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

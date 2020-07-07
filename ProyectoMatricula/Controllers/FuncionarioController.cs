@@ -73,9 +73,9 @@ namespace ProyectoMatricula.Controllers
                 {
                     cantidadRegistrosAgectados = matriculaBD.pa_Funcionarios_Insert(modeloVista.Nombre_Funcionario,
                                                                                     modeloVista.Cedula_Funcionario,
-                                                                                    modeloVista.Id_Provincia,
-                                                                                    modeloVista.Id_Canton,
-                                                                                    modeloVista.Id_Distrito,
+                                                                                    Convert.ToInt16(modeloVista.Provincia),
+                                                                                    Convert.ToInt16(modeloVista.Canton),
+                                                                                    Convert.ToInt16(modeloVista.Distrito),
                                                                                     modeloVista.Fecha_Contratacion
                                                                                     );
                 }
