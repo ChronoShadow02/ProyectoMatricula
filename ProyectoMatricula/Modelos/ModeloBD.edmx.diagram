@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bce10c9f1ee54da4a082e1936099b43e" Name="Diagram1">
+      <Diagram DiagramId="497d6e81986641f8ab64ac136253240d" Name="Diagram1">
         <EntityTypeShape EntityType="matriculaBDModel.Canton" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="matriculaBDModel.Carreras_universitarias" Width="1.5" PointX="15" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="matriculaBDModel.Cuatrimestre" Width="1.5" PointX="7.5" PointY="1.875" IsExpanded="true" />
@@ -22,6 +22,7 @@
         <EntityTypeShape EntityType="matriculaBDModel.Sedes_Universitarias" Width="1.5" PointX="12.75" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="matriculaBDModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="matriculaBDModel.Administadores" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Vista_Sedes_Universitarias" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="matriculaBDModel.Canton_ref_Provincia" ManuallyRouted="false" />
         <AssociationConnector Association="matriculaBDModel.Distrito_ref_Canton" ManuallyRouted="false" />
         <AssociationConnector Association="matriculaBDModel.FK_Estudiantes_Canton" ManuallyRouted="false" />

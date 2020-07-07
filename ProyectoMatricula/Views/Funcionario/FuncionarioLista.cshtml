@@ -1,4 +1,4 @@
-﻿@model List<ProyectoMatricula.Modelos.pa_Funcionarios_Select_Result>
+﻿@model List<ProyectoMatricula.Modelos.pa_Estudiantes_Select_Result>
 @{
     ViewBag.Title = "Matricula UMCA | Lista de funcionarios";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
@@ -33,9 +33,9 @@
             <td>@posicionModelo.Id_Funcionario</td>
             <td>@posicionModelo.Nombre_Funcionario</td>
             <td>@posicionModelo.Cedula_Funcionario</td>
-            <td>@posicionModelo.Id_Provincia</td>
-            <td>@posicionModelo.Id_Canton</td>
-            <td>@posicionModelo.Id_Distrito</td>
+            <td>@posicionModelo.Provincia</td>
+            <td>@posicionModelo.Canton</td>
+            <td>@posicionModelo.Distrito</td>
             <td>@posicionModelo.Fecha_Contratacion.ToString("yyyy-mm-dd")</td>
             <td><a href="~/Funcionario/FuncionarioModifica">Modificar</a></td>
             <td><a href="~/Funcionario/FuncionarioElimina">Eliminar</a></td>

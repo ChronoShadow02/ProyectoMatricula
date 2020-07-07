@@ -215,6 +215,9 @@
     <Compile Include="Modelos\pa_RetornaEstudianteID_Select_Result.cs">
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_Sedes_Universitarias_Select_Result.cs">
+      <DependentUpon>ModeloBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\Provincia.cs">
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
@@ -243,6 +246,9 @@
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\sysdiagrams.cs">
+      <DependentUpon>ModeloBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\Vista_Sedes_Universitarias.cs">
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -289,7 +295,7 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
-    <Content Include="Scripts\Funcionario\cargaGeografia.js" />
+    <Content Include="Scripts\cargaGeografia.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -426,6 +432,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Estudiante\EstudianteElimina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

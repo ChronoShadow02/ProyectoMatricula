@@ -45,6 +45,7 @@ namespace ProyectoMatricula.Modelos
         public DbSet<Sedes_Universitarias> Sedes_Universitarias { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Administadores> Administadores { get; set; }
+        public DbSet<Vista_Sedes_Universitarias> Vista_Sedes_Universitarias { get; set; }
     
         public virtual ObjectResult<pa_Administrador_Select_Result> pa_Administrador_Select(string nombre_Usuario, string contrasena)
         {
@@ -115,7 +116,7 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Estudiantes_Delete", id_EstudianteParameter);
         }
     
-        public virtual int pa_Estudiantes_Insert(string nombre_Estudiante, string cedula_Estudiante, Nullable<int> id_Provincia, Nullable<int> id_Canton, Nullable<int> id_Distrito, string fecha_Inicio_U, string carne)
+        public virtual int pa_Estudiantes_Insert(string nombre_Estudiante, string cedula_Estudiante, Nullable<int> id_Provincia, Nullable<int> id_Canton, Nullable<int> id_Distrito, Nullable<System.DateTime> fecha_Inicio_U, string carne)
         {
             var nombre_EstudianteParameter = nombre_Estudiante != null ?
                 new ObjectParameter("Nombre_Estudiante", nombre_Estudiante) :
@@ -137,9 +138,9 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Id_Distrito", id_Distrito) :
                 new ObjectParameter("Id_Distrito", typeof(int));
     
-            var fecha_Inicio_UParameter = fecha_Inicio_U != null ?
+            var fecha_Inicio_UParameter = fecha_Inicio_U.HasValue ?
                 new ObjectParameter("Fecha_Inicio_U", fecha_Inicio_U) :
-                new ObjectParameter("Fecha_Inicio_U", typeof(string));
+                new ObjectParameter("Fecha_Inicio_U", typeof(System.DateTime));
     
             var carneParameter = carne != null ?
                 new ObjectParameter("Carne", carne) :
@@ -340,6 +341,15 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Direccion_Fisica", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Sedes_Universitarias_Insert", nombre_SedeParameter, codigo_SedeParameter, id_DirectorParameter, id_ProvinciaParameter, id_CantonParameter, id_DistritoParameter, direccion_FisicaParameter);
+        }
+    
+        public virtual ObjectResult<pa_Sedes_Universitarias_Select_Result> pa_Sedes_Universitarias_Select(string nombre_Sede)
+        {
+            var nombre_SedeParameter = nombre_Sede != null ?
+                new ObjectParameter("Nombre_Sede", nombre_Sede) :
+                new ObjectParameter("Nombre_Sede", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Sedes_Universitarias_Select_Result>("pa_Sedes_Universitarias_Select", nombre_SedeParameter);
         }
     
         public virtual int pa_Sedes_Universitarias_Update(Nullable<int> iD_Sede_Universitaria, string nombre_Sede, string codigo_Sede, Nullable<int> id_Director, Nullable<int> id_Provincia, Nullable<int> id_Canton, Nullable<int> id_Distrito, string direccion_Fisica)

@@ -49,55 +49,58 @@ namespace ProyectoMatricula.Controllers
                 }
         #endregion
 
-        /// <summary>
-        /// Metodo que Ingresa los funcionarios
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult FuncionarioNuevo()
-        {
-            return View();
-        }
 
-        /// <summary>
-        /// Metodo que Ingresa los funcionarios mediante el método post
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult FuncionarioNuevo(pa_Funcionarios_Select_Result modeloVista)
-        {
-            int cantidadRegistrosAgectados = 0;
-            string mensaje = "";
-            try
+        #region FuncionarioNuevo
+            /// <summary>
+            /// Metodo que Ingresa los funcionarios
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult FuncionarioNuevo()
             {
-                cantidadRegistrosAgectados = matriculaBD.pa_Funcionarios_Insert(modeloVista.Nombre_Funcionario,
-                                                                                modeloVista.Cedula_Funcionario,
-                                                                                modeloVista.Id_Provincia,
-                                                                                modeloVista.Id_Canton,
-                                                                                modeloVista.Id_Distrito,
-                                                                                modeloVista.Fecha_Contratacion
-                                                                                );
+                return View();
             }
-            catch (Exception error)
-            {
-                mensaje = "Ocurrió un error: " + error.Message;
 
-            }
-            finally
+            /// <summary>
+            /// Metodo que Ingresa los funcionarios mediante el método post
+            /// </summary>
+            /// <returns></returns>
+            [HttpPost]
+            public ActionResult FuncionarioNuevo(pa_Funcionarios_Select_Result modeloVista)
             {
-                if (cantidadRegistrosAgectados>0)
+                int cantidadRegistrosAgectados = 0;
+                string mensaje = "";
+                try
                 {
-                    mensaje = "Registro Insertado";
+                    cantidadRegistrosAgectados = matriculaBD.pa_Funcionarios_Insert(modeloVista.Nombre_Funcionario,
+                                                                                    modeloVista.Cedula_Funcionario,
+                                                                                    modeloVista.Id_Provincia,
+                                                                                    modeloVista.Id_Canton,
+                                                                                    modeloVista.Id_Distrito,
+                                                                                    modeloVista.Fecha_Contratacion
+                                                                                    );
                 }
-                else
+                catch (Exception error)
                 {
-                    mensaje += " .No se pudo ingresar";
+                    mensaje = "Ocurrió un error: " + error.Message;
+
                 }
+                finally
+                {
+                    if (cantidadRegistrosAgectados > 0)
+                    {
+                        mensaje = "Registro Insertado";
+                    }
+                    else
+                    {
+                        mensaje += " .No se pudo ingresar";
+                    }
+                }
+
+                Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+
+                return View();
             }
-
-            Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
-
-            return View();
-        }
+        #endregion
 
         /// <summary>
         /// Metodo que Modifica los funcionarios
