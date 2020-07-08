@@ -1,4 +1,4 @@
-﻿
+﻿@model ProyectoMatricula.Modelos.pa_FuncionariosViewBag_Select_Result
 @{
     ViewBag.Title = "Matricula UMCA | Modificación de funcionarios";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
@@ -10,35 +10,86 @@
         <form action="" method="post" id="frmFuncionario">
             <div class="form-group">
                 <label>Nombre de funcionario:</label>
-                <input type="text" value="" class="form-control" name="Nombre_Funcionario" />
+                <input type="text" class="form-control" name="Nombre_Funcionario" value="@Model.Nombre_Funcionario" />
             </div>
             <div class="form-group">
                 <label>Cédula:</label>
-                <input type="text" value="" class="form-control" name="Cedula_Funcionario" />
+                <input type="text" class="form-control" name="Cedula_Funcionario" value="@Model.Cedula_Funcionario" />
             </div>
             <div class="form-group">
                 <label>Provincia</label>
-                <select class="form-control" name="Id_Provincia">
+                <select class="form-control" name="Id_Provincia" id="Provincia">
                     <option value="">Seleccione una provincia</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.RetornaProvincias_Result posicionProvincia in this.ViewBag.ListaProvincias)
+                        {
+                            ///variable que indica si la provincia esta en el modelo
+                            bool esIdProvinciaModelo = posicionProvincia.id_Provincia == Model.Id_Provincia;
 
+                            if (esIdProvinciaModelo)
+                            {
+                                <option value="@posicionProvincia.id_Provincia" selected>@posicionProvincia.nombre</option>
+
+                            }
+                            else
+                            {
+                                <option value="@posicionProvincia.id_Provincia">@posicionProvincia.nombre</option>
+
+                            }
+                        }
+                    }
                 </select>
             </div>
             <div class="form-group">
                 <label>Cantón</label>
-                <select class="form-control" name="Id_Canton">
+                <select class="form-control" name="Id_Canton" id="Canton">
                     <option value="">Seleccione un cantón</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.RetornaCantones_Result posicionCanton in this.ViewBag.ListaCantones)
+                        {
+                            ///variable que indica si el canton esta en el modelo
+                            bool esIdCanton = posicionCanton.id_Canton == Model.Id_Canton;
+
+                            if (esIdCanton)
+                            {
+                                <option value="@posicionCanton.id_Canton" selected>@posicionCanton.nombre</option>
+
+                            }
+                            else
+                            {
+                                <option value="@posicionCanton.id_Canton">@posicionCanton.nombre</option>
+
+                            }
+                        }
+                    }
                 </select>
             </div>
             <div class="form-group">
                 <label>Distrito</label>
-                <select class="form-control" name="Id_Distrito">
+                <select class="form-control" name="Id_Distrito" id="Distrito">
                     <option value="">Seleccione un distrito</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.sp_RetornaDistritos_Result posicionDistrito in this.ViewBag.ListaDistritos)
+                        {
+                            /// variable qie indica si el canton esta en el modelo
 
+                            bool esIdDistrito = posicionDistrito.id_Distrito == Model.Id_Distrito;
+
+                            if (esIdDistrito)
+                            {
+                                <option value="@posicionDistrito.id_Distrito" selected> @posicionDistrito.nombre</option>
+                            }
+                            else
+                            {
+                                <option value="@posicionDistrito.id_Distrito"> @posicionDistrito.nombre</option>
+                            }
+                        }
+                    }
                 </select>
             </div>
             <div class="form-group">
                 <label>Fecha de contratación:</label>
-                <input type="date" value="" class="form-control" name="Fecha_Contratacion" />
+                <input type="date" class="form-control" name="Fecha_Contratacion" value="@Model.Fecha_Contratacion.ToString("dd/mm/yyyy")" />
             </div>
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary">Modificar</button>
@@ -48,4 +99,5 @@
 </div>
 @section scripts{
     <script src="~/Scripts/Funcionario/validarFuncionario.js"></script>
+    <script src="~/Scripts/cargaGeografia.js"></script>
 }

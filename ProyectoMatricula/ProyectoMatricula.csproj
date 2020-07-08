@@ -200,6 +200,9 @@
     <Compile Include="Modelos\pa_Cursos_x_Carrera_Select_Result.cs">
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_EstudiantesRetornaSelectID_Select_Result.cs">
+      <DependentUpon>ModeloBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\pa_Estudiantes_Cursos_Select_Result.cs">
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
@@ -207,6 +210,12 @@
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_FuncionariosID_Select_Result.cs">
+      <DependentUpon>ModeloBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_FuncionariosRetornaSelectID_Select_Result.cs">
+      <DependentUpon>ModeloBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_FuncionariosViewBag_Select_Result.cs">
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Funcionarios_Select_Result.cs">
@@ -246,9 +255,6 @@
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\sysdiagrams.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelos\Vista_Sedes_Universitarias.cs">
       <DependentUpon>ModeloBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -296,6 +302,7 @@
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
     <Content Include="Scripts\cargaGeografia.js" />
+    <Content Include="Scripts\Funcionario\cargarGeografiaModificada.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />

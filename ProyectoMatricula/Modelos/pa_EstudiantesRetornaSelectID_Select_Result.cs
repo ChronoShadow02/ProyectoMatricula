@@ -11,14 +11,15 @@ namespace ProyectoMatricula.Modelos
 {
     using System;
     
-    public partial class pa_FuncionariosID_Select_Result
+    public partial class pa_EstudiantesRetornaSelectID_Select_Result
     {
-        public int Id_Funcionario { get; set; }
-        public string Nombre_Funcionario { get; set; }
-        public string Cedula_Funcionario { get; set; }
-        public string Provincia { get; set; }
-        public string Canton { get; set; }
-        public string Distrito { get; set; }
-        public System.DateTime Fecha_Contratacion { get; set; }
+        public int Id_Estudiante { get; set; }
+        public string Nombre_Estudiante { get; set; }
+        public string Cedula_Estudiante { get; set; }
+        public int Id_Provincia { get; set; }
+        public int Id_Canton { get; set; }
+        public int Id_Distrito { get; set; }
+        public System.DateTime Fecha_Inicio_U { get; set; }
+        public string Carne { get; set; }
     }
 }

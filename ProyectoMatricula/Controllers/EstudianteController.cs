@@ -63,7 +63,7 @@ namespace ProyectoMatricula.Controllers
 			/// </summary>
 			/// <returns></returns>
 			[HttpPost]
-			public ActionResult EstudianteNuevo(pa_Estudiantes_Select_Result modeloVista)
+			public ActionResult EstudianteNuevo(pa_EstudiantesRetornaSelectID_Select_Result modeloVista)
 			{
 				int cantidadRegistrosAgectados = 0;
 				int registrosAfectados = 0;
@@ -74,9 +74,9 @@ namespace ProyectoMatricula.Controllers
 				///Se ejecuta el procedimiento almacennado
 					cantidadRegistrosAgectados = matriculaBD.pa_Estudiantes_Insert(modeloVista.Nombre_Estudiante,
 																				   modeloVista.Cedula_Estudiante,
-																				   Convert.ToInt16(modeloVista.Provincia),
-																				   Convert.ToInt16(modeloVista.Canton),
-																				   Convert.ToInt16(modeloVista.Distrito),
+																				   modeloVista.Id_Provincia,
+																				   modeloVista.Id_Canton,
+																				   modeloVista.Id_Distrito,
 																				   modeloVista.Fecha_Inicio_U,
 																				   carneEstudiante);
 					///almacenamos en una variable la cedula del estudiante recien ingresado

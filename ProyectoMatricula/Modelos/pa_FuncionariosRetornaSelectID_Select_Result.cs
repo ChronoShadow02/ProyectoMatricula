@@ -10,17 +10,15 @@
 namespace ProyectoMatricula.Modelos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Vista_Sedes_Universitarias
+    public partial class pa_FuncionariosRetornaSelectID_Select_Result
     {
-        public int Id_Sedes_universitarias { get; set; }
-        public string Nombre_Sede { get; set; }
-        public string Codigo_Sede { get; set; }
+        public int Id_Funcionario { get; set; }
         public string Nombre_Funcionario { get; set; }
-        public string Provincia { get; set; }
-        public string Canton { get; set; }
-        public string Distrito { get; set; }
-        public string Direccion_Fisica { get; set; }
+        public string Cedula_Funcionario { get; set; }
+        public int Id_Provincia { get; set; }
+        public int Id_Canton { get; set; }
+        public int Id_Distrito { get; set; }
+        public System.DateTime Fecha_Contratacion { get; set; }
     }
 }

@@ -41,15 +41,17 @@ namespace ProyectoMatricula.Controllers
         #endregion
 
 
+        #region MyRegion
+            /// <summary>
+            /// Ingresa los datos de las sedes
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult SedesNuevo()
+            {
+                return View();
+            }
+        #endregion
 
-        /// <summary>
-        /// Ingresa los datos de las sedes
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult SedesNuevo()
-        {
-            return View();
-        }
 
         /// <summary>
         /// Modifica los datos de las sedes

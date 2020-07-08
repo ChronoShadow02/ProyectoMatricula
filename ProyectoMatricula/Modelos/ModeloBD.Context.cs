@@ -45,7 +45,6 @@ namespace ProyectoMatricula.Modelos
         public DbSet<Sedes_Universitarias> Sedes_Universitarias { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Administadores> Administadores { get; set; }
-        public DbSet<Vista_Sedes_Universitarias> Vista_Sedes_Universitarias { get; set; }
     
         public virtual ObjectResult<pa_Administrador_Select_Result> pa_Administrador_Select(string nombre_Usuario, string contrasena)
         {
@@ -290,6 +289,15 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Id_Funcionario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FuncionariosID_Select_Result>("pa_FuncionariosID_Select", id_FuncionarioParameter);
+        }
+    
+        public virtual ObjectResult<pa_FuncionariosViewBag_Select_Result> pa_FuncionariosViewBag_Select(Nullable<int> id_Funcionario)
+        {
+            var id_FuncionarioParameter = id_Funcionario.HasValue ?
+                new ObjectParameter("Id_Funcionario", id_Funcionario) :
+                new ObjectParameter("Id_Funcionario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FuncionariosViewBag_Select_Result>("pa_FuncionariosViewBag_Select", id_FuncionarioParameter);
         }
     
         public virtual ObjectResult<pa_RetornaEstudianteID_Select_Result> pa_RetornaEstudianteID_Select(string cedulaEstudianteNuevo)
@@ -590,6 +598,16 @@ namespace ProyectoMatricula.Modelos
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<pa_FuncionariosRetornaSelectID_Select_Result> pa_FuncionariosRetornaSelectID_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FuncionariosRetornaSelectID_Select_Result>("pa_FuncionariosRetornaSelectID_Select");
+        }
+    
+        public virtual ObjectResult<pa_EstudiantesRetornaSelectID_Select_Result> pa_EstudiantesRetornaSelectID_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_EstudiantesRetornaSelectID_Select_Result>("pa_EstudiantesRetornaSelectID_Select");
         }
     }
 }
