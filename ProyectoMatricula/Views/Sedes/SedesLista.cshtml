@@ -38,9 +38,18 @@
                 <td>@posicionModelo.Canton</td>
                 <td>@posicionModelo.Distrito</td>
                 <td>@posicionModelo.Direccion_Fisica</td>
-                <td></td>
-                <td></td>
+                <td>
+                    <a href="~/Sedes/SedesModifica?Id_Sedes_universitarias=@posicionModelo.Id_Sedes_universitarias">Modificar</a>
+                </td>
+                <td>
+                    <a href="~/Sedes/SedesElimina?Id_Sedes_universitarias=@posicionModelo.Id_Sedes_universitarias">Eliminar</a>
+                </td>
             </tr>
         }
     }
 </table>
+<div class="d-flex align-content-center justify-content-center">
+    <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary">Ir al menú principal</a> &nbsp;
+    <a href="~/Sedes/SedesNuevo" class="btn btn-outline-primary">Agregar sede</a>
+</div>
+<br />

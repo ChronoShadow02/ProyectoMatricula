@@ -1,47 +1,104 @@
-﻿
+﻿@model ProyectoMatricula.Modelos.pa_EstudiantesViewBag_Select_Result
 @{
     ViewBag.Title = "Matriucla UMCA | Modificación de estudiantes";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
 }
 
 <h2 class="text-center">Modificación de estudiante</h2>
-<form method="post" id="frmEstudiante">
-    <div class="form-group">
-        <label for="txtNombre">Nombre Completo</label>
-        <input type="text" id="txtNombre" name="Nombre_Estudiante" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="txtCedula">Cédula</label>
-        <input type="text" id="txtCedula" name="Cedula_Estudiante" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="">Provincia</label>
-        <select name="Id_Provincia" class="form-control">
-            <option value="">Seleccione una provincia</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="">Cantón</label>
-        <select name="Id_Canton" class="form-control">
-            <option value="">Seleccione un cantón</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="">Distrito</label>
-        <select name="Id_Distrito" class="form-control">
-            <option value="">Seleccione un distrito</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="txtFecha">Fecha de Inicio</label>
-        <input type="date" value="" id="txtFecha" name="Fecha_Inicio_U" class="form-control" />
-    </div>
+<div class="row justify-content-center align-items-center h-100 border-left border-right">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <form method="post" id="frmEstudiante">
+            <div class="form-group">
+                <label for="txtNombre">Nombre Completo</label>
+                <input type="text" id="txtNombre" name="Nombre_Estudiante" class="form-control" value="@Model.Nombre_Estudiante" />
+            </div>
+            <div class="form-group">
+                <label for="txtCedula">Cédula</label>
+                <input type="text" id="txtCedula" name="Cedula_Estudiante" class="form-control" value="@Model.Cedula_Estudiante" />
+            </div>
+            <div class="form-group">
+                <label for="">Provincia</label>
+                <select name="Id_Provincia" class="form-control">
+                    <option value="">Seleccione una provincia</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.RetornaProvincias_Result posicionProvincia in this.ViewBag.ListaProvincias)
+                        {
+                            ///variable que indica si la provincia esta en el modelo
+                            bool esIdProvinciaModelo = posicionProvincia.id_Provincia == Model.Id_Provincia;
 
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Ingresar</button>
+                            if (esIdProvinciaModelo)
+                            {
+                                <option value="@posicionProvincia.id_Provincia" selected>@posicionProvincia.nombre</option>
+
+                            }
+                            else
+                            {
+                                <option value="@posicionProvincia.id_Provincia">@posicionProvincia.nombre</option>
+
+                            }
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="">Cantón</label>
+                <select name="Id_Canton" class="form-control">
+                    <option value="">Seleccione un cantón</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.RetornaCantones_Result posicionCanton in this.ViewBag.ListaCantones)
+                        {
+                            ///variable que indica si el canton esta en el modelo
+                            bool esIdCanton = posicionCanton.id_Canton == Model.Id_Canton;
+
+                            if (esIdCanton)
+                            {
+                                <option value="@posicionCanton.id_Canton" selected>@posicionCanton.nombre</option>
+
+                            }
+                            else
+                            {
+                                <option value="@posicionCanton.id_Canton">@posicionCanton.nombre</option>
+
+                            }
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="">Distrito</label>
+                <select name="Id_Distrito" class="form-control">
+                    <option value="">Seleccione un distrito</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.sp_RetornaDistritos_Result posicionDistrito in this.ViewBag.ListaDistritos)
+                        {
+                            /// variable qie indica si el canton esta en el modelo
+
+                            bool esIdDistrito = posicionDistrito.id_Distrito == Model.Id_Distrito;
+
+                            if (esIdDistrito)
+                            {
+                                <option value="@posicionDistrito.id_Distrito" selected> @posicionDistrito.nombre</option>
+                            }
+                            else
+                            {
+                                <option value="@posicionDistrito.id_Distrito"> @posicionDistrito.nombre</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="txtFecha">Fecha de Inicio</label>
+                <input type="date" id="txtFecha" name="Fecha_Inicio_U" class="form-control" value="@Model.Fecha_Inicio_U" />
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Modificar</button>
+            </div>
+        </form>
     </div>
-</form>
+</div>
 @section scripts{
     <script src="~/Scripts/Estudiante/validarEstudiante.js"></script>
+    <script src="~/Scripts/Funcionario/cargarGeografiaModificada.js"></script>
 }
 

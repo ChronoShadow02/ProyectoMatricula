@@ -161,7 +161,7 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Estudiantes_Select_Result>("pa_Estudiantes_Select", nombre_EstudianteParameter, carneParameter);
         }
     
-        public virtual int pa_Estudiantes_Update(Nullable<int> id_Estudiante, string nombre_Estudiante, string cedula_Estudiante, Nullable<int> id_Provincia, Nullable<int> id_Canton, Nullable<int> id_Distrito, string fecha_Inicio_U, string carne)
+        public virtual int pa_Estudiantes_Update(Nullable<int> id_Estudiante, string nombre_Estudiante, string cedula_Estudiante, Nullable<int> id_Provincia, Nullable<int> id_Canton, Nullable<int> id_Distrito, Nullable<System.DateTime> fecha_Inicio_U, string carne)
         {
             var id_EstudianteParameter = id_Estudiante.HasValue ?
                 new ObjectParameter("Id_Estudiante", id_Estudiante) :
@@ -187,15 +187,29 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Id_Distrito", id_Distrito) :
                 new ObjectParameter("Id_Distrito", typeof(int));
     
-            var fecha_Inicio_UParameter = fecha_Inicio_U != null ?
+            var fecha_Inicio_UParameter = fecha_Inicio_U.HasValue ?
                 new ObjectParameter("Fecha_Inicio_U", fecha_Inicio_U) :
-                new ObjectParameter("Fecha_Inicio_U", typeof(string));
+                new ObjectParameter("Fecha_Inicio_U", typeof(System.DateTime));
     
             var carneParameter = carne != null ?
                 new ObjectParameter("Carne", carne) :
                 new ObjectParameter("Carne", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Estudiantes_Update", id_EstudianteParameter, nombre_EstudianteParameter, cedula_EstudianteParameter, id_ProvinciaParameter, id_CantonParameter, id_DistritoParameter, fecha_Inicio_UParameter, carneParameter);
+        }
+    
+        public virtual ObjectResult<pa_EstudiantesRetornaSelectID_Select_Result> pa_EstudiantesRetornaSelectID_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_EstudiantesRetornaSelectID_Select_Result>("pa_EstudiantesRetornaSelectID_Select");
+        }
+    
+        public virtual ObjectResult<pa_EstudiantesViewBag_Select_Result> pa_EstudiantesViewBag_Select(Nullable<int> id_Estudiante)
+        {
+            var id_EstudianteParameter = id_Estudiante.HasValue ?
+                new ObjectParameter("Id_Estudiante", id_Estudiante) :
+                new ObjectParameter("Id_Estudiante", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_EstudiantesViewBag_Select_Result>("pa_EstudiantesViewBag_Select", id_EstudianteParameter);
         }
     
         public virtual int pa_Funcionarios_Delete(Nullable<int> iD_Funcionarios)
@@ -289,6 +303,11 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Id_Funcionario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FuncionariosID_Select_Result>("pa_FuncionariosID_Select", id_FuncionarioParameter);
+        }
+    
+        public virtual ObjectResult<pa_FuncionariosRetornaSelectID_Select_Result> pa_FuncionariosRetornaSelectID_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FuncionariosRetornaSelectID_Select_Result>("pa_FuncionariosRetornaSelectID_Select");
         }
     
         public virtual ObjectResult<pa_FuncionariosViewBag_Select_Result> pa_FuncionariosViewBag_Select(Nullable<int> id_Funcionario)
@@ -598,16 +617,6 @@ namespace ProyectoMatricula.Modelos
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
-        public virtual ObjectResult<pa_FuncionariosRetornaSelectID_Select_Result> pa_FuncionariosRetornaSelectID_Select()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FuncionariosRetornaSelectID_Select_Result>("pa_FuncionariosRetornaSelectID_Select");
-        }
-    
-        public virtual ObjectResult<pa_EstudiantesRetornaSelectID_Select_Result> pa_EstudiantesRetornaSelectID_Select()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_EstudiantesRetornaSelectID_Select_Result>("pa_EstudiantesRetornaSelectID_Select");
         }
     }
 }

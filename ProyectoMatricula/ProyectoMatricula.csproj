@@ -138,124 +138,127 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Administadores.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Canton.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Carreras_universitarias.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Cuatrimestre.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Cuatrimestre_x_Sede.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Cursos.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\CursosXCarrera.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\CursosXEstudiante.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Curso_x_Cuatrimestre.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Curso_x_Sede.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Direcciones_de_carrera.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Distrito.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Estudiantes.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Funcionarios.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelos\ModeloBD.Context.cs">
+    <Compile Include="Modelos\ModelBD.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloBD.Context.tt</DependentUpon>
+      <DependentUpon>ModelBD.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelos\ModeloBD.cs">
+    <Compile Include="Modelos\ModelBD.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelos\ModeloBD.Designer.cs">
+    <Compile Include="Modelos\ModelBD.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloBD.edmx</DependentUpon>
+      <DependentUpon>ModelBD.edmx</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Administrador_Select_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Cursos_x_Carrera_Select_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_EstudiantesRetornaSelectID_Select_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_EstudiantesViewBag_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Estudiantes_Cursos_Select_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Estudiantes_Select_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_FuncionariosID_Select_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_FuncionariosRetornaSelectID_Select_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_FuncionariosViewBag_Select_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Funcionarios_Select_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_RetornaEstudianteID_Select_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Sedes_Universitarias_Select_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Provincia.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\RetornaCantonesID_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\RetornaCantones_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\RetornaProvincias_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Sedes_Universitarias.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\sp_helpdiagrams_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\sp_RetornaDistritos_ID_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\sp_RetornaDistritos_Result.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\sysdiagrams.cs">
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -273,15 +276,15 @@
     <Content Include="img\imgSlider1.jpg" />
     <Content Include="img\imgSlider2.jpg" />
     <Content Include="img\imgSlider3.jpg" />
-    <Content Include="Modelos\ModeloBD.Context.tt">
+    <Content Include="Modelos\ModelBD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloBD.edmx</DependentUpon>
-      <LastGenOutput>ModeloBD.Context.cs</LastGenOutput>
+      <DependentUpon>ModelBD.edmx</DependentUpon>
+      <LastGenOutput>ModelBD.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Modelos\ModeloBD.tt">
+    <Content Include="Modelos\ModelBD.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloBD.edmx</DependentUpon>
-      <LastGenOutput>ModeloBD.cs</LastGenOutput>
+      <DependentUpon>ModelBD.edmx</DependentUpon>
+      <LastGenOutput>ModelBD.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -308,12 +311,12 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <EntityDeploy Include="Modelos\ModeloBD.edmx">
+    <EntityDeploy Include="Modelos\ModelBD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModeloBD.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelBD.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Modelos\ModeloBD.edmx.diagram">
-      <DependentUpon>ModeloBD.edmx</DependentUpon>
+    <Content Include="Modelos\ModelBD.edmx.diagram">
+      <DependentUpon>ModelBD.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Estudiante\validarEstudiante.js" />

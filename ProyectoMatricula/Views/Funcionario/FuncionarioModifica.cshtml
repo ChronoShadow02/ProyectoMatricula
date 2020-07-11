@@ -5,7 +5,7 @@
 }
 
 <h2 class="text-center">Modificación de funcionarios</h2>
-<div class="row justify-content-center align-items-center h-100">
+<div class="row justify-content-center align-items-center h-100 border-left border-right">
     <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
         <form action="" method="post" id="frmFuncionario">
             <div class="form-group">
@@ -89,7 +89,7 @@
             </div>
             <div class="form-group">
                 <label>Fecha de contratación:</label>
-                <input type="date" class="form-control" name="Fecha_Contratacion" value="@Model.Fecha_Contratacion.ToString("dd/mm/yyyy")" />
+                <input type="date" class="form-control" name="Fecha_Contratacion" value="@Model.Fecha_Contratacion" />
             </div>
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary">Modificar</button>
@@ -99,5 +99,6 @@
 </div>
 @section scripts{
     <script src="~/Scripts/Funcionario/validarFuncionario.js"></script>
-    <script src="~/Scripts/cargaGeografia.js"></script>
+
+    <script src="~/Scripts/Funcionario/cargarGeografiaModificada.js"></script>
 }

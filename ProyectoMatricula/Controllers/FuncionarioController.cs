@@ -304,5 +304,5 @@ namespace ProyectoMatricula.Controllers
 
         #endregion
     }
-    ///Mandar como parametro el id de los modelos de la vista para guardarlos en el VIweBag
+    
 }

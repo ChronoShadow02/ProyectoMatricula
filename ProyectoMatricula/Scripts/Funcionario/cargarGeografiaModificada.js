@@ -16,6 +16,10 @@ function estableceEventosChange() {
         var provincia = $("#Provincia").val();
         ///llamar la funcion de cargar cantones asociados a la provincia seleccionada
         cargaDropdownListCantones(provincia);
+
+                var Canton = $("#Canton").val();
+
+        cargaDropdownListDistritos(Canton);
     });
 
     $("#Canton").change(function () {
@@ -56,23 +60,18 @@ function cargaDropdownListProvincias() {
  */
 function procesarResultadoProvincias(data) {
 
-    ///se limpian todas las opciones de la lista
-    ddlProvincia.empty();
+    ///se posiciona en la lista de provincias
+    var ddlProvincia = $("#Provincia");
 
-    // se crea la primera opcion de la lista, con valor vacío y texto "Seleccione la provincia"
 
-    var NuevaOpcion = "<option value=''>Seleccione la provincia</option>";
-
-    ///Se agrega la nueva opcion al dropdown
-    ddlProvincia.append(NuevaOpcion);
-    $(data).each(function () {
+    /*$(data).each(function () {
 
         var ProvinciaActual = this;
 
         var NuevaOpcion = "<option value='" + ProvinciaActual.id_Provincia + "'>" + ProvinciaActual.nombre + "</option>";
 
         ddlProvincia.append(NuevaOpcion);
-    });
+    });*/
 }
 
 ///carga los registros de los cantones
@@ -114,7 +113,6 @@ function procesarResultadoCantones(data) {
 
     ///Se agrega la nueva opcion al dropdown
     ddlCanton.append(NuevaOpcion);
-
 
     $(data).each(function () {
 

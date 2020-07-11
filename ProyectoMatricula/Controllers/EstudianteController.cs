@@ -133,21 +133,92 @@ namespace ProyectoMatricula.Controllers
 
 		#region EstudianteModifica
 			/// <summary>
-			/// Metodo que Ingresa los estudiantes
+			/// Metodo que muestra el formulario para que se Ingresen los estudiantes
 			/// </summary>
 			/// <returns></returns>
-			public ActionResult EstudianteModifica()
+			public ActionResult EstudianteModifica(int Id_Estudiante)
 			{
-				return View();
+				pa_EstudiantesViewBag_Select_Result modeloVista = new pa_EstudiantesViewBag_Select_Result();
+
+				modeloVista = this.matriculaBD.pa_EstudiantesViewBag_Select(Id_Estudiante).FirstOrDefault();
+
+				this.RetornaProvinciasViewBag();
+
+				this.RetornaCantonesViewBag(modeloVista.Id_Provincia);
+
+				this.RetornaDistritosViewBag(modeloVista.Id_Canton);
+
+				return View(modeloVista);
 			}
+
+		[HttpPost]
+		/// <summary>
+		/// Metodo que Ingresa los estudiantes mediante el procedimiento almacenado
+		/// </summary>
+		/// <returns></returns>
+		public ActionResult EstudianteModifica(pa_EstudiantesRetornaSelectID_Select_Result modeloVista)
+		{
+			///Variable que registra la cantidad de registros afectados
+			///si un procedimiento ejecuta insert, update, delete 
+			///no afecta registros implica que hubo un error
+			int cantidadRegistrosAgectados = 0;
+
+			string resultado = "";
+			string carne = "";
+			try
+			{
+				pa_EstudiantesViewBag_Select_Result modeloCarneEstudiante = new pa_EstudiantesViewBag_Select_Result();
+
+				modeloCarneEstudiante = this.matriculaBD.pa_EstudiantesViewBag_Select(modeloVista.Id_Estudiante).FirstOrDefault();
+
+				carne = modeloCarneEstudiante.Carne;
+
+				cantidadRegistrosAgectados = this.matriculaBD.pa_Estudiantes_Update(modeloVista.Id_Estudiante,
+																				    modeloVista.Nombre_Estudiante,
+																					modeloVista.Cedula_Estudiante,
+																					modeloVista.Id_Provincia,
+																					modeloVista.Id_Canton,
+																					modeloVista.Id_Distrito,
+																					modeloVista.Fecha_Inicio_U,
+																					carne);
+			}
+			catch (Exception error)
+			{
+
+				resultado = "Ocurrio un error " + error.Message;
+
+			}
+			finally
+			{
+				if (cantidadRegistrosAgectados > 0)
+				{
+					resultado = "Registro Modificado";
+				}
+				else
+				{
+					resultado += ".No se pudo modificar";
+				}
+			}
+			Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
+
+			this.RetornaProvinciasViewBag();
+
+			this.RetornaCantonesViewBag(modeloVista.Id_Provincia);
+
+			this.RetornaDistritosViewBag(modeloVista.Id_Canton);
+
+			pa_EstudiantesViewBag_Select_Result modelview = new pa_EstudiantesViewBag_Select_Result();
+
+			return View(modelview);
+		}
 		#endregion
 
 		#region EstudianteElimina
-			/// <summary>
-			/// Metodo que elimina los estudiantes por medio del id_estudiante
-			/// </summary>
-			/// <returns></returns>
-			public ActionResult EstudianteElimina()
+		/// <summary>
+		/// Metodo que elimina los estudiantes por medio del id_estudiante
+		/// </summary>
+		/// <returns></returns>
+		public ActionResult EstudianteElimina()
 			{
 				return View();
 			}
@@ -189,6 +260,38 @@ namespace ProyectoMatricula.Controllers
 			List<sp_RetornaDistritos_Result> Distritos = matriculaBD.sp_RetornaDistritos(null, Id_Canton).ToList();
 			return Json(Distritos);
 		}
+		#endregion
+
+
+		#region RetornaProvinciasViewBag
+		/// <summary>
+		/// Metodo que retorna las provincias y las guarda en el ViewBag
+		/// </summary>
+		void RetornaProvinciasViewBag()
+		{
+			this.ViewBag.ListaProvincias = this.matriculaBD.RetornaProvincias(null).ToList();
+		}
+		#endregion
+
+		#region RetornaCantonesViewBag
+		/// <summary>
+		/// Metodo que retorna las los cantones dependiendo de la provincia seleccionada
+		/// </summary>
+		void RetornaCantonesViewBag(int Id_Provincia)
+		{
+			this.ViewBag.ListaCantones = this.matriculaBD.RetornaCantones(null, Id_Provincia).ToList();
+		}
+		#endregion
+
+		#region RetornaDistritosViewBag
+		/// <summary>
+		/// Metodo que retorna las los distritos dependiendo del cantón seleccionado
+		/// </summary>
+		void RetornaDistritosViewBag(int Id_Canton)
+		{
+			this.ViewBag.ListaDistritos = this.matriculaBD.sp_RetornaDistritos(null, Id_Canton).ToList();
+		}
+
 		#endregion
 	}
 }

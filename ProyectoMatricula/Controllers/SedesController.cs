@@ -61,5 +61,45 @@ namespace ProyectoMatricula.Controllers
         {
             return View();
         }
+
+        ///Metodos en los que se puede visualizar las provincias, cantones y distritos
+        #region RetornaProvincias
+        /// <summary>
+        /// Metodo que devuelve las provincias
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RetornaProvincias()
+        {
+            List<RetornaProvincias_Result> Provincias = matriculaBD.RetornaProvincias(null).ToList();
+
+            return Json(Provincias);
+        }
+        #endregion
+
+        #region RetornaCantones
+        /// <summary>
+        /// Metodo que devuelve los cantones
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RetornaCantones(int Id_Provincia)
+        {
+            List<RetornaCantones_Result> Cantones = matriculaBD.RetornaCantones(null, Id_Provincia).ToList();
+
+            return Json(Cantones);
+        }
+        #endregion
+
+        #region RetornaDiatritos
+        /// <summary>
+        /// Metodo que retorna los distritos
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RetornaDistritos(int Id_Canton)
+        {
+            List<sp_RetornaDistritos_Result> Distritos = matriculaBD.sp_RetornaDistritos(null, Id_Canton).ToList();
+            return Json(Distritos);
+        }
+        #endregion
+
     }
 }
