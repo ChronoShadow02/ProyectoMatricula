@@ -227,6 +227,9 @@
     <Compile Include="Modelos\pa_RetornaEstudianteID_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_Sedes_UniversitariasID_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\pa_Sedes_Universitarias_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -304,7 +307,8 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
-    <Content Include="Scripts\cargaGeografia.js" />
+    <Content Include="Scripts\Estudiante\cargaGeografia.js" />
+    <Content Include="Scripts\Funcionario\cargaGeografia.js" />
     <Content Include="Scripts\Funcionario\cargarGeografiaModificada.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
@@ -337,6 +341,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\Sedes\cargaGeografia.js" />
     <Content Include="Scripts\Sedes\validarSedes.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />

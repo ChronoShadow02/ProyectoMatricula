@@ -177,8 +177,6 @@ namespace ProyectoMatricula.Controllers
         }
         #endregion
 
-
-
         #region FuncionarioElimina
             /// <summary>
             /// Metodo que elimina los funcionarios

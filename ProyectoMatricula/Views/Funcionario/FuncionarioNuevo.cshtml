@@ -3,8 +3,8 @@
     ViewBag.Title = "Matricula UMCA | Ingresar funcionario";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
 }
-    <br />
-    <h1 class="text-center border-top ">Ingresar funcionario</h1>
+<br />
+<h1 class="text-center border-top ">Ingresar funcionario</h1>
 <div class="row justify-content-center align-items-center h-100 border-left border-right">
     <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
         <form method="post" id="frmFuncionario" class="">
@@ -40,8 +40,9 @@
         </form>
     </div>
 </div>
-    @section scripts{
-        <script src="~/Scripts/Funcionario/validarFuncionario.js"></script>
-        <script src="~/Scripts/cargaGeografia.js"></script>
-    }
+@section scripts{
+    <script src="~/Scripts/Funcionario/validarFuncionario.js"></script>
+
+    <script src="~/Scripts/Funcionario/cargaGeografia.js"></script>
+}
 

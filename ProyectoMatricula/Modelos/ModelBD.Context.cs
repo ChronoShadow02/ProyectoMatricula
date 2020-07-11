@@ -618,5 +618,10 @@ namespace ProyectoMatricula.Modelos
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<pa_Sedes_UniversitariasID_Select_Result> pa_Sedes_UniversitariasID_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Sedes_UniversitariasID_Select_Result>("pa_Sedes_UniversitariasID_Select");
+        }
     }
 }
