@@ -262,7 +262,6 @@ namespace ProyectoMatricula.Controllers
 		}
 		#endregion
 
-
 		#region RetornaProvinciasViewBag
 		/// <summary>
 		/// Metodo que retorna las provincias y las guarda en el ViewBag

@@ -623,5 +623,18 @@ namespace ProyectoMatricula.Modelos
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Sedes_UniversitariasID_Select_Result>("pa_Sedes_UniversitariasID_Select");
         }
+    
+        public virtual ObjectResult<pa_Direcciones_de_Carrera_Select_Result> pa_Direcciones_de_Carrera_Select(string nombre_Direccion_Carrera, string nombre_Director)
+        {
+            var nombre_Direccion_CarreraParameter = nombre_Direccion_Carrera != null ?
+                new ObjectParameter("Nombre_Direccion_Carrera", nombre_Direccion_Carrera) :
+                new ObjectParameter("Nombre_Direccion_Carrera", typeof(string));
+    
+            var nombre_DirectorParameter = nombre_Director != null ?
+                new ObjectParameter("Nombre_Director", nombre_Director) :
+                new ObjectParameter("Nombre_Director", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Direcciones_de_Carrera_Select_Result>("pa_Direcciones_de_Carrera_Select", nombre_Direccion_CarreraParameter, nombre_DirectorParameter);
+        }
     }
 }
