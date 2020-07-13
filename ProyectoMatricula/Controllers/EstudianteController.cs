@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoMatricula.Modelos;
@@ -218,10 +219,58 @@ namespace ProyectoMatricula.Controllers
 		/// Metodo que elimina los estudiantes por medio del id_estudiante
 		/// </summary>
 		/// <returns></returns>
-		public ActionResult EstudianteElimina()
+		public ActionResult EstudianteEliminar(int Id_Estudiante)
+		{
+			pa_EstudiantesViewBag_Select_Result modeloVista = new pa_EstudiantesViewBag_Select_Result();
+
+			modeloVista = this.matriculaBD.pa_EstudiantesViewBag_Select(Id_Estudiante).FirstOrDefault();
+
+			/// se agregan los datos de las provincias, cantones y distritos
+			this.RetornaProvinciasViewBag();
+
+			this.RetornaCantonesViewBag(modeloVista.Id_Provincia);
+
+			this.RetornaDistritosViewBag(modeloVista.Id_Canton);
+
+			return View(modeloVista);
+		}
+
+		[HttpPost]
+		public ActionResult EstudianteEliminar(pa_EstudiantesViewBag_Select_Result modeloVista)
+		{
+			int RegistrosAfectados = 0;
+			string resultado = "";
+			try
 			{
-				return View();
+				RegistrosAfectados = this.matriculaBD.pa_Estudiantes_Delete(modeloVista.Id_Estudiante);
 			}
+			catch (Exception error)
+			{
+				resultado = "Ocurrio un error " + error.Message;
+			}
+			finally
+			{
+				if (RegistrosAfectados > 0)
+				{
+					resultado = "Registro Eliminado";
+				}
+				else
+				{
+					resultado += ".No se pudo eliminar";
+				}
+			}
+			Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
+
+			/// se agregan los datos de las provincias, cantones y distritos
+			this.RetornaProvinciasViewBag();
+
+			this.RetornaCantonesViewBag(modeloVista.Id_Provincia);
+
+			this.RetornaDistritosViewBag(modeloVista.Id_Canton);
+
+			return View(modeloVista);
+
+		}
 		#endregion
 
 		#region RetornaProvincias

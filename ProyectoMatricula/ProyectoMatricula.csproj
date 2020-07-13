@@ -201,6 +201,9 @@
     <Compile Include="Modelos\pa_Cursos_x_Carrera_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_DireccionesCarrerasRetornaID_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\pa_Direcciones_de_Carrera_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -283,6 +286,22 @@
     <Content Include="img\imgSlider1.jpg" />
     <Content Include="img\imgSlider2.jpg" />
     <Content Include="img\imgSlider3.jpg" />
+    <Content Include="JqueryUI\images\ui-icons_444444_256x240.png" />
+    <Content Include="JqueryUI\images\ui-icons_555555_256x240.png" />
+    <Content Include="JqueryUI\images\ui-icons_777620_256x240.png" />
+    <Content Include="JqueryUI\images\ui-icons_777777_256x240.png" />
+    <Content Include="JqueryUI\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="JqueryUI\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="JqueryUI\jquery-ui.css" />
+    <Content Include="JqueryUI\jquery-ui.js" />
+    <Content Include="JqueryUI\jquery-ui.min.css" />
+    <Content Include="JqueryUI\jquery-ui.min.js" />
+    <Content Include="JqueryUI\jquery-ui.structure.css" />
+    <Content Include="JqueryUI\jquery-ui.structure.min.css" />
+    <Content Include="JqueryUI\jquery-ui.theme.css" />
+    <Content Include="JqueryUI\jquery-ui.theme.min.css" />
+    <Content Include="media\Anuncio.mp4" />
+    <Content Include="media\C418-WetHands-MinecraftVolumeAlpha.mp3" />
     <Content Include="Modelos\ModelBD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelBD.edmx</DependentUpon>
@@ -312,6 +331,7 @@
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
     <Content Include="Scripts\Estudiante\cargaGeografia.js" />
+    <Content Include="Scripts\Estudiante\cargarGeografiaModificada.js" />
     <Content Include="Scripts\Funcionario\cargaGeografia.js" />
     <Content Include="Scripts\Funcionario\cargarGeografiaModificada.js" />
     <Content Include="Scripts\index.js.flow" />
@@ -451,8 +471,10 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Estudiante\EstudianteElimina.cshtml" />
     <Content Include="Views\DireccionesCarrera\DireccionesCarreraLista.cshtml" />
+    <Content Include="Views\DireccionesCarrera\DireccionesCarreraNuevo.cshtml" />
+    <Content Include="Views\Funcionario\FuncionarioElimina.cshtml" />
+    <Content Include="Views\Estudiante\EstudianteEliminar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

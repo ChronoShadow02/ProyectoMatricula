@@ -15,7 +15,7 @@
         <label class="control-label col-sm-1"></label>
         <div class="col-sm-10">
             <h2>Bienvenido(a) @Html.DisplayFor(model => model.Primer_Apellido) @Html.DisplayFor(model => model.Segundo_Apellido) @Html.DisplayFor(model => model.Primer_Nombre),
-            última vez: </h2>
+            última vez: @Html.DisplayFor(model => model.Fecha_Ultimo_Ingreso)  </h2>
         </div>
     </div>
 </form>
@@ -58,6 +58,22 @@
     </a>
 
 </div>
+<div style="display:flex;align-content:center;justify-content:center;">
+    <div style="width:320px;height:320px;float:left">
+        <video width="320" height="320" controls>
+            <source src="~/media/Anuncio.mp4" type="video/mp4" />
+            El navegador no soporta videos
+        </video>
+    </div>
+    <div style="width:300px;height:54px;float:left; padding-top:160px">
+        <audio controls="controls">
+            <source src="~/media/C418-WetHands-MinecraftVolumeAlpha.mp3" type="audio/mpeg" />
+            El navegador no soporta audio
+        </audio>
+    </div>
+</div>
+<div style="clear:both"></div>
+<br />
 @section scripts{
     
 }

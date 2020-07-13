@@ -636,5 +636,40 @@ namespace ProyectoMatricula.Modelos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Direcciones_de_Carrera_Select_Result>("pa_Direcciones_de_Carrera_Select", nombre_Direccion_CarreraParameter, nombre_DirectorParameter);
         }
+    
+        public virtual ObjectResult<pa_DireccionesCarrerasRetornaID_Select_Result> pa_DireccionesCarrerasRetornaID_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_DireccionesCarrerasRetornaID_Select_Result>("pa_DireccionesCarrerasRetornaID_Select");
+        }
+    
+        public virtual int pa_DireccionesCarrera_Insert(string nombre_Direccion_Carrera, string codigo_Direccion_Carrera, Nullable<int> id_Director, Nullable<int> id_Subdirector)
+        {
+            var nombre_Direccion_CarreraParameter = nombre_Direccion_Carrera != null ?
+                new ObjectParameter("Nombre_Direccion_Carrera", nombre_Direccion_Carrera) :
+                new ObjectParameter("Nombre_Direccion_Carrera", typeof(string));
+    
+            var codigo_Direccion_CarreraParameter = codigo_Direccion_Carrera != null ?
+                new ObjectParameter("Codigo_Direccion_Carrera", codigo_Direccion_Carrera) :
+                new ObjectParameter("Codigo_Direccion_Carrera", typeof(string));
+    
+            var id_DirectorParameter = id_Director.HasValue ?
+                new ObjectParameter("Id_Director", id_Director) :
+                new ObjectParameter("Id_Director", typeof(int));
+    
+            var id_SubdirectorParameter = id_Subdirector.HasValue ?
+                new ObjectParameter("Id_Subdirector", id_Subdirector) :
+                new ObjectParameter("Id_Subdirector", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_DireccionesCarrera_Insert", nombre_Direccion_CarreraParameter, codigo_Direccion_CarreraParameter, id_DirectorParameter, id_SubdirectorParameter);
+        }
+    
+        public virtual int pa_Administrador_UltimaVez_Update(string usuario)
+        {
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Administrador_UltimaVez_Update", usuarioParameter);
+        }
     }
 }

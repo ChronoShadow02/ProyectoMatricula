@@ -8,10 +8,13 @@ namespace ProyectoMatricula.Controllers
 {
     public class FuncionarioController : Controller
     {
-        /// <summary>
-        /// Instancia de la base de datos
-        /// </summary>
-        matriculaBDEntities matriculaBD = new matriculaBDEntities();
+        #region Instancia de la base de datos
+            /// <summary>
+            /// Instancia de la base de datos
+            /// </summary>
+            matriculaBDEntities matriculaBD = new matriculaBDEntities();
+        #endregion
+
 
         // GET: Funcionario
         public ActionResult Index()
@@ -48,7 +51,6 @@ namespace ProyectoMatricula.Controllers
             return View(modeloVista);
         }
         #endregion
-
 
         #region FuncionarioNuevo
         /// <summary>
@@ -103,7 +105,6 @@ namespace ProyectoMatricula.Controllers
             return View();
         }
         #endregion
-
 
         #region FuncionarioModifica
         /// <summary>
@@ -200,7 +201,7 @@ namespace ProyectoMatricula.Controllers
             }
 
             [HttpPost]
-            public ActionResult FuncionarioElimina(pa_FuncionariosRetornaSelectID_Select_Result modeloVista)
+            public ActionResult FuncionarioElimina(pa_FuncionariosViewBag_Select_Result modeloVista)
             {
                 ///Variable que registra la cantidad de registros afectados
                 ///si un procedimiento ejecuta insert, update, delete 
@@ -228,6 +229,13 @@ namespace ProyectoMatricula.Controllers
                     }
                 }
                 Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
+                /// se agregan los datos de las provincias, cantones y distritos
+                this.RetornaProvinciasViewBag();
+
+                this.RetornaCantonesViewBag(modeloVista.Id_Provincia);
+
+                this.RetornaDistritosViewBag(modeloVista.Id_Canton);
+
                 return View(modeloVista);
             }
 

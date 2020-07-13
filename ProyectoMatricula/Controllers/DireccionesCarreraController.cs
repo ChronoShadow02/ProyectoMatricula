@@ -35,5 +35,54 @@ namespace ProyectoMatricula.Controllers
                 return View(modeloVista);
             }
         #endregion
+        #region DireccionesCarrera
+        /// <summary>
+        /// Metodo que Ingresa las direcciones de carrera
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DireccionesCarreraNuevo()
+            {
+                return View();
+            }
+
+        /// <summary>
+        /// Metodo que Ingresa  las direcciones de carrera
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult DireccionesCarreraNuevo(pa_DireccionesCarrerasRetornaID_Select_Result modeloVista)
+        {
+            ///NOTA: HAY QUE HACER QUE SE MUESTREN LOS NOMBRES DE LOS DIRECTORES Y LOS SUBDIRECTORES PARA INGRESARLOS EN EL PROCEDIMIENTO QUE VIENE DEL FORMULARIO
+            int cantidadRegistrosAgectados = 0;
+            string mensaje = "";
+            try
+            {
+                /*cantidadRegistrosAgectados = this.matriculaBD.pa_DireccionesCarrera_Insert(modeloVista.Nombre_Carrera,
+                                                                                           modeloVista.Codigo_Carrera,
+                                                                                           modeloVista.
+                                                                                            );*/
+            }
+            catch (Exception error)
+            {
+                mensaje = "Ocurrió un error: " + error.Message;
+
+            }
+            finally
+            {
+                if (cantidadRegistrosAgectados > 0)
+                {
+                    mensaje = "Registro Insertado";
+                }
+                else
+                {
+                    mensaje += " .No se pudo ingresar";
+                }
+            }
+
+            Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+
+            return View();
+        }
+        #endregion
     }
 }
