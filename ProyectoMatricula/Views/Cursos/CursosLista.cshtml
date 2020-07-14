@@ -1,0 +1,46 @@
+﻿@model List<ProyectoMatricula.Modelos.pa_Cursos_Select_Result>
+@{
+    ViewBag.Title = "Matrícula UMCA | Lista de Cursos";
+    Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
+}
+
+<h1 class="text-center">Lista de cursos</h1>
+<form class="form-horizontal" method="post">
+    <div class="form-group d-flex">
+        <label for="Estudiante">Nombre de curso:</label>&nbsp;
+        <input type="text" value="" id="Nombre_Curso" class="form-control" name="Nombre_Curso" /> &nbsp;
+        <label for="Codigo_Curso">Código de curso:</label>&nbsp;
+        <input type="text" value="" class="form-control" name="Codigo_Curso" id="Codigo_Curso" />&nbsp;
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
+
+<table class="table text-center table-hover table-bordered  table-striped">
+    <tr>
+        <th>Identificador</th>
+        <th>Curso</th>
+        <th>Código</th>
+        <th>Código requisito</th>
+        <th>Estudiante</th>
+        <th colspan="2">Acciones</th>
+    </tr>
+    @{
+        foreach (ProyectoMatricula.Modelos.pa_Cursos_Select_Result posicionModelo in this.Model)
+        {
+            <tr>
+                <td>@posicionModelo.Id_Curso</td>
+                <td>@posicionModelo.Nombre_Curso</td>
+                <td>@posicionModelo.Codigo_Curso</td>
+                <td>@posicionModelo.Codigo_Requisito</td>
+                <td>@posicionModelo.Nombre_Estudiante</td>
+                <td><a href="~/Cursos/CursosModifica?Id_Curso=@posicionModelo.Id_Curso">Modificar</a></td>
+                <td><a href="~Cursos/CursosElimina?Id_Curso=@posicionModelo.Id_Curso">Eliminar</a></td>
+            </tr>
+        }
+    }
+</table>
+<div class="d-flex align-content-center justify-content-center">
+    <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary">Ir al menú principal</a> &nbsp;
+    <a href="~/Cursos/CursoNuevo" class="btn btn-outline-primary">Agregar curso</a>
+</div>
+<br />

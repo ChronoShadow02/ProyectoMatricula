@@ -671,5 +671,23 @@ namespace ProyectoMatricula.Modelos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Administrador_UltimaVez_Update", usuarioParameter);
         }
+    
+        public virtual ObjectResult<pa_Cursos_Select_Result> pa_Cursos_Select(string nombre_Curso, string codigo_Curso)
+        {
+            var nombre_CursoParameter = nombre_Curso != null ?
+                new ObjectParameter("Nombre_Curso", nombre_Curso) :
+                new ObjectParameter("Nombre_Curso", typeof(string));
+    
+            var codigo_CursoParameter = codigo_Curso != null ?
+                new ObjectParameter("Codigo_Curso", codigo_Curso) :
+                new ObjectParameter("Codigo_Curso", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Cursos_Select_Result>("pa_Cursos_Select", nombre_CursoParameter, codigo_CursoParameter);
+        }
+    
+        public virtual ObjectResult<pa_CursosCodigos_Select_Result> pa_CursosCodigos_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CursosCodigos_Select_Result>("pa_CursosCodigos_Select");
+        }
     }
 }
