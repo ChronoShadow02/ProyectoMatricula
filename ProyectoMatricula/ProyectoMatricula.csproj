@@ -289,6 +289,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\book.png" />
     <Content Include="img\imgLogo.png" />
     <Content Include="img\imgSlider1.jpg" />
     <Content Include="img\imgSlider2.jpg" />
@@ -486,6 +487,7 @@
     <Content Include="Views\Estudiante\EstudianteEliminar.cshtml" />
     <Content Include="Views\Cursos\CursosLista.cshtml" />
     <Content Include="Views\Cursos\CursoNuevo.cshtml" />
+    <Content Include="Views\Cursos\CursoModificar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

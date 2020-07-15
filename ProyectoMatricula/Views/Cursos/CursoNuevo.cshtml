@@ -1,6 +1,6 @@
 ﻿@model List<ProyectoMatricula.Modelos.pa_CursosCodigos_Select_Result>
 @{
-    ViewBag.Title = "CursoNuevo";
+    ViewBag.Title = "Matricula UMCA | Ingresar nuevo curso";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
 }
 <br />
@@ -20,7 +20,8 @@
             <div class="form-group">
                 <label>Código requisito:</label>
                 <select name="Codigo_Requisito" id="Codigo_Requisito" class="form-control">
-                    <option value="">Ninguno</option>
+                    <option value="">Seleccione una opción</option>
+                    <option value="null">Ninguno</option>
                     @{
                         foreach (ProyectoMatricula.Modelos.pa_CursosCodigos_Select_Result Curso in this.ViewBag.ListaCursos)
                         {
