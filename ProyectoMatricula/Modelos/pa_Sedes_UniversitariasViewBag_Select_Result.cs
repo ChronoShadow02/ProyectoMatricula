@@ -10,17 +10,9 @@
 namespace ProyectoMatricula.Modelos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Sedes_Universitarias
+    public partial class pa_Sedes_UniversitariasViewBag_Select_Result
     {
-        public Sedes_Universitarias()
-        {
-            this.Cuatrimestre_x_Sede = new HashSet<Cuatrimestre_x_Sede>();
-            this.Curso_x_Sede = new HashSet<Curso_x_Sede>();
-            this.CursosxCarreraxSede = new HashSet<CursosxCarreraxSede>();
-        }
-    
         public int Id_Sedes_universitarias { get; set; }
         public string Nombre_Sede { get; set; }
         public string Codigo_Sede { get; set; }
@@ -29,13 +21,5 @@ namespace ProyectoMatricula.Modelos
         public int Id_Canton { get; set; }
         public int Id_Distrito { get; set; }
         public string Direccion_Fisica { get; set; }
-    
-        public virtual Canton Canton { get; set; }
-        public virtual ICollection<Cuatrimestre_x_Sede> Cuatrimestre_x_Sede { get; set; }
-        public virtual ICollection<Curso_x_Sede> Curso_x_Sede { get; set; }
-        public virtual ICollection<CursosxCarreraxSede> CursosxCarreraxSede { get; set; }
-        public virtual Distrito Distrito { get; set; }
-        public virtual Funcionarios Funcionarios { get; set; }
-        public virtual Provincia Provincia { get; set; }
     }
 }

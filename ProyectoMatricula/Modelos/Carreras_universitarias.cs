@@ -17,6 +17,7 @@ namespace ProyectoMatricula.Modelos
         public Carreras_universitarias()
         {
             this.CursosXCarrera = new HashSet<CursosXCarrera>();
+            this.CursosxCarreraxSede = new HashSet<CursosxCarreraxSede>();
         }
     
         public int Id_Carrera_Univeriatria { get; set; }
@@ -26,5 +27,6 @@ namespace ProyectoMatricula.Modelos
     
         public virtual Direcciones_de_carrera Direcciones_de_carrera { get; set; }
         public virtual ICollection<CursosXCarrera> CursosXCarrera { get; set; }
+        public virtual ICollection<CursosxCarreraxSede> CursosxCarreraxSede { get; set; }
     }
 }

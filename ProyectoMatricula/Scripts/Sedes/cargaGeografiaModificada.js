@@ -34,7 +34,7 @@ function estableceEventosChange() {
 ///carga los registros de las provincias
 function cargaDropdownListProvincias() {
     ///dirección a donde se enviarán los datos
-    var url = '/Funcionario/RetornaProvincias';
+    var url = '/Sedes/RetornaProvincias';
     ///parámetros del método, es CASE-SENSITIVE
     var parametros = {
     };
@@ -64,7 +64,7 @@ function procesarResultadoProvincias(data) {
     var ddlProvincia = $("#Provincia");
 
 
-    /*$(data).each(function () {
+   /* $(data).each(function () {
 
         var ProvinciaActual = this;
 
@@ -78,7 +78,7 @@ function procesarResultadoProvincias(data) {
 function cargaDropdownListCantones(pIdProvincia) {
 
     ///dirección a donde se enviarán los datos
-    var url = '/Funcionario/RetornaCantones';
+    var url = '/Sedes/RetornaCantones';
     ///parámetros del método, es CASE-SENSITIVE
     var parametros = {
         Id_Provincia: pIdProvincia
@@ -127,7 +127,7 @@ function procesarResultadoCantones(data) {
 
 function cargaDropdownListDistritos(pId_Canton) {
 
-    var url = "/Funcionario/RetornaDistritos";
+    var url = "/Sedes/RetornaDistritos";
     var parametros = {
         Id_Canton: pId_Canton
     };
