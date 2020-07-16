@@ -26,11 +26,9 @@
     <link rel="Shortcut Icon" href="~/img/book.png" type="image/x-icon" />
     @Scripts.Render("~/bundles/Modernizr")
     @Styles.Render("~/Content/css")
-    <link href="~/JqueryUI/jquery-ui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     @Scripts.Render("~/bundles/script_JQ_BO_PO_JQV")
-    <script src="~/Scripts/popper.min.js"></script>
-    <script src="~/JqueryUI/jquery-ui.js"></script>
-
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
 </head>
 <body class="bg-light">
     <div class="body-content">
@@ -80,10 +78,12 @@
                 this.Response.Redirect(urlLogin);
             }
         }
-        <div class="divCerrarSesion" hidden>
-            <p>¿Desea cerrar la sesión?</p>
-            <button id="btnSi" class="btn btn-success">Si</button>
-            <button id="btnNo" class="btn btn-danger">No</button>
+        <div id="divCerrarSesion" >
+            <p class="text-center">¿Desea cerrar la sesión?</p>
+            <div class="d-flex align-content-center justify-content-center">
+                <button id="btnSi" class="btn btn-success">Si</button> &nbsp;
+                <button id="btnNo" class="btn btn-danger">No</button>
+            </div>
         </div>
         <!-- Footer -->
         <div class="footer-bottom bg-secondary text-white text-center font-weight-bolder">
@@ -94,32 +94,31 @@
             </div>
         </div>
     </div>
-    <!-- Footer --> 
-
-    <script>
+    <!-- Footer -->
+<script>
         $(function () {
             crearEventos();
         });
-        function crearEventos() {
-            $("#divCerrarSesion").dialog({
-                autoOpen: false,
-                height: 150,
-                width: 200,
-                modal: true,
-                title: 'Cerrar Sesión',
-                resizable: false
-            });
-            $("#linkCierreSesion").click(function () {
-                $("#divCerrarSesion").dialog("open");
-            });
-            $("#btnNo").click(function () {
-                $("#divCerrarSesion").dialog("close");
-            });
-            $("#btnSi").click(function () {
-                window.location.href = "@urlCerrarSesion";
-            });
-        }
-    </script>
+         function crearEventos() {
+             $("#divCerrarSesion").dialog({
+                 autoOpen: false,
+                 height: 150,
+                 width: 250,
+                 modal: true,
+                 title: 'Cerrar Sesión',
+                 resizable: false
+             });
+             $("#linkCierreSesion").click(function () {
+                 $("#divCerrarSesion").dialog("open");
+             });
+             $("#btnNo").click(function () {
+                 $("#divCerrarSesion").dialog("close");
+             });
+             $("#btnSi").click(function () {
+                 window.location.href = "@urlCerrarSesion";
+             });
+         }
+     </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
