@@ -159,9 +159,9 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Cursos_x_Carrera_Select_Result>("pa_Cursos_x_Carrera_Select", id_CursoParameter, nombre_CursoParameter, codigo_CursoParameter);
         }
     
-        public virtual ObjectResult<pa_CursosCodigos_Select_Result> pa_CursosCodigos_Select()
+        public virtual ObjectResult<pa_CursosRetornaSelectID_Select_Result> pa_CursosRetornaSelectID_Select()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CursosCodigos_Select_Result>("pa_CursosCodigos_Select");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CursosRetornaSelectID_Select_Result>("pa_CursosRetornaSelectID_Select");
         }
     
         public virtual int pa_Direcciones_de_Carrera_Insert(string nombre_Direccion_Carrera, string codigo_Direccion_Carrera, Nullable<int> id_Director, Nullable<int> id_Subdirector)
@@ -814,6 +814,20 @@ namespace ProyectoMatricula.Modelos
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<pa_CursosViewBag_Select_Result> pa_CursosViewBag_Select(Nullable<int> id_Curso)
+        {
+            var id_CursoParameter = id_Curso.HasValue ?
+                new ObjectParameter("Id_Curso", id_Curso) :
+                new ObjectParameter("Id_Curso", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CursosViewBag_Select_Result>("pa_CursosViewBag_Select", id_CursoParameter);
+        }
+    
+        public virtual ObjectResult<pa_CursosCodigos_Select_Result> pa_CursosCodigos_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CursosCodigos_Select_Result>("pa_CursosCodigos_Select");
         }
     }
 }

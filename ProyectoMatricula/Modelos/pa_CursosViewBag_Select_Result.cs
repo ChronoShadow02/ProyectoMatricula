@@ -11,7 +11,7 @@ namespace ProyectoMatricula.Modelos
 {
     using System;
     
-    public partial class pa_Cursos_Select_Result
+    public partial class pa_CursosViewBag_Select_Result
     {
         public int Id_Curso { get; set; }
         public string Nombre_Curso { get; set; }

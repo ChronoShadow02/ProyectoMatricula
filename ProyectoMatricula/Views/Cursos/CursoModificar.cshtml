@@ -1,8 +1,53 @@
-﻿
+﻿@model ProyectoMatricula.Modelos.pa_CursosViewBag_Select_Result
 @{
-    ViewBag.Title = "Matrícula UMCA | Modificación de curso";
+    ViewBag.Title = "Matricula UMCA | Modificación de curso";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
 }
+<br />
+<h1 class="text-center">Modificar curso</h1>
 
-<h2>CursoModificar</h2>
+<div class="row justify-content-center align-items-center h-100 border-left border-right">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <form method="post" id="frmCurso">
+            <div class="form-group">
+                <label>Nombre del curso:</label>
+                <input type="text" name="Nombre_Curso" class="form-control" value="@Model.Nombre_Curso"/>
+            </div>
+            <div class="form-group">
+                <label>Código del curso:</label>
+                <input type="text" name="Codigo_Curso" class="form-control" value="@Model.Codigo_Curso"/>
+            </div>
+            <div class="form-group">
+                <label>Código requisito:</label>
+                <select name="Codigo_Requisito" id="Codigo_Requisito" class="form-control">
+                    <option value="">Seleccione una opción</option>
+                    <option value="null" selected>Ninguno</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_CursosCodigos_Select_Result Curso in this.ViewBag.ListaCursos)
+                        {
+                            ///variable que indica si el curso esta en el modelo
 
+                            bool esIdCurso = Curso.Id_Curso == Model.Codigo_Requisito;
+                            if (esIdCurso)
+                            {
+                                <option value="@Curso.Id_Curso" selected>@Curso.Nombre_Curso</option>
+                            }
+                            else
+                            {
+                                <option value="@Curso.Id_Curso">@Curso.Nombre_Curso</option>
+                            }
+
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/validacionesGenericas/validacionesGenericas.js"></script>
+    <script src="~/Scripts/Cursos/validaCurso.js"></script>
+}

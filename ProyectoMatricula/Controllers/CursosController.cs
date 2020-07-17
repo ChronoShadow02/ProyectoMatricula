@@ -41,22 +41,74 @@ namespace ProyectoMatricula.Controllers
         }
         #endregion
 
-
         #region CursoNuevo
+            /// <summary>
+            /// Metodo que muestra el formulario de nuevo curso
+            /// </summary>
+            /// <returns></returns>
             public ActionResult CursoNuevo()
             {
                 CursosViewBag();    
                 return View();
             }
-        #endregion
 
-        #region CursoModificar
-            public ActionResult CursoModificar()
+            [HttpPost]
+            /// <summary>
+            /// Httpost de nuevo curso(Ingresa los datos que vienen de la vista en la BD)
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult CursoNuevo(pa_CursosRetornaSelectID_Select_Result modeloVista)
             {
+                ///variable que registra la cantidad de registros afectados.
+                ///si un insert, update o delete no afecta registros,hay error
+            
+                    int cantidadRegistrosAgectados = 0;
+                    string mensaje = "";
+                try
+                {
+                    cantidadRegistrosAgectados = this.matriculaBD.pa_Cursos_Insert(modeloVista.Nombre_Curso,
+                                                                                   modeloVista.Codigo_Curso,
+                                                                                   modeloVista.Codigo_Requisito);
+                }
+                catch (Exception error)
+                {
+                    ///Administrar las excepciones o errores que pasen en el try
+                
+                    mensaje = "Ocurrió un error: " + error.Message;
+
+                }
+                finally
+                {
+                    if (cantidadRegistrosAgectados > 0)
+                    {
+                        mensaje = "Registro Insertado";
+                    }
+                    else
+                    {
+                        mensaje += " .No se pudo ingresar";
+                    }
+                }
+
+                Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
                 CursosViewBag();
+
                 return View();
             }
         #endregion
+
+        #region CursoModificar
+            public ActionResult CursoModificar(int Id_Curso)
+                {
+                    pa_CursosViewBag_Select_Result modeloVista = new pa_CursosViewBag_Select_Result();
+
+                    modeloVista = this.matriculaBD.pa_CursosViewBag_Select(Id_Curso).FirstOrDefault();
+
+                    CursosViewBag();
+
+                    return View(modeloVista);
+                }
+        #endregion
+
         #region CursosViewBag
         /// <summary>
         /// Método que retorna los cursos en los que pueden ser requisitos

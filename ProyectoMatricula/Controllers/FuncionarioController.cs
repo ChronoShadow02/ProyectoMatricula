@@ -69,6 +69,8 @@ namespace ProyectoMatricula.Controllers
         [HttpPost]
         public ActionResult FuncionarioNuevo(pa_FuncionariosRetornaSelectID_Select_Result modeloVista)
         {
+            ///variable que registra la cantidad de registros afectados.
+            ///si un insert, update o delete no afecta registros,hay error
             int cantidadRegistrosAgectados = 0;
             string mensaje = "";
             try
@@ -85,6 +87,7 @@ namespace ProyectoMatricula.Controllers
             }
             catch (Exception error)
             {
+                ///Administrar las excepciones o errores que pasen en el try
                 mensaje = "Ocurrió un error: " + error.Message;
 
             }

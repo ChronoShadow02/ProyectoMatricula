@@ -15,5 +15,6 @@ namespace ProyectoMatricula.Modelos
     {
         public int Id_Curso { get; set; }
         public string Nombre_Curso { get; set; }
+        public Nullable<int> Codigo_Requisito { get; set; }
     }
 }

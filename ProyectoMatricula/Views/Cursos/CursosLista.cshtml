@@ -21,7 +21,6 @@
         <th>Curso</th>
         <th>Código</th>
         <th>Código requisito</th>
-        <th>Estudiante</th>
         <th colspan="2">Acciones</th>
     </tr>
     @{
@@ -32,9 +31,8 @@
                 <td>@posicionModelo.Nombre_Curso</td>
                 <td>@posicionModelo.Codigo_Curso</td>
                 <td>@posicionModelo.Codigo_Requisito</td>
-                <td>@posicionModelo.Nombre_Estudiante</td>
-                <td><a href="~/Cursos/CursosModifica?Id_Curso=@posicionModelo.Id_Curso">Modificar</a></td>
-                <td><a href="~Cursos/CursosElimina?Id_Curso=@posicionModelo.Id_Curso">Eliminar</a></td>
+                <td><a href="~/Cursos/CursoModificar?Id_Curso=@posicionModelo.Id_Curso">Modificar</a></td>
+                <td><a href="~/Cursos/CursosElimina?Id_Curso=@posicionModelo.Id_Curso">Eliminar</a></td>
             </tr>
         }
     }
