@@ -98,7 +98,7 @@ namespace ProyectoMatricula.Controllers
 
         #region CursoModificar
             public ActionResult CursoModificar(int Id_Curso)
-                {
+            {
                     pa_CursosViewBag_Select_Result modeloVista = new pa_CursosViewBag_Select_Result();
 
                     modeloVista = this.matriculaBD.pa_CursosViewBag_Select(Id_Curso).FirstOrDefault();
@@ -106,7 +106,46 @@ namespace ProyectoMatricula.Controllers
                     CursosViewBag();
 
                     return View(modeloVista);
+            }
+            [HttpPost]
+            public ActionResult CursoModificar(pa_CursosRetornaSelectID_Select_Result modeloVista)
+            {
+                ///Variable que registra la cantidad de registros afectados
+                ///si un procedimiento ejecuta insert, update, delete 
+                ///no afecta registros implica que hubo un error
+                int cantidadRegistrosAgectados = 0;
+
+                string resultado = "";
+            try
+            {
+                cantidadRegistrosAgectados = this.matriculaBD.pa_Cursos_Update(modeloVista.Id_Curso,
+                                                                               modeloVista.Nombre_Curso,
+                                                                               modeloVista.Codigo_Curso,
+                                                                               modeloVista.Codigo_Requisito);
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrio un error " + error.Message;
+            }
+            finally
+            {
+                if (cantidadRegistrosAgectados > 0)
+                {
+                    resultado = "Registro Modificado";
                 }
+                else
+                {
+                    resultado += ".No se pudo modificar";
+                }
+            }
+            Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
+            CursosViewBag();
+
+            pa_CursosViewBag_Select_Result modelView = new pa_CursosViewBag_Select_Result();
+
+            return View(modelView);
+
+        }
         #endregion
 
         #region CursosViewBag
