@@ -1,21 +1,21 @@
 ﻿@model ProyectoMatricula.Modelos.pa_CursosViewBag_Select_Result
 @{
-    ViewBag.Title = "Matricula UMCA | Modificación de curso";
+    ViewBag.Title = "Matricula UMCA | Eliminación de curso";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
 }
 <br />
-<h1 class="text-center">Modificar curso</h1>
+<h1 class="text-center">Eliminación de curso</h1>
 
 <div class="row justify-content-center align-items-center h-100 border-left border-right">
     <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
         <form method="post" id="frmCurso">
             <div class="form-group">
                 <label>Nombre del curso:</label>
-                <input type="text" name="Nombre_Curso" class="form-control" value="@Model.Nombre_Curso"/>
+                <input type="text" name="Nombre_Curso" class="form-control" value="@Model.Nombre_Curso" />
             </div>
             <div class="form-group">
                 <label>Código del curso:</label>
-                <input type="text" name="Codigo_Curso" class="form-control" value="@Model.Codigo_Curso"/>
+                <input type="text" name="Codigo_Curso" class="form-control" value="@Model.Codigo_Curso" />
             </div>
             <div class="form-group">
                 <label>Código requisito:</label>
@@ -42,12 +42,8 @@
                 </select>
             </div>
             <div class="form-group text-center">
-                <button type="submit" class="btn btn-primary">Modificar</button>
+                <button type="submit" class="btn btn-primary">Eliminar</button>
             </div>
         </form>
     </div>
 </div>
-@section scripts{
-    <script src="~/Scripts/validacionesGenericas/validacionesGenericas.js"></script>
-    <script src="~/Scripts/Cursos/validaCurso.js"></script>
-}
