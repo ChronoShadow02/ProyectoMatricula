@@ -88,8 +88,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="txtFecha">Fecha de Inicio</label>
-                <input type="date" id="txtFecha" name="Fecha_Inicio_U" class="form-control" value="@Model.Fecha_Inicio_U" />
+                <label for="txtFechaInicioU">Fecha de Inicio</label>
+                <input type="text" id="txtFechaInicioU" name="Fecha_Inicio_U" class="form-control" value="@Model.Fecha_Inicio_U.ToString("yyyy-MM-dd")" />
             </div>
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary">Modificar</button>
@@ -103,5 +103,7 @@
     <script src="~/Scripts/Estudiante/validarEstudiante.js"></script>
 
     <script src="~/Scripts/Estudiante/cargarGeografiaModificada.js"></script>
+
+    <script src="~/Scripts/Estudiante/JqueryUIEstudiante.js"></script>
 }
 
