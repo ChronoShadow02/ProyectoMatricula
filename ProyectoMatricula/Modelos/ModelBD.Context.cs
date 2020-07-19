@@ -829,5 +829,84 @@ namespace ProyectoMatricula.Modelos
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CursosCodigos_Select_Result>("pa_CursosCodigos_Select");
         }
+    
+        public virtual ObjectResult<pa_Carreras_Select_Result> pa_Carreras_Select(string nombre_Carrera, string codigo_Carrera)
+        {
+            var nombre_CarreraParameter = nombre_Carrera != null ?
+                new ObjectParameter("Nombre_Carrera", nombre_Carrera) :
+                new ObjectParameter("Nombre_Carrera", typeof(string));
+    
+            var codigo_CarreraParameter = codigo_Carrera != null ?
+                new ObjectParameter("Codigo_Carrera", codigo_Carrera) :
+                new ObjectParameter("Codigo_Carrera", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Carreras_Select_Result>("pa_Carreras_Select", nombre_CarreraParameter, codigo_CarreraParameter);
+        }
+    
+        public virtual ObjectResult<pa_CarrerasNombreDireccionViewBag_Select_Result> pa_CarrerasNombreDireccionViewBag_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CarrerasNombreDireccionViewBag_Select_Result>("pa_CarrerasNombreDireccionViewBag_Select");
+        }
+    
+        public virtual ObjectResult<pa_CarrerasRetornaSelectID_Select_Result> pa_CarrerasRetornaSelectID_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CarrerasRetornaSelectID_Select_Result>("pa_CarrerasRetornaSelectID_Select");
+        }
+    
+        public virtual int pa_Carreras_Insert(string nombre_Carrera, string codigo_Carrera, Nullable<int> iD_Direccion_Carrera)
+        {
+            var nombre_CarreraParameter = nombre_Carrera != null ?
+                new ObjectParameter("Nombre_Carrera", nombre_Carrera) :
+                new ObjectParameter("Nombre_Carrera", typeof(string));
+    
+            var codigo_CarreraParameter = codigo_Carrera != null ?
+                new ObjectParameter("Codigo_Carrera", codigo_Carrera) :
+                new ObjectParameter("Codigo_Carrera", typeof(string));
+    
+            var iD_Direccion_CarreraParameter = iD_Direccion_Carrera.HasValue ?
+                new ObjectParameter("ID_Direccion_Carrera", iD_Direccion_Carrera) :
+                new ObjectParameter("ID_Direccion_Carrera", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Carreras_Insert", nombre_CarreraParameter, codigo_CarreraParameter, iD_Direccion_CarreraParameter);
+        }
+    
+        public virtual ObjectResult<pa_CarrerasViewBag_Select_Result> pa_CarrerasViewBag_Select(Nullable<int> id_Carrera)
+        {
+            var id_CarreraParameter = id_Carrera.HasValue ?
+                new ObjectParameter("Id_Carrera", id_Carrera) :
+                new ObjectParameter("Id_Carrera", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CarrerasViewBag_Select_Result>("pa_CarrerasViewBag_Select", id_CarreraParameter);
+        }
+    
+        public virtual int pa_Carreras_Update(Nullable<int> id_Carrera_Uni, string nombre_Carrera, string codigo_Carrera, Nullable<int> id_Direccion_Carrera)
+        {
+            var id_Carrera_UniParameter = id_Carrera_Uni.HasValue ?
+                new ObjectParameter("Id_Carrera_Uni", id_Carrera_Uni) :
+                new ObjectParameter("Id_Carrera_Uni", typeof(int));
+    
+            var nombre_CarreraParameter = nombre_Carrera != null ?
+                new ObjectParameter("Nombre_Carrera", nombre_Carrera) :
+                new ObjectParameter("Nombre_Carrera", typeof(string));
+    
+            var codigo_CarreraParameter = codigo_Carrera != null ?
+                new ObjectParameter("Codigo_Carrera", codigo_Carrera) :
+                new ObjectParameter("Codigo_Carrera", typeof(string));
+    
+            var id_Direccion_CarreraParameter = id_Direccion_Carrera.HasValue ?
+                new ObjectParameter("Id_Direccion_Carrera", id_Direccion_Carrera) :
+                new ObjectParameter("Id_Direccion_Carrera", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Carreras_Update", id_Carrera_UniParameter, nombre_CarreraParameter, codigo_CarreraParameter, id_Direccion_CarreraParameter);
+        }
+    
+        public virtual int pa_Carreras_Delete(Nullable<int> id_Carrera)
+        {
+            var id_CarreraParameter = id_Carrera.HasValue ?
+                new ObjectParameter("Id_Carrera", id_Carrera) :
+                new ObjectParameter("Id_Carrera", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Carreras_Delete", id_CarreraParameter);
+        }
     }
 }

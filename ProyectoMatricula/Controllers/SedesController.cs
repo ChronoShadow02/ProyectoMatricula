@@ -50,45 +50,45 @@ namespace ProyectoMatricula.Controllers
                 this.CargarDirectoresViewBag();
                 return View();
             }
-        [HttpPost]
-        /// <summary>
-        /// Ingresa los datos de las sedes
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult SedesNuevo(pa_Sedes_UniversitariasID_Select_Result modeloVista)
-        {
-            int cantidadRegistrosAgectados = 0;
-            string mensaje = "";
-            try
+            [HttpPost]
+            /// <summary>
+            /// Ingresa los datos de las sedes
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult SedesNuevo(pa_Sedes_UniversitariasID_Select_Result modeloVista)
             {
-                cantidadRegistrosAgectados = this.matriculaBD.pa_Sedes_Universitarias_Insert(modeloVista.Nombre_Sede,
-                                                                                             modeloVista.Codigo_Sede,
-                                                                                             modeloVista.Id_Director,
-                                                                                             modeloVista.Id_Provincia,
-                                                                                             modeloVista.Id_Canton,
-                                                                                             modeloVista.Id_Distrito,
-                                                                                             modeloVista.Direccion_Fisica);
-            }
-            catch (Exception error)
-            {
-                mensaje = "Ocurrió un error: " + error.Message;
+                int cantidadRegistrosAgectados = 0;
+                string mensaje = "";
+                try
+                {
+                    cantidadRegistrosAgectados = this.matriculaBD.pa_Sedes_Universitarias_Insert(modeloVista.Nombre_Sede,
+                                                                                                 modeloVista.Codigo_Sede,
+                                                                                                 modeloVista.Id_Director,
+                                                                                                 modeloVista.Id_Provincia,
+                                                                                                 modeloVista.Id_Canton,
+                                                                                                 modeloVista.Id_Distrito,
+                                                                                                 modeloVista.Direccion_Fisica);
+                }
+                catch (Exception error)
+                {
+                    mensaje = "Ocurrió un error: " + error.Message;
 
-            }
-            finally
-            {
-                if (cantidadRegistrosAgectados > 0)
-                {
-                    mensaje = "Registro Insertado";
                 }
-                else
+                finally
                 {
-                    mensaje += " .No se pudo ingresar";
+                    if (cantidadRegistrosAgectados > 0)
+                    {
+                        mensaje = "Registro Insertado";
+                    }
+                    else
+                    {
+                        mensaje += " .No se pudo ingresar";
+                    }
                 }
+                Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+                this.CargarDirectoresViewBag();
+                return View();
             }
-            Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
-            this.CargarDirectoresViewBag();
-            return View();
-        }
         #endregion
 
         #region SedesModifica

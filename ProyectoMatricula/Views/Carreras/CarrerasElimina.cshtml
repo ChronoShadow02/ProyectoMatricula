@@ -1,0 +1,47 @@
+﻿@model ProyectoMatricula.Modelos.pa_CarrerasViewBag_Select_Result
+@{
+    ViewBag.Title = "Matricula UMCA | Eliminar carrera";
+    Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
+}
+<br />
+<h1 class="text-center">Eliminar carrera</h1>
+<div class="row justify-content-center align-items-center h-100 border-left border-right">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <form method="post" id="frmCarrera">
+            <div class="form-group">
+                <label>Nombre de carrera:</label>
+                <input type="text" class="form-control" name="Nombre_Carrera" id="Nombre_Carrera" value="@Model.Nombre_Carrera" />
+            </div>
+            <div class="form-group">
+                <label>Código de carrera:</label>
+                <input type="text" class="form-control" name="Codigo_Carrera" id="Codigo_Carrera" value="@Model.Codigo_Carrera" />
+            </div>
+            <div class="form-group">
+                <label>Dirección de carrera:</label>
+                <select name="Id_Direccion_Carrera" id="Id_Direccion_Carrera" class="form-control">
+                    <option value="">Seleccione una opcion</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_CarrerasNombreDireccionViewBag_Select_Result posicionDireccion in this.ViewBag.ListaNombresDireccionesCarrera)
+                        {
+                            ///variable que indica si la provincia esta en el modelo
+                            bool esPosicionDireccion = posicionDireccion.Id_Carrera_Univeriatria == Model.Id_Carrera_Univeriatria;
+                            if (esPosicionDireccion)
+                            {
+                                <option value="@posicionDireccion.Id_Direccion_Carrera" selected>@posicionDireccion.Nombre_Direccion_Carrera</option>
+                            }
+                            else
+                            {
+                                <option value="@posicionDireccion.Id_Direccion_Carrera">@posicionDireccion.Nombre_Direccion_Carrera</option>
+                            }
+
+
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Eliminar</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+﻿@model List<ProyectoMatricula.Modelos.pa_Carreras_Select_Result>
+@{
+    ViewBag.Title = "Matricula UMCA | Lista de ";
+    Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
+}
+
+<h1 class="text-center">Lista de carreras universitarias</h1>
+<form class="form-horizontal" method="post">
+    <div class="form-group d-flex">
+        <label for="Nombre_Carrera">Nombre de carrera:</label>&nbsp;
+        <input type="text" value="" id="Nombre_Carrera" class="form-control" name="Nombre_Carrera" /> &nbsp;
+        <label>Código de carrera:</label>&nbsp;
+        <input type="text" value="" class="form-control" name="Codigo_Carrera" id="Codigo_Carrera" />&nbsp;
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
+<table class="table text-center table-hover table-bordered table-striped">
+    <tr>
+        <th>Identificador</th>
+        <th>Carrera</th>
+        <th>Código de carrera</th>
+        <th>Dirección de carrera</th>
+        <th colspan="2">Acciones</th>
+    </tr>
+    @{
+        foreach (ProyectoMatricula.Modelos.pa_Carreras_Select_Result pocisionCarrera in this.Model)
+        {
+            <tr>
+                <td>@pocisionCarrera.Id_Carrera_Univeriatria</td>
+                <td>@pocisionCarrera.Nombre_Carrera</td>
+                <td>@pocisionCarrera.Codigo_Carrera</td>
+                <td>@pocisionCarrera.Nombre_Direccion_Carrera</td>
+                <td><a href="~/Carreras/CarrerasModifica?Id_Carrera_Univeriatria=@pocisionCarrera.Id_Carrera_Univeriatria">Modificar</a></td>
+                <td><a href="~/Carreras/CarrerasElimina?Id_Carrera_Univeriatria=@pocisionCarrera.Id_Carrera_Univeriatria">Eliminar</a></td>
+            </tr>
+        }
+    }
+</table>
+<div class="d-flex align-content-center justify-content-center">
+    <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary">Ir al menú principal</a> &nbsp;
+    <a href="~/Carreras/CarrerasNuevo" class="btn btn-outline-primary">Agregar carrera</a>
+</div>
+<br />

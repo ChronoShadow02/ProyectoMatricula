@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Matricula UMCA | Ingresar carrera";
+    Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
+}
+<br />
+<h1 class="text-center border-top ">Ingresar carrera</h1>
+<div class="row justify-content-center align-items-center h-100 border-left border-right">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <form method="post" id="frmCarrera">
+            <div class="form-group">
+                <label>Nombre de carrera:</label>
+                <input type="text" value="" class="form-control" name="Nombre_Carrera" id="Nombre_Carrera" />
+            </div>
+            <div class="form-group">
+                <label>Código de carrera:</label>
+                <input type="text" value="" class="form-control" name="Codigo_Carrera" id="Codigo_Carrera" />
+            </div>
+            <div class="form-group">
+                <label>Dirección de carrera:</label>
+                <select name="Id_Direccion_Carrera" id="Id_Direccion_Carrera" class="form-control">
+                    <option value="">Seleccione una opcion</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_CarrerasNombreDireccionViewBag_Select_Result posicionDireccion in this.ViewBag.ListaNombresDireccionesCarrera)
+                        {
+                            <option value="@posicionDireccion.Id_Direccion_Carrera">@posicionDireccion.Nombre_Carrera</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/validacionesGenericas/validacionesGenericas.js"></script>
+
+    <script src="~/Scripts/Carreras/validarCarreras.js"></script>
+}
+
