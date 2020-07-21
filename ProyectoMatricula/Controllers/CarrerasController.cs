@@ -203,6 +203,7 @@ namespace ProyectoMatricula.Controllers
                 Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
 
                 this.CargarNombreDireccionesCarrera();
+
                 return View(modeloVista);
             }
         #endregion
@@ -213,7 +214,7 @@ namespace ProyectoMatricula.Controllers
         /// </summary>
         void CargarNombreDireccionesCarrera()
             {
-                this.ViewBag.ListaNombresDireccionesCarrera = this.matriculaBD.pa_CarrerasNombreDireccionViewBag_Select();
+                this.ViewBag.ListaNombresDireccionesCarrera = this.matriculaBD.pa_CarrerasNombreDireccionViewBag_Select().ToList();
             }
         #endregion
     }

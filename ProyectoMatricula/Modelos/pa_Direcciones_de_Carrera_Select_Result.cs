@@ -17,5 +17,6 @@ namespace ProyectoMatricula.Modelos
         public string Nombre_Direccion_Carrera { get; set; }
         public string Codigo_Direccion_Carrera { get; set; }
         public string Director { get; set; }
+        public string Subdirector { get; set; }
     }
 }

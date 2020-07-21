@@ -185,19 +185,6 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Direcciones_de_Carrera_Insert", nombre_Direccion_CarreraParameter, codigo_Direccion_CarreraParameter, id_DirectorParameter, id_SubdirectorParameter);
         }
     
-        public virtual ObjectResult<pa_Direcciones_de_Carrera_Select_Result> pa_Direcciones_de_Carrera_Select(string nombre_Direccion_Carrera, string nombre_Director)
-        {
-            var nombre_Direccion_CarreraParameter = nombre_Direccion_Carrera != null ?
-                new ObjectParameter("Nombre_Direccion_Carrera", nombre_Direccion_Carrera) :
-                new ObjectParameter("Nombre_Direccion_Carrera", typeof(string));
-    
-            var nombre_DirectorParameter = nombre_Director != null ?
-                new ObjectParameter("Nombre_Director", nombre_Director) :
-                new ObjectParameter("Nombre_Director", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Direcciones_de_Carrera_Select_Result>("pa_Direcciones_de_Carrera_Select", nombre_Direccion_CarreraParameter, nombre_DirectorParameter);
-        }
-    
         public virtual int pa_Direcciones_de_Carrera_Update(Nullable<int> id_Direccion_Carrera, string nombre_Direccion_Carrera, string codigo_Direccion_Carrera, Nullable<int> id_Director, Nullable<int> id_Subdirector)
         {
             var id_Direccion_CarreraParameter = id_Direccion_Carrera.HasValue ?
@@ -242,11 +229,6 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Id_Subdirector", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_DireccionesCarrera_Insert", nombre_Direccion_CarreraParameter, codigo_Direccion_CarreraParameter, id_DirectorParameter, id_SubdirectorParameter);
-        }
-    
-        public virtual ObjectResult<pa_DireccionesCarrerasRetornaID_Select_Result> pa_DireccionesCarrerasRetornaID_Select()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_DireccionesCarrerasRetornaID_Select_Result>("pa_DireccionesCarrerasRetornaID_Select");
         }
     
         public virtual int pa_Estudiante_IngresarCarne_Update(string cedula_Estudiante, string carne)
@@ -907,6 +889,24 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Id_Carrera", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Carreras_Delete", id_CarreraParameter);
+        }
+    
+        public virtual ObjectResult<pa_Direcciones_de_Carrera_Select_Result> pa_Direcciones_de_Carrera_Select(string nombre_Direccion_Carrera, string nombre_Director)
+        {
+            var nombre_Direccion_CarreraParameter = nombre_Direccion_Carrera != null ?
+                new ObjectParameter("Nombre_Direccion_Carrera", nombre_Direccion_Carrera) :
+                new ObjectParameter("Nombre_Direccion_Carrera", typeof(string));
+    
+            var nombre_DirectorParameter = nombre_Director != null ?
+                new ObjectParameter("Nombre_Director", nombre_Director) :
+                new ObjectParameter("Nombre_Director", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Direcciones_de_Carrera_Select_Result>("pa_Direcciones_de_Carrera_Select", nombre_Direccion_CarreraParameter, nombre_DirectorParameter);
+        }
+    
+        public virtual ObjectResult<pa_DireccionesCarrerasRetornaID_Select_Result> pa_DireccionesCarrerasRetornaID_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_DireccionesCarrerasRetornaID_Select_Result>("pa_DireccionesCarrerasRetornaID_Select");
         }
     }
 }

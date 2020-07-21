@@ -90,6 +90,7 @@ namespace ProyectoMatricula.Controllers
                 }
 
                 Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+
                 CursosViewBag();
 
                 return View();
@@ -213,7 +214,7 @@ namespace ProyectoMatricula.Controllers
         /// </summary>
         void CursosViewBag()
             {
-                this.ViewBag.ListaCursos = this.matriculaBD.pa_CursosCodigos_Select();
+                this.ViewBag.ListaCursos = this.matriculaBD.pa_CursosCodigos_Select().ToList();
             }
         #endregion
 

@@ -35,13 +35,16 @@ namespace ProyectoMatricula.Controllers
                 return View(modeloVista);
             }
         #endregion
-        #region DireccionesCarrera
-        /// <summary>
-        /// Metodo que Ingresa las direcciones de carrera
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult DireccionesCarreraNuevo()
+
+        #region DireccionesCarreraNuevo
+            /// <summary>
+            /// Metodo que Ingresa las direcciones de carrera
+            /// </summary>
+            /// <returns></returns>
+            public ActionResult DireccionesCarreraNuevo()
             {
+                this.CargarDirectoresViewBag();
+                this.CargarSubdirectoresViewBag();
                 return View();
             }
 
@@ -52,15 +55,16 @@ namespace ProyectoMatricula.Controllers
         [HttpPost]
         public ActionResult DireccionesCarreraNuevo(pa_DireccionesCarrerasRetornaID_Select_Result modeloVista)
         {
-            ///NOTA: HAY QUE HACER QUE SE MUESTREN LOS NOMBRES DE LOS DIRECTORES Y LOS SUBDIRECTORES PARA INGRESARLOS EN EL PROCEDIMIENTO QUE VIENE DEL FORMULARIO
+            
             int cantidadRegistrosAgectados = 0;
             string mensaje = "";
             try
             {
-                /*cantidadRegistrosAgectados = this.matriculaBD.pa_DireccionesCarrera_Insert(modeloVista.Nombre_Carrera,
-                                                                                           modeloVista.Codigo_Carrera,
-                                                                                           modeloVista.
-                                                                                            );*/
+                cantidadRegistrosAgectados = this.matriculaBD.pa_DireccionesCarrera_Insert(modeloVista.Nombre_Direccion_Carrera,
+                                                                                           modeloVista.Codigo_Direccion_Carrera,
+                                                                                           modeloVista.Id_Director,
+                                                                                           modeloVista.Id_Subdirector
+                                                                                           );
             }
             catch (Exception error)
             {
@@ -80,8 +84,30 @@ namespace ProyectoMatricula.Controllers
             }
 
             Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
-
+            this.CargarDirectoresViewBag();
+            this.CargarSubdirectoresViewBag();
             return View();
+        }
+        #endregion
+
+        #region CargarDirectoresViewBag
+
+        /// <summary>
+        /// Metodo que carga los directores
+        /// </summary>
+        void CargarDirectoresViewBag()
+        {
+            this.ViewBag.ListaDirectores = this.matriculaBD.pa_Sedes_Universitarias_DirectorViewBag_Select().ToList();
+        }
+        #endregion
+
+        #region CargarSubdirectoresViewBag
+        /// <summary>
+        /// Metodo que carga los Subdirectores
+        /// </summary>
+        void CargarSubdirectoresViewBag()
+        {
+            this.ViewBag.ListaSubdirectores = this.matriculaBD.pa_Sedes_Universitarias_SubdirectorViewBag_Select().ToList();
         }
         #endregion
     }

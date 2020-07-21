@@ -86,7 +86,9 @@ namespace ProyectoMatricula.Controllers
                     }
                 }
                 Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+
                 this.CargarDirectoresViewBag();
+
                 return View();
             }
         #endregion
@@ -283,7 +285,7 @@ namespace ProyectoMatricula.Controllers
             /// </summary>
             void CargarDirectoresViewBag()
             {
-                this.ViewBag.ListaDirectores = this.matriculaBD.pa_Sedes_Universitarias_DirectorViewBag_Select();
+                this.ViewBag.ListaDirectores = this.matriculaBD.pa_Sedes_Universitarias_DirectorViewBag_Select().ToList();
             }
         #endregion
 

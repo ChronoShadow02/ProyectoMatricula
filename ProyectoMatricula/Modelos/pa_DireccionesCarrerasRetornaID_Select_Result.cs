@@ -13,9 +13,10 @@ namespace ProyectoMatricula.Modelos
     
     public partial class pa_DireccionesCarrerasRetornaID_Select_Result
     {
-        public int Id_Carrera_Univeriatria { get; set; }
-        public string Nombre_Carrera { get; set; }
-        public string Codigo_Carrera { get; set; }
         public int Id_Direccion_Carrera { get; set; }
+        public string Nombre_Direccion_Carrera { get; set; }
+        public string Codigo_Direccion_Carrera { get; set; }
+        public int Id_Director { get; set; }
+        public int Id_Subdirector { get; set; }
     }
 }

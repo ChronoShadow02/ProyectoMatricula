@@ -1,8 +1,52 @@
-﻿
-@{
-    ViewBag.Title = "DireccionesCarreraNuevo";
+﻿@{
+    ViewBag.Title = "Matricula UMCA | Ingresar dirección de carrera";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
 }
 
-
+<h2 class="text-center">Ingresar dirección de carrera</h2>
+<div class="row justify-content-center align-items-center h-100 border-left border-right">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <form method="post" id="frmDireccion">
+            <div class="form-group">
+                <label>Nombre de dirección de carrera:</label>
+                <input type="text" class="form-control" name="Nombre_Direccion_Carrera" id="Nombre_Direccion_Carrera" />
+            </div>
+            <div class="form-group">
+                <label>Código de dirección de carrera:</label>
+                <input type="text" class="form-control" name="Codigo_Direccion_Carrera" id="Codigo_Direccion_Carrera" />
+            </div>
+            <div class="form-group">
+                <label>Director</label>
+                <select name="Id_Director" id="Id_Director" class="form-control">
+                    <option value="">Seleccione una opción</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_Sedes_Universitarias_DirectorViewBag_Select_Result posicionDirector in this.ViewBag.ListaDirectores)
+                        {
+                            <option value="@posicionDirector.Id_Funcionario">@posicionDirector.Nombre_Funcionario</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Subdirector</label>
+                <select name="Id_Subdirector" id="Id_Subdirector" class="form-control">
+                    <option value="">Seleccione una opción</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_Sedes_Universitarias_SubdirectorViewBag_Select_Result posicionSubdirector in this.ViewBag.ListaSubdirectores)
+                        {
+                            <option value="@posicionSubdirector.Id_Funcionario">@posicionSubdirector.Nombre_Funcionario</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/validacionesGenericas/validacionesGenericas.js"></script>
+    <script src="~/Scripts/Direcciones/validarDireccion.js"></script>
+}
 

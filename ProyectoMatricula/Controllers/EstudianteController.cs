@@ -128,6 +128,7 @@ namespace ProyectoMatricula.Controllers
 					}
 				}
 			Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+
 			return View();
 			}
 		#endregion
