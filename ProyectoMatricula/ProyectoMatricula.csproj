@@ -236,6 +236,9 @@
     <Compile Include="Modelos\pa_DireccionesCarrerasRetornaID_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_Direcciones_de_Carrera_RetornaID_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\pa_Direcciones_de_Carrera_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -533,6 +536,8 @@
     <Content Include="Views\Carreras\CarrerasNuevo.cshtml" />
     <Content Include="Views\Carreras\CarrerasModifica.cshtml" />
     <Content Include="Views\Carreras\CarrerasElimina.cshtml" />
+    <Content Include="Views\DireccionesCarrera\DireccionesCarreraModificar.cshtml" />
+    <Content Include="Views\DireccionesCarrera\DireccionesCarreraEliminar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -630,11 +630,17 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
         <Function Name="pa_CursosViewBag_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Curso" Type="int" Mode="In" />
         </Function>
+        <Function Name="pa_Direcciones_de_Carrera_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Direccion_Carrera" Type="int" Mode="In" />
+        </Function>
         <Function Name="pa_Direcciones_de_Carrera_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre_Direccion_Carrera" Type="varchar" Mode="In" />
           <Parameter Name="Codigo_Direccion_Carrera" Type="varchar" Mode="In" />
           <Parameter Name="Id_Director" Type="int" Mode="In" />
           <Parameter Name="id_Subdirector" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_Direcciones_de_Carrera_RetornaID_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Direccion_Carrera" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_Direcciones_de_Carrera_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre_Direccion_Carrera" Type="varchar" Mode="In" />
@@ -642,12 +648,6 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
         </Function>
         <Function Name="pa_Direcciones_de_Carrera_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Direccion_Carrera" Type="int" Mode="In" />
-          <Parameter Name="Nombre_Direccion_Carrera" Type="varchar" Mode="In" />
-          <Parameter Name="Codigo_Direccion_Carrera" Type="varchar" Mode="In" />
-          <Parameter Name="Id_Director" Type="int" Mode="In" />
-          <Parameter Name="Id_Subdirector" Type="int" Mode="In" />
-        </Function>
-        <Function Name="pa_DireccionesCarrera_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre_Direccion_Carrera" Type="varchar" Mode="In" />
           <Parameter Name="Codigo_Direccion_Carrera" Type="varchar" Mode="In" />
           <Parameter Name="Id_Director" Type="int" Mode="In" />
@@ -1740,6 +1740,29 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <FunctionImport Name="pa_Administrador_UltimaVez_Update">
           <Parameter Name="Usuario" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="pa_Carreras_Delete">
+          <Parameter Name="Id_Carrera" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_Carreras_Insert">
+            <Parameter Name="Nombre_Carrera" Mode="In" Type="String" />
+            <Parameter Name="Codigo_Carrera" Mode="In" Type="String" />
+            <Parameter Name="ID_Direccion_Carrera" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_Carreras_Select" ReturnType="Collection(matriculaBDModel.pa_Carreras_Select_Result)">
+            <Parameter Name="Nombre_Carrera" Mode="In" Type="String" />
+            <Parameter Name="Codigo_Carrera" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pa_Carreras_Update">
+            <Parameter Name="Id_Carrera_Uni" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre_Carrera" Mode="In" Type="String" />
+            <Parameter Name="Codigo_Carrera" Mode="In" Type="String" />
+            <Parameter Name="Id_Direccion_Carrera" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_CarrerasNombreDireccionViewBag_Select" ReturnType="Collection(matriculaBDModel.pa_CarrerasNombreDireccionViewBag_Select_Result)" />
+          <FunctionImport Name="pa_CarrerasRetornaSelectID_Select" ReturnType="Collection(matriculaBDModel.pa_CarrerasRetornaSelectID_Select_Result)" />
+          <FunctionImport Name="pa_CarrerasViewBag_Select" ReturnType="Collection(matriculaBDModel.pa_CarrerasViewBag_Select_Result)">
+          <Parameter Name="Id_Carrera" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="pa_Curso_x_Cuatrimetre_Select" ReturnType="Collection(matriculaBDModel.pa_Curso_x_Cuatrimetre_Select_Result)">
             <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
             <Parameter Name="Cuatrimestre" Mode="In" Type="Int32" />
@@ -1767,12 +1790,20 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
             <Parameter Name="Codigo_Curso" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="pa_CursosCodigos_Select" ReturnType="Collection(matriculaBDModel.pa_CursosCodigos_Select_Result)" />
           <FunctionImport Name="pa_CursosRetornaSelectID_Select" ReturnType="Collection(matriculaBDModel.pa_CursosRetornaSelectID_Select_Result)" />
+          <FunctionImport Name="pa_CursosViewBag_Select" ReturnType="Collection(matriculaBDModel.pa_CursosViewBag_Select_Result)">
+          <Parameter Name="Id_Curso" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="pa_Direcciones_de_Carrera_Insert">
             <Parameter Name="Nombre_Direccion_Carrera" Mode="In" Type="String" />
             <Parameter Name="Codigo_Direccion_Carrera" Mode="In" Type="String" />
             <Parameter Name="Id_Director" Mode="In" Type="Int32" />
             <Parameter Name="id_Subdirector" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_Direcciones_de_Carrera_Select" ReturnType="Collection(matriculaBDModel.pa_Direcciones_de_Carrera_Select_Result)">
+            <Parameter Name="Nombre_Direccion_Carrera" Mode="In" Type="String" />
+            <Parameter Name="Nombre_Director" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pa_Direcciones_de_Carrera_Update">
             <Parameter Name="Id_Direccion_Carrera" Mode="In" Type="Int32" />
@@ -1781,12 +1812,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="Id_Director" Mode="In" Type="Int32" />
             <Parameter Name="Id_Subdirector" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="pa_DireccionesCarrera_Insert">
-            <Parameter Name="Nombre_Direccion_Carrera" Mode="In" Type="String" />
-            <Parameter Name="Codigo_Direccion_Carrera" Mode="In" Type="String" />
-            <Parameter Name="Id_Director" Mode="In" Type="Int32" />
-            <Parameter Name="Id_Subdirector" Mode="In" Type="Int32" />
-          </FunctionImport>
+          <FunctionImport Name="pa_DireccionesCarrerasRetornaID_Select" ReturnType="Collection(matriculaBDModel.pa_DireccionesCarrerasRetornaID_Select_Result)" />
           <FunctionImport Name="pa_Estudiante_IngresarCarne_Update">
             <Parameter Name="Cedula_Estudiante" Mode="In" Type="String" />
             <Parameter Name="Carne" Mode="In" Type="String" />
@@ -1952,38 +1978,12 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Parameter Name="id_Distrito" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <FunctionImport Name="pa_CursosViewBag_Select" ReturnType="Collection(matriculaBDModel.pa_CursosViewBag_Select_Result)">
-          <Parameter Name="Id_Curso" Mode="In" Type="Int32" />
+          <FunctionImport Name="pa_Direcciones_de_Carrera_RetornaID_Select" ReturnType="Collection(matriculaBDModel.pa_Direcciones_de_Carrera_RetornaID_Select_Result)">
+          <Parameter Name="Id_Direccion_Carrera" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="pa_CursosCodigos_Select" ReturnType="Collection(matriculaBDModel.pa_CursosCodigos_Select_Result)" />
-          <FunctionImport Name="pa_Carreras_Select" ReturnType="Collection(matriculaBDModel.pa_Carreras_Select_Result)">
-            <Parameter Name="Nombre_Carrera" Mode="In" Type="String" />
-            <Parameter Name="Codigo_Carrera" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="pa_CarrerasNombreDireccionViewBag_Select" ReturnType="Collection(matriculaBDModel.pa_CarrerasNombreDireccionViewBag_Select_Result)" />
-          <FunctionImport Name="pa_CarrerasRetornaSelectID_Select" ReturnType="Collection(matriculaBDModel.pa_CarrerasRetornaSelectID_Select_Result)" />
-          <FunctionImport Name="pa_Carreras_Insert">
-            <Parameter Name="Nombre_Carrera" Mode="In" Type="String" />
-            <Parameter Name="Codigo_Carrera" Mode="In" Type="String" />
-            <Parameter Name="ID_Direccion_Carrera" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="pa_CarrerasViewBag_Select" ReturnType="Collection(matriculaBDModel.pa_CarrerasViewBag_Select_Result)">
-          <Parameter Name="Id_Carrera" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="pa_Carreras_Update">
-            <Parameter Name="Id_Carrera_Uni" Mode="In" Type="Int32" />
-            <Parameter Name="Nombre_Carrera" Mode="In" Type="String" />
-            <Parameter Name="Codigo_Carrera" Mode="In" Type="String" />
+          <FunctionImport Name="pa_Direcciones_de_Carrera_Delete">
             <Parameter Name="Id_Direccion_Carrera" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="pa_Carreras_Delete">
-          <Parameter Name="Id_Carrera" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="pa_Direcciones_de_Carrera_Select" ReturnType="Collection(matriculaBDModel.pa_Direcciones_de_Carrera_Select_Result)">
-            <Parameter Name="Nombre_Direccion_Carrera" Mode="In" Type="String" />
-            <Parameter Name="Nombre_Director" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="pa_DireccionesCarrerasRetornaID_Select" ReturnType="Collection(matriculaBDModel.pa_DireccionesCarrerasRetornaID_Select_Result)" />
         </EntityContainer>
         <ComplexType Name="pa_Administrador_Select_Result">
           <Property Type="Int32" Name="Id_Administador" Nullable="false" />
@@ -1994,6 +1994,31 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Type="String" Name="Nombre_Usuario" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Contrasena" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Tipo_Usuario" Nullable="false" MaxLength="3" />
+        </ComplexType>
+        <ComplexType Name="pa_Carreras_Select_Result">
+          <Property Type="Int32" Name="Id_Carrera_Univeriatria" Nullable="false" />
+          <Property Type="String" Name="Nombre_Carrera" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Codigo_Carrera" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre_Direccion_Carrera" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="pa_CarrerasNombreDireccionViewBag_Select_Result">
+          <Property Type="Int32" Name="Id_Carrera_Univeriatria" Nullable="false" />
+          <Property Type="String" Name="Nombre_Carrera" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Codigo_Carrera" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre_Direccion_Carrera" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Direccion_Carrera" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="pa_CarrerasRetornaSelectID_Select_Result">
+          <Property Type="Int32" Name="Id_Carrera_Univeriatria" Nullable="false" />
+          <Property Type="String" Name="Nombre_Carrera" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Codigo_Carrera" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Direccion_Carrera" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="pa_CarrerasViewBag_Select_Result">
+          <Property Type="Int32" Name="Id_Carrera_Univeriatria" Nullable="false" />
+          <Property Type="String" Name="Nombre_Carrera" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Codigo_Carrera" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Direccion_Carrera" Nullable="false" />
         </ComplexType>
         <ComplexType Name="pa_Curso_x_Cuatrimetre_Select_Result">
           <Property Type="Int32" Name="Id_Curso_x_Cuatrimestre" Nullable="false" />
@@ -2015,11 +2040,36 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Type="Int32" Name="Codigo_Requisito" Nullable="true" />
           <Property Type="String" Name="Nombre_Carrera" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="pa_CursosCodigos_Select_Result">
+          <Property Type="Int32" Name="Id_Curso" Nullable="false" />
+          <Property Type="String" Name="Nombre_Curso" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Codigo_Requisito" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="pa_CursosRetornaSelectID_Select_Result">
           <Property Type="Int32" Name="Id_Curso" Nullable="false" />
           <Property Type="String" Name="Nombre_Curso" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Codigo_Curso" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="Codigo_Requisito" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="pa_CursosViewBag_Select_Result">
+          <Property Type="Int32" Name="Id_Curso" Nullable="false" />
+          <Property Type="String" Name="Nombre_Curso" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Codigo_Curso" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Codigo_Requisito" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="pa_Direcciones_de_Carrera_Select_Result">
+          <Property Type="Int32" Name="Id_Direccion_Carrera" Nullable="false" />
+          <Property Type="String" Name="Nombre_Direccion_Carrera" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Codigo_Direccion_Carrera" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Director" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Subdirector" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="pa_DireccionesCarrerasRetornaID_Select_Result">
+          <Property Type="Int32" Name="Id_Direccion_Carrera" Nullable="false" />
+          <Property Type="String" Name="Nombre_Direccion_Carrera" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Codigo_Direccion_Carrera" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Director" Nullable="false" />
+          <Property Type="Int32" Name="Id_Subdirector" Nullable="false" />
         </ComplexType>
         <ComplexType Name="pa_Estudiantes_Cursos_Select_Result">
           <Property Type="String" Name="Nombre_Estudiante" Nullable="false" MaxLength="50" />
@@ -2218,50 +2268,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Type="String" Name="vc_Estado" Nullable="true" MaxLength="3" />
           <Property Type="Int32" Name="id_DistritoInec" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="pa_CursosViewBag_Select_Result">
-          <Property Type="Int32" Name="Id_Curso" Nullable="false" />
-          <Property Type="String" Name="Nombre_Curso" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Codigo_Curso" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Codigo_Requisito" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="pa_CursosCodigos_Select_Result">
-          <Property Type="Int32" Name="Id_Curso" Nullable="false" />
-          <Property Type="String" Name="Nombre_Curso" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Codigo_Requisito" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="pa_Carreras_Select_Result">
-          <Property Type="Int32" Name="Id_Carrera_Univeriatria" Nullable="false" />
-          <Property Type="String" Name="Nombre_Carrera" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Codigo_Carrera" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Nombre_Direccion_Carrera" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="pa_CarrerasNombreDireccionViewBag_Select_Result">
-          <Property Type="Int32" Name="Id_Carrera_Univeriatria" Nullable="false" />
-          <Property Type="String" Name="Nombre_Carrera" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Codigo_Carrera" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Nombre_Direccion_Carrera" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Id_Direccion_Carrera" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="pa_CarrerasRetornaSelectID_Select_Result">
-          <Property Type="Int32" Name="Id_Carrera_Univeriatria" Nullable="false" />
-          <Property Type="String" Name="Nombre_Carrera" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Codigo_Carrera" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Id_Direccion_Carrera" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="pa_CarrerasViewBag_Select_Result">
-          <Property Type="Int32" Name="Id_Carrera_Univeriatria" Nullable="false" />
-          <Property Type="String" Name="Nombre_Carrera" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Codigo_Carrera" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Id_Direccion_Carrera" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="pa_Direcciones_de_Carrera_Select_Result">
-          <Property Type="Int32" Name="Id_Direccion_Carrera" Nullable="false" />
-          <Property Type="String" Name="Nombre_Direccion_Carrera" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Codigo_Direccion_Carrera" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Director" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Subdirector" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="pa_DireccionesCarrerasRetornaID_Select_Result">
+        <ComplexType Name="pa_Direcciones_de_Carrera_RetornaID_Select_Result">
           <Property Type="Int32" Name="Id_Direccion_Carrera" Nullable="false" />
           <Property Type="String" Name="Nombre_Direccion_Carrera" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Codigo_Direccion_Carrera" Nullable="false" MaxLength="50" />
@@ -2500,6 +2507,50 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_Administrador_UltimaVez_Update" FunctionName="matriculaBDModel.Store.pa_Administrador_UltimaVez_Update" />
+          <FunctionImportMapping FunctionImportName="pa_Carreras_Delete" FunctionName="matriculaBDModel.Store.pa_Carreras_Delete" />
+          <FunctionImportMapping FunctionImportName="pa_Carreras_Insert" FunctionName="matriculaBDModel.Store.pa_Carreras_Insert" />
+          <FunctionImportMapping FunctionImportName="pa_Carreras_Select" FunctionName="matriculaBDModel.Store.pa_Carreras_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_Carreras_Select_Result">
+                <ScalarProperty Name="Id_Carrera_Univeriatria" ColumnName="Id_Carrera_Univeriatria" />
+                <ScalarProperty Name="Nombre_Carrera" ColumnName="Nombre_Carrera" />
+                <ScalarProperty Name="Codigo_Carrera" ColumnName="Codigo_Carrera" />
+                <ScalarProperty Name="Nombre_Direccion_Carrera" ColumnName="Nombre_Direccion_Carrera" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_Carreras_Update" FunctionName="matriculaBDModel.Store.pa_Carreras_Update" />
+          <FunctionImportMapping FunctionImportName="pa_CarrerasNombreDireccionViewBag_Select" FunctionName="matriculaBDModel.Store.pa_CarrerasNombreDireccionViewBag_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_CarrerasNombreDireccionViewBag_Select_Result">
+                <ScalarProperty Name="Id_Carrera_Univeriatria" ColumnName="Id_Carrera_Univeriatria" />
+                <ScalarProperty Name="Nombre_Carrera" ColumnName="Nombre_Carrera" />
+                <ScalarProperty Name="Codigo_Carrera" ColumnName="Codigo_Carrera" />
+                <ScalarProperty Name="Nombre_Direccion_Carrera" ColumnName="Nombre_Direccion_Carrera" />
+                <ScalarProperty Name="Id_Direccion_Carrera" ColumnName="Id_Direccion_Carrera" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_CarrerasRetornaSelectID_Select" FunctionName="matriculaBDModel.Store.pa_CarrerasRetornaSelectID_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_CarrerasRetornaSelectID_Select_Result">
+                <ScalarProperty Name="Id_Carrera_Univeriatria" ColumnName="Id_Carrera_Univeriatria" />
+                <ScalarProperty Name="Nombre_Carrera" ColumnName="Nombre_Carrera" />
+                <ScalarProperty Name="Codigo_Carrera" ColumnName="Codigo_Carrera" />
+                <ScalarProperty Name="Id_Direccion_Carrera" ColumnName="Id_Direccion_Carrera" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_CarrerasViewBag_Select" FunctionName="matriculaBDModel.Store.pa_CarrerasViewBag_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_CarrerasViewBag_Select_Result">
+                <ScalarProperty Name="Id_Carrera_Univeriatria" ColumnName="Id_Carrera_Univeriatria" />
+                <ScalarProperty Name="Nombre_Carrera" ColumnName="Nombre_Carrera" />
+                <ScalarProperty Name="Codigo_Carrera" ColumnName="Codigo_Carrera" />
+                <ScalarProperty Name="Id_Direccion_Carrera" ColumnName="Id_Direccion_Carrera" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_Curso_x_Cuatrimetre_Select" FunctionName="matriculaBDModel.Store.pa_Curso_x_Cuatrimetre_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="matriculaBDModel.pa_Curso_x_Cuatrimetre_Select_Result">
@@ -2535,6 +2586,15 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_CursosCodigos_Select" FunctionName="matriculaBDModel.Store.pa_CursosCodigos_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_CursosCodigos_Select_Result">
+                <ScalarProperty Name="Id_Curso" ColumnName="Id_Curso" />
+                <ScalarProperty Name="Nombre_Curso" ColumnName="Nombre_Curso" />
+                <ScalarProperty Name="Codigo_Requisito" ColumnName="Codigo_Requisito" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_CursosRetornaSelectID_Select" FunctionName="matriculaBDModel.Store.pa_CursosRetornaSelectID_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="matriculaBDModel.pa_CursosRetornaSelectID_Select_Result">
@@ -2545,9 +2605,40 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_CursosViewBag_Select" FunctionName="matriculaBDModel.Store.pa_CursosViewBag_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_CursosViewBag_Select_Result">
+                <ScalarProperty Name="Id_Curso" ColumnName="Id_Curso" />
+                <ScalarProperty Name="Nombre_Curso" ColumnName="Nombre_Curso" />
+                <ScalarProperty Name="Codigo_Curso" ColumnName="Codigo_Curso" />
+                <ScalarProperty Name="Codigo_Requisito" ColumnName="Codigo_Requisito" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_Direcciones_de_Carrera_Insert" FunctionName="matriculaBDModel.Store.pa_Direcciones_de_Carrera_Insert" />
+          <FunctionImportMapping FunctionImportName="pa_Direcciones_de_Carrera_Select" FunctionName="matriculaBDModel.Store.pa_Direcciones_de_Carrera_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_Direcciones_de_Carrera_Select_Result">
+                <ScalarProperty Name="Id_Direccion_Carrera" ColumnName="Id_Direccion_Carrera" />
+                <ScalarProperty Name="Nombre_Direccion_Carrera" ColumnName="Nombre_Direccion_Carrera" />
+                <ScalarProperty Name="Codigo_Direccion_Carrera" ColumnName="Codigo_Direccion_Carrera" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Subdirector" ColumnName="Subdirector" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_Direcciones_de_Carrera_Update" FunctionName="matriculaBDModel.Store.pa_Direcciones_de_Carrera_Update" />
-          <FunctionImportMapping FunctionImportName="pa_DireccionesCarrera_Insert" FunctionName="matriculaBDModel.Store.pa_DireccionesCarrera_Insert" />
+          <FunctionImportMapping FunctionImportName="pa_DireccionesCarrerasRetornaID_Select" FunctionName="matriculaBDModel.Store.pa_DireccionesCarrerasRetornaID_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_DireccionesCarrerasRetornaID_Select_Result">
+                <ScalarProperty Name="Id_Direccion_Carrera" ColumnName="Id_Direccion_Carrera" />
+                <ScalarProperty Name="Nombre_Direccion_Carrera" ColumnName="Nombre_Direccion_Carrera" />
+                <ScalarProperty Name="Codigo_Direccion_Carrera" ColumnName="Codigo_Direccion_Carrera" />
+                <ScalarProperty Name="Id_Director" ColumnName="Id_Director" />
+                <ScalarProperty Name="Id_Subdirector" ColumnName="Id_Subdirector" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_Estudiante_IngresarCarne_Update" FunctionName="matriculaBDModel.Store.pa_Estudiante_IngresarCarne_Update" />
           <FunctionImportMapping FunctionImportName="pa_Estudiantes_Cursos_Select" FunctionName="matriculaBDModel.Store.pa_Estudiantes_Cursos_Select">
             <ResultMapping>
@@ -2847,83 +2938,9 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="matriculaBDModel.Store.sp_upgraddiagrams" />
-          <FunctionImportMapping FunctionImportName="pa_CursosViewBag_Select" FunctionName="matriculaBDModel.Store.pa_CursosViewBag_Select">
+          <FunctionImportMapping FunctionImportName="pa_Direcciones_de_Carrera_RetornaID_Select" FunctionName="matriculaBDModel.Store.pa_Direcciones_de_Carrera_RetornaID_Select">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="matriculaBDModel.pa_CursosViewBag_Select_Result">
-                <ScalarProperty Name="Id_Curso" ColumnName="Id_Curso" />
-                <ScalarProperty Name="Nombre_Curso" ColumnName="Nombre_Curso" />
-                <ScalarProperty Name="Codigo_Curso" ColumnName="Codigo_Curso" />
-                <ScalarProperty Name="Codigo_Requisito" ColumnName="Codigo_Requisito" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_CursosCodigos_Select" FunctionName="matriculaBDModel.Store.pa_CursosCodigos_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="matriculaBDModel.pa_CursosCodigos_Select_Result">
-                <ScalarProperty Name="Id_Curso" ColumnName="Id_Curso" />
-                <ScalarProperty Name="Nombre_Curso" ColumnName="Nombre_Curso" />
-                <ScalarProperty Name="Codigo_Requisito" ColumnName="Codigo_Requisito" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_Carreras_Select" FunctionName="matriculaBDModel.Store.pa_Carreras_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="matriculaBDModel.pa_Carreras_Select_Result">
-                <ScalarProperty Name="Id_Carrera_Univeriatria" ColumnName="Id_Carrera_Univeriatria" />
-                <ScalarProperty Name="Nombre_Carrera" ColumnName="Nombre_Carrera" />
-                <ScalarProperty Name="Codigo_Carrera" ColumnName="Codigo_Carrera" />
-                <ScalarProperty Name="Nombre_Direccion_Carrera" ColumnName="Nombre_Direccion_Carrera" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_CarrerasNombreDireccionViewBag_Select" FunctionName="matriculaBDModel.Store.pa_CarrerasNombreDireccionViewBag_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="matriculaBDModel.pa_CarrerasNombreDireccionViewBag_Select_Result">
-                <ScalarProperty Name="Id_Carrera_Univeriatria" ColumnName="Id_Carrera_Univeriatria" />
-                <ScalarProperty Name="Nombre_Carrera" ColumnName="Nombre_Carrera" />
-                <ScalarProperty Name="Codigo_Carrera" ColumnName="Codigo_Carrera" />
-                <ScalarProperty Name="Nombre_Direccion_Carrera" ColumnName="Nombre_Direccion_Carrera" />
-                <ScalarProperty Name="Id_Direccion_Carrera" ColumnName="Id_Direccion_Carrera" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_CarrerasRetornaSelectID_Select" FunctionName="matriculaBDModel.Store.pa_CarrerasRetornaSelectID_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="matriculaBDModel.pa_CarrerasRetornaSelectID_Select_Result">
-                <ScalarProperty Name="Id_Carrera_Univeriatria" ColumnName="Id_Carrera_Univeriatria" />
-                <ScalarProperty Name="Nombre_Carrera" ColumnName="Nombre_Carrera" />
-                <ScalarProperty Name="Codigo_Carrera" ColumnName="Codigo_Carrera" />
-                <ScalarProperty Name="Id_Direccion_Carrera" ColumnName="Id_Direccion_Carrera" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_Carreras_Insert" FunctionName="matriculaBDModel.Store.pa_Carreras_Insert" />
-          <FunctionImportMapping FunctionImportName="pa_CarrerasViewBag_Select" FunctionName="matriculaBDModel.Store.pa_CarrerasViewBag_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="matriculaBDModel.pa_CarrerasViewBag_Select_Result">
-                <ScalarProperty Name="Id_Carrera_Univeriatria" ColumnName="Id_Carrera_Univeriatria" />
-                <ScalarProperty Name="Nombre_Carrera" ColumnName="Nombre_Carrera" />
-                <ScalarProperty Name="Codigo_Carrera" ColumnName="Codigo_Carrera" />
-                <ScalarProperty Name="Id_Direccion_Carrera" ColumnName="Id_Direccion_Carrera" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_Carreras_Update" FunctionName="matriculaBDModel.Store.pa_Carreras_Update" />
-          <FunctionImportMapping FunctionImportName="pa_Carreras_Delete" FunctionName="matriculaBDModel.Store.pa_Carreras_Delete" />
-          <FunctionImportMapping FunctionImportName="pa_Direcciones_de_Carrera_Select" FunctionName="matriculaBDModel.Store.pa_Direcciones_de_Carrera_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="matriculaBDModel.pa_Direcciones_de_Carrera_Select_Result">
-                <ScalarProperty Name="Id_Direccion_Carrera" ColumnName="Id_Direccion_Carrera" />
-                <ScalarProperty Name="Nombre_Direccion_Carrera" ColumnName="Nombre_Direccion_Carrera" />
-                <ScalarProperty Name="Codigo_Direccion_Carrera" ColumnName="Codigo_Direccion_Carrera" />
-                <ScalarProperty Name="Director" ColumnName="Director" />
-                <ScalarProperty Name="Subdirector" ColumnName="Subdirector" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_DireccionesCarrerasRetornaID_Select" FunctionName="matriculaBDModel.Store.pa_DireccionesCarrerasRetornaID_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="matriculaBDModel.pa_DireccionesCarrerasRetornaID_Select_Result">
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_Direcciones_de_Carrera_RetornaID_Select_Result">
                 <ScalarProperty Name="Id_Direccion_Carrera" ColumnName="Id_Direccion_Carrera" />
                 <ScalarProperty Name="Nombre_Direccion_Carrera" ColumnName="Nombre_Direccion_Carrera" />
                 <ScalarProperty Name="Codigo_Direccion_Carrera" ColumnName="Codigo_Direccion_Carrera" />
@@ -2932,6 +2949,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_Direcciones_de_Carrera_Delete" FunctionName="matriculaBDModel.Store.pa_Direcciones_de_Carrera_Delete" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

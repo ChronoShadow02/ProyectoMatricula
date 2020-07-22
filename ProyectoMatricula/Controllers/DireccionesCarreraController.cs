@@ -48,45 +48,151 @@ namespace ProyectoMatricula.Controllers
                 return View();
             }
 
-        /// <summary>
-        /// Metodo que Ingresa  las direcciones de carrera
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult DireccionesCarreraNuevo(pa_DireccionesCarrerasRetornaID_Select_Result modeloVista)
-        {
+            /// <summary>
+            /// Metodo que Ingresa  las direcciones de carrera
+            /// </summary>
+            /// <returns></returns>
+            [HttpPost]
+            public ActionResult DireccionesCarreraNuevo(pa_DireccionesCarrerasRetornaID_Select_Result modeloVista)
+            {
             
-            int cantidadRegistrosAgectados = 0;
-            string mensaje = "";
+                int cantidadRegistrosAgectados = 0;
+                string mensaje = "";
+                try
+                {
+                    cantidadRegistrosAgectados = this.matriculaBD.pa_Direcciones_de_Carrera_Insert(modeloVista.Nombre_Direccion_Carrera,
+                                                                                               modeloVista.Codigo_Direccion_Carrera,
+                                                                                               modeloVista.Id_Director,
+                                                                                               modeloVista.Id_Subdirector
+                                                                                               );
+                }
+                catch (Exception error)
+                {
+                    mensaje = "Ocurrió un error: " + error.Message;
+
+                }
+                finally
+                {
+                    if (cantidadRegistrosAgectados > 0)
+                    {
+                        mensaje = "Registro Insertado";
+                    }
+                    else
+                    {
+                        mensaje += " .No se pudo ingresar";
+                    }
+                }
+
+                Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+                this.CargarDirectoresViewBag();
+                this.CargarSubdirectoresViewBag();
+                return View();
+            }
+        #endregion
+
+        #region DireccionesCarreraModificar
+            public ActionResult DireccionesCarreraModificar(int Id_Direccion_Carrera)
+            {
+                pa_Direcciones_de_Carrera_RetornaID_Select_Result modeloVista = new pa_Direcciones_de_Carrera_RetornaID_Select_Result();
+
+                modeloVista = this.matriculaBD.pa_Direcciones_de_Carrera_RetornaID_Select(Id_Direccion_Carrera).FirstOrDefault();
+
+                this.CargarDirectoresViewBag();
+
+                this.CargarSubdirectoresViewBag();
+
+                return View(modeloVista);
+            }
+            [HttpPost]
+            public ActionResult DireccionesCarreraModificar(pa_Direcciones_de_Carrera_RetornaID_Select_Result modelovista)
+            {
+                ///Variable que registra la cantidad de registros afectados
+                ///si un procedimiento ejecuta insert, update, delete 
+                ///no afecta registros implica que hubo un error
+                int RegistrosAfectados = 0;
+
+                string resultado = "";
             try
             {
-                cantidadRegistrosAgectados = this.matriculaBD.pa_DireccionesCarrera_Insert(modeloVista.Nombre_Direccion_Carrera,
-                                                                                           modeloVista.Codigo_Direccion_Carrera,
-                                                                                           modeloVista.Id_Director,
-                                                                                           modeloVista.Id_Subdirector
-                                                                                           );
+                RegistrosAfectados = this.matriculaBD.pa_Direcciones_de_Carrera_Update(modelovista.Id_Direccion_Carrera,
+                                                                                       modelovista.Nombre_Direccion_Carrera,
+                                                                                       modelovista.Codigo_Direccion_Carrera,
+                                                                                       modelovista.Id_Director,
+                                                                                       modelovista.Id_Subdirector);
             }
             catch (Exception error)
             {
-                mensaje = "Ocurrió un error: " + error.Message;
-
+                resultado = "Ocurrio un error " + error.Message;
             }
             finally
             {
-                if (cantidadRegistrosAgectados > 0)
+                if (RegistrosAfectados > 0)
                 {
-                    mensaje = "Registro Insertado";
+                    resultado = "Registro Modificado";
                 }
                 else
                 {
-                    mensaje += " .No se pudo ingresar";
+                    resultado += ".No se pudo modificar";
                 }
             }
+            Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
 
-            Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
             this.CargarDirectoresViewBag();
+
             this.CargarSubdirectoresViewBag();
-            return View();
+
+            return View(modelovista);
+        }
+        #endregion
+
+        #region DireccionesCarreraEliminar
+            public ActionResult DireccionesCarreraEliminar(int Id_Direccion_Carrera)
+            {
+                pa_Direcciones_de_Carrera_RetornaID_Select_Result modeloVista = new pa_Direcciones_de_Carrera_RetornaID_Select_Result();
+
+                modeloVista = this.matriculaBD.pa_Direcciones_de_Carrera_RetornaID_Select(Id_Direccion_Carrera).FirstOrDefault();
+
+                this.CargarDirectoresViewBag();
+
+                this.CargarSubdirectoresViewBag();
+
+                return View(modeloVista);
+            }
+            [HttpPost]
+            public ActionResult DireccionesCarreraEliminar(pa_Direcciones_de_Carrera_RetornaID_Select_Result modeloVista)
+            {
+                ///Variable que registra la cantidad de registros afectados
+                ///si un procedimiento ejecuta insert, update, delete 
+                ///no afecta registros implica que hubo un error
+                int RegistrosAfectados = 0;
+
+                string resultado = "";
+            try
+            {
+                RegistrosAfectados = this.matriculaBD.pa_Direcciones_de_Carrera_Delete(modeloVista.Id_Direccion_Carrera);
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrio un error " + error.Message;
+            }
+            finally
+            {
+                if (RegistrosAfectados > 0)
+                {
+                    resultado = "Registro Eliminado";
+                }
+                else
+                {
+                    resultado += ".No se pudo eliminar.";
+                }
+            }
+            Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
+
+            this.CargarDirectoresViewBag();
+
+            this.CargarSubdirectoresViewBag();
+
+            return View(modeloVista);
         }
         #endregion
 

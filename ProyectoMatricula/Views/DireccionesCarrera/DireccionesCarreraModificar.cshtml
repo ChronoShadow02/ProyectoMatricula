@@ -1,0 +1,80 @@
+﻿@model ProyectoMatricula.Modelos.pa_Direcciones_de_Carrera_RetornaID_Select_Result
+@{
+    ViewBag.Title = "Matricula UMCA | Modificación de Direccion de carrera";
+    Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
+}
+
+<h2 class="text-center">Modificación de dirección de carrera</h2>
+<div class="row justify-content-center align-items-center h-100 border-left border-right">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <form method="post" id="frmDireccion">
+            <div class="form-group">
+                <label>Nombre de dirección de carrera:</label>
+                <input type="text" class="form-control" name="Nombre_Direccion_Carrera" id="Nombre_Direccion_Carrera" value="@Model.Nombre_Direccion_Carrera" />
+            </div>
+            <div class="form-group">
+                <label>Código de dirección de carrera:</label>
+                <input type="text" class="form-control" name="Codigo_Direccion_Carrera" id="Codigo_Direccion_Carrera" value="@Model.Codigo_Direccion_Carrera" />
+            </div>
+            <div class="form-group">
+                <label>Director</label>
+                <select name="Id_Director" id="Id_Director" class="form-control">
+                    <option value="">Seleccione una opción</option>
+                    @{
+
+                        foreach (ProyectoMatricula.Modelos.pa_Sedes_Universitarias_DirectorViewBag_Select_Result posicionDirector in this.ViewBag.ListaDirectores)
+                        {
+                            ///variable que indica si el director esta en el modelo
+
+                            bool esIdDirectorModelo = posicionDirector.Id_Funcionario == Model.Id_Director;
+
+                            if (esIdDirectorModelo)
+                            {
+                                <option value="@posicionDirector.Id_Funcionario" selected>@posicionDirector.Nombre_Funcionario</option>
+
+                            }
+                            else
+                            {
+                                <option value="@posicionDirector.Id_Funcionario">@posicionDirector.Nombre_Funcionario</option>
+                            }
+
+
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Subdirector</label>
+                <select name="Id_Subdirector" id="Id_Subdirector" class="form-control">
+                    <option value="">Seleccione una opción</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_Sedes_Universitarias_SubdirectorViewBag_Select_Result posicionSubdirector in this.ViewBag.ListaSubdirectores)
+                        {
+                            ///variable que indica si el director esta en el modelo
+
+                            bool esIdSubdirectorModelo = posicionSubdirector.Id_Funcionario == Model.Id_Subdirector;
+
+                            if (esIdSubdirectorModelo)
+                            {
+                                <option value="@posicionSubdirector.Id_Funcionario" selected>@posicionSubdirector.Nombre_Funcionario</option>
+                            }
+                            else
+                            {
+                                <option value="@posicionSubdirector.Id_Funcionario">@posicionSubdirector.Nombre_Funcionario</option>
+                            }
+
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Modificar</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/validacionesGenericas/validacionesGenericas.js"></script>
+    <script src="~/Scripts/Direcciones/validarDireccion.js"></script>
+}
+
