@@ -21,6 +21,7 @@ namespace ProyectoMatricula.Controllers
         {
             return View();
         }
+
         #region FuncionarioLista
         /// <summary>
         /// Metodo que lista los funcionarios
