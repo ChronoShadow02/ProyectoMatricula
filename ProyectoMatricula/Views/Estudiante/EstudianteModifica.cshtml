@@ -24,7 +24,13 @@
                         foreach (ProyectoMatricula.Modelos.RetornaProvincias_Result posicionProvincia in this.ViewBag.ListaProvincias)
                         {
                             ///variable que indica si la provincia esta en el modelo
-                            bool esIdProvinciaModelo = posicionProvincia.id_Provincia == Model.Id_Provincia;
+                            bool esIdProvinciaModelo = false;
+
+                            if (posicionProvincia.id_Provincia == Model.Id_Provincia)
+                            {
+                                esIdProvinciaModelo = true;
+                            }
+
 
                             if (esIdProvinciaModelo)
                             {
