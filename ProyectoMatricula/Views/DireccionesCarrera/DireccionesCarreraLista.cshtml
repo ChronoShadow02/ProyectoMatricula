@@ -4,46 +4,48 @@
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
 }
 <h1 class="text-center">Lista de Direcciones de carrera</h1>
-<form class="form-horizontal" method="post">
-    <div class="form-group d-flex">
-        <label for="Direccion">Dirección de carrera:</label>&nbsp;
-        <input type="text" value="" id="Direccion" class="form-control" name="Nombre_Direccion_Carrera"/> &nbsp;
-        <label>Director:</label>&nbsp;
-        <input type="text" value="" class="form-control" name="Director" />&nbsp;
-        <button type="submit" class="btn btn-primary">Buscar</button>
-    </div>
-</form>
-<table class="table text-center table-hover table-bordered table-striped">
-    <tr>
-        <th>Identificador</th>
-        <th>Dirección de carrera</th>
-        <th>Código de dirección</th>
-        <th>Director</th>
-        <th>Subdirector</th>
-        <th colspan="2">Acciones</th>
-    </tr>
-        @{ 
+<div class="d-flex align-content-center justify-content-center">
+    <form class="form-horizontal" method="post">
+        <div class="form-group d-flex">
+            <label for="Direccion">Dirección de carrera:</label>&nbsp;
+            <input type="text" value="" id="Direccion" class="form-control" name="Nombre_Direccion_Carrera" /> &nbsp;
+            <label>Director:</label>&nbsp;
+            <input type="text" value="" class="form-control" name="Director" />&nbsp;
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+</div>
+    <table class="table text-center table-hover table-bordered table-striped">
+        <tr>
+            <th>Identificador</th>
+            <th>Dirección de carrera</th>
+            <th>Código de dirección</th>
+            <th>Director</th>
+            <th>Subdirector</th>
+            <th colspan="2">Acciones</th>
+        </tr>
+        @{
             foreach (ProyectoMatricula.Modelos.pa_Direcciones_de_Carrera_Select_Result posicionModelo in this.Model)
             {
-            <tr>
-                <td>@posicionModelo.Id_Direccion_Carrera</td>
-                <td>@posicionModelo.Nombre_Direccion_Carrera</td>
-                <td>@posicionModelo.Codigo_Direccion_Carrera</td>
-                <td>@posicionModelo.Director</td>
-                <td>@posicionModelo.Subdirector</td>
-                <td>
-                    <a href="~/DireccionesCarrera/DireccionesCarreraModificar?Id_Direccion_Carrera=@posicionModelo.Id_Direccion_Carrera">Modificar</a>
-                </td>
-                <td>
-                    <a href="~/DireccionesCarrera/DireccionesCarreraEliminar?Id_Direccion_Carrera=@posicionModelo.Id_Direccion_Carrera">Eliminar</a>
-                </td>
-            </tr>
+                <tr>
+                    <td>@posicionModelo.Id_Direccion_Carrera</td>
+                    <td>@posicionModelo.Nombre_Direccion_Carrera</td>
+                    <td>@posicionModelo.Codigo_Direccion_Carrera</td>
+                    <td>@posicionModelo.Director</td>
+                    <td>@posicionModelo.Subdirector</td>
+                    <td>
+                        <a href="~/DireccionesCarrera/DireccionesCarreraModificar?Id_Direccion_Carrera=@posicionModelo.Id_Direccion_Carrera">Modificar</a>
+                    </td>
+                    <td>
+                        <a href="~/DireccionesCarrera/DireccionesCarreraEliminar?Id_Direccion_Carrera=@posicionModelo.Id_Direccion_Carrera">Eliminar</a>
+                    </td>
+                </tr>
             }
         }
-    
-</table>
-<div class="d-flex align-content-center justify-content-center">
-    <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary">Ir al menú principal</a> &nbsp;
-    <a href="~/DireccionesCarrera/DireccionesCarreraNuevo" class="btn btn-outline-primary">Agregar dirección de carrera</a>
-</div>
-<br />
+
+    </table>
+    <div class="d-flex align-content-center justify-content-center">
+        <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary">Ir al menú principal</a> &nbsp;
+        <a href="~/DireccionesCarrera/DireccionesCarreraNuevo" class="btn btn-outline-primary">Agregar dirección de carrera</a>
+    </div>
+    <br />

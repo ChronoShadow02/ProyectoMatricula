@@ -5,47 +5,49 @@
 }
 
 <h1 class="text-center">Lista de funcionarios</h1>
-<form class="form-horizontal" method="post">
-    <div class="form-group d-flex">
-        <label for="Funcionario">Nombre de funcionario:</label>&nbsp;
-        <input type="text" value="" id="Funcionario" class="form-control" name="Nombre_Funcionario"/> &nbsp;
-        <label>Cedula de Funcionario:</label>&nbsp;
-        <input type="text" value="" class="form-control" name="Cedula_Funcionario" />&nbsp;
-        <button type="submit" class="btn btn-primary">Buscar</button>
-    </div>
-</form>
-
-<table class="table text-center table-hover table-bordered table-striped">
-    <tr>
-        <th>Identificador</th>
-        <th>Funcionario</th>
-        <th>Cédula</th>
-        <th>Provincia</th>
-        <th>Canton</th>
-        <th>Distrito</th>
-        <th>Fecha de contratación</th>
-        <th colspan="2">Acciones</th>
-    </tr>
-    @{
-        foreach (ProyectoMatricula.Modelos.pa_Funcionarios_Select_Result posicionModelo in this.Model)
-        {
-        <tr>
-            <td>@posicionModelo.Id_Funcionario</td>
-            <td>@posicionModelo.Nombre_Funcionario</td>
-            <td>@posicionModelo.Cedula_Funcionario</td>
-            <td>@posicionModelo.Provincia</td>
-            <td>@posicionModelo.Canton</td>
-            <td>@posicionModelo.Distrito</td>
-            <td>@posicionModelo.Fecha_Contratacion.ToString("yyyy-MM-dd")</td>
-            <td><a href="~/Funcionario/FuncionarioModifica?Id_Funcionario=@posicionModelo.Id_Funcionario">Modificar</a></td>
-            <td><a href="~/Funcionario/FuncionarioElimina?Id_Funcionario=@posicionModelo.Id_Funcionario">Eliminar</a></td>
-        </tr>
-        }
-    }
-</table>
 <div class="d-flex align-content-center justify-content-center">
-    <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary">Ir al menú principal</a> &nbsp;
-    <a href="~/Funcionario/FuncionarioNuevo" class="btn btn-outline-primary">Agregar funcionario</a>
+    <form class="form-horizontal" method="post">
+        <div class="form-group d-flex">
+            <label for="Funcionario">Nombre de funcionario:</label>&nbsp;
+            <input type="text" value="" id="Funcionario" class="form-control" name="Nombre_Funcionario" /> &nbsp;
+            <label>Cedula de Funcionario:</label>&nbsp;
+            <input type="text" value="" class="form-control" name="Cedula_Funcionario" />&nbsp;
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
 </div>
-<br />
+
+    <table class="table text-center table-hover table-bordered table-striped">
+        <tr>
+            <th>Identificador</th>
+            <th>Funcionario</th>
+            <th>Cédula</th>
+            <th>Provincia</th>
+            <th>Canton</th>
+            <th>Distrito</th>
+            <th>Fecha de contratación</th>
+            <th colspan="2">Acciones</th>
+        </tr>
+        @{
+            foreach (ProyectoMatricula.Modelos.pa_Funcionarios_Select_Result posicionModelo in this.Model)
+            {
+                <tr>
+                    <td>@posicionModelo.Id_Funcionario</td>
+                    <td>@posicionModelo.Nombre_Funcionario</td>
+                    <td>@posicionModelo.Cedula_Funcionario</td>
+                    <td>@posicionModelo.Provincia</td>
+                    <td>@posicionModelo.Canton</td>
+                    <td>@posicionModelo.Distrito</td>
+                    <td>@posicionModelo.Fecha_Contratacion.ToString("yyyy-MM-dd")</td>
+                    <td><a href="~/Funcionario/FuncionarioModifica?Id_Funcionario=@posicionModelo.Id_Funcionario">Modificar</a></td>
+                    <td><a href="~/Funcionario/FuncionarioElimina?Id_Funcionario=@posicionModelo.Id_Funcionario">Eliminar</a></td>
+                </tr>
+            }
+        }
+    </table>
+    <div class="d-flex align-content-center justify-content-center">
+        <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary">Ir al menú principal</a> &nbsp;
+        <a href="~/Funcionario/FuncionarioNuevo" class="btn btn-outline-primary">Agregar funcionario</a>
+    </div>
+    <br />
 

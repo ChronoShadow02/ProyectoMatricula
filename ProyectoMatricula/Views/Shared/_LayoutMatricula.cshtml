@@ -57,6 +57,7 @@
                                 <a href="~/DireccionesCarrera/DireccionesCarreraLista" class="nav-item nav-link">Direcciones de carrera</a>
                                 <a href="~/Cursos/CursosLista" class="nav-item nav-link">Cursos</a>
                                 <a href="~/Carreras/CarrerasLista" class="nav-item nav-link">Carreras</a>
+                                <a href="~/CursosCarrera/CursoCarreraLista" class="nav-item nav-link">Cursos por carrera</a>
                             }
                             <a href="#" class="nav-item nav-link" id="linkCierreSesion">Salir</a>
                         }
@@ -79,7 +80,7 @@
                 this.Response.Redirect(urlLogin);
             }
         }
-        <div id="divCerrarSesion" >
+        <div id="divCerrarSesion" hidden>
             <p class="text-center">¿Desea cerrar la sesión?</p>
             <div class="d-flex align-content-center justify-content-center">
                 <button id="btnSi" class="btn btn-success">Si</button> &nbsp;

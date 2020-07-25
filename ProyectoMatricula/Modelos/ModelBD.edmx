@@ -602,6 +602,10 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Parameter Name="Nombre_Curso" Type="varchar" Mode="In" />
           <Parameter Name="Cuatrimestre" Type="int" Mode="In" />
         </Function>
+        <Function Name="pa_CursoCarrera_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre_Curso" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre_Carrera" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="pa_Cursos_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Curso" Type="int" Mode="In" />
         </Function>
@@ -1982,7 +1986,11 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Parameter Name="Id_Direccion_Carrera" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_Direcciones_de_Carrera_Delete">
-            <Parameter Name="Id_Direccion_Carrera" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Direccion_Carrera" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_CursoCarrera_Select" ReturnType="Collection(matriculaBDModel.pa_CursoCarrera_Select_Result)">
+            <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
+            <Parameter Name="Nombre_Carrera" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="pa_Administrador_Select_Result">
@@ -2274,6 +2282,11 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Type="String" Name="Codigo_Direccion_Carrera" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="Id_Director" Nullable="false" />
           <Property Type="Int32" Name="Id_Subdirector" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="pa_CursoCarrera_Select_Result">
+          <Property Type="Int32" Name="Id_Cursos_Por_Carrera" Nullable="false" />
+          <Property Type="String" Name="Nombre_Curso" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre_Carrera" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2950,6 +2963,15 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_Direcciones_de_Carrera_Delete" FunctionName="matriculaBDModel.Store.pa_Direcciones_de_Carrera_Delete" />
+          <FunctionImportMapping FunctionImportName="pa_CursoCarrera_Select" FunctionName="matriculaBDModel.Store.pa_CursoCarrera_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_CursoCarrera_Select_Result">
+                <ScalarProperty Name="Id_Cursos_Por_Carrera" ColumnName="Id_Cursos_Por_Carrera" />
+                <ScalarProperty Name="Nombre_Curso" ColumnName="Nombre_Curso" />
+                <ScalarProperty Name="Nombre_Carrera" ColumnName="Nombre_Carrera" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

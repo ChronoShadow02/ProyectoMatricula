@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CarrerasController.cs" />
+    <Compile Include="Controllers\CursosCarreraController.cs" />
     <Compile Include="Controllers\CursosController.cs" />
     <Compile Include="Controllers\DireccionesCarreraController.cs" />
     <Compile Include="Controllers\EstudianteController.cs" />
@@ -213,6 +214,9 @@
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Carreras_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_CursoCarrera_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_CursosCodigos_Select_Result.cs">
@@ -539,6 +543,7 @@
     <Content Include="Views\Carreras\CarrerasElimina.cshtml" />
     <Content Include="Views\DireccionesCarrera\DireccionesCarreraModificar.cshtml" />
     <Content Include="Views\DireccionesCarrera\DireccionesCarreraEliminar.cshtml" />
+    <Content Include="Views\CursosCarrera\CursoCarreraLista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

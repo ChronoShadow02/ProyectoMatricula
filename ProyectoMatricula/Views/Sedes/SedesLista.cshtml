@@ -7,49 +7,52 @@
 <br />
 <h1 class="text-center">Lista de sedes</h1>
 <br />
-<form class="form-horizontal" method="post">
-    <div class="form-group d-flex">
-        <label for="Nombre_Sede">Nombre de Estudiante:</label>&nbsp;
-        <input type="text" value="" id="Nombre_Sede" class="form-control" name="Nombre_Sede" /> &nbsp;
-        <button type="submit" class="btn btn-primary">Buscar</button>
-    </div>
-</form>
-<table class="table text-center table-hover table-bordered table-striped">
-    <tr>
-        <th>Identificador</th>
-        <th>Nombre</th>
-        <th>Código</th>
-        <th>Director</th>
-        <th>Provincia</th>
-        <th>Cantón</th>
-        <th>Distrito</th>
-        <th>Dirección</th>
-        <th colspan="2">Acciones</th>
-    </tr>
-    @{
-        foreach (ProyectoMatricula.Modelos.pa_Sedes_Universitarias_Select_Result posicionModelo in this.Model)
-        {
-            <tr>
-                <td>@posicionModelo.Id_Sedes_universitarias</td>
-                <td>@posicionModelo.Nombre_Sede</td>
-                <td>@posicionModelo.Codigo_Sede</td>
-                <td>@posicionModelo.Nombre_Funcionario</td>
-                <td>@posicionModelo.Provincia</td>
-                <td>@posicionModelo.Canton</td>
-                <td>@posicionModelo.Distrito</td>
-                <td>@posicionModelo.Direccion_Fisica</td>
-                <td>
-                    <a href="~/Sedes/SedesModifica?Id_Sedes_universitarias=@posicionModelo.Id_Sedes_universitarias">Modificar</a>
-                </td>
-                <td>
-                    <a href="~/Sedes/SedesElimina?Id_Sedes_universitarias=@posicionModelo.Id_Sedes_universitarias">Eliminar</a>
-                </td>
-            </tr>
-        }
-    }
-</table>
 <div class="d-flex align-content-center justify-content-center">
-    <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary">Ir al menú principal</a> &nbsp;
-    <a href="~/Sedes/SedesNuevo" class="btn btn-outline-primary">Agregar sede</a>
+    <form class="form-horizontal" method="post">
+        <div class="form-group d-flex">
+            <label for="Nombre_Sede">Nombre de Estudiante:</label>&nbsp;
+            <input type="text" value="" id="Nombre_Sede" class="form-control" name="Nombre_Sede" /> &nbsp;
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
 </div>
-<br />
+
+    <table class="table text-center table-hover table-bordered table-striped">
+        <tr>
+            <th>Identificador</th>
+            <th>Nombre</th>
+            <th>Código</th>
+            <th>Director</th>
+            <th>Provincia</th>
+            <th>Cantón</th>
+            <th>Distrito</th>
+            <th>Dirección</th>
+            <th colspan="2">Acciones</th>
+        </tr>
+        @{
+            foreach (ProyectoMatricula.Modelos.pa_Sedes_Universitarias_Select_Result posicionModelo in this.Model)
+            {
+                <tr>
+                    <td>@posicionModelo.Id_Sedes_universitarias</td>
+                    <td>@posicionModelo.Nombre_Sede</td>
+                    <td>@posicionModelo.Codigo_Sede</td>
+                    <td>@posicionModelo.Nombre_Funcionario</td>
+                    <td>@posicionModelo.Provincia</td>
+                    <td>@posicionModelo.Canton</td>
+                    <td>@posicionModelo.Distrito</td>
+                    <td>@posicionModelo.Direccion_Fisica</td>
+                    <td>
+                        <a href="~/Sedes/SedesModifica?Id_Sedes_universitarias=@posicionModelo.Id_Sedes_universitarias">Modificar</a>
+                    </td>
+                    <td>
+                        <a href="~/Sedes/SedesElimina?Id_Sedes_universitarias=@posicionModelo.Id_Sedes_universitarias">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    <div class="d-flex align-content-center justify-content-center">
+        <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary">Ir al menú principal</a> &nbsp;
+        <a href="~/Sedes/SedesNuevo" class="btn btn-outline-primary">Agregar sede</a>
+    </div>
+    <br />

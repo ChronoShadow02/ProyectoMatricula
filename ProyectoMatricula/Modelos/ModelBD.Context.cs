@@ -905,5 +905,18 @@ namespace ProyectoMatricula.Modelos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Direcciones_de_Carrera_Delete", id_Direccion_CarreraParameter);
         }
+    
+        public virtual ObjectResult<pa_CursoCarrera_Select_Result> pa_CursoCarrera_Select(string nombre_Curso, string nombre_Carrera)
+        {
+            var nombre_CursoParameter = nombre_Curso != null ?
+                new ObjectParameter("Nombre_Curso", nombre_Curso) :
+                new ObjectParameter("Nombre_Curso", typeof(string));
+    
+            var nombre_CarreraParameter = nombre_Carrera != null ?
+                new ObjectParameter("Nombre_Carrera", nombre_Carrera) :
+                new ObjectParameter("Nombre_Carrera", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CursoCarrera_Select_Result>("pa_CursoCarrera_Select", nombre_CursoParameter, nombre_CarreraParameter);
+        }
     }
 }
