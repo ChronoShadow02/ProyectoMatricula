@@ -972,5 +972,14 @@ namespace ProyectoMatricula.Modelos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_CursoCarrera_Update", id_Cursos_Por_CarreraParameter, id_CursoParameter, id_Carrera_UniversitariaParameter);
         }
+    
+        public virtual int pa_CursoCarrera_Delete(Nullable<int> id_Cursos_Por_Carrera)
+        {
+            var id_Cursos_Por_CarreraParameter = id_Cursos_Por_Carrera.HasValue ?
+                new ObjectParameter("Id_Cursos_Por_Carrera", id_Cursos_Por_Carrera) :
+                new ObjectParameter("Id_Cursos_Por_Carrera", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_CursoCarrera_Delete", id_Cursos_Por_CarreraParameter);
+        }
     }
 }

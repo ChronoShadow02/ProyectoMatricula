@@ -99,11 +99,11 @@ namespace ProyectoMatricula.Controllers
         #endregion
 
         #region CursoCarreraModifica
-            /// <summary>
-            /// Metodo que muestra 
-            /// </summary>
-            /// <returns></returns>
-            public ActionResult CursoCarreraModifica(int Id_Cursos_Por_Carrera)
+        /// <summary>
+        /// Metodo que muestra los datos seleccionados dependiendo del Id_Cursos_Por_Carrera
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult CursoCarreraModifica(int Id_Cursos_Por_Carrera)
             {
             pa_CursoCarreraRetornaID_Select_Result modeloVista = new pa_CursoCarreraRetornaID_Select_Result();
                         
@@ -148,6 +148,66 @@ namespace ProyectoMatricula.Controllers
             Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
             this.CargarCursosViewBag();
             this.CargarNombreDireccionesCarreraViewBag();
+            return View(modeloVista);
+        }
+        #endregion
+        #region CursoCarreraElimina
+        /// <summary>
+        /// Metodo que muestra la vista con los datos seleccionados dependiendo del Id_Cursos_Por_Carrera
+        /// </summary>
+        /// <param name="Id_Cursos_Por_Carrera"></param>
+        /// <returns></returns>
+        public ActionResult CursoCarreraElimina(int Id_Cursos_Por_Carrera)
+        {
+            pa_CursoCarreraRetornaID_Select_Result modeloVista = new pa_CursoCarreraRetornaID_Select_Result();
+
+            modeloVista = this.matriculaBD.pa_CursoCarreraRetornaID_Select(Id_Cursos_Por_Carrera).FirstOrDefault();
+
+            this.CargarCursosViewBag();
+
+            this.CargarNombreDireccionesCarreraViewBag();
+
+            return View(modeloVista);
+        }
+        [HttpPost]
+        /// <summary>
+        /// Metodo que elimina el registro
+        /// </summary>
+        /// <param name="Id_Cursos_Por_Carrera"></param>
+        /// <returns></returns>
+        public ActionResult CursoCarreraElimina(pa_CursoCarreraRetornaID_Select_Result modeloVista)
+        {
+            ///Variable que registra la cantidad de registros afectados
+            ///si un procedimiento ejecuta insert, update, delete 
+            ///no afecta registros implica que hubo un error
+            int cantidadRegistrosAgectados = 0;
+
+            string resultado = "";
+            try
+            {
+                cantidadRegistrosAgectados = this.matriculaBD.pa_CursoCarrera_Delete(modeloVista.Id_Cursos_Por_Carrera);
+            }
+            catch (Exception error)
+            {
+                resultado = "Ocurrio un error " + error.Message;
+            }
+            finally
+            {
+                if (cantidadRegistrosAgectados > 0)
+                {
+                    resultado = "Registro eliminado";
+                }
+                else
+                {
+                    resultado += ".No se pudo eliminar";
+                }
+            }
+            Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
+
+            this.CargarCursosViewBag();
+
+            this.CargarNombreDireccionesCarreraViewBag();
+
             return View(modeloVista);
         }
         #endregion

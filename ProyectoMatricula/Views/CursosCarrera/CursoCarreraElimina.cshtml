@@ -1,0 +1,65 @@
+﻿@model ProyectoMatricula.Modelos.pa_CursoCarreraRetornaID_Select_Result
+@{
+    ViewBag.Title = "Matricula UMCA | Eliminación de cursos por carrera";
+    Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
+}
+
+<br />
+<h1 class="text-center border-top ">Eliminación de cursos por carrera</h1>
+<div class="row justify-content-center align-items-center h-100">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <form method="post" id="frmCursoPorCarrera">
+            <div class="form-group">
+                <label>Curso:</label>
+                <select name="Id_Curso" class="form-control" id="Id_Curso">
+                    <option value="">Seleccione una opción</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_CursosCodigos_Select_Result Curso in this.ViewBag.ListaCursos)
+                        {
+                            ///variable que indica si la provincia esta en el modelo
+                            bool esIdCursoModelo = Curso.Id_Curso == Model.Id_Curso;
+
+                            if (esIdCursoModelo)
+                            {
+                                <option value="@Curso.Id_Curso" selected>@Curso.Nombre_Curso</option>
+                            }
+                            else
+                            {
+                                <option value="@Curso.Id_Curso">@Curso.Nombre_Curso</option>
+                            }
+
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Carrera:</label>
+                <select name="Id_Carrera_Universitaria" class="form-control" id="Id_Carrera_Universitaria">
+                    <option value="">Seleccione una opcion</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_CursoCarreraNombreDireccionViewBag_Select_Result posicionDireccion in this.ViewBag.ListaNombresDireccionesCarrera)
+                        {
+                            ///variable que indica si la provincia esta en el modelo
+                            bool esIdDireccion = posicionDireccion.Id_Carrera_Universitaria == Model.Id_Carrera_Universitaria;
+
+                            if (esIdDireccion)
+                            {
+                                <option value="@posicionDireccion.Id_Carrera_Universitaria" selected>@posicionDireccion.Nombre_Carrera</option>
+                            }
+                            else
+                            {
+                                <option value="@posicionDireccion.Id_Carrera_Universitaria">@posicionDireccion.Nombre_Carrera</option>
+                            }
+
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Eliminar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

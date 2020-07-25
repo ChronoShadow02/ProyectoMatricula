@@ -602,6 +602,9 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Parameter Name="Nombre_Curso" Type="varchar" Mode="In" />
           <Parameter Name="Cuatrimestre" Type="int" Mode="In" />
         </Function>
+        <Function Name="pa_CursoCarrera_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Cursos_Por_Carrera" Type="int" Mode="In" />
+        </Function>
         <Function Name="pa_CursoCarrera_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_Curso" Type="int" Mode="In" />
           <Parameter Name="Id_Carrera_Universitaria" Type="int" Mode="In" />
@@ -2021,6 +2024,9 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="Id_Curso" Mode="In" Type="Int32" />
             <Parameter Name="Id_Carrera_Universitaria" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pa_CursoCarrera_Delete">
+            <Parameter Name="Id_Cursos_Por_Carrera" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -3064,6 +3070,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_CursoCarrera_Update" FunctionName="matriculaBDModel.Store.pa_CursoCarrera_Update" />
+          <FunctionImportMapping FunctionImportName="pa_CursoCarrera_Delete" FunctionName="matriculaBDModel.Store.pa_CursoCarrera_Delete" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
