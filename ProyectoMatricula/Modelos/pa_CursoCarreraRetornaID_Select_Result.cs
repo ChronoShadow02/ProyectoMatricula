@@ -11,7 +11,7 @@ namespace ProyectoMatricula.Modelos
 {
     using System;
     
-    public partial class pa_CursoCarrera_Select_Result
+    public partial class pa_CursoCarreraRetornaID_Select_Result
     {
         public int Id_Cursos_Por_Carrera { get; set; }
         public string Nombre_Curso { get; set; }

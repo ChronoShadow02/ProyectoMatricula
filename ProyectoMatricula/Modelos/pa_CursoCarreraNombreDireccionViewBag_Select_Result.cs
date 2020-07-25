@@ -11,12 +11,12 @@ namespace ProyectoMatricula.Modelos
 {
     using System;
     
-    public partial class pa_CursoCarrera_Select_Result
+    public partial class pa_CursoCarreraNombreDireccionViewBag_Select_Result
     {
-        public int Id_Cursos_Por_Carrera { get; set; }
-        public string Nombre_Curso { get; set; }
-        public string Nombre_Carrera { get; set; }
-        public int Id_Curso { get; set; }
         public int Id_Carrera_Universitaria { get; set; }
+        public string Nombre_Carrera { get; set; }
+        public string Codigo_Carrera { get; set; }
+        public string Nombre_Direccion_Carrera { get; set; }
+        public int Id_Direccion_Carrera { get; set; }
     }
 }

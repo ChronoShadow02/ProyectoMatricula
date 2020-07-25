@@ -209,10 +209,10 @@ namespace ProyectoMatricula.Controllers
         #endregion
 
         #region CursosViewBag
-        /// <summary>
-        /// Método que retorna los cursos en los que pueden ser requisitos
-        /// </summary>
-        void CursosViewBag()
+            /// <summary>
+            /// Método que retorna los cursos en los que pueden ser requisitos
+            /// </summary>
+            void CursosViewBag()
             {
                 this.ViewBag.ListaCursos = this.matriculaBD.pa_CursosCodigos_Select().ToList();
             }

@@ -216,6 +216,18 @@
     <Compile Include="Modelos\pa_Carreras_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_CursoCarreraIDS_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_CursoCarreraNombreDirecciones_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_CursoCarreraNombreDireccionViewBag_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_CursoCarreraRetornaID_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\pa_CursoCarrera_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -377,6 +389,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Scripts\Carreras\validarCarreras.js" />
+    <Content Include="Scripts\CursosCarrera\validarCursoCarrera.js" />
     <Content Include="Scripts\Cursos\validaCurso.js" />
     <Content Include="Scripts\Direcciones\validarDireccion.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -544,6 +557,8 @@
     <Content Include="Views\DireccionesCarrera\DireccionesCarreraModificar.cshtml" />
     <Content Include="Views\DireccionesCarrera\DireccionesCarreraEliminar.cshtml" />
     <Content Include="Views\CursosCarrera\CursoCarreraLista.cshtml" />
+    <Content Include="Views\CursosCarrera\CursoCarreraNuevo.cshtml" />
+    <Content Include="Views\CursosCarrera\CursoCarreraModifica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
