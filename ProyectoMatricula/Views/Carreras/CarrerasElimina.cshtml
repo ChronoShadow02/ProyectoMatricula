@@ -10,15 +10,15 @@
         <form method="post" id="frmCarrera">
             <div class="form-group">
                 <label>Nombre de carrera:</label>
-                <input type="text" class="form-control" name="Nombre_Carrera" id="Nombre_Carrera" value="@Model.Nombre_Carrera" />
+                <input type="text" class="form-control" name="Nombre_Carrera" id="Nombre_Carrera" value="@Model.Nombre_Carrera" disabled/>
             </div>
             <div class="form-group">
                 <label>Código de carrera:</label>
-                <input type="text" class="form-control" name="Codigo_Carrera" id="Codigo_Carrera" value="@Model.Codigo_Carrera" />
+                <input type="text" class="form-control" name="Codigo_Carrera" id="Codigo_Carrera" value="@Model.Codigo_Carrera" disabled/>
             </div>
             <div class="form-group">
                 <label>Dirección de carrera:</label>
-                <select name="Id_Direccion_Carrera" id="Id_Direccion_Carrera" class="form-control">
+                <select name="Id_Direccion_Carrera" id="Id_Direccion_Carrera" class="form-control" disabled>
                     <option value="">Seleccione una opcion</option>
                     @{
                         foreach (ProyectoMatricula.Modelos.pa_CarrerasNombreDireccionViewBag_Select_Result posicionDireccion in this.ViewBag.ListaNombresDireccionesCarrera)

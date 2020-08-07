@@ -10,15 +10,15 @@
         <form method="post" id="frmDireccion">
             <div class="form-group">
                 <label>Nombre de dirección de carrera:</label>
-                <input type="text" class="form-control" name="Nombre_Direccion_Carrera" id="Nombre_Direccion_Carrera" value="@Model.Nombre_Direccion_Carrera" />
+                <input type="text" class="form-control" name="Nombre_Direccion_Carrera" id="Nombre_Direccion_Carrera" value="@Model.Nombre_Direccion_Carrera" disabled/>
             </div>
             <div class="form-group">
                 <label>Código de dirección de carrera:</label>
-                <input type="text" class="form-control" name="Codigo_Direccion_Carrera" id="Codigo_Direccion_Carrera" value="@Model.Codigo_Direccion_Carrera" />
+                <input type="text" class="form-control" name="Codigo_Direccion_Carrera" id="Codigo_Direccion_Carrera" value="@Model.Codigo_Direccion_Carrera" disabled/>
             </div>
             <div class="form-group">
                 <label>Director</label>
-                <select name="Id_Director" id="Id_Director" class="form-control">
+                <select name="Id_Director" id="Id_Director" class="form-control" disabled>
                     <option value="">Seleccione una opción</option>
                     @{
 
@@ -45,7 +45,7 @@
             </div>
             <div class="form-group">
                 <label>Subdirector</label>
-                <select name="Id_Subdirector" id="Id_Subdirector" class="form-control">
+                <select name="Id_Subdirector" id="Id_Subdirector" class="form-control" disabled>
                     <option value="">Seleccione una opción</option>
                     @{
                         foreach (ProyectoMatricula.Modelos.pa_Sedes_Universitarias_SubdirectorViewBag_Select_Result posicionSubdirector in this.ViewBag.ListaSubdirectores)

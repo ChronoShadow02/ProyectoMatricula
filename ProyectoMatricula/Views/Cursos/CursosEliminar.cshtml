@@ -11,15 +11,15 @@
         <form method="post" id="frmCurso">
             <div class="form-group">
                 <label>Nombre del curso:</label>
-                <input type="text" name="Nombre_Curso" class="form-control" value="@Model.Nombre_Curso" />
+                <input type="text" name="Nombre_Curso" class="form-control" value="@Model.Nombre_Curso" disabled/>
             </div>
             <div class="form-group">
                 <label>Código del curso:</label>
-                <input type="text" name="Codigo_Curso" class="form-control" value="@Model.Codigo_Curso" />
+                <input type="text" name="Codigo_Curso" class="form-control" value="@Model.Codigo_Curso" disabled/>
             </div>
             <div class="form-group">
                 <label>Código requisito:</label>
-                <select name="Codigo_Requisito" id="Codigo_Requisito" class="form-control">
+                <select name="Codigo_Requisito" id="Codigo_Requisito" class="form-control" disabled>
                     <option value="">Seleccione una opción</option>
                     <option value="null" selected>Ninguno</option>
                     @{

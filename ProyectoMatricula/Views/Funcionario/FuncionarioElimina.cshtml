@@ -10,15 +10,15 @@
         <form action="" method="post" id="frmFuncionario">
             <div class="form-group">
                 <label>Nombre de funcionario:</label>
-                <input type="text" class="form-control" name="Nombre_Funcionario" value="@Model.Nombre_Funcionario" />
+                <input type="text" class="form-control" name="Nombre_Funcionario" value="@Model.Nombre_Funcionario" disabled/>
             </div>
             <div class="form-group">
                 <label>Cédula:</label>
-                <input type="text" class="form-control" name="Cedula_Funcionario" value="@Model.Cedula_Funcionario" />
+                <input type="text" class="form-control" name="Cedula_Funcionario" value="@Model.Cedula_Funcionario" disabled/>
             </div>
             <div class="form-group">
                 <label>Provincia</label>
-                <select class="form-control" name="Id_Provincia" id="Provincia">
+                <select class="form-control" name="Id_Provincia" id="Provincia" disabled>
                     <option value="">Seleccione una provincia</option>
                     @{
                         foreach (ProyectoMatricula.Modelos.RetornaProvincias_Result posicionProvincia in this.ViewBag.ListaProvincias)
@@ -42,7 +42,7 @@
             </div>
             <div class="form-group">
                 <label>Cantón</label>
-                <select class="form-control" name="Id_Canton" id="Canton">
+                <select class="form-control" name="Id_Canton" id="Canton" disabled>
                     <option value="">Seleccione un cantón</option>
                     @{
                         foreach (ProyectoMatricula.Modelos.RetornaCantones_Result posicionCanton in this.ViewBag.ListaCantones)
@@ -66,7 +66,7 @@
             </div>
             <div class="form-group">
                 <label>Distrito</label>
-                <select class="form-control" name="Id_Distrito" id="Distrito">
+                <select class="form-control" name="Id_Distrito" id="Distrito" disabled>
                     <option value="">Seleccione un distrito</option>
                     @{
                         foreach (ProyectoMatricula.Modelos.sp_RetornaDistritos_Result posicionDistrito in this.ViewBag.ListaDistritos)
@@ -89,7 +89,7 @@
             </div>
             <div class="form-group">
                 <label>Fecha de contratación:</label>
-                <input type="text" class="form-control" name="Fecha_Contratacion" value="@Model.Fecha_Contratacion.ToString("yyyy-MM-dd")" id="txtFechaContratacion" />
+                <input type="text" class="form-control" name="Fecha_Contratacion" value="@Model.Fecha_Contratacion.ToString("yyyy-MM-dd")" id="txtFechaContratacion"disabled />
             </div>
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary">Eliminar</button>
