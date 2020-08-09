@@ -1020,5 +1020,31 @@ namespace ProyectoMatricula.Modelos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Carreras_VerificarNombreCodigo_Select_Result>("pa_Carreras_VerificarNombreCodigo_Select", nombre_CarreraParameter, codigo_CarreraParameter);
         }
+    
+        public virtual ObjectResult<pa_Sedes_Universitarias_ValidarNombreCodigo_Select_Result> pa_Sedes_Universitarias_ValidarNombreCodigo_Select(string nombre_Sede, string codigo_Sede)
+        {
+            var nombre_SedeParameter = nombre_Sede != null ?
+                new ObjectParameter("Nombre_Sede", nombre_Sede) :
+                new ObjectParameter("Nombre_Sede", typeof(string));
+    
+            var codigo_SedeParameter = codigo_Sede != null ?
+                new ObjectParameter("Codigo_Sede", codigo_Sede) :
+                new ObjectParameter("Codigo_Sede", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Sedes_Universitarias_ValidarNombreCodigo_Select_Result>("pa_Sedes_Universitarias_ValidarNombreCodigo_Select", nombre_SedeParameter, codigo_SedeParameter);
+        }
+    
+        public virtual ObjectResult<pa_Cursos_ValidarNombreCodigo_Select_Result> pa_Cursos_ValidarNombreCodigo_Select(string nombre_Curso, string codigo_Curso)
+        {
+            var nombre_CursoParameter = nombre_Curso != null ?
+                new ObjectParameter("Nombre_Curso", nombre_Curso) :
+                new ObjectParameter("Nombre_Curso", typeof(string));
+    
+            var codigo_CursoParameter = codigo_Curso != null ?
+                new ObjectParameter("Codigo_Curso", codigo_Curso) :
+                new ObjectParameter("Codigo_Curso", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Cursos_ValidarNombreCodigo_Select_Result>("pa_Cursos_ValidarNombreCodigo_Select", nombre_CursoParameter, codigo_CursoParameter);
+        }
     }
 }

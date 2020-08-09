@@ -61,13 +61,29 @@ namespace ProyectoMatricula.Controllers
                 string mensaje = "";
                 try
                 {
-                    cantidadRegistrosAgectados = this.matriculaBD.pa_Sedes_Universitarias_Insert(modeloVista.Nombre_Sede,
-                                                                                                 modeloVista.Codigo_Sede,
-                                                                                                 modeloVista.Id_Director,
-                                                                                                 modeloVista.Id_Provincia,
-                                                                                                 modeloVista.Id_Canton,
-                                                                                                 modeloVista.Id_Distrito,
-                                                                                                 modeloVista.Direccion_Fisica);
+                    ///Se busca algun registro que tenga el nombre y el codigo que se ingresó
+                    pa_Sedes_Universitarias_ValidarNombreCodigo_Select_Result Nombre_Y_CodigoAVerificar =
+                        this.matriculaBD.pa_Sedes_Universitarias_ValidarNombreCodigo_Select(modeloVista.Nombre_Sede,modeloVista.Codigo_Sede).FirstOrDefault();
+
+                    /// Si a la hora de hacer la busqueda, da null,significa que no existe la cédula
+                    /// por lo tanto, se puede hacer el insert,
+                    /// de lo contario mostrará un mensaje de que la cédula existe
+
+                    if (Nombre_Y_CodigoAVerificar == null)
+                    {
+                        cantidadRegistrosAgectados = this.matriculaBD.pa_Sedes_Universitarias_Insert(modeloVista.Nombre_Sede,
+                                                                                                     modeloVista.Codigo_Sede,
+                                                                                                     modeloVista.Id_Director,
+                                                                                                     modeloVista.Id_Provincia,
+                                                                                                     modeloVista.Id_Canton,
+                                                                                                     modeloVista.Id_Distrito,
+                                                                                                     modeloVista.Direccion_Fisica);
+                    }
+                    else
+                    {
+                        mensaje = "El nombre de la sede o el código ya existe";
+                    }
+
                 }
                 catch (Exception error)
                 {

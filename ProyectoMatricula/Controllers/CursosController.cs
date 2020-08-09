@@ -66,9 +66,19 @@ namespace ProyectoMatricula.Controllers
                     string mensaje = "";
                 try
                 {
-                    cantidadRegistrosAgectados = this.matriculaBD.pa_Cursos_Insert(modeloVista.Nombre_Curso,
-                                                                                   modeloVista.Codigo_Curso,
-                                                                                   modeloVista.Codigo_Requisito);
+                    pa_Cursos_ValidarNombreCodigo_Select_Result Nombre_Y_CodigoAVerificar =
+                        this.matriculaBD.pa_Cursos_ValidarNombreCodigo_Select(modeloVista.Nombre_Curso, modeloVista.Codigo_Curso).FirstOrDefault();
+
+                    if (Nombre_Y_CodigoAVerificar == null)
+                    {
+                        cantidadRegistrosAgectados = this.matriculaBD.pa_Cursos_Insert(modeloVista.Nombre_Curso,
+                                                                  modeloVista.Codigo_Curso,
+                                                                  modeloVista.Codigo_Requisito);
+                    }
+                    else
+                    {
+                        mensaje = "El nombre del curso o el código ya existe";
+                    }
                 }
                 catch (Exception error)
                 {
