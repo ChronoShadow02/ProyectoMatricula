@@ -151,6 +151,7 @@ namespace ProyectoMatricula.Controllers
             return View(modeloVista);
         }
         #endregion
+
         #region CursoCarreraElimina
         /// <summary>
         /// Metodo que muestra la vista con los datos seleccionados dependiendo del Id_Cursos_Por_Carrera

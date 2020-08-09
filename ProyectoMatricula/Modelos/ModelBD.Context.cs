@@ -981,5 +981,14 @@ namespace ProyectoMatricula.Modelos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_CursoCarrera_Delete", id_Cursos_Por_CarreraParameter);
         }
+    
+        public virtual ObjectResult<pa_Funcionarios_VerificarCedula_Select_Result> pa_Funcionarios_VerificarCedula_Select(string cedula)
+        {
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("Cedula", cedula) :
+                new ObjectParameter("Cedula", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Funcionarios_VerificarCedula_Select_Result>("pa_Funcionarios_VerificarCedula_Select", cedulaParameter);
+        }
     }
 }

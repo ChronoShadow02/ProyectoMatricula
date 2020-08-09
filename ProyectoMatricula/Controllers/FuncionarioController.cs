@@ -74,17 +74,31 @@ namespace ProyectoMatricula.Controllers
             ///si un insert, update o delete no afecta registros,hay error
             int cantidadRegistrosAgectados = 0;
             string mensaje = "";
+
             try
             {
-               cantidadRegistrosAgectados = matriculaBD.pa_Funcionarios_Insert(modeloVista.Nombre_Funcionario,
-                                                                                modeloVista.Cedula_Funcionario,
-                                                                                modeloVista.Id_Provincia,
-                                                                                modeloVista.Id_Canton,
-                                                                                modeloVista.Id_Distrito,
-                                                                                modeloVista.Fecha_Contratacion
-                                                                                );
+                ///Se busca algun registro que tenga la cédula que se ingresó
+                pa_Funcionarios_VerificarCedula_Select_Result CedulaAVerificar =
+                        this.matriculaBD.pa_Funcionarios_VerificarCedula_Select(modeloVista.Cedula_Funcionario).FirstOrDefault();
 
+                /// Si a la hora de hacer la busqueda, da null,significa que no existe la cédula
+                /// por lo tanto, se puede hacer el insert,
+                /// de lo contario mostrará un mensaje de que la cédula existe
 
+                if (CedulaAVerificar == null)
+                {
+                    cantidadRegistrosAgectados = matriculaBD.pa_Funcionarios_Insert(modeloVista.Nombre_Funcionario,
+                                                                modeloVista.Cedula_Funcionario,
+                                                                modeloVista.Id_Provincia,
+                                                                modeloVista.Id_Canton,
+                                                                modeloVista.Id_Distrito,
+                                                                modeloVista.Fecha_Contratacion
+                                                                );
+                }
+                else
+                {
+                    mensaje = "La cédula ya existe.";
+                }
             }
             catch (Exception error)
             {
@@ -145,13 +159,29 @@ namespace ProyectoMatricula.Controllers
             string resultado = "";
             try
             {
-                cantidadRegistrosAgectados = this.matriculaBD.pa_Funcionarios_Update(modeloVista.Id_Funcionario,
+                ///Se busca algun registro que tenga la cédula que se ingresó
+                pa_Funcionarios_VerificarCedula_Select_Result CedulaAVerificar =
+                        this.matriculaBD.pa_Funcionarios_VerificarCedula_Select(modeloVista.Cedula_Funcionario).FirstOrDefault();
+
+                /// Si a la hora de hacer la busqueda, da null,significa que no existe la cédula
+                /// por lo tanto, se puede hacer el insert,
+                /// de lo contario mostrará un mensaje de que la cédula existe
+
+                if (CedulaAVerificar == null)
+                {
+
+                    cantidadRegistrosAgectados = this.matriculaBD.pa_Funcionarios_Update(modeloVista.Id_Funcionario,
                                                                                      modeloVista.Nombre_Funcionario,
                                                                                      modeloVista.Cedula_Funcionario,
                                                                                      modeloVista.Id_Provincia,
                                                                                      modeloVista.Id_Canton,
                                                                                      modeloVista.Id_Distrito,
                                                                                      modeloVista.Fecha_Contratacion);
+                }
+                else
+                {
+                    resultado = "La cédula ya existe.";
+                }
             }
             catch (Exception error)
             {
@@ -313,6 +343,29 @@ namespace ProyectoMatricula.Controllers
             }
 
         #endregion
+
+        #region VerificaFuncionario
+        /// <summary>
+        /// Metodo que verifica los funcionarios,
+        /// validando que sean únicos
+        /// </summary>
+        /// <param name="modeloAVerificar"></param>
+            void VerificaFuncionario(pa_FuncionariosRetornaSelectID_Select_Result modeloAVerificar,bool VerificacionFuncionarioExiste)
+            {
+                string mensaje = "";
+
+
+                try
+                {
+                    
+                }
+                catch (Exception error)
+                {
+                    mensaje = "Hubo un error. " + error.Message;
+                    Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+                }
+            }
+        #endregion
     }
-    
+
 }

@@ -738,6 +738,9 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Parameter Name="Id_Distrito" Type="int" Mode="In" />
           <Parameter Name="Fecha_Contratacion" Type="date" Mode="In" />
         </Function>
+        <Function Name="pa_Funcionarios_VerificarCedula_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Cedula" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="pa_FuncionariosID_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Funcionario" Type="int" Mode="In" />
         </Function>
@@ -2025,7 +2028,10 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="Id_Carrera_Universitaria" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_CursoCarrera_Delete">
-            <Parameter Name="Id_Cursos_Por_Carrera" Mode="In" Type="Int32" />
+          <Parameter Name="Id_Cursos_Por_Carrera" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_Funcionarios_VerificarCedula_Select" ReturnType="Collection(matriculaBDModel.pa_Funcionarios_VerificarCedula_Select_Result)">
+            <Parameter Name="Cedula" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -2350,6 +2356,15 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Type="String" Name="Nombre_Carrera" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="Id_Curso" Nullable="false" />
           <Property Type="Int32" Name="Id_Carrera_Universitaria" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="pa_Funcionarios_VerificarCedula_Select_Result">
+          <Property Type="Int32" Name="Id_Funcionario" Nullable="false" />
+          <Property Type="String" Name="Nombre_Funcionario" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Cedula_Funcionario" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Provincia" Nullable="false" />
+          <Property Type="Int32" Name="Id_Canton" Nullable="false" />
+          <Property Type="Int32" Name="Id_Distrito" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha_Contratacion" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3071,6 +3086,19 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_CursoCarrera_Update" FunctionName="matriculaBDModel.Store.pa_CursoCarrera_Update" />
           <FunctionImportMapping FunctionImportName="pa_CursoCarrera_Delete" FunctionName="matriculaBDModel.Store.pa_CursoCarrera_Delete" />
+          <FunctionImportMapping FunctionImportName="pa_Funcionarios_VerificarCedula_Select" FunctionName="matriculaBDModel.Store.pa_Funcionarios_VerificarCedula_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_Funcionarios_VerificarCedula_Select_Result">
+                <ScalarProperty Name="Id_Funcionario" ColumnName="Id_Funcionario" />
+                <ScalarProperty Name="Nombre_Funcionario" ColumnName="Nombre_Funcionario" />
+                <ScalarProperty Name="Cedula_Funcionario" ColumnName="Cedula_Funcionario" />
+                <ScalarProperty Name="Id_Provincia" ColumnName="Id_Provincia" />
+                <ScalarProperty Name="Id_Canton" ColumnName="Id_Canton" />
+                <ScalarProperty Name="Id_Distrito" ColumnName="Id_Distrito" />
+                <ScalarProperty Name="Fecha_Contratacion" ColumnName="Fecha_Contratacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

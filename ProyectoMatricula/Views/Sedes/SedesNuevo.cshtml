@@ -20,7 +20,7 @@
                 <label>Director</label>
                 <select class="form-control" name="Id_Director">
                     <option value="">Seleccione un director</option>
-                    @{ 
+                    @{
                         foreach (ProyectoMatricula.Modelos.pa_Sedes_Universitarias_DirectorViewBag_Select_Result posicionDirector in this.ViewBag.ListaDirectores)
                         {
                             <option value="@posicionDirector.Id_Funcionario">@posicionDirector.Nombre_Funcionario</option>
@@ -53,6 +53,11 @@
         </form>
     </div>
 </div>
+<div class="d-flex align-content-center justify-content-center">
+    <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary">Menú principal</a> &nbsp;
+    <a href="~/Sedes/SedesLista" class="btn btn-outline-primary">Ver todas las sedes</a>
+</div>
+<br />
 @section scripts{
     <script src="~/Scripts/validacionesGenericas/validacionesGenericas.js"></script>
     <script src="~/Scripts/Sedes/validarSedes.js"></script>

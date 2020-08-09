@@ -5,19 +5,19 @@
 }
 
 <h1 class="text-center">Lista de cursos por carrera</h1>
-    <form class="d-flex align-content-center justify-content-center" method="post">
-            <label for="Nombre_Curso">Curso:</label>&nbsp;
-            <input type="text" value="" id="Nombre_Curso" class="form-control" name="Nombre_Curso" /> &nbsp;&nbsp;
-            <label>Carrera:</label>
-            <input type="text" value="" id="Nombre_Carrera" class="form-control" name="Nombre_Carrera" />&nbsp;
-            <button type="submit" class="btn btn-primary">Buscar</button>
-    </form>
+<form class="d-flex align-content-center justify-content-center" method="post">
+    <label>Carrera:</label>
+    <input type="text" value="" id="Nombre_Carrera" class="form-control" name="Nombre_Carrera" />&nbsp;&nbsp;
+    <label for="Nombre_Curso">Curso:</label>&nbsp;
+    <input type="text" value="" id="Nombre_Curso" class="form-control" name="Nombre_Curso" /> &nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
     <br />
 <table class="table text-center table-hover table-bordered table-striped">
     <tr>
         <th>Identificador</th>
-        <th>Curso</th>
         <th>Carrera</th>
+        <th>Curso</th>
         <th colspan="2">Acciones</th>
     </tr>
     @{

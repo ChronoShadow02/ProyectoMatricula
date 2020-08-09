@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CarrerasController.cs" />
+    <Compile Include="Controllers\CuatrimestreController.cs" />
     <Compile Include="Controllers\CursosCarreraController.cs" />
     <Compile Include="Controllers\CursosController.cs" />
     <Compile Include="Controllers\DireccionesCarreraController.cs" />
@@ -280,6 +281,9 @@
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Funcionarios_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_Funcionarios_VerificarCedula_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_RetornaEstudianteID_Select_Result.cs">
@@ -560,6 +564,7 @@
     <Content Include="Views\CursosCarrera\CursoCarreraNuevo.cshtml" />
     <Content Include="Views\CursosCarrera\CursoCarreraModifica.cshtml" />
     <Content Include="Views\CursosCarrera\CursoCarreraElimina.cshtml" />
+    <Content Include="Views\Cuatrimestre\CuatrimestreNuevo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5,16 +5,16 @@
 }
 
 <h2 class="text-center">Eliminación de estudiante</h2>
-<div class="row justify-content-center align-items-center h-100 border-left border-right">
+<div class="row justify-content-center align-items-center h-100">
     <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
         <form method="post" id="frmEstudiante">
             <div class="form-group">
                 <label for="txtNombre">Nombre Completo</label>
-                <input type="text" id="txtNombre" name="Nombre_Estudiante" class="form-control" value="@Model.Nombre_Estudiante" disabled/>
+                <input type="text" id="txtNombre" name="Nombre_Estudiante" class="form-control" value="@Model.Nombre_Estudiante" disabled />
             </div>
             <div class="form-group">
                 <label for="txtCedula">Cédula</label>
-                <input type="text" id="txtCedula" name="Cedula_Estudiante" class="form-control" value="@Model.Cedula_Estudiante" disabled/>
+                <input type="text" id="txtCedula" name="Cedula_Estudiante" class="form-control" value="@Model.Cedula_Estudiante" disabled />
             </div>
             <div class="form-group">
                 <label for="">Provincia</label>
@@ -89,7 +89,7 @@
             </div>
             <div class="form-group">
                 <label for="txtFechaInicioU">Fecha de Inicio</label>
-                <input type="text" id="txtFechaInicioU" name="Fecha_Inicio_U" class="form-control" value="@Model.Fecha_Inicio_U.ToString("yyyy-MM-dd")" disabled/>
+                <input type="text" id="txtFechaInicioU" name="Fecha_Inicio_U" class="form-control" value="@Model.Fecha_Inicio_U.ToString("yyyy-MM-dd")" disabled />
             </div>
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary">Eliminar</button>
@@ -97,6 +97,12 @@
         </form>
     </div>
 </div>
+<br />
+<div class="d-flex align-content-center justify-content-center">
+    <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary">Menú principal</a> &nbsp;
+    <a href="~/Estudiante/EstudianteLista" class="btn btn-outline-primary">Ver todos los estudiantes</a>
+</div>
+<br />
 @section scripts{
     <script src="~/Scripts/Estudiante/cargarGeografiaModificada.js"></script>
     <script src="~/Scripts/Estudiante/JqueryUIEstudiante.js"></script>

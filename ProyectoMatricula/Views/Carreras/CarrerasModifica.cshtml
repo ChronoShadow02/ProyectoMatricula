@@ -10,11 +10,11 @@
         <form method="post" id="frmCarrera">
             <div class="form-group">
                 <label>Nombre de carrera:</label>
-                <input type="text" class="form-control" name="Nombre_Carrera" id="Nombre_Carrera" value="@Model.Nombre_Carrera"/>
+                <input type="text" class="form-control" name="Nombre_Carrera" id="Nombre_Carrera" value="@Model.Nombre_Carrera" />
             </div>
             <div class="form-group">
                 <label>Código de carrera:</label>
-                <input type="text" class="form-control" name="Codigo_Carrera" id="Codigo_Carrera" value="@Model.Codigo_Carrera"/>
+                <input type="text" class="form-control" name="Codigo_Carrera" id="Codigo_Carrera" value="@Model.Codigo_Carrera" />
             </div>
             <div class="form-group">
                 <label>Dirección de carrera:</label>
@@ -45,6 +45,11 @@
         </form>
     </div>
 </div>
+<div class="d-flex align-content-center justify-content-center">
+    <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary">Ir al menú principal</a> &nbsp;
+    <a href="~/Carreras/CarrerasLista" class="btn btn-outline-primary">Lista de carreras</a>
+</div>
+<br />
 @section scripts{
     <script src="~/Scripts/validacionesGenericas/validacionesGenericas.js"></script>
 
