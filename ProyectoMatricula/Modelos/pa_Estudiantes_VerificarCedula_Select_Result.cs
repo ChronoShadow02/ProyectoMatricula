@@ -11,12 +11,15 @@ namespace ProyectoMatricula.Modelos
 {
     using System;
     
-    public partial class pa_CursoCarreraNombreDirecciones_Select_Result
+    public partial class pa_Estudiantes_VerificarCedula_Select_Result
     {
-        public int Id_Carrera_Universitaria { get; set; }
-        public string Nombre_Carrera { get; set; }
-        public string Codigo_Carrera { get; set; }
-        public string Nombre_Direccion_Carrera { get; set; }
-        public int Id_Direccion_Carrera { get; set; }
+        public int Id_Estudiante { get; set; }
+        public string Nombre_Estudiante { get; set; }
+        public string Cedula_Estudiante { get; set; }
+        public int Id_Provincia { get; set; }
+        public int Id_Canton { get; set; }
+        public int Id_Distrito { get; set; }
+        public System.DateTime Fecha_Inicio_U { get; set; }
+        public string Carne { get; set; }
     }
 }

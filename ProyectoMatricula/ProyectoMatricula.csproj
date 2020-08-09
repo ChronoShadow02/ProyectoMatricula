@@ -217,10 +217,10 @@
     <Compile Include="Modelos\pa_Carreras_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelos\pa_CursoCarreraIDS_Select_Result.cs">
+    <Compile Include="Modelos\pa_Carreras_VerificarNombreCodigo_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelos\pa_CursoCarreraNombreDirecciones_Select_Result.cs">
+    <Compile Include="Modelos\pa_CursoCarreraIDS_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_CursoCarreraNombreDireccionViewBag_Select_Result.cs">
@@ -259,6 +259,9 @@
     <Compile Include="Modelos\pa_Direcciones_de_Carrera_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_Direcciones_de_Carrera_ValidarNombreCodigo_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\pa_EstudiantesRetornaSelectID_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -269,6 +272,9 @@
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Estudiantes_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_Estudiantes_VerificarCedula_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_FuncionariosID_Select_Result.cs">

@@ -68,9 +68,24 @@ namespace ProyectoMatricula.Controllers
 
             try
             {
-                cantidadRegistrosAgectados = this.matriculaBD.pa_Carreras_Insert(modeloVista.Nombre_Carrera,
+                ///Se busca algun registro que tenga la cédula que se ingresó
+                pa_Carreras_VerificarNombreCodigo_Select_Result Nombre_Y_CodigoAVerificar =
+                    this.matriculaBD.pa_Carreras_VerificarNombreCodigo_Select(modeloVista.Nombre_Carrera,modeloVista.Codigo_Carrera).FirstOrDefault();
+                /// Si a la hora de hacer la busqueda, da null,significa que no existe la cédula
+                /// por lo tanto, se puede hacer el insert,
+                /// de lo contario mostrará un mensaje de que la cédula existe
+
+                if (Nombre_Y_CodigoAVerificar == null)
+                {
+                    cantidadRegistrosAgectados = this.matriculaBD.pa_Carreras_Insert(modeloVista.Nombre_Carrera,
                                                                                  modeloVista.Codigo_Carrera,
                                                                                  modeloVista.Id_Direccion_Carrera);
+                }
+                else
+                {
+                    mensaje = "El nombre de la carrera o el código ya existe";
+                }
+                
             }
             catch (Exception error)
             {

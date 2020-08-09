@@ -72,19 +72,29 @@ namespace ProyectoMatricula.Controllers
 				string carneEstudiante = "";
 				try
 				{
-				///Se ejecuta el procedimiento almacennado
-					cantidadRegistrosAgectados = matriculaBD.pa_Estudiantes_Insert(modeloVista.Nombre_Estudiante,
-																				   modeloVista.Cedula_Estudiante,
-																				   modeloVista.Id_Provincia,
-																				   modeloVista.Id_Canton,
-																				   modeloVista.Id_Distrito,
-																				   modeloVista.Fecha_Inicio_U,
-																				   carneEstudiante);
-					///almacenamos en una variable la cedula del estudiante recien ingresado
-					///para ello se utiliza el procedimiento almacenado pa_RetornaEstudianteID_Select
-					pa_RetornaEstudianteID_Select_Result DatosEstudianteIngresado = new pa_RetornaEstudianteID_Select_Result();
-					DatosEstudianteIngresado = matriculaBD.pa_RetornaEstudianteID_Select(modeloVista.Cedula_Estudiante).FirstOrDefault();
+					///Se busca algun registro que tenga la cédula que se ingresó
+						pa_Estudiantes_VerificarCedula_Select_Result CedulaAVerificar =
+							this.matriculaBD.pa_Estudiantes_VerificarCedula_Select(modeloVista.Cedula_Estudiante).FirstOrDefault();
+					/// Si a la hora de hacer la busqueda, da null,significa que no existe la cédula
+					/// por lo tanto, se puede hacer el insert,
+					/// de lo contario mostrará un mensaje de que la cédula existe
 
+					if (CedulaAVerificar == null)
+					{
+
+						///Se ejecuta el procedimiento almacennado
+						cantidadRegistrosAgectados = matriculaBD.pa_Estudiantes_Insert(modeloVista.Nombre_Estudiante,
+																					   modeloVista.Cedula_Estudiante,
+																					   modeloVista.Id_Provincia,
+																					   modeloVista.Id_Canton,
+																					   modeloVista.Id_Distrito,
+																					   modeloVista.Fecha_Inicio_U,
+																					   carneEstudiante);
+
+						///almacenamos en una variable la cedula del estudiante recien ingresado
+						///para ello se utiliza el procedimiento almacenado pa_RetornaEstudianteID_Select
+						pa_RetornaEstudianteID_Select_Result DatosEstudianteIngresado = new pa_RetornaEstudianteID_Select_Result();
+						DatosEstudianteIngresado = matriculaBD.pa_RetornaEstudianteID_Select(modeloVista.Cedula_Estudiante).FirstOrDefault();
 						///Variable que contiene la cédula ingresada
 						string CedulaIngresada = modeloVista.Cedula_Estudiante;
 
@@ -94,23 +104,19 @@ namespace ProyectoMatricula.Controllers
 						{
 
 							///Se concatena el año y la el identificador del estudiante
-							carneEstudiante = modeloVista.Fecha_Inicio_U.ToString("yyyy") +"-"+ DatosEstudianteIngresado.Id_Estudiante;
+							carneEstudiante = modeloVista.Fecha_Inicio_U.ToString("yyyy") + "-" + DatosEstudianteIngresado.Id_Estudiante;
 
 							///Se actualiza el registro nuevo para actualizar el carnet
 							registrosAfectados =
 									   this.matriculaBD.pa_Estudiante_IngresarCarne_Update(CedulaIngresada, carneEstudiante);
 						}
-						else
-						{
-							///Se consulta si la cédula está repetida, si es asi, entonces aparecerá un mensaje 
-							///informando que ya cédula está ingresada
-							string datoCedula = DatosEstudianteIngresado.Cedula_Estudiante;
-							if (datoCedula == CedulaIngresada)
-							{
-								mensaje = "Esta cédula ya está ingresada.";
-							}
-						}
-				}
+					}
+					else
+					{	
+						mensaje = "La cédula ya existe.";
+					}
+
+					}
 				catch (Exception error)
 				{
 					mensaje = "Hubo un error. " +error.Message + " " + error.Source+" " + error.TargetSite;

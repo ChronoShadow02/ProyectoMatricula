@@ -60,11 +60,27 @@ namespace ProyectoMatricula.Controllers
                 string mensaje = "";
                 try
                 {
-                    cantidadRegistrosAgectados = this.matriculaBD.pa_Direcciones_de_Carrera_Insert(modeloVista.Nombre_Direccion_Carrera,
-                                                                                               modeloVista.Codigo_Direccion_Carrera,
-                                                                                               modeloVista.Id_Director,
-                                                                                               modeloVista.Id_Subdirector
-                                                                                               );
+                    ///Se busca algun registro que tenga la cédula que se ingresó
+                    pa_Direcciones_de_Carrera_ValidarNombreCodigo_Select_Result Nombre_Y_CodigoAVerificar =
+                        this.matriculaBD.pa_Direcciones_de_Carrera_ValidarNombreCodigo_Select(modeloVista.Nombre_Direccion_Carrera,
+                                                                                              modeloVista.Codigo_Direccion_Carrera).FirstOrDefault();
+                    /// Si a la hora de hacer la busqueda, da null,significa que no existe la cédula
+                    /// por lo tanto, se puede hacer el insert,
+                    /// de lo contario mostrará un mensaje de que la cédula existe
+
+                    if (Nombre_Y_CodigoAVerificar == null)
+                    {
+                        cantidadRegistrosAgectados = this.matriculaBD.pa_Direcciones_de_Carrera_Insert(modeloVista.Nombre_Direccion_Carrera,
+                                                                                                       modeloVista.Codigo_Direccion_Carrera,
+                                                                                                       modeloVista.Id_Director,
+                                                                                                       modeloVista.Id_Subdirector
+                                                                                                       );
+                    }
+                    else
+                    {
+                        mensaje = "El nombre de la dirección o el código ya existe";
+                    }
+                
                 }
                 catch (Exception error)
                 {
