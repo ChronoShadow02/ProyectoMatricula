@@ -10,15 +10,15 @@
 namespace ProyectoMatricula.Modelos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Cuatrimestre_x_Sede
+    public partial class Reporte_Notas_Por_Curso_Result
     {
-        public int Id_Cuatrimeste_x_Sede { get; set; }
-        public int Id_Cuatrimestre { get; set; }
-        public int Id_Sedes_universitarias { get; set; }
-    
-        public virtual Cuatrimestre Cuatrimestre { get; set; }
-        public virtual Sedes_Universitarias Sedes_Universitarias { get; set; }
+        public int Id_Estudiante { get; set; }
+        public string Nombre_Estudiante { get; set; }
+        public double Nota { get; set; }
+        public string Nombre_Curso { get; set; }
+        public string Nombre_Sede { get; set; }
+        public int Num_Cuatrimestre { get; set; }
+        public int Anio_Cuatrimestre { get; set; }
     }
 }

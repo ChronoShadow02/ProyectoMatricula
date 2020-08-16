@@ -11,12 +11,13 @@ namespace ProyectoMatricula.Modelos
 {
     using System;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class Reporte_Notas_Por_Estudiante_Result
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public int Id_Estudiante { get; set; }
+        public string Nombre_Estudiante { get; set; }
+        public string Nombre_Curso { get; set; }
+        public double Nota { get; set; }
+        public int Num_Cuatrimestre { get; set; }
+        public int Anio_Cuatrimestre { get; set; }
     }
 }

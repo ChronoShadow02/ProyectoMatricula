@@ -1,8 +1,48 @@
 ﻿
 @{
-    ViewBag.Title = "Matrícula UMCA | Registro de cuatrimestre";
+    ViewBag.Title = "Matrícula UMCA | Creación  de cuatrimestre";
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
 }
 
-<h2>CuatrimestreNuevo</h2>
+    <h1 class="text-center">Creación  de cuatrimestre</h1>
+<div class="row justify-content-center align-items-center">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <form method="post" id="frmCuatrimestreNuevo">
+            <div class="form-group">
+                <label class="form-check-label" id="Id_Cuatrimestre">Cuatrimestre</label>
+                <select name="Id_Cuatrimestre" id="" class="form-control">
+                    <option value="">Seleccione una opción</option>
+                    <option value="1">I</option>
+                    <option value="2">II</option>
+                    <option value="3">III</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-check-label" id="Id_Sede_Universitaria">Sede universitaria</label>
+                <select class="form-control" name="Id_Sede_Universitaria">
 
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-check-label" id="anio">Año de cuatrimestre</label>
+                <input type="text" value="" id="datepickerAnio" class="form-control"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        $(function () {
+            datepickerAnio();
+        });
+
+        function datepickerAnio() {
+            $("#datepickerAnio").datepicker({
+                dateFormat: 'yy'
+            });
+        }
+
+    </script>
+}

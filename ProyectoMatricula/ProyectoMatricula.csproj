@@ -138,6 +138,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MatriculaController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\SedesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -167,6 +168,9 @@
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\CursosXEstudiante.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\Cursos_ValidarNombreCodigo_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Curso_x_Cuatrimestre.cs">
@@ -319,6 +323,12 @@
     <Compile Include="Modelos\Provincia.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\Reporte_Notas_Por_Curso_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\Reporte_Notas_Por_Estudiante_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\RetornaCantonesID_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -329,12 +339,6 @@
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Sedes_Universitarias.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelos\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelos\sp_helpdiagrams_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\sp_RetornaDistritos_ID_Result.cs">
@@ -577,6 +581,8 @@
     <Content Include="Views\CursosCarrera\CursoCarreraModifica.cshtml" />
     <Content Include="Views\CursosCarrera\CursoCarreraElimina.cshtml" />
     <Content Include="Views\Cuatrimestre\CuatrimestreNuevo.cshtml" />
+    <Content Include="Views\Reportes\ReporteNotasEstudiante.cshtml" />
+    <Content Include="Views\Reportes\ReporteNotasCurso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

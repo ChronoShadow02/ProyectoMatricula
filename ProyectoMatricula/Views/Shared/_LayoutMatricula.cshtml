@@ -59,8 +59,27 @@
                                 <a href="~/Cursos/CursosLista" class="nav-item nav-link">Cursos</a>
                                 <a href="~/Carreras/CarrerasLista" class="nav-item nav-link">Carreras</a>
                                 <a href="~/CursosCarrera/CursoCarreraLista" class="nav-item nav-link">Cursos por carrera</a>
-                                <a href="~/Cuatrimestre/Cuatrimestre" class="nav-item nav-link">Cuatrimestre</a>
+
+                                <div class="dropdown">
+                                    <a class="nav-item nav-link dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Cuatrimestre
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a href="~/Cuatrimestre/CuatrimestreNuevo" class="dropdown-item">Creación de cuatrimestre</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
                             }
+                            <div class="dropdown">
+                                <a class="nav-item nav-link dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Reporte
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="~/Reportes/ReporteNotasEstudiante">Reporte de notas por estudiante</a>
+                                    <a class="dropdown-item" href="~/Reportes/ReporteNotasCurso">Reporte de notas por curso</a>
+                                </div>
+                            </div>
                             <a href="#" class="nav-item nav-link" id="linkCierreSesion">Salir</a>
                         }
                     }

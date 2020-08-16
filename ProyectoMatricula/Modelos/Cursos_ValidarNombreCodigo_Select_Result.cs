@@ -11,9 +11,11 @@ namespace ProyectoMatricula.Modelos
 {
     using System;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class Cursos_ValidarNombreCodigo_Select_Result
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int Id_Curso { get; set; }
+        public string Nombre_Curso { get; set; }
+        public string Codigo_Curso { get; set; }
+        public Nullable<int> Codigo_Requisito { get; set; }
     }
 }

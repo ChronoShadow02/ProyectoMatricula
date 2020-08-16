@@ -47,6 +47,19 @@ namespace ProyectoMatricula.Modelos
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Administadores> Administadores { get; set; }
     
+        public virtual ObjectResult<Cursos_ValidarNombreCodigo_Select_Result> Cursos_ValidarNombreCodigo_Select(string nombre_Curso, string codigo_Curso)
+        {
+            var nombre_CursoParameter = nombre_Curso != null ?
+                new ObjectParameter("Nombre_Curso", nombre_Curso) :
+                new ObjectParameter("Nombre_Curso", typeof(string));
+    
+            var codigo_CursoParameter = codigo_Curso != null ?
+                new ObjectParameter("Codigo_Curso", codigo_Curso) :
+                new ObjectParameter("Codigo_Curso", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Cursos_ValidarNombreCodigo_Select_Result>("Cursos_ValidarNombreCodigo_Select", nombre_CursoParameter, codigo_CursoParameter);
+        }
+    
         public virtual ObjectResult<pa_Administrador_Select_Result> pa_Administrador_Select(string nombre_Usuario, string contrasena)
         {
             var nombre_UsuarioParameter = nombre_Usuario != null ?
@@ -127,6 +140,19 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Id_Direccion_Carrera", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Carreras_Update", id_Carrera_UniParameter, nombre_CarreraParameter, codigo_CarreraParameter, id_Direccion_CarreraParameter);
+        }
+    
+        public virtual ObjectResult<pa_Carreras_VerificarNombreCodigo_Select_Result> pa_Carreras_VerificarNombreCodigo_Select(string nombre_Carrera, string codigo_Carrera)
+        {
+            var nombre_CarreraParameter = nombre_Carrera != null ?
+                new ObjectParameter("Nombre_Carrera", nombre_Carrera) :
+                new ObjectParameter("Nombre_Carrera", typeof(string));
+    
+            var codigo_CarreraParameter = codigo_Carrera != null ?
+                new ObjectParameter("Codigo_Carrera", codigo_Carrera) :
+                new ObjectParameter("Codigo_Carrera", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Carreras_VerificarNombreCodigo_Select_Result>("pa_Carreras_VerificarNombreCodigo_Select", nombre_CarreraParameter, codigo_CarreraParameter);
         }
     
         public virtual ObjectResult<pa_CarrerasNombreDireccionViewBag_Select_Result> pa_CarrerasNombreDireccionViewBag_Select()
@@ -292,6 +318,19 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Cursos_Update", id_CursoParameter, nombre_CursoParameter, codigo_CursoParameter, codigo_RequisitoParameter);
         }
     
+        public virtual ObjectResult<pa_Cursos_ValidarNombreCodigo_Select_Result> pa_Cursos_ValidarNombreCodigo_Select(string nombre_Curso, string codigo_Curso)
+        {
+            var nombre_CursoParameter = nombre_Curso != null ?
+                new ObjectParameter("Nombre_Curso", nombre_Curso) :
+                new ObjectParameter("Nombre_Curso", typeof(string));
+    
+            var codigo_CursoParameter = codigo_Curso != null ?
+                new ObjectParameter("Codigo_Curso", codigo_Curso) :
+                new ObjectParameter("Codigo_Curso", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Cursos_ValidarNombreCodigo_Select_Result>("pa_Cursos_ValidarNombreCodigo_Select", nombre_CursoParameter, codigo_CursoParameter);
+        }
+    
         public virtual ObjectResult<pa_Cursos_x_Carrera_Select_Result> pa_Cursos_x_Carrera_Select(Nullable<int> id_Curso, string nombre_Curso, string codigo_Curso)
         {
             var id_CursoParameter = id_Curso.HasValue ?
@@ -403,6 +442,19 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Id_Subdirector", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Direcciones_de_Carrera_Update", id_Direccion_CarreraParameter, nombre_Direccion_CarreraParameter, codigo_Direccion_CarreraParameter, id_DirectorParameter, id_SubdirectorParameter);
+        }
+    
+        public virtual ObjectResult<pa_Direcciones_de_Carrera_ValidarNombreCodigo_Select_Result> pa_Direcciones_de_Carrera_ValidarNombreCodigo_Select(string nombre_Direccion, string codigo_Direccion)
+        {
+            var nombre_DireccionParameter = nombre_Direccion != null ?
+                new ObjectParameter("Nombre_Direccion", nombre_Direccion) :
+                new ObjectParameter("Nombre_Direccion", typeof(string));
+    
+            var codigo_DireccionParameter = codigo_Direccion != null ?
+                new ObjectParameter("Codigo_Direccion", codigo_Direccion) :
+                new ObjectParameter("Codigo_Direccion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Direcciones_de_Carrera_ValidarNombreCodigo_Select_Result>("pa_Direcciones_de_Carrera_ValidarNombreCodigo_Select", nombre_DireccionParameter, codigo_DireccionParameter);
         }
     
         public virtual ObjectResult<pa_DireccionesCarrerasRetornaID_Select_Result> pa_DireccionesCarrerasRetornaID_Select()
@@ -541,6 +593,11 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Estudiantes_VerificarCedula_Select_Result>("pa_Estudiantes_VerificarCedula_Select", cedulaParameter);
         }
     
+        public virtual ObjectResult<pa_EstudiantesRetornaSelectID_Select_Result> pa_EstudiantesRetornaSelectID_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_EstudiantesRetornaSelectID_Select_Result>("pa_EstudiantesRetornaSelectID_Select");
+        }
+    
         public virtual ObjectResult<pa_EstudiantesViewBag_Select_Result> pa_EstudiantesViewBag_Select(Nullable<int> id_Estudiante)
         {
             var id_EstudianteParameter = id_Estudiante.HasValue ?
@@ -650,6 +707,11 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Id_Funcionario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FuncionariosID_Select_Result>("pa_FuncionariosID_Select", id_FuncionarioParameter);
+        }
+    
+        public virtual ObjectResult<pa_FuncionariosRetornaSelectID_Select_Result> pa_FuncionariosRetornaSelectID_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FuncionariosRetornaSelectID_Select_Result>("pa_FuncionariosRetornaSelectID_Select");
         }
     
         public virtual ObjectResult<pa_FuncionariosViewBag_Select_Result> pa_FuncionariosViewBag_Select(Nullable<int> id_Funcionario)
@@ -768,6 +830,19 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Sedes_Universitarias_Update", iD_Sede_UniversitariaParameter, nombre_SedeParameter, codigo_SedeParameter, id_DirectorParameter, id_ProvinciaParameter, id_CantonParameter, id_DistritoParameter, direccion_FisicaParameter);
         }
     
+        public virtual ObjectResult<pa_Sedes_Universitarias_ValidarNombreCodigo_Select_Result> pa_Sedes_Universitarias_ValidarNombreCodigo_Select(string nombre_Sede, string codigo_Sede)
+        {
+            var nombre_SedeParameter = nombre_Sede != null ?
+                new ObjectParameter("Nombre_Sede", nombre_Sede) :
+                new ObjectParameter("Nombre_Sede", typeof(string));
+    
+            var codigo_SedeParameter = codigo_Sede != null ?
+                new ObjectParameter("Codigo_Sede", codigo_Sede) :
+                new ObjectParameter("Codigo_Sede", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Sedes_Universitarias_ValidarNombreCodigo_Select_Result>("pa_Sedes_Universitarias_ValidarNombreCodigo_Select", nombre_SedeParameter, codigo_SedeParameter);
+        }
+    
         public virtual ObjectResult<pa_Sedes_UniversitariasID_Select_Result> pa_Sedes_UniversitariasID_Select()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Sedes_UniversitariasID_Select_Result>("pa_Sedes_UniversitariasID_Select");
@@ -780,6 +855,23 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Id_Sede", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Sedes_UniversitariasViewBag_Select_Result>("pa_Sedes_UniversitariasViewBag_Select", id_SedeParameter);
+        }
+    
+        public virtual ObjectResult<Reporte_Notas_Por_Estudiante_Result> Reporte_Notas_Por_Estudiante(string nombre_Estudiante, Nullable<int> anio_Cuatrimestre, string nombre_Curso)
+        {
+            var nombre_EstudianteParameter = nombre_Estudiante != null ?
+                new ObjectParameter("Nombre_Estudiante", nombre_Estudiante) :
+                new ObjectParameter("Nombre_Estudiante", typeof(string));
+    
+            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
+                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
+                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
+    
+            var nombre_CursoParameter = nombre_Curso != null ?
+                new ObjectParameter("Nombre_Curso", nombre_Curso) :
+                new ObjectParameter("Nombre_Curso", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Reporte_Notas_Por_Estudiante_Result>("Reporte_Notas_Por_Estudiante", nombre_EstudianteParameter, anio_CuatrimestreParameter, nombre_CursoParameter);
         }
     
         public virtual ObjectResult<RetornaCantones_Result> RetornaCantones(string nombre, Nullable<int> id_Provincia)
@@ -813,61 +905,6 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RetornaProvincias_Result>("RetornaProvincias", nombreParameter);
         }
     
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
         public virtual int sp_EliminaCanton(Nullable<int> id_Canton)
         {
             var id_CantonParameter = id_Canton.HasValue ?
@@ -875,32 +912,6 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("id_Canton", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminaCanton", id_CantonParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
         }
     
         public virtual int sp_InsertaCanton(Nullable<int> id_Provincia, string nombre, Nullable<int> id_CantonInec)
@@ -941,23 +952,6 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ModificaCanton", id_CantonParameter, id_ProvinciaParameter, nombreParameter, id_CantonInecParameter);
         }
     
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
         public virtual ObjectResult<sp_RetornaDistritos_Result> sp_RetornaDistritos(string nombre, Nullable<int> id_Canton)
         {
             var nombreParameter = nombre != null ?
@@ -980,71 +974,25 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaDistritos_ID_Result>("sp_RetornaDistritos_ID", id_DistritoParameter);
         }
     
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
-        public virtual ObjectResult<pa_EstudiantesRetornaSelectID_Select_Result> pa_EstudiantesRetornaSelectID_Select()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_EstudiantesRetornaSelectID_Select_Result>("pa_EstudiantesRetornaSelectID_Select");
-        }
-    
-        public virtual ObjectResult<pa_FuncionariosRetornaSelectID_Select_Result> pa_FuncionariosRetornaSelectID_Select()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_FuncionariosRetornaSelectID_Select_Result>("pa_FuncionariosRetornaSelectID_Select");
-        }
-    
-        public virtual ObjectResult<pa_Direcciones_de_Carrera_ValidarNombreCodigo_Select_Result> pa_Direcciones_de_Carrera_ValidarNombreCodigo_Select(string nombre_Direccion, string codigo_Direccion)
-        {
-            var nombre_DireccionParameter = nombre_Direccion != null ?
-                new ObjectParameter("Nombre_Direccion", nombre_Direccion) :
-                new ObjectParameter("Nombre_Direccion", typeof(string));
-    
-            var codigo_DireccionParameter = codigo_Direccion != null ?
-                new ObjectParameter("Codigo_Direccion", codigo_Direccion) :
-                new ObjectParameter("Codigo_Direccion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Direcciones_de_Carrera_ValidarNombreCodigo_Select_Result>("pa_Direcciones_de_Carrera_ValidarNombreCodigo_Select", nombre_DireccionParameter, codigo_DireccionParameter);
-        }
-    
-        public virtual ObjectResult<pa_Carreras_VerificarNombreCodigo_Select_Result> pa_Carreras_VerificarNombreCodigo_Select(string nombre_Carrera, string codigo_Carrera)
-        {
-            var nombre_CarreraParameter = nombre_Carrera != null ?
-                new ObjectParameter("Nombre_Carrera", nombre_Carrera) :
-                new ObjectParameter("Nombre_Carrera", typeof(string));
-    
-            var codigo_CarreraParameter = codigo_Carrera != null ?
-                new ObjectParameter("Codigo_Carrera", codigo_Carrera) :
-                new ObjectParameter("Codigo_Carrera", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Carreras_VerificarNombreCodigo_Select_Result>("pa_Carreras_VerificarNombreCodigo_Select", nombre_CarreraParameter, codigo_CarreraParameter);
-        }
-    
-        public virtual ObjectResult<pa_Sedes_Universitarias_ValidarNombreCodigo_Select_Result> pa_Sedes_Universitarias_ValidarNombreCodigo_Select(string nombre_Sede, string codigo_Sede)
-        {
-            var nombre_SedeParameter = nombre_Sede != null ?
-                new ObjectParameter("Nombre_Sede", nombre_Sede) :
-                new ObjectParameter("Nombre_Sede", typeof(string));
-    
-            var codigo_SedeParameter = codigo_Sede != null ?
-                new ObjectParameter("Codigo_Sede", codigo_Sede) :
-                new ObjectParameter("Codigo_Sede", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Sedes_Universitarias_ValidarNombreCodigo_Select_Result>("pa_Sedes_Universitarias_ValidarNombreCodigo_Select", nombre_SedeParameter, codigo_SedeParameter);
-        }
-    
-        public virtual ObjectResult<pa_Cursos_ValidarNombreCodigo_Select_Result> pa_Cursos_ValidarNombreCodigo_Select(string nombre_Curso, string codigo_Curso)
+        public virtual ObjectResult<Reporte_Notas_Por_Curso_Result> Reporte_Notas_Por_Curso(string nombre_Curso, Nullable<int> num_Cuatrimestre, Nullable<int> anio_Cuatrimestre, string nombre_Sede)
         {
             var nombre_CursoParameter = nombre_Curso != null ?
                 new ObjectParameter("Nombre_Curso", nombre_Curso) :
                 new ObjectParameter("Nombre_Curso", typeof(string));
     
-            var codigo_CursoParameter = codigo_Curso != null ?
-                new ObjectParameter("Codigo_Curso", codigo_Curso) :
-                new ObjectParameter("Codigo_Curso", typeof(string));
+            var num_CuatrimestreParameter = num_Cuatrimestre.HasValue ?
+                new ObjectParameter("Num_Cuatrimestre", num_Cuatrimestre) :
+                new ObjectParameter("Num_Cuatrimestre", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Cursos_ValidarNombreCodigo_Select_Result>("pa_Cursos_ValidarNombreCodigo_Select", nombre_CursoParameter, codigo_CursoParameter);
+            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
+                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
+                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
+    
+            var nombre_SedeParameter = nombre_Sede != null ?
+                new ObjectParameter("Nombre_Sede", nombre_Sede) :
+                new ObjectParameter("Nombre_Sede", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Reporte_Notas_Por_Curso_Result>("Reporte_Notas_Por_Curso", nombre_CursoParameter, num_CuatrimestreParameter, anio_CuatrimestreParameter, nombre_SedeParameter);
         }
     }
 }

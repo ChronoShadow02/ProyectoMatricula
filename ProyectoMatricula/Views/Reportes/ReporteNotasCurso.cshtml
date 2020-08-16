@@ -1,0 +1,38 @@
+﻿@model List<ProyectoMatricula.Modelos.Reporte_Notas_Por_Curso_Result>
+@{
+    ViewBag.Title = "Matratrícula UMCA | Reporte de notas por curso";
+    Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
+}
+
+<h1 class="text-center">Reporte de notas por curso</h1>
+
+<table class ="table text-center table-hover table-bordered table-striped">
+    <tr>
+        <th>Identificador</th>
+        <th>Estudiante</th>
+        <th>Curso</th>
+        <th>Nota</th>
+        <th>Sede</th>
+        <th>Cuatrimestre</th>
+        <th>Año</th>
+    </tr>
+    @{
+        foreach (ProyectoMatricula.Modelos.Reporte_Notas_Por_Curso_Result posicionModelo in this.Model)
+        {
+            <tr>
+                <td>@posicionModelo.Id_Estudiante</td>
+                <td>@posicionModelo.Nombre_Estudiante</td>
+                <td>@posicionModelo.Nombre_Curso</td>
+                <td>@posicionModelo.Nota</td>
+                <td>@posicionModelo.Nombre_Sede</td>
+                <td>@posicionModelo.Num_Cuatrimestre</td>
+                <td>@posicionModelo.Anio_Cuatrimestre</td>
+            </tr>
+        }
+    }
+    </table>
+    <br />
+    <div class="d-flex align-content-center justify-content-center">
+        <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary">Ir al menú principal</a> &nbsp;
+    </div>
+    <br />

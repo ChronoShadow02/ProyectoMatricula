@@ -1,0 +1,46 @@
+﻿@model List<ProyectoMatricula.Modelos.Reporte_Notas_Por_Estudiante_Result>
+@{
+    ViewBag.Title = "Matricula UMCA | Reporte notas por estudiante";
+    Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
+}
+
+<h1 class="text-center">Reporte notas por estudiante</h1>
+<form class="d-flex align-content-center justify-content-center" method="post">
+    <label for="Estudiante">Estudiante:</label>&nbsp;
+    <input type="text" value="" id="Estudiante" class="form-control" name="Nombre_Estudiante" /> &nbsp;
+    <label>Año del cuatrimestre:</label>&nbsp;
+    <input type="text" value="" class="form-control" name="Anio_Cuatrimestre" id="Anio_Cuatrimestre"/>&nbsp;
+    <label>Nombre del curso:</label>&nbsp;
+    <input type="text" value="" class="form-control" name="Nombre_Curso" id="Nombre_Curso"/>&nbsp;
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+<br />
+<table class="table text-center table-hover table-bordered table-striped">
+    <tr>
+        <th>Identificador </th>
+        <th>Estudiante</th>
+        <th>Curso</th>
+        <th>Nota</th>
+        <th>Cuatrimestre</th>
+        <th>Año</th>
+    </tr>
+    @{
+        foreach (ProyectoMatricula.Modelos.Reporte_Notas_Por_Estudiante_Result posicionModelo in this.Model)
+        {
+            <tr>
+                <td>@posicionModelo.Id_Estudiante</td>
+                <td>@posicionModelo.Nombre_Estudiante</td>
+                <td>@posicionModelo.Nombre_Curso</td>
+                <td>@posicionModelo.Nota</td>
+                <td>@posicionModelo.Num_Cuatrimestre</td>
+                <td>@posicionModelo.Anio_Cuatrimestre</td>
+            </tr>
+        }
+    }
+</table>
+<br />
+<div class="d-flex align-content-center justify-content-center">
+    <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary">Ir al menú principal</a> &nbsp;
+</div>
+<br />
+
