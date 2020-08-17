@@ -28,6 +28,7 @@
     @Styles.Render("~/Content/css")
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     @Scripts.Render("~/bundles/script_JQ_BO_PO_JQV")
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
 </head>
@@ -39,31 +40,31 @@
         <br />
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a href="~/Matricula/IndexMatricula" class="navbar-brand">Matricula UMCA</a>
+            <a href="~/Matricula/IndexMatricula" class="navbar-brand"></a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav">
-                    <a href="~/Matricula/IndexMatricula" class="nav-item nav-link">Inicio</a>
+                        <a href="~/Matricula/IndexMatricula" class="nav-item nav-link"><i class="fa fa-home"></i> Inicio</a>
                     @{
                         if (sesionIniciada == true)
                         {
                             if (modelo.Tipo_Usuario.ToString() == "ADM")
                             {
-                                <a href="~/Estudiante/EstudianteLista" class="nav-item nav-link">Estudiantes</a>
-                                <a href="~/Funcionario/FuncionarioLista" class="nav-item nav-link">Funcionarios</a>
-                                <a href="~/Sedes/SedesLista" class="nav-item nav-link">Sedes</a>
-                                <a href="~/DireccionesCarrera/DireccionesCarreraLista" class="nav-item nav-link">Direcciones de carrera</a>
-                                <a href="~/Cursos/CursosLista" class="nav-item nav-link">Cursos</a>
-                                <a href="~/Carreras/CarrerasLista" class="nav-item nav-link">Carreras</a>
-                                <a href="~/CursosCarrera/CursoCarreraLista" class="nav-item nav-link">Cursos por carrera</a>
+                                <a href="~/Estudiante/EstudianteLista" class="nav-item nav-link"><i class="fa fa-user"></i> Estudiantes</a>
+                                <a href="~/Funcionario/FuncionarioLista" class="nav-item nav-link"><i class="fa fa-male" aria-hidden="true"></i> Funcionarios</a>
+                                <a href="~/Sedes/SedesLista" class="nav-item nav-link"><i class="fa fa-building" aria-hidden="true"></i> Sedes</a>
+                                <a href="~/DireccionesCarrera/DireccionesCarreraLista" class="nav-item nav-link"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Direcciones de carrera</a>
+                                <a href="~/Cursos/CursosLista" class="nav-item nav-link"><i class="fa fa-book"></i> Cursos</a>
+                                <a href="~/Carreras/CarrerasLista" class="nav-item nav-link"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Carreras</a>
+                                <a href="~/CursosCarrera/CursoCarreraLista" class="nav-item nav-link"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Cursos por carrera</a>
 
                                 <div class="dropdown">
                                     <a class="nav-item nav-link dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Cuatrimestre
-                                    </a>
+                                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>Cuatrimestre
+</a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a href="~/Cuatrimestre/CuatrimestreNuevo" class="dropdown-item">Creación de cuatrimestre</a>
                                         <a class="dropdown-item" href="#">Another action</a>
@@ -73,14 +74,14 @@
                             }
                             <div class="dropdown">
                                 <a class="nav-item nav-link dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Reporte
+                                    <i class="fa fa-line-chart" aria-hidden="true"></i> Reportes
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="~/Reportes/ReporteNotasEstudiante">Reporte de notas por estudiante</a>
                                     <a class="dropdown-item" href="~/Reportes/ReporteNotasCurso">Reporte de notas por curso</a>
                                 </div>
                             </div>
-                            <a href="#" class="nav-item nav-link" id="linkCierreSesion">Salir</a>
+                            <a href="#" class="nav-item nav-link" id="linkCierreSesion"><i class="fa fa-sign-in"></i> Salir</a>
                         }
                     }
 
@@ -112,7 +113,7 @@
         <div class="footer-bottom bg-secondary text-white text-center font-weight-bolder">
             <div class="container">
                 <br />
-                <p class="pull-left copyright"> Copyright © 2020. Matrícula UMCA. </p>
+                <p class="copyright"> Copyright © 2020. Matrícula UMCA. </p>
                 <br />
             </div>
         </div>
