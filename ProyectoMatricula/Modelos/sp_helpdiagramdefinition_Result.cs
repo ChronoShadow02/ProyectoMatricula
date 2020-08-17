@@ -11,11 +11,9 @@ namespace ProyectoMatricula.Modelos
 {
     using System;
     
-    public partial class pa_CursosRetornaSelectID_Select_Result
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int Id_Curso { get; set; }
-        public string Nombre_Curso { get; set; }
-        public string Codigo_Curso { get; set; }
-        public string Codigo_Requisito { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -27,6 +27,7 @@ namespace ProyectoMatricula.Modelos
         public string Inicio_Cuatrimestre { get; set; }
         public string Fin_Cuatrimestre { get; set; }
     
+        public virtual Sedes_Universitarias Sedes_Universitarias { get; set; }
         public virtual ICollection<Cuatrimestre_x_Sede> Cuatrimestre_x_Sede { get; set; }
         public virtual ICollection<Curso_x_Cuatrimestre> Curso_x_Cuatrimestre { get; set; }
     }

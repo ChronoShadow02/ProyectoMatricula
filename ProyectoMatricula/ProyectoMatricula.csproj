@@ -341,6 +341,12 @@
     <Compile Include="Modelos\Sedes_Universitarias.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\sp_helpdiagrams_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\sp_RetornaDistritos_ID_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>

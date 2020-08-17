@@ -18,7 +18,6 @@ namespace ProyectoMatricula.Modelos
         {
             this.Curso_x_Cuatrimestre = new HashSet<Curso_x_Cuatrimestre>();
             this.Curso_x_Sede = new HashSet<Curso_x_Sede>();
-            this.Cursos1 = new HashSet<Cursos>();
             this.CursosXCarrera = new HashSet<CursosXCarrera>();
             this.CursosxCarreraxSede = new HashSet<CursosxCarreraxSede>();
             this.CursosXEstudiante = new HashSet<CursosXEstudiante>();
@@ -27,12 +26,10 @@ namespace ProyectoMatricula.Modelos
         public int Id_Curso { get; set; }
         public string Nombre_Curso { get; set; }
         public string Codigo_Curso { get; set; }
-        public Nullable<int> Codigo_Requisito { get; set; }
+        public string Codigo_Requisito { get; set; }
     
         public virtual ICollection<Curso_x_Cuatrimestre> Curso_x_Cuatrimestre { get; set; }
         public virtual ICollection<Curso_x_Sede> Curso_x_Sede { get; set; }
-        public virtual ICollection<Cursos> Cursos1 { get; set; }
-        public virtual Cursos Cursos2 { get; set; }
         public virtual ICollection<CursosXCarrera> CursosXCarrera { get; set; }
         public virtual ICollection<CursosxCarreraxSede> CursosxCarreraxSede { get; set; }
         public virtual ICollection<CursosXEstudiante> CursosXEstudiante { get; set; }

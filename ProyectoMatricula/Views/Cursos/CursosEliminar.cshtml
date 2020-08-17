@@ -27,7 +27,7 @@
                         {
                             ///variable que indica si el curso esta en el modelo
 
-                            bool esIdCurso = Curso.Id_Curso == Model.Codigo_Requisito;
+                            bool esIdCurso = Curso.Codigo_Curso == Model.Codigo_Requisito;
                             if (esIdCurso)
                             {
                                 <option value="@Curso.Id_Curso" selected>@Curso.Nombre_Curso</option>

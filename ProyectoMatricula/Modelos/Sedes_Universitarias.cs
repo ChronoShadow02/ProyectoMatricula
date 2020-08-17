@@ -16,6 +16,7 @@ namespace ProyectoMatricula.Modelos
     {
         public Sedes_Universitarias()
         {
+            this.Cuatrimestre = new HashSet<Cuatrimestre>();
             this.Cuatrimestre_x_Sede = new HashSet<Cuatrimestre_x_Sede>();
             this.Curso_x_Sede = new HashSet<Curso_x_Sede>();
             this.CursosxCarreraxSede = new HashSet<CursosxCarreraxSede>();
@@ -31,6 +32,7 @@ namespace ProyectoMatricula.Modelos
         public string Direccion_Fisica { get; set; }
     
         public virtual Canton Canton { get; set; }
+        public virtual ICollection<Cuatrimestre> Cuatrimestre { get; set; }
         public virtual ICollection<Cuatrimestre_x_Sede> Cuatrimestre_x_Sede { get; set; }
         public virtual ICollection<Curso_x_Sede> Curso_x_Sede { get; set; }
         public virtual ICollection<CursosxCarreraxSede> CursosxCarreraxSede { get; set; }

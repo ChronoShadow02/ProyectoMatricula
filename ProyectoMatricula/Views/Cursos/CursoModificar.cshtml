@@ -21,20 +21,20 @@
                 <label>Código requisito:</label>
                 <select name="Codigo_Requisito" id="Codigo_Requisito" class="form-control">
                     <option value="">Seleccione una opción</option>
-                    <option value="null" selected>Ninguno</option>
+                    <option value="Ninguno" selected>Ninguno</option>
                     @{
                         foreach (ProyectoMatricula.Modelos.pa_CursosCodigos_Select_Result Curso in this.ViewBag.ListaCursos)
                         {
                             ///variable que indica si el curso esta en el modelo
 
-                            bool esIdCurso = Curso.Id_Curso == Model.Codigo_Requisito;
+                            bool esIdCurso = Curso.Codigo_Curso == Model.Codigo_Requisito;
                             if (esIdCurso)
                             {
-                                <option value="@Curso.Id_Curso" selected>@Curso.Nombre_Curso</option>
+                                <option value="@Curso.Codigo_Curso" selected>@Curso.Nombre_Curso</option>
                             }
                             else
                             {
-                                <option value="@Curso.Id_Curso">@Curso.Nombre_Curso</option>
+                                <option value="@Curso.Codigo_Curso">@Curso.Nombre_Curso</option>
                             }
 
                         }
