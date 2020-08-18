@@ -616,10 +616,14 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
           <Parameter Name="Id_Sede_Universitaria" Type="int" Mode="In" />
         </Function>
-        <Function Name="pa_Cuatrimestre_VerificarCuatrimestre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Id_Num_Cuatrimestre" Type="int" Mode="In" />
-          <Parameter Name="Id_Sede_Universitaria" Type="int" Mode="In" />
+        <Function Name="pa_Cuatrimestre_VerificaSoloCuatrimestre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Id_Sede_Universitaria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_CuatrimestreDiferenteSedes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Num_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Id_Sede_Universitaria" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_Curso_x_Cuatrimetre_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre_Curso" Type="varchar" Mode="In" />
@@ -1832,7 +1836,16 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <FunctionImport Name="pa_CarrerasViewBag_Select" ReturnType="Collection(matriculaBDModel.pa_CarrerasViewBag_Select_Result)">
           <Parameter Name="Id_Carrera" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pa_Cuatrimestre_Insert">
+            <Parameter Name="Id_Num_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Sede_Universitaria" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="pa_Cuatrimestre_Num_CuatrimiestreViewBag" ReturnType="Collection(matriculaBDModel.pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result)" />
+          <FunctionImport Name="pa_Cuatrimestre_VerificaSoloCuatrimestre" ReturnType="Collection(matriculaBDModel.pa_Cuatrimestre_VerificaSoloCuatrimestre_Result)">
+            <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Sede_Universitaria" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="pa_Curso_x_Cuatrimetre_Select">
             <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
             <Parameter Name="Cuatrimestre" Mode="In" Type="Int32" />
@@ -2093,17 +2106,12 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Parameter Name="id_Distrito" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <FunctionImport Name="pa_Cuatrimestre_VerificarCuatrimestre" ReturnType="Collection(matriculaBDModel.pa_Cuatrimestre_VerificarCuatrimestre_Result)">
+          <FunctionImport Name="pa_CuatrimestreDiferenteSedes" ReturnType="Collection(matriculaBDModel.pa_CuatrimestreDiferenteSedes_Result)">
             <Parameter Name="Id_Num_Cuatrimestre" Mode="In" Type="Int32" />
-            <Parameter Name="Id_Sede_Universitaria" Mode="In" Type="Int32" />
             <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Sede_Universitaria" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_Cuatrimestre_Select" ReturnType="Collection(matriculaBDModel.pa_Cuatrimestre_Select_Result)">
-            <Parameter Name="Id_Num_Cuatrimestre" Mode="In" Type="Int32" />
-            <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
-            <Parameter Name="Id_Sede_Universitaria" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="pa_Cuatrimestre_Insert">
             <Parameter Name="Id_Num_Cuatrimestre" Mode="In" Type="Int32" />
             <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
             <Parameter Name="Id_Sede_Universitaria" Mode="In" Type="Int32" />
@@ -2159,6 +2167,10 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
         <ComplexType Name="pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result">
           <Property Type="Int32" Name="Id_Num_Cuatrimestre" Nullable="false" />
           <Property Type="Int32" Name="Numero_Cuatrimestre" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="pa_Cuatrimestre_VerificaSoloCuatrimestre_Result">
+          <Property Type="Int32" Name="Cuatrimestres_Por_Anio" Nullable="true" />
+          <Property Type="Int32" Name="Anio_Cuatrimestre" Nullable="false" />
         </ComplexType>
         <ComplexType Name="pa_CursoCarrera_Select_Result">
           <Property Type="Int32" Name="Id_Cursos_Por_Carrera" Nullable="false" />
@@ -2476,7 +2488,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Type="String" Name="vc_Estado" Nullable="true" MaxLength="3" />
           <Property Type="Int32" Name="id_DistritoInec" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="pa_Cuatrimestre_VerificarCuatrimestre_Result">
+        <ComplexType Name="pa_CuatrimestreDiferenteSedes_Result">
           <Property Type="Int32" Name="Id_Cuatrimeste" Nullable="false" />
           <Property Type="Int32" Name="Id_Num_Cuatrimestre" Nullable="false" />
           <Property Type="Int32" Name="Anio_Cuatrimestre" Nullable="false" />
@@ -2486,9 +2498,9 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
         </ComplexType>
         <ComplexType Name="pa_Cuatrimestre_Select_Result">
           <Property Type="Int32" Name="Id_Cuatrimeste" Nullable="false" />
-          <Property Type="Int32" Name="Id_Num_Cuatrimestre" Nullable="false" />
+          <Property Type="Int32" Name="Numero_Cuatrimestre" Nullable="false" />
           <Property Type="Int32" Name="Anio_Cuatrimestre" Nullable="false" />
-          <Property Type="Int32" Name="Id_Sede_Universitarias" Nullable="false" />
+          <Property Type="String" Name="Nombre_Sede" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Inicio_Cuatrimestre" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="Fin_Cuatrimestre" Nullable="false" MaxLength="1" />
         </ComplexType>
@@ -2787,11 +2799,20 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_Cuatrimestre_Insert" FunctionName="matriculaBDModel.Store.pa_Cuatrimestre_Insert" />
           <FunctionImportMapping FunctionImportName="pa_Cuatrimestre_Num_CuatrimiestreViewBag" FunctionName="matriculaBDModel.Store.pa_Cuatrimestre_Num_CuatrimiestreViewBag">
             <ResultMapping>
               <ComplexTypeMapping TypeName="matriculaBDModel.pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result">
                 <ScalarProperty Name="Id_Num_Cuatrimestre" ColumnName="Id_Num_Cuatrimestre" />
                 <ScalarProperty Name="Numero_Cuatrimestre" ColumnName="Numero_Cuatrimestre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_Cuatrimestre_VerificaSoloCuatrimestre" FunctionName="matriculaBDModel.Store.pa_Cuatrimestre_VerificaSoloCuatrimestre">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_Cuatrimestre_VerificaSoloCuatrimestre_Result">
+                <ScalarProperty Name="Cuatrimestres_Por_Anio" ColumnName="Cuatrimestres_Por_Anio" />
+                <ScalarProperty Name="Anio_Cuatrimestre" ColumnName="Anio_Cuatrimestre" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3291,9 +3312,9 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="matriculaBDModel.Store.sp_upgraddiagrams" />
-          <FunctionImportMapping FunctionImportName="pa_Cuatrimestre_VerificarCuatrimestre" FunctionName="matriculaBDModel.Store.pa_Cuatrimestre_VerificarCuatrimestre">
+          <FunctionImportMapping FunctionImportName="pa_CuatrimestreDiferenteSedes" FunctionName="matriculaBDModel.Store.pa_CuatrimestreDiferenteSedes">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="matriculaBDModel.pa_Cuatrimestre_VerificarCuatrimestre_Result">
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_CuatrimestreDiferenteSedes_Result">
                 <ScalarProperty Name="Id_Cuatrimeste" ColumnName="Id_Cuatrimeste" />
                 <ScalarProperty Name="Id_Num_Cuatrimestre" ColumnName="Id_Num_Cuatrimestre" />
                 <ScalarProperty Name="Anio_Cuatrimestre" ColumnName="Anio_Cuatrimestre" />
@@ -3307,15 +3328,14 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <ResultMapping>
               <ComplexTypeMapping TypeName="matriculaBDModel.pa_Cuatrimestre_Select_Result">
                 <ScalarProperty Name="Id_Cuatrimeste" ColumnName="Id_Cuatrimeste" />
-                <ScalarProperty Name="Id_Num_Cuatrimestre" ColumnName="Id_Num_Cuatrimestre" />
+                <ScalarProperty Name="Numero_Cuatrimestre" ColumnName="Numero_Cuatrimestre" />
                 <ScalarProperty Name="Anio_Cuatrimestre" ColumnName="Anio_Cuatrimestre" />
-                <ScalarProperty Name="Id_Sede_Universitarias" ColumnName="Id_Sede_Universitarias" />
+                <ScalarProperty Name="Nombre_Sede" ColumnName="Nombre_Sede" />
                 <ScalarProperty Name="Inicio_Cuatrimestre" ColumnName="Inicio_Cuatrimestre" />
                 <ScalarProperty Name="Fin_Cuatrimestre" ColumnName="Fin_Cuatrimestre" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_Cuatrimestre_Insert" FunctionName="matriculaBDModel.Store.pa_Cuatrimestre_Insert" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

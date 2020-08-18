@@ -11,13 +11,9 @@ namespace ProyectoMatricula.Modelos
 {
     using System;
     
-    public partial class pa_Cuatrimestre_VerificarCuatrimestre_Result
+    public partial class pa_Cuatrimestre_VerificaSoloCuatrimestre_Result
     {
-        public int Id_Cuatrimeste { get; set; }
-        public int Id_Num_Cuatrimestre { get; set; }
+        public Nullable<int> Cuatrimestres_Por_Anio { get; set; }
         public int Anio_Cuatrimestre { get; set; }
-        public int Id_Sede_Universitarias { get; set; }
-        public string Inicio_Cuatrimestre { get; set; }
-        public string Fin_Cuatrimestre { get; set; }
     }
 }

@@ -224,13 +224,16 @@
     <Compile Include="Modelos\pa_Carreras_VerificarNombreCodigo_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_CuatrimestreDiferenteSedes_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Cuatrimestre_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelos\pa_Cuatrimestre_VerificarCuatrimestre_Result.cs">
+    <Compile Include="Modelos\pa_Cuatrimestre_VerificaSoloCuatrimestre_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_CursoCarreraIDS_Select_Result.cs">
@@ -590,6 +593,7 @@
     <Content Include="Views\Cuatrimestre\CuatrimestreNuevo.cshtml" />
     <Content Include="Views\Reportes\ReporteNotasEstudiante.cshtml" />
     <Content Include="Views\Reportes\ReporteNotasCurso.cshtml" />
+    <Content Include="Views\Cuatrimestre\CuatrimestreLista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

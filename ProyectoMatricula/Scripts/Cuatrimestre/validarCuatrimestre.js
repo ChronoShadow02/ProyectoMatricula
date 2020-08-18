@@ -8,7 +8,7 @@ function validarCuatrimestre() {
             Id_Num_Cuatrimestre: {
                 required: true
             },
-            Id_Sede_Universitaria: {
+            Id_Sede_Universitarias: {
                 required:true
             },
             Anio_Cuatrimestre: {

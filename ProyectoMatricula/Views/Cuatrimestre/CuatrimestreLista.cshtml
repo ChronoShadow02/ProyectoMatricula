@@ -1,0 +1,31 @@
+﻿@model  List<ProyectoMatricula.Modelos.pa_Cuatrimestre_Select_Result>
+@{
+    ViewBag.Title = "Matrícula UMCA | Lista de cuatrimestres";
+    Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
+}
+
+<h1 class="text-center">Lista de cuatrimestres</h1>
+<table class="table">
+    <tr>
+        <td>Identificador</td>
+        <td>Cuatrimestre</td>
+        <td>Año</td>
+        <td>Sede</td>
+        <td>Inicio de cuatrimestre</td>
+        <td>Fin de cuatrimestre</td>
+    </tr>
+    @{
+        foreach (ProyectoMatricula.Modelos.pa_Cuatrimestre_Select_Result posicionModelo in this.Model)
+        {
+            <tr>
+                <td>@posicionModelo.Id_Cuatrimeste</td>
+                <td>@posicionModelo.Numero_Cuatrimestre</td>
+                <td>@posicionModelo.Anio_Cuatrimestre</td>
+                <td>@posicionModelo.Nombre_Sede</td>
+                <td>@posicionModelo.Inicio_Cuatrimestre</td>
+                <td>@posicionModelo.Fin_Cuatrimestre</td>
+            </tr>
+        }
+    }
+</table>
+
