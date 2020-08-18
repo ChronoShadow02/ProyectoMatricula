@@ -155,9 +155,6 @@
     <Compile Include="Modelos\Cuatrimestre.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelos\Cuatrimestre_x_Sede.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
     <Compile Include="Modelos\Cursos.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -206,6 +203,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelBD.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\Numero_Cuatrimestre.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\pa_Administrador_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -222,6 +222,15 @@
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Carreras_VerificarNombreCodigo_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_Cuatrimestre_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_Cuatrimestre_VerificarCuatrimestre_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_CursoCarreraIDS_Select_Result.cs">
@@ -252,9 +261,6 @@
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Cursos_x_Carrera_Select_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelos\pa_Curso_x_Cuatrimetre_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_DireccionesCarrerasRetornaID_Select_Result.cs">
@@ -321,12 +327,6 @@
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Provincia.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelos\Reporte_Notas_Por_Curso_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelos\Reporte_Notas_Por_Estudiante_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\RetornaCantonesID_Result.cs">
@@ -415,6 +415,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Scripts\Carreras\validarCarreras.js" />
+    <Content Include="Scripts\Cuatrimestre\validarCuatrimestre.js" />
     <Content Include="Scripts\CursosCarrera\validarCursoCarrera.js" />
     <Content Include="Scripts\Cursos\validaCurso.js" />
     <Content Include="Scripts\Direcciones\validarDireccion.js" />

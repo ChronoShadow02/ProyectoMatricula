@@ -9,40 +9,44 @@
     <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
         <form method="post" id="frmCuatrimestreNuevo">
             <div class="form-group">
-                <label class="form-check-label" id="Id_Cuatrimestre">Cuatrimestre</label>
-                <select name="Id_Cuatrimestre" id="" class="form-control">
+                <label class="form-check-label" id="txtCuatrimestre">Cuatrimestre</label>
+                <select name="Id_Num_Cuatrimestre" id="Id_Cuatrimestre" class="form-control">
                     <option value="">Seleccione una opción</option>
-                    <option value="1">I</option>
-                    <option value="2">II</option>
-                    <option value="3">III</option>
+                    @{ 
+                        foreach (ProyectoMatricula.Modelos.pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result posicionNum_Cuatrimestre in this.ViewBag.Lista_Num_Cuatrimestre)
+                        {
+                            <option value="@posicionNum_Cuatrimestre.Id_Num_Cuatrimestre">@posicionNum_Cuatrimestre.Numero_Cuatrimestre</option>
+                        }
+                    }
                 </select>
             </div>
             <div class="form-group">
-                <label class="form-check-label" id="Id_Sede_Universitaria">Sede universitaria</label>
-                <select class="form-control" name="Id_Sede_Universitaria">
-
+                <label class="form-check-label" id="lblSedeUniversitaria">Sede universitaria</label>
+                <select class="form-control" name="Id_Sede_Universitarias" id="Id_Sede_Universitaria">
+                    <option value="">Seleccione una opción</option>
+                    @{ 
+                        foreach (ProyectoMatricula.Modelos.pa_Sedes_UniversitariasID_Select_Result posicionSede in this.ViewBag.ListaSedes)
+                        {
+                            <option value="@posicionSede.Id_Sedes_universitarias">@posicionSede.Nombre_Sede</option>
+                        }
+                    }
                 </select>
             </div>
             <div class="form-group">
                 <label class="form-check-label" id="anio">Año de cuatrimestre</label>
-                <input type="text" value="" id="datepickerAnio" class="form-control"/>
+                <input type="text" value="" class="form-control" name="Anio_Cuatrimestre"/>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-primary" type="submit"><i class="fa fa-plus" aria-hidden="true"></i> Ingresar</button>
             </div>
         </form>
     </div>
 </div>
-
+<br />
+<div>
+       
+</div>
 @section scripts{
-    <script>
-
-        $(function () {
-            datepickerAnio();
-        });
-
-        function datepickerAnio() {
-            $("#datepickerAnio").datepicker({
-                dateFormat: 'yy'
-            });
-        }
-
-    </script>
+    <script src="~/Scripts/validacionesGenericas/validacionesGenericas.js"></script>
+    <script src="~/Scripts/Cuatrimestre/validarCuatrimestre.js"></script>
 }

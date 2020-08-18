@@ -10,15 +10,14 @@
 namespace ProyectoMatricula.Modelos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Cuatrimestre_x_Sede
+    public partial class pa_Cuatrimestre_VerificarCuatrimestre_Result
     {
-        public int Id_Cuatrimeste_x_Sede { get; set; }
-        public int Id_Cuatrimestre { get; set; }
-        public int Id_Sedes_universitarias { get; set; }
-    
-        public virtual Cuatrimestre Cuatrimestre { get; set; }
-        public virtual Sedes_Universitarias Sedes_Universitarias { get; set; }
+        public int Id_Cuatrimeste { get; set; }
+        public int Id_Num_Cuatrimestre { get; set; }
+        public int Anio_Cuatrimestre { get; set; }
+        public int Id_Sede_Universitarias { get; set; }
+        public string Inicio_Cuatrimestre { get; set; }
+        public string Fin_Cuatrimestre { get; set; }
     }
 }

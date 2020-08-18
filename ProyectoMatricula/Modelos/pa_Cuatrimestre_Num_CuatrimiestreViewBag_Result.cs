@@ -11,13 +11,9 @@ namespace ProyectoMatricula.Modelos
 {
     using System;
     
-    public partial class Reporte_Notas_Por_Estudiante_Result
+    public partial class pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result
     {
-        public int Id_Estudiante { get; set; }
-        public string Nombre_Estudiante { get; set; }
-        public string Nombre_Curso { get; set; }
-        public double Nota { get; set; }
-        public int Num_Cuatrimestre { get; set; }
-        public int Anio_Cuatrimestre { get; set; }
+        public int Id_Num_Cuatrimestre { get; set; }
+        public int Numero_Cuatrimestre { get; set; }
     }
 }

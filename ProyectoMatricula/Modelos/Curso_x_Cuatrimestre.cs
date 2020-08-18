@@ -17,7 +17,7 @@ namespace ProyectoMatricula.Modelos
         public int Id_Curso_x_Cuatrimestre { get; set; }
         public int Id_Curso { get; set; }
         public double Nota { get; set; }
-        public int Num_Cuatrimestre { get; set; }
+        public int Id_Num_Cuatrimestre { get; set; }
         public int Año_Cuatrimestre { get; set; }
         public int Id_Cuatrimestre { get; set; }
         public int Id_Estudiante { get; set; }
@@ -25,5 +25,6 @@ namespace ProyectoMatricula.Modelos
         public virtual Cuatrimestre Cuatrimestre { get; set; }
         public virtual Cursos Cursos { get; set; }
         public virtual Estudiantes Estudiantes { get; set; }
+        public virtual Numero_Cuatrimestre Numero_Cuatrimestre { get; set; }
     }
 }

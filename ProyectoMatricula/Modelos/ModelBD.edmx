@@ -55,19 +55,11 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
             <PropertyRef Name="Id_Cuatrimeste" />
           </Key>
           <Property Name="Id_Cuatrimeste" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Num_Cuatrimestre" Type="int" Nullable="false" />
+          <Property Name="Id_Num_Cuatrimestre" Type="int" Nullable="false" />
           <Property Name="Anio_Cuatrimestre" Type="int" Nullable="false" />
           <Property Name="Id_Sede_Universitarias" Type="int" Nullable="false" />
           <Property Name="Inicio_Cuatrimestre" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="Fin_Cuatrimestre" Type="char" MaxLength="1" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Cuatrimestre_x_Sede">
-          <Key>
-            <PropertyRef Name="Id_Cuatrimeste_x_Sede" />
-          </Key>
-          <Property Name="Id_Cuatrimeste_x_Sede" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Id_Cuatrimestre" Type="int" Nullable="false" />
-          <Property Name="Id_Sedes_universitarias" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Curso_x_Cuatrimestre">
           <Key>
@@ -76,7 +68,7 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Property Name="Id_Curso_x_Cuatrimestre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Curso" Type="int" Nullable="false" />
           <Property Name="Nota" Type="float" Nullable="false" />
-          <Property Name="Num_Cuatrimestre" Type="int" Nullable="false" />
+          <Property Name="Id_Num_Cuatrimestre" Type="int" Nullable="false" />
           <Property Name="Año_Cuatrimestre" Type="int" Nullable="false" />
           <Property Name="Id_Cuatrimestre" Type="int" Nullable="false" />
           <Property Name="Id_Estudiante" Type="int" Nullable="false" />
@@ -172,6 +164,13 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Property Name="Id_Distrito" Type="int" Nullable="false" />
           <Property Name="Fecha_Contratacion" Type="date" Nullable="false" />
         </EntityType>
+        <EntityType Name="Numero_Cuatrimestre">
+          <Key>
+            <PropertyRef Name="Id_Num_Cuatrimestre" />
+          </Key>
+          <Property Name="Id_Num_Cuatrimestre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Numero_Cuatrimestre" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Provincia">
           <Key>
             <PropertyRef Name="id_Provincia" />
@@ -243,6 +242,18 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cuatrimestre_Numero_Cuatrimestre">
+          <End Role="Numero_Cuatrimestre" Type="Self.Numero_Cuatrimestre" Multiplicity="1" />
+          <End Role="Cuatrimestre" Type="Self.Cuatrimestre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Numero_Cuatrimestre">
+              <PropertyRef Name="Id_Num_Cuatrimestre" />
+            </Principal>
+            <Dependent Role="Cuatrimestre">
+              <PropertyRef Name="Id_Num_Cuatrimestre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cuatrimestre_Sedes_Universitarias">
           <End Role="Sedes_Universitarias" Type="Self.Sedes_Universitarias" Multiplicity="1" />
           <End Role="Cuatrimestre" Type="Self.Cuatrimestre" Multiplicity="*" />
@@ -252,30 +263,6 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
             </Principal>
             <Dependent Role="Cuatrimestre">
               <PropertyRef Name="Id_Sede_Universitarias" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cuatrimestre_x_Sede_Cuatrimestre">
-          <End Role="Cuatrimestre" Type="Self.Cuatrimestre" Multiplicity="1" />
-          <End Role="Cuatrimestre_x_Sede" Type="Self.Cuatrimestre_x_Sede" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cuatrimestre">
-              <PropertyRef Name="Id_Cuatrimeste" />
-            </Principal>
-            <Dependent Role="Cuatrimestre_x_Sede">
-              <PropertyRef Name="Id_Cuatrimestre" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cuatrimestre_x_Sede_Sedes_Universitarias">
-          <End Role="Sedes_Universitarias" Type="Self.Sedes_Universitarias" Multiplicity="1" />
-          <End Role="Cuatrimestre_x_Sede" Type="Self.Cuatrimestre_x_Sede" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sedes_Universitarias">
-              <PropertyRef Name="Id_Sedes_universitarias" />
-            </Principal>
-            <Dependent Role="Cuatrimestre_x_Sede">
-              <PropertyRef Name="Id_Sedes_universitarias" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -312,6 +299,18 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
             </Principal>
             <Dependent Role="Curso_x_Cuatrimestre">
               <PropertyRef Name="Id_Estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curso_x_Cuatrimestre_Numero_Cuatrimestre">
+          <End Role="Numero_Cuatrimestre" Type="Self.Numero_Cuatrimestre" Multiplicity="1" />
+          <End Role="Curso_x_Cuatrimestre" Type="Self.Curso_x_Cuatrimestre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Numero_Cuatrimestre">
+              <PropertyRef Name="Id_Num_Cuatrimestre" />
+            </Principal>
+            <Dependent Role="Curso_x_Cuatrimestre">
+              <PropertyRef Name="Id_Num_Cuatrimestre" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -606,6 +605,22 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
         <Function Name="pa_CarrerasViewBag_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Carrera" Type="int" Mode="In" />
         </Function>
+        <Function Name="pa_Cuatrimestre_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Num_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Id_Sede_Universitaria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_Cuatrimestre_Num_CuatrimiestreViewBag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="pa_Cuatrimestre_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Num_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Id_Sede_Universitaria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_Cuatrimestre_VerificarCuatrimestre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Num_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Id_Sede_Universitaria" Type="int" Mode="In" />
+          <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
+        </Function>
         <Function Name="pa_Curso_x_Cuatrimetre_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre_Curso" Type="varchar" Mode="In" />
           <Parameter Name="Cuatrimestre" Type="int" Mode="In" />
@@ -805,17 +820,6 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
         <Function Name="pa_Sedes_UniversitariasViewBag_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Sede" Type="int" Mode="In" />
         </Function>
-        <Function Name="Reporte_Notas_Por_Curso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Nombre_Curso" Type="varchar" Mode="In" />
-          <Parameter Name="Num_Cuatrimestre" Type="int" Mode="In" />
-          <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
-          <Parameter Name="Nombre_Sede" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="Reporte_Notas_Por_Estudiante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Nombre_Estudiante" Type="varchar" Mode="In" />
-          <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
-          <Parameter Name="Nombre_Curso" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="RetornaCantones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="id_Provincia" Type="int" Mode="In" />
@@ -881,7 +885,6 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <EntitySet Name="Canton" EntityType="Self.Canton" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Carreras_universitarias" EntityType="Self.Carreras_universitarias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cuatrimestre" EntityType="Self.Cuatrimestre" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Cuatrimestre_x_Sede" EntityType="Self.Cuatrimestre_x_Sede" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Curso_x_Cuatrimestre" EntityType="Self.Curso_x_Cuatrimestre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Curso_x_Sede" EntityType="Self.Curso_x_Sede" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cursos" EntityType="Self.Cursos" Schema="dbo" store:Type="Tables" />
@@ -892,6 +895,7 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <EntitySet Name="Distrito" EntityType="Self.Distrito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Funcionarios" EntityType="Self.Funcionarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Numero_Cuatrimestre" EntityType="Self.Numero_Cuatrimestre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sedes_Universitarias" EntityType="Self.Sedes_Universitarias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -919,17 +923,13 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <End Role="Direcciones_de_carrera" EntitySet="Direcciones_de_carrera" />
             <End Role="Carreras_universitarias" EntitySet="Carreras_universitarias" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cuatrimestre_Numero_Cuatrimestre" Association="Self.FK_Cuatrimestre_Numero_Cuatrimestre">
+            <End Role="Numero_Cuatrimestre" EntitySet="Numero_Cuatrimestre" />
+            <End Role="Cuatrimestre" EntitySet="Cuatrimestre" />
+          </AssociationSet>
           <AssociationSet Name="FK_Cuatrimestre_Sedes_Universitarias" Association="Self.FK_Cuatrimestre_Sedes_Universitarias">
             <End Role="Sedes_Universitarias" EntitySet="Sedes_Universitarias" />
             <End Role="Cuatrimestre" EntitySet="Cuatrimestre" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cuatrimestre_x_Sede_Cuatrimestre" Association="Self.FK_Cuatrimestre_x_Sede_Cuatrimestre">
-            <End Role="Cuatrimestre" EntitySet="Cuatrimestre" />
-            <End Role="Cuatrimestre_x_Sede" EntitySet="Cuatrimestre_x_Sede" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cuatrimestre_x_Sede_Sedes_Universitarias" Association="Self.FK_Cuatrimestre_x_Sede_Sedes_Universitarias">
-            <End Role="Sedes_Universitarias" EntitySet="Sedes_Universitarias" />
-            <End Role="Cuatrimestre_x_Sede" EntitySet="Cuatrimestre_x_Sede" />
           </AssociationSet>
           <AssociationSet Name="FK_Curso_x_Cuatrimestre_Cuatrimestre" Association="Self.FK_Curso_x_Cuatrimestre_Cuatrimestre">
             <End Role="Cuatrimestre" EntitySet="Cuatrimestre" />
@@ -941,6 +941,10 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           </AssociationSet>
           <AssociationSet Name="FK_Curso_x_Cuatrimestre_Estudiantes" Association="Self.FK_Curso_x_Cuatrimestre_Estudiantes">
             <End Role="Estudiantes" EntitySet="Estudiantes" />
+            <End Role="Curso_x_Cuatrimestre" EntitySet="Curso_x_Cuatrimestre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curso_x_Cuatrimestre_Numero_Cuatrimestre" Association="Self.FK_Curso_x_Cuatrimestre_Numero_Cuatrimestre">
+            <End Role="Numero_Cuatrimestre" EntitySet="Numero_Cuatrimestre" />
             <End Role="Curso_x_Cuatrimestre" EntitySet="Curso_x_Cuatrimestre" />
           </AssociationSet>
           <AssociationSet Name="FK_Curso_x_Sede_Cursos" Association="Self.FK_Curso_x_Sede_Cursos">
@@ -1068,24 +1072,14 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <PropertyRef Name="Id_Cuatrimeste" />
           </Key>
           <Property Name="Id_Cuatrimeste" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Num_Cuatrimestre" Type="Int32" Nullable="false" />
+          <Property Name="Id_Num_Cuatrimestre" Type="Int32" Nullable="false" />
           <Property Name="Anio_Cuatrimestre" Type="Int32" Nullable="false" />
           <Property Name="Id_Sede_Universitarias" Type="Int32" Nullable="false" />
           <Property Name="Inicio_Cuatrimestre" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Fin_Cuatrimestre" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Numero_Cuatrimestre" Relationship="Self.FK_Cuatrimestre_Numero_Cuatrimestre" FromRole="Cuatrimestre" ToRole="Numero_Cuatrimestre" />
           <NavigationProperty Name="Sedes_Universitarias" Relationship="Self.FK_Cuatrimestre_Sedes_Universitarias" FromRole="Cuatrimestre" ToRole="Sedes_Universitarias" />
-          <NavigationProperty Name="Cuatrimestre_x_Sede" Relationship="Self.FK_Cuatrimestre_x_Sede_Cuatrimestre" FromRole="Cuatrimestre" ToRole="Cuatrimestre_x_Sede" />
           <NavigationProperty Name="Curso_x_Cuatrimestre" Relationship="Self.FK_Curso_x_Cuatrimestre_Cuatrimestre" FromRole="Cuatrimestre" ToRole="Curso_x_Cuatrimestre" />
-        </EntityType>
-        <EntityType Name="Cuatrimestre_x_Sede">
-          <Key>
-            <PropertyRef Name="Id_Cuatrimeste_x_Sede" />
-          </Key>
-          <Property Name="Id_Cuatrimeste_x_Sede" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Cuatrimestre" Type="Int32" Nullable="false" />
-          <Property Name="Id_Sedes_universitarias" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cuatrimestre" Relationship="Self.FK_Cuatrimestre_x_Sede_Cuatrimestre" FromRole="Cuatrimestre_x_Sede" ToRole="Cuatrimestre" />
-          <NavigationProperty Name="Sedes_Universitarias" Relationship="Self.FK_Cuatrimestre_x_Sede_Sedes_Universitarias" FromRole="Cuatrimestre_x_Sede" ToRole="Sedes_Universitarias" />
         </EntityType>
         <EntityType Name="Curso_x_Cuatrimestre">
           <Key>
@@ -1094,13 +1088,14 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Name="Id_Curso_x_Cuatrimestre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_Curso" Type="Int32" Nullable="false" />
           <Property Name="Nota" Type="Double" Nullable="false" />
-          <Property Name="Num_Cuatrimestre" Type="Int32" Nullable="false" />
+          <Property Name="Id_Num_Cuatrimestre" Type="Int32" Nullable="false" />
           <Property Name="Año_Cuatrimestre" Type="Int32" Nullable="false" />
           <Property Name="Id_Cuatrimestre" Type="Int32" Nullable="false" />
           <Property Name="Id_Estudiante" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cuatrimestre" Relationship="Self.FK_Curso_x_Cuatrimestre_Cuatrimestre" FromRole="Curso_x_Cuatrimestre" ToRole="Cuatrimestre" />
           <NavigationProperty Name="Cursos" Relationship="Self.FK_Curso_x_Cuatrimestre_Cursos" FromRole="Curso_x_Cuatrimestre" ToRole="Cursos" />
           <NavigationProperty Name="Estudiantes" Relationship="Self.FK_Curso_x_Cuatrimestre_Estudiantes" FromRole="Curso_x_Cuatrimestre" ToRole="Estudiantes" />
+          <NavigationProperty Name="Numero_Cuatrimestre" Relationship="Self.FK_Curso_x_Cuatrimestre_Numero_Cuatrimestre" FromRole="Curso_x_Cuatrimestre" ToRole="Numero_Cuatrimestre" />
         </EntityType>
         <EntityType Name="Curso_x_Sede">
           <Key>
@@ -1225,6 +1220,15 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <NavigationProperty Name="Provincia" Relationship="Self.FK_Funcionarios_Provincia" FromRole="Funcionarios" ToRole="Provincia" />
           <NavigationProperty Name="Sedes_Universitarias" Relationship="Self.FK_Sedes_Universitarias_Funcionarios" FromRole="Funcionarios" ToRole="Sedes_Universitarias" />
         </EntityType>
+        <EntityType Name="Numero_Cuatrimestre">
+          <Key>
+            <PropertyRef Name="Id_Num_Cuatrimestre" />
+          </Key>
+          <Property Name="Id_Num_Cuatrimestre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero_Cuatrimestre1" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cuatrimestre" Relationship="Self.FK_Cuatrimestre_Numero_Cuatrimestre" FromRole="Numero_Cuatrimestre" ToRole="Cuatrimestre" />
+          <NavigationProperty Name="Curso_x_Cuatrimestre" Relationship="Self.FK_Curso_x_Cuatrimestre_Numero_Cuatrimestre" FromRole="Numero_Cuatrimestre" ToRole="Curso_x_Cuatrimestre" />
+        </EntityType>
         <EntityType Name="Provincia">
           <Key>
             <PropertyRef Name="id_Provincia" />
@@ -1255,7 +1259,6 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Name="Direccion_Fisica" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Canton" Relationship="Self.FK_Sedes_Universitarias_Canton" FromRole="Sedes_Universitarias" ToRole="Canton" />
           <NavigationProperty Name="Cuatrimestre" Relationship="Self.FK_Cuatrimestre_Sedes_Universitarias" FromRole="Sedes_Universitarias" ToRole="Cuatrimestre" />
-          <NavigationProperty Name="Cuatrimestre_x_Sede" Relationship="Self.FK_Cuatrimestre_x_Sede_Sedes_Universitarias" FromRole="Sedes_Universitarias" ToRole="Cuatrimestre_x_Sede" />
           <NavigationProperty Name="Curso_x_Sede" Relationship="Self.FK_Curso_x_Sede_Sedes_Universitarias" FromRole="Sedes_Universitarias" ToRole="Curso_x_Sede" />
           <NavigationProperty Name="CursosxCarreraxSede" Relationship="Self.FK_CursosxCarreraxSede_Sedes_Universitarias" FromRole="Sedes_Universitarias" ToRole="CursosxCarreraxSede" />
           <NavigationProperty Name="Distrito" Relationship="Self.FK_Sedes_Universitarias_Distrito" FromRole="Sedes_Universitarias" ToRole="Distrito" />
@@ -1388,6 +1391,18 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cuatrimestre_Numero_Cuatrimestre">
+          <End Role="Numero_Cuatrimestre" Type="Self.Numero_Cuatrimestre" Multiplicity="1" />
+          <End Role="Cuatrimestre" Type="Self.Cuatrimestre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Numero_Cuatrimestre">
+              <PropertyRef Name="Id_Num_Cuatrimestre" />
+            </Principal>
+            <Dependent Role="Cuatrimestre">
+              <PropertyRef Name="Id_Num_Cuatrimestre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cuatrimestre_Sedes_Universitarias">
           <End Role="Sedes_Universitarias" Type="Self.Sedes_Universitarias" Multiplicity="1" />
           <End Role="Cuatrimestre" Type="Self.Cuatrimestre" Multiplicity="*" />
@@ -1400,18 +1415,6 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Cuatrimestre_x_Sede_Cuatrimestre">
-          <End Role="Cuatrimestre" Type="Self.Cuatrimestre" Multiplicity="1" />
-          <End Role="Cuatrimestre_x_Sede" Type="Self.Cuatrimestre_x_Sede" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cuatrimestre">
-              <PropertyRef Name="Id_Cuatrimeste" />
-            </Principal>
-            <Dependent Role="Cuatrimestre_x_Sede">
-              <PropertyRef Name="Id_Cuatrimestre" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Curso_x_Cuatrimestre_Cuatrimestre">
           <End Role="Cuatrimestre" Type="Self.Cuatrimestre" Multiplicity="1" />
           <End Role="Curso_x_Cuatrimestre" Type="Self.Curso_x_Cuatrimestre" Multiplicity="*" />
@@ -1421,18 +1424,6 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             </Principal>
             <Dependent Role="Curso_x_Cuatrimestre">
               <PropertyRef Name="Id_Cuatrimestre" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cuatrimestre_x_Sede_Sedes_Universitarias">
-          <End Role="Sedes_Universitarias" Type="Self.Sedes_Universitarias" Multiplicity="1" />
-          <End Role="Cuatrimestre_x_Sede" Type="Self.Cuatrimestre_x_Sede" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sedes_Universitarias">
-              <PropertyRef Name="Id_Sedes_universitarias" />
-            </Principal>
-            <Dependent Role="Cuatrimestre_x_Sede">
-              <PropertyRef Name="Id_Sedes_universitarias" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1457,6 +1448,18 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             </Principal>
             <Dependent Role="Curso_x_Cuatrimestre">
               <PropertyRef Name="Id_Estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curso_x_Cuatrimestre_Numero_Cuatrimestre">
+          <End Role="Numero_Cuatrimestre" Type="Self.Numero_Cuatrimestre" Multiplicity="1" />
+          <End Role="Curso_x_Cuatrimestre" Type="Self.Curso_x_Cuatrimestre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Numero_Cuatrimestre">
+              <PropertyRef Name="Id_Num_Cuatrimestre" />
+            </Principal>
+            <Dependent Role="Curso_x_Cuatrimestre">
+              <PropertyRef Name="Id_Num_Cuatrimestre" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1656,7 +1659,6 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <EntitySet Name="Canton" EntityType="Self.Canton" />
           <EntitySet Name="Carreras_universitarias" EntityType="Self.Carreras_universitarias" />
           <EntitySet Name="Cuatrimestre" EntityType="Self.Cuatrimestre" />
-          <EntitySet Name="Cuatrimestre_x_Sede" EntityType="Self.Cuatrimestre_x_Sede" />
           <EntitySet Name="Curso_x_Cuatrimestre" EntityType="Self.Curso_x_Cuatrimestre" />
           <EntitySet Name="Curso_x_Sede" EntityType="Self.Curso_x_Sede" />
           <EntitySet Name="Cursos" EntityType="Self.Cursos" />
@@ -1667,6 +1669,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <EntitySet Name="Distrito" EntityType="Self.Distrito" />
           <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" />
           <EntitySet Name="Funcionarios" EntityType="Self.Funcionarios" />
+          <EntitySet Name="Numero_Cuatrimestre" EntityType="Self.Numero_Cuatrimestre" />
           <EntitySet Name="Provincia" EntityType="Self.Provincia" />
           <EntitySet Name="Sedes_Universitarias" EntityType="Self.Sedes_Universitarias" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -1703,21 +1706,17 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <End Role="Carreras_universitarias" EntitySet="Carreras_universitarias" />
             <End Role="CursosxCarreraxSede" EntitySet="CursosxCarreraxSede" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cuatrimestre_Numero_Cuatrimestre" Association="Self.FK_Cuatrimestre_Numero_Cuatrimestre">
+            <End Role="Numero_Cuatrimestre" EntitySet="Numero_Cuatrimestre" />
+            <End Role="Cuatrimestre" EntitySet="Cuatrimestre" />
+          </AssociationSet>
           <AssociationSet Name="FK_Cuatrimestre_Sedes_Universitarias" Association="Self.FK_Cuatrimestre_Sedes_Universitarias">
             <End Role="Sedes_Universitarias" EntitySet="Sedes_Universitarias" />
             <End Role="Cuatrimestre" EntitySet="Cuatrimestre" />
           </AssociationSet>
-          <AssociationSet Name="FK_Cuatrimestre_x_Sede_Cuatrimestre" Association="Self.FK_Cuatrimestre_x_Sede_Cuatrimestre">
-            <End Role="Cuatrimestre" EntitySet="Cuatrimestre" />
-            <End Role="Cuatrimestre_x_Sede" EntitySet="Cuatrimestre_x_Sede" />
-          </AssociationSet>
           <AssociationSet Name="FK_Curso_x_Cuatrimestre_Cuatrimestre" Association="Self.FK_Curso_x_Cuatrimestre_Cuatrimestre">
             <End Role="Cuatrimestre" EntitySet="Cuatrimestre" />
             <End Role="Curso_x_Cuatrimestre" EntitySet="Curso_x_Cuatrimestre" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cuatrimestre_x_Sede_Sedes_Universitarias" Association="Self.FK_Cuatrimestre_x_Sede_Sedes_Universitarias">
-            <End Role="Sedes_Universitarias" EntitySet="Sedes_Universitarias" />
-            <End Role="Cuatrimestre_x_Sede" EntitySet="Cuatrimestre_x_Sede" />
           </AssociationSet>
           <AssociationSet Name="FK_Curso_x_Cuatrimestre_Cursos" Association="Self.FK_Curso_x_Cuatrimestre_Cursos">
             <End Role="Cursos" EntitySet="Cursos" />
@@ -1725,6 +1724,10 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           </AssociationSet>
           <AssociationSet Name="FK_Curso_x_Cuatrimestre_Estudiantes" Association="Self.FK_Curso_x_Cuatrimestre_Estudiantes">
             <End Role="Estudiantes" EntitySet="Estudiantes" />
+            <End Role="Curso_x_Cuatrimestre" EntitySet="Curso_x_Cuatrimestre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curso_x_Cuatrimestre_Numero_Cuatrimestre" Association="Self.FK_Curso_x_Cuatrimestre_Numero_Cuatrimestre">
+            <End Role="Numero_Cuatrimestre" EntitySet="Numero_Cuatrimestre" />
             <End Role="Curso_x_Cuatrimestre" EntitySet="Curso_x_Cuatrimestre" />
           </AssociationSet>
           <AssociationSet Name="FK_Curso_x_Sede_Cursos" Association="Self.FK_Curso_x_Sede_Cursos">
@@ -1829,7 +1832,8 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <FunctionImport Name="pa_CarrerasViewBag_Select" ReturnType="Collection(matriculaBDModel.pa_CarrerasViewBag_Select_Result)">
           <Parameter Name="Id_Carrera" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="pa_Curso_x_Cuatrimetre_Select" ReturnType="Collection(matriculaBDModel.pa_Curso_x_Cuatrimetre_Select_Result)">
+          <FunctionImport Name="pa_Cuatrimestre_Num_CuatrimiestreViewBag" ReturnType="Collection(matriculaBDModel.pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result)" />
+          <FunctionImport Name="pa_Curso_x_Cuatrimetre_Select">
             <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
             <Parameter Name="Cuatrimestre" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1865,6 +1869,12 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <FunctionImport Name="pa_Cursos_Select" ReturnType="Collection(matriculaBDModel.pa_Cursos_Select_Result)">
             <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
             <Parameter Name="Codigo_Curso" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pa_Cursos_Update">
+            <Parameter Name="Id_Curso" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
+            <Parameter Name="Codigo_Curso" Mode="In" Type="String" />
+            <Parameter Name="Codigo_Requisito" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pa_Cursos_ValidarNombreCodigo_Select" ReturnType="Collection(matriculaBDModel.pa_Cursos_ValidarNombreCodigo_Select_Result)">
             <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
@@ -2022,17 +2032,6 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <FunctionImport Name="pa_Sedes_UniversitariasViewBag_Select" ReturnType="Collection(matriculaBDModel.pa_Sedes_UniversitariasViewBag_Select_Result)">
           <Parameter Name="Id_Sede" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="Reporte_Notas_Por_Curso" ReturnType="Collection(matriculaBDModel.Reporte_Notas_Por_Curso_Result)">
-            <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
-            <Parameter Name="Num_Cuatrimestre" Mode="In" Type="Int32" />
-            <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
-            <Parameter Name="Nombre_Sede" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Reporte_Notas_Por_Estudiante" ReturnType="Collection(matriculaBDModel.Reporte_Notas_Por_Estudiante_Result)">
-            <Parameter Name="Nombre_Estudiante" Mode="In" Type="String" />
-            <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
-            <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="RetornaCantones" ReturnType="Collection(matriculaBDModel.RetornaCantones_Result)">
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="id_Provincia" Mode="In" Type="Int32" />
@@ -2094,11 +2093,20 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Parameter Name="id_Distrito" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <FunctionImport Name="pa_Cursos_Update">
-            <Parameter Name="Id_Curso" Mode="In" Type="Int32" />
-            <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
-            <Parameter Name="Codigo_Curso" Mode="In" Type="String" />
-            <Parameter Name="Codigo_Requisito" Mode="In" Type="String" />
+          <FunctionImport Name="pa_Cuatrimestre_VerificarCuatrimestre" ReturnType="Collection(matriculaBDModel.pa_Cuatrimestre_VerificarCuatrimestre_Result)">
+            <Parameter Name="Id_Num_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Sede_Universitaria" Mode="In" Type="Int32" />
+            <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_Cuatrimestre_Select" ReturnType="Collection(matriculaBDModel.pa_Cuatrimestre_Select_Result)">
+            <Parameter Name="Id_Num_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Sede_Universitaria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_Cuatrimestre_Insert">
+            <Parameter Name="Id_Num_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Sede_Universitaria" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Cursos_ValidarNombreCodigo_Select_Result">
@@ -2148,13 +2156,9 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Type="String" Name="Codigo_Carrera" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="Id_Direccion_Carrera" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="pa_Curso_x_Cuatrimetre_Select_Result">
-          <Property Type="Int32" Name="Id_Curso_x_Cuatrimestre" Nullable="false" />
-          <Property Type="String" Name="Nombre_Curso" Nullable="false" MaxLength="50" />
-          <Property Type="Double" Name="Nota" Nullable="false" />
-          <Property Type="Int32" Name="Num_Cuatrimestre" Nullable="false" />
-          <Property Type="Int32" Name="Año_Cuatrimestre" Nullable="false" />
-          <Property Type="String" Name="Nombre_Estudiante" Nullable="false" MaxLength="50" />
+        <ComplexType Name="pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result">
+          <Property Type="Int32" Name="Id_Num_Cuatrimestre" Nullable="false" />
+          <Property Type="Int32" Name="Numero_Cuatrimestre" Nullable="false" />
         </ComplexType>
         <ComplexType Name="pa_CursoCarrera_Select_Result">
           <Property Type="Int32" Name="Id_Cursos_Por_Carrera" Nullable="false" />
@@ -2404,23 +2408,6 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Type="Int32" Name="Id_Distrito" Nullable="false" />
           <Property Type="String" Name="Direccion_Fisica" Nullable="false" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="Reporte_Notas_Por_Curso_Result">
-          <Property Type="Int32" Name="Id_Estudiante" Nullable="false" />
-          <Property Type="String" Name="Nombre_Estudiante" Nullable="false" MaxLength="50" />
-          <Property Type="Double" Name="Nota" Nullable="false" />
-          <Property Type="String" Name="Nombre_Curso" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Nombre_Sede" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Num_Cuatrimestre" Nullable="false" />
-          <Property Type="Int32" Name="Anio_Cuatrimestre" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="Reporte_Notas_Por_Estudiante_Result">
-          <Property Type="Int32" Name="Id_Estudiante" Nullable="false" />
-          <Property Type="String" Name="Nombre_Estudiante" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Nombre_Curso" Nullable="false" MaxLength="50" />
-          <Property Type="Double" Name="Nota" Nullable="false" />
-          <Property Type="Int32" Name="Num_Cuatrimestre" Nullable="false" />
-          <Property Type="Int32" Name="Anio_Cuatrimestre" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
           <Property Type="Int32" Name="id_Provincia" Nullable="false" />
@@ -2489,6 +2476,22 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Type="String" Name="vc_Estado" Nullable="true" MaxLength="3" />
           <Property Type="Int32" Name="id_DistritoInec" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="pa_Cuatrimestre_VerificarCuatrimestre_Result">
+          <Property Type="Int32" Name="Id_Cuatrimeste" Nullable="false" />
+          <Property Type="Int32" Name="Id_Num_Cuatrimestre" Nullable="false" />
+          <Property Type="Int32" Name="Anio_Cuatrimestre" Nullable="false" />
+          <Property Type="Int32" Name="Id_Sede_Universitarias" Nullable="false" />
+          <Property Type="String" Name="Inicio_Cuatrimestre" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Fin_Cuatrimestre" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="pa_Cuatrimestre_Select_Result">
+          <Property Type="Int32" Name="Id_Cuatrimeste" Nullable="false" />
+          <Property Type="Int32" Name="Id_Num_Cuatrimestre" Nullable="false" />
+          <Property Type="Int32" Name="Anio_Cuatrimestre" Nullable="false" />
+          <Property Type="Int32" Name="Id_Sede_Universitarias" Nullable="false" />
+          <Property Type="String" Name="Inicio_Cuatrimestre" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Fin_Cuatrimestre" Nullable="false" MaxLength="1" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2524,20 +2527,11 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <EntityTypeMapping TypeName="matriculaBDModel.Cuatrimestre">
               <MappingFragment StoreEntitySet="Cuatrimestre">
                 <ScalarProperty Name="Id_Cuatrimeste" ColumnName="Id_Cuatrimeste" />
-                <ScalarProperty Name="Num_Cuatrimestre" ColumnName="Num_Cuatrimestre" />
+                <ScalarProperty Name="Id_Num_Cuatrimestre" ColumnName="Id_Num_Cuatrimestre" />
                 <ScalarProperty Name="Anio_Cuatrimestre" ColumnName="Anio_Cuatrimestre" />
                 <ScalarProperty Name="Id_Sede_Universitarias" ColumnName="Id_Sede_Universitarias" />
                 <ScalarProperty Name="Inicio_Cuatrimestre" ColumnName="Inicio_Cuatrimestre" />
                 <ScalarProperty Name="Fin_Cuatrimestre" ColumnName="Fin_Cuatrimestre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cuatrimestre_x_Sede">
-            <EntityTypeMapping TypeName="matriculaBDModel.Cuatrimestre_x_Sede">
-              <MappingFragment StoreEntitySet="Cuatrimestre_x_Sede">
-                <ScalarProperty Name="Id_Cuatrimeste_x_Sede" ColumnName="Id_Cuatrimeste_x_Sede" />
-                <ScalarProperty Name="Id_Cuatrimestre" ColumnName="Id_Cuatrimestre" />
-                <ScalarProperty Name="Id_Sedes_universitarias" ColumnName="Id_Sedes_universitarias" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2547,7 +2541,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
                 <ScalarProperty Name="Id_Curso_x_Cuatrimestre" ColumnName="Id_Curso_x_Cuatrimestre" />
                 <ScalarProperty Name="Id_Curso" ColumnName="Id_Curso" />
                 <ScalarProperty Name="Nota" ColumnName="Nota" />
-                <ScalarProperty Name="Num_Cuatrimestre" ColumnName="Num_Cuatrimestre" />
+                <ScalarProperty Name="Id_Num_Cuatrimestre" ColumnName="Id_Num_Cuatrimestre" />
                 <ScalarProperty Name="Año_Cuatrimestre" ColumnName="Año_Cuatrimestre" />
                 <ScalarProperty Name="Id_Cuatrimestre" ColumnName="Id_Cuatrimestre" />
                 <ScalarProperty Name="Id_Estudiante" ColumnName="Id_Estudiante" />
@@ -2651,6 +2645,14 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
                 <ScalarProperty Name="Id_Canton" ColumnName="Id_Canton" />
                 <ScalarProperty Name="Id_Distrito" ColumnName="Id_Distrito" />
                 <ScalarProperty Name="Fecha_Contratacion" ColumnName="Fecha_Contratacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Numero_Cuatrimestre">
+            <EntityTypeMapping TypeName="matriculaBDModel.Numero_Cuatrimestre">
+              <MappingFragment StoreEntitySet="Numero_Cuatrimestre">
+                <ScalarProperty Name="Id_Num_Cuatrimestre" ColumnName="Id_Num_Cuatrimestre" />
+                <ScalarProperty Name="Numero_Cuatrimestre1" ColumnName="Numero_Cuatrimestre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2785,18 +2787,15 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_Curso_x_Cuatrimetre_Select" FunctionName="matriculaBDModel.Store.pa_Curso_x_Cuatrimetre_Select">
+          <FunctionImportMapping FunctionImportName="pa_Cuatrimestre_Num_CuatrimiestreViewBag" FunctionName="matriculaBDModel.Store.pa_Cuatrimestre_Num_CuatrimiestreViewBag">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="matriculaBDModel.pa_Curso_x_Cuatrimetre_Select_Result">
-                <ScalarProperty Name="Id_Curso_x_Cuatrimestre" ColumnName="Id_Curso_x_Cuatrimestre" />
-                <ScalarProperty Name="Nombre_Curso" ColumnName="Nombre_Curso" />
-                <ScalarProperty Name="Nota" ColumnName="Nota" />
-                <ScalarProperty Name="Num_Cuatrimestre" ColumnName="Num_Cuatrimestre" />
-                <ScalarProperty Name="Año_Cuatrimestre" ColumnName="Año_Cuatrimestre" />
-                <ScalarProperty Name="Nombre_Estudiante" ColumnName="Nombre_Estudiante" />
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result">
+                <ScalarProperty Name="Id_Num_Cuatrimestre" ColumnName="Id_Num_Cuatrimestre" />
+                <ScalarProperty Name="Numero_Cuatrimestre" ColumnName="Numero_Cuatrimestre" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_Curso_x_Cuatrimetre_Select" FunctionName="matriculaBDModel.Store.pa_Curso_x_Cuatrimetre_Select" />
           <FunctionImportMapping FunctionImportName="pa_CursoCarrera_Delete" FunctionName="matriculaBDModel.Store.pa_CursoCarrera_Delete" />
           <FunctionImportMapping FunctionImportName="pa_CursoCarrera_Insert" FunctionName="matriculaBDModel.Store.pa_CursoCarrera_Insert" />
           <FunctionImportMapping FunctionImportName="pa_CursoCarrera_Select" FunctionName="matriculaBDModel.Store.pa_CursoCarrera_Select">
@@ -2854,6 +2853,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_Cursos_Update" FunctionName="matriculaBDModel.Store.pa_Cursos_Update" />
           <FunctionImportMapping FunctionImportName="pa_Cursos_ValidarNombreCodigo_Select" FunctionName="matriculaBDModel.Store.pa_Cursos_ValidarNombreCodigo_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="matriculaBDModel.pa_Cursos_ValidarNombreCodigo_Select_Result">
@@ -3187,31 +3187,6 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Reporte_Notas_Por_Curso" FunctionName="matriculaBDModel.Store.Reporte_Notas_Por_Curso">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="matriculaBDModel.Reporte_Notas_Por_Curso_Result">
-                <ScalarProperty Name="Id_Estudiante" ColumnName="Id_Estudiante" />
-                <ScalarProperty Name="Nombre_Estudiante" ColumnName="Nombre_Estudiante" />
-                <ScalarProperty Name="Nota" ColumnName="Nota" />
-                <ScalarProperty Name="Nombre_Curso" ColumnName="Nombre_Curso" />
-                <ScalarProperty Name="Nombre_Sede" ColumnName="Nombre_Sede" />
-                <ScalarProperty Name="Num_Cuatrimestre" ColumnName="Num_Cuatrimestre" />
-                <ScalarProperty Name="Anio_Cuatrimestre" ColumnName="Anio_Cuatrimestre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Reporte_Notas_Por_Estudiante" FunctionName="matriculaBDModel.Store.Reporte_Notas_Por_Estudiante">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="matriculaBDModel.Reporte_Notas_Por_Estudiante_Result">
-                <ScalarProperty Name="Id_Estudiante" ColumnName="Id_Estudiante" />
-                <ScalarProperty Name="Nombre_Estudiante" ColumnName="Nombre_Estudiante" />
-                <ScalarProperty Name="Nombre_Curso" ColumnName="Nombre_Curso" />
-                <ScalarProperty Name="Nota" ColumnName="Nota" />
-                <ScalarProperty Name="Num_Cuatrimestre" ColumnName="Num_Cuatrimestre" />
-                <ScalarProperty Name="Anio_Cuatrimestre" ColumnName="Anio_Cuatrimestre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="RetornaCantones" FunctionName="matriculaBDModel.Store.RetornaCantones">
             <ResultMapping>
               <ComplexTypeMapping TypeName="matriculaBDModel.RetornaCantones_Result">
@@ -3316,7 +3291,31 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="matriculaBDModel.Store.sp_upgraddiagrams" />
-          <FunctionImportMapping FunctionImportName="pa_Cursos_Update" FunctionName="matriculaBDModel.Store.pa_Cursos_Update" />
+          <FunctionImportMapping FunctionImportName="pa_Cuatrimestre_VerificarCuatrimestre" FunctionName="matriculaBDModel.Store.pa_Cuatrimestre_VerificarCuatrimestre">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_Cuatrimestre_VerificarCuatrimestre_Result">
+                <ScalarProperty Name="Id_Cuatrimeste" ColumnName="Id_Cuatrimeste" />
+                <ScalarProperty Name="Id_Num_Cuatrimestre" ColumnName="Id_Num_Cuatrimestre" />
+                <ScalarProperty Name="Anio_Cuatrimestre" ColumnName="Anio_Cuatrimestre" />
+                <ScalarProperty Name="Id_Sede_Universitarias" ColumnName="Id_Sede_Universitarias" />
+                <ScalarProperty Name="Inicio_Cuatrimestre" ColumnName="Inicio_Cuatrimestre" />
+                <ScalarProperty Name="Fin_Cuatrimestre" ColumnName="Fin_Cuatrimestre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_Cuatrimestre_Select" FunctionName="matriculaBDModel.Store.pa_Cuatrimestre_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_Cuatrimestre_Select_Result">
+                <ScalarProperty Name="Id_Cuatrimeste" ColumnName="Id_Cuatrimeste" />
+                <ScalarProperty Name="Id_Num_Cuatrimestre" ColumnName="Id_Num_Cuatrimestre" />
+                <ScalarProperty Name="Anio_Cuatrimestre" ColumnName="Anio_Cuatrimestre" />
+                <ScalarProperty Name="Id_Sede_Universitarias" ColumnName="Id_Sede_Universitarias" />
+                <ScalarProperty Name="Inicio_Cuatrimestre" ColumnName="Inicio_Cuatrimestre" />
+                <ScalarProperty Name="Fin_Cuatrimestre" ColumnName="Fin_Cuatrimestre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_Cuatrimestre_Insert" FunctionName="matriculaBDModel.Store.pa_Cuatrimestre_Insert" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

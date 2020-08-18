@@ -11,13 +11,13 @@ namespace ProyectoMatricula.Modelos
 {
     using System;
     
-    public partial class pa_Curso_x_Cuatrimetre_Select_Result
+    public partial class pa_Cuatrimestre_Select_Result
     {
-        public int Id_Curso_x_Cuatrimestre { get; set; }
-        public string Nombre_Curso { get; set; }
-        public double Nota { get; set; }
-        public int Num_Cuatrimestre { get; set; }
-        public int Año_Cuatrimestre { get; set; }
-        public string Nombre_Estudiante { get; set; }
+        public int Id_Cuatrimeste { get; set; }
+        public int Id_Num_Cuatrimestre { get; set; }
+        public int Anio_Cuatrimestre { get; set; }
+        public int Id_Sede_Universitarias { get; set; }
+        public string Inicio_Cuatrimestre { get; set; }
+        public string Fin_Cuatrimestre { get; set; }
     }
 }
