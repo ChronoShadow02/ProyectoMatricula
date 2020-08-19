@@ -26,10 +26,22 @@ namespace ProyectoMatricula.Controllers
             {
                 List<pa_Cuatrimestre_Select_Result> modeloVista = this.matriculaBD.pa_Cuatrimestre_Select(null, null, null).ToList();
 
+
                 return View(modeloVista);
             }
-
+        [HttpPost]
+        public ActionResult CuatrimestreLista(pa_Cuatrimestre_Select_Result modeloBusqueda)
+        {
+            List<pa_Cuatrimestre_Select_Result> modeloVista = 
+                this.matriculaBD.pa_Cuatrimestre_Select(modeloBusqueda.Numero_Cuatrimestre,
+                                                        modeloBusqueda.Anio_Cuatrimestre,
+                                                        modeloBusqueda.Nombre_Sede).ToList();
+            this.Lista_Num_CuatrimestreViewBag();
+            this.CargarSedesUniversitariasViewbag();
+            return View(modeloVista);
+        }
         #endregion
+
         #region CuatrimestreNuevo
         public ActionResult CuatrimestreNuevo()
             {
@@ -126,6 +138,68 @@ namespace ProyectoMatricula.Controllers
             }
         #endregion
 
+        #region OfertaCursosPorSede
+        /// <summary>
+        /// Método que Muestra la vista del formulario de Oferta de cursos
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult OfertaCursosPorSede()
+        {
+            this.Lista_Num_CuatrimestreViewBag();
+            this.CargarSedesUniversitariasViewbag();
+            this.CargarCursosViewBag();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult OfertaCursosPorSede(pa_Curso_x_Sede_SoloID_Select_Result modeloVista)
+        {
+            int RegistrosAfectados = 0;
+            string mensaje = "";
+            try
+            {
+                ///Se verifica si  ya existe cierto curso en x cuatrimestre en x sede 
+                ///
+                pa_Curso_x_Sede_VerificaCurso_Select_Result ModeloVerificar =
+                    this.matriculaBD.pa_Curso_x_Sede_VerificaCurso_Select(modeloVista.Id_Curso, 
+                                                                          modeloVista.Id_Sedes_universitarias,
+                                                                          modeloVista.Id_Num_Cuatrimestre).FirstOrDefault();
+                ///Si es diferente de  null o si esta en la base de datos
+                if (ModeloVerificar != null)
+                {
+                    mensaje = "Ya existe ese curso por cuatrimestre en dicha sede.";
+                }
+                else
+                {
+                    RegistrosAfectados = this.matriculaBD.pa_Cuatrimestre_OfertaCursos_Insert(modeloVista.Id_Curso,
+                                                                                              modeloVista.Id_Sedes_universitarias,
+                                                                                              modeloVista.Id_Num_Cuatrimestre,
+                                                                                              modeloVista.Cantidad_Estudiantes);
+                }
+                    
+            }
+            catch (Exception error)
+            {
+                mensaje = "Hubo un error. " +  error.Message;
+                
+            }
+            finally {
+
+                if (RegistrosAfectados > 0)
+                {
+                    mensaje = "Oferta ingresada";
+                }
+                else 
+                {
+                    mensaje += "No se pudo ingresar la oferta.";
+                }
+                Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+            }
+            this.Lista_Num_CuatrimestreViewBag();
+            this.CargarSedesUniversitariasViewbag();
+            this.CargarCursosViewBag();
+            return View();
+        }
+        #endregion
 
         #region Número de cuatrimestre viewbag
         /// <summary>
@@ -145,6 +219,16 @@ namespace ProyectoMatricula.Controllers
             {
                 this.ViewBag.ListaSedes = this.matriculaBD.pa_Sedes_UniversitariasID_Select().ToList();
             }
+        #endregion
+
+        #region CargarCursosViewBag
+        /// <summary>
+        /// Método que retorna los cursos en los que pueden ser requisitos
+        /// </summary>
+        void CargarCursosViewBag()
+        {
+            this.ViewBag.ListaCursos = this.matriculaBD.pa_CursosCodigos_Select().ToList();
+        }
         #endregion
     }
 }

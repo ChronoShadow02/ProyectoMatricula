@@ -18,6 +18,7 @@ namespace ProyectoMatricula.Modelos
         {
             this.Cuatrimestre = new HashSet<Cuatrimestre>();
             this.Curso_x_Cuatrimestre = new HashSet<Curso_x_Cuatrimestre>();
+            this.Curso_x_Sede = new HashSet<Curso_x_Sede>();
         }
     
         public int Id_Num_Cuatrimestre { get; set; }
@@ -25,5 +26,6 @@ namespace ProyectoMatricula.Modelos
     
         public virtual ICollection<Cuatrimestre> Cuatrimestre { get; set; }
         public virtual ICollection<Curso_x_Cuatrimestre> Curso_x_Cuatrimestre { get; set; }
+        public virtual ICollection<Curso_x_Sede> Curso_x_Sede { get; set; }
     }
 }

@@ -5,7 +5,19 @@
 }
 
 <h1 class="text-center">Lista de cuatrimestres</h1>
-<table class="table">
+<form class="d-flex align-content-center justify-content-center" method="post">
+    <label class="form-check-label" id="txtCuatrimestre">Cuatrimestre</label>&nbsp;
+    <input type="text" value="" id="Numero_Cuatrimestre" name="Numero_Cuatrimestre" class="form-control"/>
+    &nbsp;
+    <label class="form-check-label" id="lblSedeUniversitaria">Sede universitaria</label>&nbsp;
+    <input type="text" value="" id="Nombre_Sede" name="Nombre_Sede" class="form-control"/>
+    &nbsp;
+    <label class="form-check-label" id="anio">Año de cuatrimestre</label>&nbsp;
+    <input type="text" value="" class="form-control" name="Anio_Cuatrimestre" id="Anio_Cuatrimestre" />&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i>Buscar</button>
+</form>
+<br />
+<table class="table text-center table-hover table-bordered table-striped">
     <tr>
         <td>Identificador</td>
         <td>Cuatrimestre</td>

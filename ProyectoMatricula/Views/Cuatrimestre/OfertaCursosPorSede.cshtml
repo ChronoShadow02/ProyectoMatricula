@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Matrícula UMCA | Oferta de cursos";
+    Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
+}
+
+<h1 class="text-center">Oferta de cursos por sede</h1>
+<div class="row justify-content-center align-items-center">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <form method="post" id="frmOferta">
+            <div class="form-group">
+                <label id="lblCurso">Curso:</label>
+                <select name="Id_Curso" id="Id_Curso" class="form-control">
+                    <option value="">Seleccione una opción</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_CursosCodigos_Select_Result posicionCurso in this.ViewBag.ListaCursos)
+                        {
+                            <option value="@posicionCurso.Id_Curso">@posicionCurso.Nombre_Curso</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label id="lblSede">Sede:</label>
+                <select name="Id_Sedes_universitarias" id="Id_Sede" class="form-control">
+                    <option value="">Seleccione una opción</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_Sedes_UniversitariasID_Select_Result posicionSede in this.ViewBag.ListaSedes)
+                        {
+                            <option value="@posicionSede.Id_Sedes_universitarias">@posicionSede.Nombre_Sede</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label id="lblCuatrimestre">Cuatrimestre:</label>
+                <select name="Id_Num_Cuatrimestre" id="Id_Cuatrimestre" class="form-control">
+                    <option value="">Seleccione una opción</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result posicionCuatri in this.ViewBag.Lista_Num_Cuatrimestre)
+                        {
+                            <option value="@posicionCuatri.Id_Num_Cuatrimestre">@posicionCuatri.Numero_Cuatrimestre</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label id="lblCurso">Cantidad de estudiantes:</label>
+                <input type="text" value="" id="Cantidad_Estudiantes" name="Cantidad_Estudiantes" class="form-control"/>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-plus "></i> Ingresar</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/validacionesGenericas/validacionesGenericas.js"></script>
+    <script src="~/Scripts/Cuatrimestre/validarOferta.js"></script>
+}
+        
+

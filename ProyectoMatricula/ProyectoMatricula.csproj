@@ -266,6 +266,12 @@
     <Compile Include="Modelos\pa_Cursos_x_Carrera_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_Curso_x_Sede_SoloID_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_Curso_x_Sede_VerificaCurso_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\pa_DireccionesCarrerasRetornaID_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -419,6 +425,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Scripts\Carreras\validarCarreras.js" />
     <Content Include="Scripts\Cuatrimestre\validarCuatrimestre.js" />
+    <Content Include="Scripts\Cuatrimestre\validarOferta.js" />
     <Content Include="Scripts\CursosCarrera\validarCursoCarrera.js" />
     <Content Include="Scripts\Cursos\validaCurso.js" />
     <Content Include="Scripts\Direcciones\validarDireccion.js" />
@@ -594,6 +601,7 @@
     <Content Include="Views\Reportes\ReporteNotasEstudiante.cshtml" />
     <Content Include="Views\Reportes\ReporteNotasCurso.cshtml" />
     <Content Include="Views\Cuatrimestre\CuatrimestreLista.cshtml" />
+    <Content Include="Views\Cuatrimestre\OfertaCursosPorSede.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,23 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="190a4b335c6f41deb76339a79162eeba" Name="Diagram1">
-        <EntityTypeShape EntityType="matriculaBDModel.Canton" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.Carreras_universitarias" Width="1.5" PointX="15" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.Cuatrimestre" Width="1.5" PointX="18" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.Curso_x_Cuatrimestre" Width="1.5" PointX="12.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.Curso_x_Sede" Width="1.5" PointX="21" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.Cursos" Width="1.5" PointX="10.5" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.CursosXCarrera" Width="1.5" PointX="17.25" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.CursosxCarreraxSede" Width="1.5" PointX="17.25" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.CursosXEstudiante" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.Direcciones_de_carrera" Width="1.5" PointX="12.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.Distrito" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.Estudiantes" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.Funcionarios" Width="1.5" PointX="10.5" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.Numero_Cuatrimestre" Width="1.5" PointX="15.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.Provincia" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="matriculaBDModel.Sedes_Universitarias" Width="1.5" PointX="15.75" PointY="12.75" IsExpanded="true" />
+      <Diagram DiagramId="6bebfb9bdfeb4486970e1ea180c9ea51" Name="Diagram1">
+        <EntityTypeShape EntityType="matriculaBDModel.Canton" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Carreras_universitarias" Width="1.5" PointX="15" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Cuatrimestre" Width="1.5" PointX="15" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Curso_x_Cuatrimestre" Width="1.5" PointX="9.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Curso_x_Sede" Width="1.5" PointX="18" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Cursos" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.CursosXCarrera" Width="1.5" PointX="17.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.CursosxCarreraxSede" Width="1.5" PointX="17.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.CursosXEstudiante" Width="1.5" PointX="12.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Direcciones_de_carrera" Width="1.5" PointX="12.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Distrito" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Estudiantes" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Funcionarios" Width="1.5" PointX="10.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Numero_Cuatrimestre" Width="1.5" PointX="12.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Provincia" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="matriculaBDModel.Sedes_Universitarias" Width="1.5" PointX="12.75" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="matriculaBDModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="matriculaBDModel.Administadores" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="matriculaBDModel.Canton_ref_Provincia" ManuallyRouted="false" />
@@ -38,6 +38,7 @@
         <AssociationConnector Association="matriculaBDModel.FK_Curso_x_Cuatrimestre_Estudiantes" ManuallyRouted="false" />
         <AssociationConnector Association="matriculaBDModel.FK_Curso_x_Cuatrimestre_Numero_Cuatrimestre" ManuallyRouted="false" />
         <AssociationConnector Association="matriculaBDModel.FK_Curso_x_Sede_Cursos" ManuallyRouted="false" />
+        <AssociationConnector Association="matriculaBDModel.FK_Curso_x_Sede_Numero_Cuatrimestre" ManuallyRouted="false" />
         <AssociationConnector Association="matriculaBDModel.FK_Curso_x_Sede_Sedes_Universitarias" ManuallyRouted="false" />
         <AssociationConnector Association="matriculaBDModel.FK_CursosXCarrera_Cursos" ManuallyRouted="false" />
         <AssociationConnector Association="matriculaBDModel.FK_CursosxCarreraxSede_Cursos" ManuallyRouted="false" />
