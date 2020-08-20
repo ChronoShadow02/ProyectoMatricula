@@ -266,6 +266,9 @@
     <Compile Include="Modelos\pa_Cursos_x_Carrera_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_Curso_x_Sede_RetornaID_Select_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\pa_Curso_x_Sede_SoloID_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -602,6 +605,7 @@
     <Content Include="Views\Reportes\ReporteNotasCurso.cshtml" />
     <Content Include="Views\Cuatrimestre\CuatrimestreLista.cshtml" />
     <Content Include="Views\Cuatrimestre\OfertaCursosPorSede.cshtml" />
+    <Content Include="Views\Cuatrimestre\MatriculaEstudianteCurso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

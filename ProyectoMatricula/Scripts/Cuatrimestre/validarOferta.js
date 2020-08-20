@@ -14,6 +14,9 @@ function validarOferta() {
             Id_Num_Cuatrimestre: {
                 required: true
             },
+            Anio_Cuatrimestre: {
+                required:true
+            },
             Cantidad_Estudiantes: {
                 required: true,
                 digits: true

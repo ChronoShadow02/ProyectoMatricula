@@ -6,14 +6,10 @@
 
 <h1 class="text-center">Lista de cuatrimestres</h1>
 <form class="d-flex align-content-center justify-content-center" method="post">
-    <label class="form-check-label" id="txtCuatrimestre">Cuatrimestre</label>&nbsp;
-    <input type="text" value="" id="Numero_Cuatrimestre" name="Numero_Cuatrimestre" class="form-control"/>
     &nbsp;
     <label class="form-check-label" id="lblSedeUniversitaria">Sede universitaria</label>&nbsp;
     <input type="text" value="" id="Nombre_Sede" name="Nombre_Sede" class="form-control"/>
-    &nbsp;
-    <label class="form-check-label" id="anio">Año de cuatrimestre</label>&nbsp;
-    <input type="text" value="" class="form-control" name="Anio_Cuatrimestre" id="Anio_Cuatrimestre" />&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;
     <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i>Buscar</button>
 </form>
 <br />
@@ -25,19 +21,25 @@
         <td>Sede</td>
         <td>Inicio de cuatrimestre</td>
         <td>Fin de cuatrimestre</td>
+        <td colspan="2"></td>
     </tr>
     @{
         foreach (ProyectoMatricula.Modelos.pa_Cuatrimestre_Select_Result posicionModelo in this.Model)
         {
-            <tr>
-                <td>@posicionModelo.Id_Cuatrimeste</td>
-                <td>@posicionModelo.Numero_Cuatrimestre</td>
-                <td>@posicionModelo.Anio_Cuatrimestre</td>
-                <td>@posicionModelo.Nombre_Sede</td>
-                <td>@posicionModelo.Inicio_Cuatrimestre</td>
-                <td>@posicionModelo.Fin_Cuatrimestre</td>
-            </tr>
+        <tr>
+            <td>@posicionModelo.Id_Cuatrimeste</td>
+            <td>@posicionModelo.Numero_Cuatrimestre</td>
+            <td>@posicionModelo.Anio_Cuatrimestre</td>
+            <td>@posicionModelo.Nombre_Sede</td>
+            <td>@posicionModelo.Inicio_Cuatrimestre</td>
+            <td>@posicionModelo.Fin_Cuatrimestre</td>
+            <td><a href="~/Cuatrimestre/OfertaCursosPorSede?Numero_Cuatrimestre=@posicionModelo.Numero_Cuatrimestre&Id_Sedes_universitarias=@posicionModelo.Id_Sedes_universitarias&Anio_Cuatrimestre=@posicionModelo.Anio_Cuatrimestre">Ofertar cursos</a></td>
+            <td></td>
+        </tr>
         }
     }
 </table>
-
+<div class="d-flex align-content-center justify-content-center">
+    <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary"><i class="fa fa-home" aria-hidden="true"></i> Menú principal</a> &nbsp;
+</div>
+<br />

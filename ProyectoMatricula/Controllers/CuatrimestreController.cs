@@ -24,18 +24,17 @@ namespace ProyectoMatricula.Controllers
             /// <returns></returns>
             public ActionResult CuatrimestreLista()
             {
-                List<pa_Cuatrimestre_Select_Result> modeloVista = this.matriculaBD.pa_Cuatrimestre_Select(null, null, null).ToList();
+                List<pa_Cuatrimestre_Select_Result> modeloVista = this.matriculaBD.pa_Cuatrimestre_Select(null).ToList();
 
-
-                return View(modeloVista);
+            this.Lista_Num_CuatrimestreViewBag();
+            this.CargarSedesUniversitariasViewbag();
+            return View(modeloVista);
             }
         [HttpPost]
         public ActionResult CuatrimestreLista(pa_Cuatrimestre_Select_Result modeloBusqueda)
         {
             List<pa_Cuatrimestre_Select_Result> modeloVista = 
-                this.matriculaBD.pa_Cuatrimestre_Select(modeloBusqueda.Numero_Cuatrimestre,
-                                                        modeloBusqueda.Anio_Cuatrimestre,
-                                                        modeloBusqueda.Nombre_Sede).ToList();
+                this.matriculaBD.pa_Cuatrimestre_Select(modeloBusqueda.Nombre_Sede).ToList();
             this.Lista_Num_CuatrimestreViewBag();
             this.CargarSedesUniversitariasViewbag();
             return View(modeloVista);
@@ -143,28 +142,36 @@ namespace ProyectoMatricula.Controllers
         /// Método que Muestra la vista del formulario de Oferta de cursos
         /// </summary>
         /// <returns></returns>
-        public ActionResult OfertaCursosPorSede()
+        public ActionResult OfertaCursosPorSede(int Numero_Cuatrimestre, int Id_Sedes_universitarias, int Anio_Cuatrimestre)
         {
+            pa_Curso_x_Sede_RetornaID_Select_Result modeloVista = new pa_Curso_x_Sede_RetornaID_Select_Result();
+
+            modeloVista = this.matriculaBD.pa_Curso_x_Sede_RetornaID_Select(Numero_Cuatrimestre, Id_Sedes_universitarias, Anio_Cuatrimestre).FirstOrDefault();
+
             this.Lista_Num_CuatrimestreViewBag();
             this.CargarSedesUniversitariasViewbag();
             this.CargarCursosViewBag();
-            return View();
+            return View(modeloVista);
         }
+
         [HttpPost]
-        public ActionResult OfertaCursosPorSede(pa_Curso_x_Sede_SoloID_Select_Result modeloVista)
+        public ActionResult OfertaCursosPorSede(pa_Curso_x_Sede_SoloID_Select_Result modeloVista, pa_Curso_x_Sede_RetornaID_Select_Result OtroModelo)
         {
+
+            
             int RegistrosAfectados = 0;
             string mensaje = "";
             try
             {
                 ///Se verifica si  ya existe cierto curso en x cuatrimestre en x sede 
-                ///
+                
                 pa_Curso_x_Sede_VerificaCurso_Select_Result ModeloVerificar =
-                    this.matriculaBD.pa_Curso_x_Sede_VerificaCurso_Select(modeloVista.Id_Curso, 
+                    this.matriculaBD.pa_Curso_x_Sede_VerificaCurso_Select(modeloVista.Id_Curso,
                                                                           modeloVista.Id_Sedes_universitarias,
-                                                                          modeloVista.Id_Num_Cuatrimestre).FirstOrDefault();
+                                                                          OtroModelo.Numero_Cuatrimestre,
+                                                                          OtroModelo.Anio_Cuatrimestre).FirstOrDefault();
                 ///Si es diferente de  null o si esta en la base de datos
-                if (ModeloVerificar != null)
+                if (ModeloVerificar != null)///antes estaba ModeloVerificar
                 {
                     mensaje = "Ya existe ese curso por cuatrimestre en dicha sede.";
                 }
@@ -172,8 +179,9 @@ namespace ProyectoMatricula.Controllers
                 {
                     RegistrosAfectados = this.matriculaBD.pa_Cuatrimestre_OfertaCursos_Insert(modeloVista.Id_Curso,
                                                                                               modeloVista.Id_Sedes_universitarias,
-                                                                                              modeloVista.Id_Num_Cuatrimestre,
-                                                                                              modeloVista.Cantidad_Estudiantes);
+                                                                                              OtroModelo.Numero_Cuatrimestre,
+                                                                                              modeloVista.Cantidad_Estudiantes,
+                                                                                              OtroModelo.Anio_Cuatrimestre);
                 }
                     
             }
@@ -197,6 +205,13 @@ namespace ProyectoMatricula.Controllers
             this.Lista_Num_CuatrimestreViewBag();
             this.CargarSedesUniversitariasViewbag();
             this.CargarCursosViewBag();
+            return View(OtroModelo);
+        }
+        #endregion
+
+        #region MatriculaEstudianteCurso
+        public ActionResult MatriculaEstudianteCurso()
+        {
             return View();
         }
         #endregion

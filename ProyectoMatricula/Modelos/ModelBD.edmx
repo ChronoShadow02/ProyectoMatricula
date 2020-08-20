@@ -81,6 +81,7 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Property Name="Id_Sedes_universitarias" Type="int" Nullable="false" />
           <Property Name="Id_Num_Cuatrimestre" Type="int" Nullable="false" />
           <Property Name="Cantidad_Estudiantes" Type="int" Nullable="false" />
+          <Property Name="Anio_Cuatrimestre" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Cursos">
           <Key>
@@ -629,10 +630,9 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Parameter Name="Id_Sede" Type="int" Mode="In" />
           <Parameter Name="Id_Cuatrimestre" Type="int" Mode="In" />
           <Parameter Name="Cantidad_Estudiantes" Type="int" Mode="In" />
+          <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_Cuatrimestre_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Id_Num_Cuatrimestre" Type="int" Mode="In" />
-          <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
           <Parameter Name="Nombre_Sede" Type="varchar" Mode="In" />
         </Function>
         <Function Name="pa_Cuatrimestre_VerificaSoloCuatrimestre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -648,11 +648,17 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Parameter Name="Nombre_Curso" Type="varchar" Mode="In" />
           <Parameter Name="Cuatrimestre" Type="int" Mode="In" />
         </Function>
+        <Function Name="pa_Curso_x_Sede_RetornaID_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Numero_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Id_Sedes_universitarias" Type="int" Mode="In" />
+          <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
+        </Function>
         <Function Name="pa_Curso_x_Sede_SoloID_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_Curso_x_Sede_VerificaCurso_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Curso" Type="int" Mode="In" />
           <Parameter Name="Id_Sede_Universitaria" Type="int" Mode="In" />
           <Parameter Name="Id_Num_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_CursoCarrera_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Cursos_Por_Carrera" Type="int" Mode="In" />
@@ -1139,6 +1145,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Name="Id_Sedes_universitarias" Type="Int32" Nullable="false" />
           <Property Name="Id_Num_Cuatrimestre" Type="Int32" Nullable="false" />
           <Property Name="Cantidad_Estudiantes" Type="Int32" Nullable="false" />
+          <Property Name="Anio_Cuatrimestre" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cursos" Relationship="Self.FK_Curso_x_Sede_Cursos" FromRole="Curso_x_Sede" ToRole="Cursos" />
           <NavigationProperty Name="Numero_Cuatrimestre" Relationship="Self.FK_Curso_x_Sede_Numero_Cuatrimestre" FromRole="Curso_x_Sede" ToRole="Numero_Cuatrimestre" />
           <NavigationProperty Name="Sedes_Universitarias" Relationship="Self.FK_Curso_x_Sede_Sedes_Universitarias" FromRole="Curso_x_Sede" ToRole="Sedes_Universitarias" />
@@ -1896,10 +1903,9 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="Id_Sede" Mode="In" Type="Int32" />
             <Parameter Name="Id_Cuatrimestre" Mode="In" Type="Int32" />
             <Parameter Name="Cantidad_Estudiantes" Mode="In" Type="Int32" />
+            <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_Cuatrimestre_Select" ReturnType="Collection(matriculaBDModel.pa_Cuatrimestre_Select_Result)">
-            <Parameter Name="Id_Num_Cuatrimestre" Mode="In" Type="Int32" />
-            <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
             <Parameter Name="Nombre_Sede" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pa_Cuatrimestre_VerificaSoloCuatrimestre" ReturnType="Collection(matriculaBDModel.pa_Cuatrimestre_VerificaSoloCuatrimestre_Result)">
@@ -1915,11 +1921,17 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
             <Parameter Name="Cuatrimestre" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pa_Curso_x_Sede_RetornaID_Select" ReturnType="Collection(matriculaBDModel.pa_Curso_x_Sede_RetornaID_Select_Result)">
+            <Parameter Name="Numero_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Sedes_universitarias" Mode="In" Type="Int32" />
+            <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="pa_Curso_x_Sede_SoloID_Select" ReturnType="Collection(matriculaBDModel.pa_Curso_x_Sede_SoloID_Select_Result)" />
           <FunctionImport Name="pa_Curso_x_Sede_VerificaCurso_Select" ReturnType="Collection(matriculaBDModel.pa_Curso_x_Sede_VerificaCurso_Select_Result)">
             <Parameter Name="Id_Curso" Mode="In" Type="Int32" />
             <Parameter Name="Id_Sede_Universitaria" Mode="In" Type="Int32" />
             <Parameter Name="Id_Num_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_CursoCarrera_Delete">
             <Parameter Name="Id_Cursos_Por_Carrera" Mode="In" Type="Int32" />
@@ -2250,12 +2262,22 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Type="String" Name="Inicio_Cuatrimestre" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="Fin_Cuatrimestre" Nullable="false" MaxLength="1" />
         </ComplexType>
+        <ComplexType Name="pa_Curso_x_Sede_RetornaID_Select_Result">
+          <Property Type="Int32" Name="Id_Cuatrimeste" Nullable="false" />
+          <Property Type="Int32" Name="Numero_Cuatrimestre" Nullable="false" />
+          <Property Type="Int32" Name="Anio_Cuatrimestre" Nullable="false" />
+          <Property Type="Int32" Name="Id_Sedes_universitarias" Nullable="false" />
+          <Property Type="String" Name="Nombre_Sede" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Inicio_Cuatrimestre" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Fin_Cuatrimestre" Nullable="false" MaxLength="1" />
+        </ComplexType>
         <ComplexType Name="pa_Curso_x_Sede_SoloID_Select_Result">
           <Property Type="Int32" Name="Id_Curso_x_Sede" Nullable="false" />
           <Property Type="Int32" Name="Id_Curso" Nullable="false" />
           <Property Type="Int32" Name="Id_Sedes_universitarias" Nullable="false" />
           <Property Type="Int32" Name="Id_Num_Cuatrimestre" Nullable="false" />
           <Property Type="Int32" Name="Cantidad_Estudiantes" Nullable="false" />
+          <Property Type="Int32" Name="Anio_Cuatrimestre" Nullable="false" />
         </ComplexType>
         <ComplexType Name="pa_Curso_x_Sede_VerificaCurso_Select_Result">
           <Property Type="Int32" Name="Id_Curso_x_Sede" Nullable="false" />
@@ -2642,6 +2664,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
                 <ScalarProperty Name="Id_Sedes_universitarias" ColumnName="Id_Sedes_universitarias" />
                 <ScalarProperty Name="Id_Num_Cuatrimestre" ColumnName="Id_Num_Cuatrimestre" />
                 <ScalarProperty Name="Cantidad_Estudiantes" ColumnName="Cantidad_Estudiantes" />
+                <ScalarProperty Name="Anio_Cuatrimestre" ColumnName="Anio_Cuatrimestre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2919,6 +2942,19 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_Curso_x_Cuatrimetre_Select" FunctionName="matriculaBDModel.Store.pa_Curso_x_Cuatrimetre_Select" />
+          <FunctionImportMapping FunctionImportName="pa_Curso_x_Sede_RetornaID_Select" FunctionName="matriculaBDModel.Store.pa_Curso_x_Sede_RetornaID_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_Curso_x_Sede_RetornaID_Select_Result">
+                <ScalarProperty Name="Id_Cuatrimeste" ColumnName="Id_Cuatrimeste" />
+                <ScalarProperty Name="Numero_Cuatrimestre" ColumnName="Numero_Cuatrimestre" />
+                <ScalarProperty Name="Anio_Cuatrimestre" ColumnName="Anio_Cuatrimestre" />
+                <ScalarProperty Name="Id_Sedes_universitarias" ColumnName="Id_Sedes_universitarias" />
+                <ScalarProperty Name="Nombre_Sede" ColumnName="Nombre_Sede" />
+                <ScalarProperty Name="Inicio_Cuatrimestre" ColumnName="Inicio_Cuatrimestre" />
+                <ScalarProperty Name="Fin_Cuatrimestre" ColumnName="Fin_Cuatrimestre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_Curso_x_Sede_SoloID_Select" FunctionName="matriculaBDModel.Store.pa_Curso_x_Sede_SoloID_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="matriculaBDModel.pa_Curso_x_Sede_SoloID_Select_Result">
@@ -2927,6 +2963,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
                 <ScalarProperty Name="Id_Sedes_universitarias" ColumnName="Id_Sedes_universitarias" />
                 <ScalarProperty Name="Id_Num_Cuatrimestre" ColumnName="Id_Num_Cuatrimestre" />
                 <ScalarProperty Name="Cantidad_Estudiantes" ColumnName="Cantidad_Estudiantes" />
+                <ScalarProperty Name="Anio_Cuatrimestre" ColumnName="Anio_Cuatrimestre" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
