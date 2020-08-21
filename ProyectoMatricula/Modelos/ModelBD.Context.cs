@@ -1188,5 +1188,10 @@ namespace ProyectoMatricula.Modelos
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<pa_Curso_x_Cuatrimestre_ListaEstudiantes_Result> pa_Curso_x_Cuatrimestre_ListaEstudiantes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Curso_x_Cuatrimestre_ListaEstudiantes_Result>("pa_Curso_x_Cuatrimestre_ListaEstudiantes");
+        }
     }
 }

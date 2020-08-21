@@ -210,9 +210,21 @@ namespace ProyectoMatricula.Controllers
         #endregion
 
         #region MatriculaEstudianteCurso
-        public ActionResult MatriculaEstudianteCurso()
+        /// <summary>
+        /// Método que retorna el resultado de lo que esta dentro xd(
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MatriculaEstudianteCurso(int Numero_Cuatrimestre, int Id_Sedes_universitarias, int Anio_Cuatrimestre)
         {
-            return View();
+            pa_Curso_x_Sede_RetornaID_Select_Result modeloVista = new pa_Curso_x_Sede_RetornaID_Select_Result();
+
+            modeloVista = this.matriculaBD.pa_Curso_x_Sede_RetornaID_Select(Numero_Cuatrimestre, Id_Sedes_universitarias, Anio_Cuatrimestre).FirstOrDefault();
+
+            this.Lista_Num_CuatrimestreViewBag();
+            this.CargarSedesUniversitariasViewbag();
+            this.CargarCursosViewBag();
+            this.CargaListaEstudianteViewBag();
+            return View(modeloVista);
         }
         #endregion
 
@@ -243,6 +255,13 @@ namespace ProyectoMatricula.Controllers
         void CargarCursosViewBag()
         {
             this.ViewBag.ListaCursos = this.matriculaBD.pa_CursosCodigos_Select().ToList();
+        }
+        #endregion
+
+        #region ListaEstudiantes
+        void CargaListaEstudianteViewBag()
+        {
+            this.ViewBag.ListaEstudiantes = this.matriculaBD.pa_Curso_x_Cuatrimestre_ListaEstudiantes().ToList();
         }
         #endregion
     }
