@@ -235,9 +235,12 @@ namespace ProyectoMatricula.Controllers
 
             try
             {
-                ///Se verifica que no haya un estudiante matriculado en el mismo curso
+                ///Se obtiene el id del cuatrimestre del para hacer la inserción
                 ///
-
+                pa_Curso_x_Cuatrimestre_Id_Cuatrimestre_Result modeloVerificar =
+                    this.matriculaBD.pa_Curso_x_Cuatrimestre_Id_Cuatrimestre(OtroModelo.Numero_Cuatrimestre,
+                                                                             modeloVista.Anio_Cuatrimestre,
+                                                                             modeloVista.Id_Sedes_universitarias).FirstOrDefault();
                 //if ("Aqui va el modelo a verficar" != null)
                 //{
                     RegistrosAfectados = this.matriculaBD.pa_Curso_x_Cuatrimestre_Insert(modeloVista.Id_Curso,
