@@ -29,7 +29,7 @@
                         ///simplemente no va a agregar nada.
                         ///Cuando hayan registros en el ViewBag muestra los cursos correspondientes a ese cuatrimestre, año sede,etc...
 
-                        if (ViewBag.ListaCursosSCA!=null)
+                        if (ViewBag.ListaCursosSCA != null)
                         {
                             foreach (ProyectoMatricula.Modelos.pa_Curso_x_CuatrimestreListaCursos_Result posicionCurso in ViewBag.ListaCursosSCA)
                             {
@@ -95,6 +95,11 @@
         </form>
     </div>
 </div>
+<div class="d-flex align-content-center justify-content-center">
+    <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary"><i class="fa fa-home" aria-hidden="true"></i> Menú principal</a> &nbsp;
+    <a href="~/Cuatrimestre/CuatrimestreLista" class="btn btn-outline-primary"><i class="fa fa-list" aria-hidden="true"></i> Lista de cuatrimestres</a>
+</div>
+<br />
 @section scripts{
     <script src="~/Scripts/validacionesGenericas/validacionesGenericas.js"></script>
 

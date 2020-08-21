@@ -227,6 +227,50 @@ namespace ProyectoMatricula.Controllers
             this.cargaCursosSCA(Numero_Cuatrimestre, Id_Sedes_universitarias, Anio_Cuatrimestre);
             return View(modeloVista);
         }
+        [HttpPost]
+        public ActionResult MatriculaEstudianteCurso(pa_Curso_x_Sede_SoloID_Select_Result modeloVista, pa_Curso_x_Sede_RetornaID_Select_Result OtroModelo, pa_Curso_x_Cuatrimestre_ListaEstudiantes_Result modeloEstudiante)
+        {
+            int RegistrosAfectados = 0;
+            string mensaje = "";
+
+            try
+            {
+                ///Se verifica que no haya un estudiante matriculado en el mismo curso
+                ///
+
+                //if ("Aqui va el modelo a verficar" != null)
+                //{
+                    RegistrosAfectados = this.matriculaBD.pa_Curso_x_Cuatrimestre_Insert(modeloVista.Id_Curso,
+                                                                                         OtroModelo.Numero_Cuatrimestre,
+                                                                                         modeloVista.Anio_Cuatrimestre,
+                                                                                         OtroModelo.,
+                                                                                         modeloEstudiante.Id_Estudiante,
+                                                                                         modeloVista.Id_Sedes_universitarias);
+                //}
+            }
+            catch (Exception error)
+            {
+                mensaje = "Hubo un error." + error.Message;
+            }
+            finally
+            {
+                if (RegistrosAfectados > 0)
+                {
+                    mensaje = "Matricula ingresada";
+                }
+                else
+                {
+                    mensaje += ".No se pudo ingresar";
+                }
+                Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+            }
+            this.Lista_Num_CuatrimestreViewBag();
+            this.CargarSedesUniversitariasViewbag();
+            this.CargarCursosViewBag();
+            this.CargaListaEstudianteViewBag();
+            this.cargaCursosSCA(OtroModelo.Numero_Cuatrimestre,modeloVista.Id_Sedes_universitarias,modeloVista.Anio_Cuatrimestre);
+            return View();
+        }
         #endregion
 
         #region Número de cuatrimestre viewbag

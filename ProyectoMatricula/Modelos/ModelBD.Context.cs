@@ -1210,5 +1210,34 @@ namespace ProyectoMatricula.Modelos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Curso_x_CuatrimestreListaCursos_Result>("pa_Curso_x_CuatrimestreListaCursos", id_Sedes_UniversitariasParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter);
         }
+    
+        public virtual int pa_Curso_x_Cuatrimestre_Insert(Nullable<int> id_Curso, Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre, Nullable<int> id_Cuatrimestre, Nullable<int> id_Estudiante, Nullable<int> id_Sede_Universitaria)
+        {
+            var id_CursoParameter = id_Curso.HasValue ?
+                new ObjectParameter("Id_Curso", id_Curso) :
+                new ObjectParameter("Id_Curso", typeof(int));
+    
+            var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Num_Cuatrimestre", id_Num_Cuatrimestre) :
+                new ObjectParameter("Id_Num_Cuatrimestre", typeof(int));
+    
+            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
+                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
+                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
+    
+            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
+                new ObjectParameter("Id_Cuatrimestre", typeof(int));
+    
+            var id_EstudianteParameter = id_Estudiante.HasValue ?
+                new ObjectParameter("Id_Estudiante", id_Estudiante) :
+                new ObjectParameter("Id_Estudiante", typeof(int));
+    
+            var id_Sede_UniversitariaParameter = id_Sede_Universitaria.HasValue ?
+                new ObjectParameter("Id_Sede_Universitaria", id_Sede_Universitaria) :
+                new ObjectParameter("Id_Sede_Universitaria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Curso_x_Cuatrimestre_Insert", id_CursoParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_CuatrimestreParameter, id_EstudianteParameter, id_Sede_UniversitariaParameter);
+        }
     }
 }

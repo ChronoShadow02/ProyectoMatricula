@@ -71,6 +71,7 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Property Name="Año_Cuatrimestre" Type="int" Nullable="false" />
           <Property Name="Id_Cuatrimestre" Type="int" Nullable="false" />
           <Property Name="Id_Estudiante" Type="int" Nullable="false" />
+          <Property Name="Id_Sede_Universitaria" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Curso_x_Sede">
           <Key>
@@ -644,6 +645,14 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
           <Parameter Name="Id_Sede_Universitaria" Type="int" Mode="In" />
         </Function>
+        <Function Name="pa_Curso_x_Cuatrimestre_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Curso" Type="int" Mode="In" />
+          <Parameter Name="Id_Num_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Id_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Id_Estudiante" Type="int" Mode="In" />
+          <Parameter Name="Id_Sede_Universitaria" Type="int" Mode="In" />
+        </Function>
         <Function Name="pa_Curso_x_Cuatrimestre_ListaEstudiantes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_Curso_x_CuatrimestreListaCursos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Sedes_Universitarias" Type="int" Mode="In" />
@@ -1140,6 +1149,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <NavigationProperty Name="Cursos" Relationship="Self.FK_Curso_x_Cuatrimestre_Cursos" FromRole="Curso_x_Cuatrimestre" ToRole="Cursos" />
           <NavigationProperty Name="Estudiantes" Relationship="Self.FK_Curso_x_Cuatrimestre_Estudiantes" FromRole="Curso_x_Cuatrimestre" ToRole="Estudiantes" />
           <NavigationProperty Name="Numero_Cuatrimestre" Relationship="Self.FK_Curso_x_Cuatrimestre_Numero_Cuatrimestre" FromRole="Curso_x_Cuatrimestre" ToRole="Numero_Cuatrimestre" />
+          <Property Name="Id_Sede_Universitaria" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Curso_x_Sede">
           <Key>
@@ -2200,6 +2210,14 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="Id_Num_Cuatrimestre" Mode="In" Type="Int32" />
             <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pa_Curso_x_Cuatrimestre_Insert">
+            <Parameter Name="Id_Curso" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Num_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Estudiante" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Sede_Universitaria" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Cursos_ValidarNombreCodigo_Select_Result">
           <Property Type="Int32" Name="Id_Curso" Nullable="false" />
@@ -2677,6 +2695,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <EntitySetMapping Name="Curso_x_Cuatrimestre">
             <EntityTypeMapping TypeName="matriculaBDModel.Curso_x_Cuatrimestre">
               <MappingFragment StoreEntitySet="Curso_x_Cuatrimestre">
+                <ScalarProperty Name="Id_Sede_Universitaria" ColumnName="Id_Sede_Universitaria" />
                 <ScalarProperty Name="Id_Curso_x_Cuatrimestre" ColumnName="Id_Curso_x_Cuatrimestre" />
                 <ScalarProperty Name="Id_Curso" ColumnName="Id_Curso" />
                 <ScalarProperty Name="Id_Num_Cuatrimestre" ColumnName="Id_Num_Cuatrimestre" />
@@ -3529,6 +3548,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_Curso_x_Cuatrimestre_Insert" FunctionName="matriculaBDModel.Store.pa_Curso_x_Cuatrimestre_Insert" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
