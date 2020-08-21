@@ -4,78 +4,97 @@
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
 }
 
-<h1>Matrícula de estudiante en cursos</h1>
-<form method="post" id="frmMatriculaEstudiante">
-    <div class="form-group">
-        <label>Estudiante:</label>
-        <select class="form-control" name="Id_Estudiante" id="Id_Estudiante">
-            <option value="">Selecione una opción</option>
-            @{
-                foreach (ProyectoMatricula.Modelos.pa_Curso_x_Cuatrimestre_ListaEstudiantes_Result posicionEstudiante in this.ViewBag.ListaEstudiantes)
-                {
-                    <option value="@posicionEstudiante.Id_Estudiante">@posicionEstudiante.Nombre_Estudiante</option>
-                }
-            }
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Curso:</label>
-        <select id="Id_Curso" name="Id_Curso" class="form-control">
-        </select>
-    </div>
-    <div class="form-group">
-        <label id="lblSede">Sede:</label>
-        <select name="Id_Sedes_universitarias" id="Id_Sede" class="form-control" disabled>
-            <option value="">Seleccione una opción</option>
-            @{
-                foreach (ProyectoMatricula.Modelos.pa_Sedes_UniversitariasID_Select_Result posicionSede in this.ViewBag.ListaSedes)
-                {
-                    ///variable que indica si la sede está en el modelo
-                    bool esIdSedesModelo = posicionSede.Id_Sedes_universitarias == Model.Id_Sedes_universitarias;
+<h1 class="text-center">Matrícula de estudiante en cursos</h1>
+<div class="row justify-content-center align-items-center">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <form method="post" id="frmMatriculaEstudiante">
+            <div class="form-group">
+                <label>Estudiante:</label>
+                <select class="form-control" name="Id_Estudiante" id="Id_Estudiante">
+                    <option value="">Selecione una opción</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_Curso_x_Cuatrimestre_ListaEstudiantes_Result posicionEstudiante in this.ViewBag.ListaEstudiantes)
+                        {
+                            <option value="@posicionEstudiante.Id_Estudiante">@posicionEstudiante.Nombre_Estudiante</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Curso:</label>
+                <select id="Id_Curso" name="Id_Curso" class="form-control">
+                    <option value="">Seleccione una opción</option>
+                    @{
+                        ///Si el resultado del ViewBag sea nulo o no hayan registros de cursos en sedes, cuatrimestre etc,
+                        ///simplemente no va a agregar nada.
+                        ///Cuando hayan registros en el ViewBag muestra los cursos correspondientes a ese cuatrimestre, año sede,etc...
 
-                    if (esIdSedesModelo)
-                    {
-                        <option value="@posicionSede.Id_Sedes_universitarias" selected>@posicionSede.Nombre_Sede</option>
-                    }
-                    else
-                    {
-                        <option value="@posicionSede.Id_Sedes_universitarias">@posicionSede.Nombre_Sede</option>
-                    }
-                }
-            }
-        </select>
-    </div>
-    <div class="form-group">
-        <label id="lblCuatrimestre">Cuatrimestre:</label>
-        <select name="Id_Num_Cuatrimestre" id="Id_Num_Cuatrimestre" class="form-control" disabled>
-            <option value="">Seleccione una opción</option>
-            @{
-                foreach (ProyectoMatricula.Modelos.pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result posicionCuatri in this.ViewBag.Lista_Num_Cuatrimestre)
-                {
-                    ///variable que indica si la sede está en el modelo
-                    bool esIdCuatriModelo = posicionCuatri.Id_Num_Cuatrimestre == Model.Numero_Cuatrimestre;
+                        if (ViewBag.ListaCursosSCA!=null)
+                        {
+                            foreach (ProyectoMatricula.Modelos.pa_Curso_x_CuatrimestreListaCursos_Result posicionCurso in ViewBag.ListaCursosSCA)
+                            {
+                                <option value="@posicionCurso.Id_Curso">@posicionCurso.Nombre_Curso</option>
+                            }
+                        }
 
-                    if (esIdCuatriModelo)
-                    {
-                        <option value="@posicionCuatri.Id_Num_Cuatrimestre" selected>@posicionCuatri.Numero_Cuatrimestre</option>
                     }
-                    else
-                    {
-                        <option value="@posicionCuatri.Id_Num_Cuatrimestre">@posicionCuatri.Numero_Cuatrimestre</option>
-                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label id="lblSede">Sede:</label>
+                <select name="Id_Sedes_universitarias" id="Id_Sede" class="form-control" disabled>
+                    <option value="">Seleccione una opción</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_Sedes_UniversitariasID_Select_Result posicionSede in this.ViewBag.ListaSedes)
+                        {
+                            ///variable que indica si la sede está en el modelo
+                            bool esIdSedesModelo = posicionSede.Id_Sedes_universitarias == Model.Id_Sedes_universitarias;
 
-                }
-            }
-        </select>
+                            if (esIdSedesModelo)
+                            {
+                                <option value="@posicionSede.Id_Sedes_universitarias" selected>@posicionSede.Nombre_Sede</option>
+                            }
+                            else
+                            {
+                                <option value="@posicionSede.Id_Sedes_universitarias">@posicionSede.Nombre_Sede</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label id="lblCuatrimestre">Cuatrimestre:</label>
+                <select name="Id_Num_Cuatrimestre" id="Id_Num_Cuatrimestre" class="form-control" disabled>
+                    <option value="">Seleccione una opción</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result posicionCuatri in this.ViewBag.Lista_Num_Cuatrimestre)
+                        {
+                            ///variable que indica si la sede está en el modelo
+                            bool esIdCuatriModelo = posicionCuatri.Id_Num_Cuatrimestre == Model.Numero_Cuatrimestre;
+
+                            if (esIdCuatriModelo)
+                            {
+                                <option value="@posicionCuatri.Id_Num_Cuatrimestre" selected>@posicionCuatri.Numero_Cuatrimestre</option>
+                            }
+                            else
+                            {
+                                <option value="@posicionCuatri.Id_Num_Cuatrimestre">@posicionCuatri.Numero_Cuatrimestre</option>
+                            }
+
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label id="lblAnio">Año:</label>
+                <input type="text" value="@Model.Anio_Cuatrimestre" id="Anio_Cuatrimestre" name="Anio_Cuatrimestre" class="form-control" disabled />
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-plus "></i> Ingresar</button>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label id="lblAnio">Año:</label>
-        <input type="text" value="@Model.Anio_Cuatrimestre" id="Anio_Cuatrimestre" name="Anio_Cuatrimestre" class="form-control" disabled />
-    </div>
-    <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary"><i class="fa fa-plus "></i> Ingresar</button>
-    </div>
-</form>
+</div>
 @section scripts{
     <script src="~/Scripts/validacionesGenericas/validacionesGenericas.js"></script>
 

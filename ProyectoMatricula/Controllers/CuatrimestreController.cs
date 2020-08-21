@@ -224,6 +224,7 @@ namespace ProyectoMatricula.Controllers
             this.CargarSedesUniversitariasViewbag();
             this.CargarCursosViewBag();
             this.CargaListaEstudianteViewBag();
+            this.cargaCursosSCA(Numero_Cuatrimestre, Id_Sedes_universitarias, Anio_Cuatrimestre);
             return View(modeloVista);
         }
         #endregion
@@ -262,6 +263,21 @@ namespace ProyectoMatricula.Controllers
         void CargaListaEstudianteViewBag()
         {
             this.ViewBag.ListaEstudiantes = this.matriculaBD.pa_Curso_x_Cuatrimestre_ListaEstudiantes().ToList();
+        }
+        #endregion
+
+        #region Lista de cursos por sede por cuatrimestre por año
+        /// <summary>
+        /// Metodo que busca si existen cursos en x sede en x cuatrimestre y en ese año
+        /// </summary>
+        /// <param name="Numero_Cuatrimestre"></param>
+        /// <param name="Id_Sedes_universitarias"></param>
+        /// <param name="Anio_Cuatrimestre"></param>
+        void cargaCursosSCA(int Numero_Cuatrimestre, int Id_Sedes_universitarias, int Anio_Cuatrimestre)
+        {
+            this.ViewBag.ListaCursosSCA = this.matriculaBD.pa_Curso_x_CuatrimestreListaCursos(Id_Sedes_universitarias,
+                                                                                              Numero_Cuatrimestre,
+                                                                                              Anio_Cuatrimestre).ToList();
         }
         #endregion
     }

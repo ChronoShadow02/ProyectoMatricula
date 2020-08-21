@@ -266,6 +266,9 @@
     <Compile Include="Modelos\pa_Cursos_x_Carrera_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_Curso_x_CuatrimestreListaCursos_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\pa_Curso_x_Cuatrimestre_ListaEstudiantes_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>

@@ -645,6 +645,11 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Parameter Name="Id_Sede_Universitaria" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_Curso_x_Cuatrimestre_ListaEstudiantes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="pa_Curso_x_CuatrimestreListaCursos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Sedes_Universitarias" Type="int" Mode="In" />
+          <Parameter Name="Id_Num_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
+        </Function>
         <Function Name="pa_Curso_x_Cuatrimetre_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre_Curso" Type="varchar" Mode="In" />
           <Parameter Name="Cuatrimestre" Type="int" Mode="In" />
@@ -2190,6 +2195,11 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="pa_Curso_x_Cuatrimestre_ListaEstudiantes" ReturnType="Collection(matriculaBDModel.pa_Curso_x_Cuatrimestre_ListaEstudiantes_Result)" />
+          <FunctionImport Name="pa_Curso_x_CuatrimestreListaCursos" ReturnType="Collection(matriculaBDModel.pa_Curso_x_CuatrimestreListaCursos_Result)">
+            <Parameter Name="Id_Sedes_Universitarias" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Num_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Cursos_ValidarNombreCodigo_Select_Result">
           <Property Type="Int32" Name="Id_Curso" Nullable="false" />
@@ -2611,6 +2621,15 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Type="Int32" Name="Id_Distrito" Nullable="false" />
           <Property Type="DateTime" Name="Fecha_Inicio_U" Nullable="false" />
           <Property Type="String" Name="Carne" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="pa_Curso_x_CuatrimestreListaCursos_Result">
+          <Property Type="Int32" Name="Id_Curso_x_Sede" Nullable="false" />
+          <Property Type="Int32" Name="Id_Curso" Nullable="false" />
+          <Property Type="String" Name="Nombre_Curso" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Sedes_universitarias" Nullable="false" />
+          <Property Type="Int32" Name="Id_Num_Cuatrimestre" Nullable="false" />
+          <Property Type="Int32" Name="Cantidad_Estudiantes" Nullable="false" />
+          <Property Type="Int32" Name="Anio_Cuatrimestre" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3494,6 +3513,19 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
                 <ScalarProperty Name="Id_Distrito" ColumnName="Id_Distrito" />
                 <ScalarProperty Name="Fecha_Inicio_U" ColumnName="Fecha_Inicio_U" />
                 <ScalarProperty Name="Carne" ColumnName="Carne" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_Curso_x_CuatrimestreListaCursos" FunctionName="matriculaBDModel.Store.pa_Curso_x_CuatrimestreListaCursos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_Curso_x_CuatrimestreListaCursos_Result">
+                <ScalarProperty Name="Id_Curso_x_Sede" ColumnName="Id_Curso_x_Sede" />
+                <ScalarProperty Name="Id_Curso" ColumnName="Id_Curso" />
+                <ScalarProperty Name="Nombre_Curso" ColumnName="Nombre_Curso" />
+                <ScalarProperty Name="Id_Sedes_universitarias" ColumnName="Id_Sedes_universitarias" />
+                <ScalarProperty Name="Id_Num_Cuatrimestre" ColumnName="Id_Num_Cuatrimestre" />
+                <ScalarProperty Name="Cantidad_Estudiantes" ColumnName="Cantidad_Estudiantes" />
+                <ScalarProperty Name="Anio_Cuatrimestre" ColumnName="Anio_Cuatrimestre" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
