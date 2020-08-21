@@ -10,15 +10,15 @@
         <form method="post" id="frmSedes">
             <div class="form-group">
                 <label>Nombre de sede:</label>
-                <input type="text" value="" class="form-control" name="Nombre_Sede" />
+                <input type="text" value="" class="form-control" name="Nombre_Sede" id="Nombre_Sede"/>
             </div>
             <div class="form-group">
                 <label>Código de sede:</label>
-                <input type="text" value="" class="form-control" name="Codigo_Sede" />
+                <input type="text" value="" class="form-control" name="Codigo_Sede" id="Codigo_Sede"/>
             </div>
             <div class="form-group">
                 <label>Director</label>
-                <select class="form-control" name="Id_Director">
+                <select class="form-control" name="Id_Director" id="Id_Director">
                     <option value="">Seleccione un director</option>
                     @{
                         foreach (ProyectoMatricula.Modelos.pa_Sedes_Universitarias_DirectorViewBag_Select_Result posicionDirector in this.ViewBag.ListaDirectores)
@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
                 <label>Dirección física:</label>
-                <input type="text" value="" class="form-control" name="Direccion_Fisica" />
+                <input type="text" value="" class="form-control" name="Direccion_Fisica" id="Direccion_Fisica"/>
             </div>
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Ingresar</button>

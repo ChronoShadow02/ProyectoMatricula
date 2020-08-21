@@ -10,15 +10,15 @@
         <form method="post" id="frmSedes">
             <div class="form-group">
                 <label>Nombre de sede:</label>
-                <input type="text" class="form-control" name="Nombre_Sede" value="@Model.Nombre_Sede" disabled />
+                <input type="text" class="form-control" name="Nombre_Sede" value="@Model.Nombre_Sede" disabled id="Nombre_Sede"/>
             </div>
             <div class="form-group">
                 <label>Código de sede:</label>
-                <input type="text" class="form-control" name="Codigo_Sede" value="@Model.Codigo_Sede" disabled />
+                <input type="text" class="form-control" name="Codigo_Sede" value="@Model.Codigo_Sede" disabled id="Codigo_Sede"/>
             </div>
             <div class="form-group">
                 <label>Director</label>
-                <select class="form-control" name="Id_Director" disabled>
+                <select class="form-control" name="Id_Director" disabled id="Id_Director">
                     <option value="">Seleccione un director</option>
                     @{
                         foreach (ProyectoMatricula.Modelos.pa_Sedes_Universitarias_DirectorViewBag_Select_Result posicionDirector in this.ViewBag.ListaDirectores)
@@ -115,7 +115,7 @@
 
             <div class="form-group">
                 <label>Dirección física:</label>
-                <input type="text" class="form-control" name="Direccion_Fisica" value="@Model.Direccion_Fisica" disabled />
+                <input type="text" class="form-control" name="Direccion_Fisica" value="@Model.Direccion_Fisica" disabled id="Direccion_Fisica"/>
             </div>
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
