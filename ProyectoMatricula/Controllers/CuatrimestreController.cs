@@ -232,24 +232,46 @@ namespace ProyectoMatricula.Controllers
         {
             int RegistrosAfectados = 0;
             string mensaje = "";
-
             try
             {
+
                 ///Se obtiene el id del cuatrimestre del para hacer la inserción
                 ///
-                pa_Curso_x_Cuatrimestre_Id_Cuatrimestre_Result modeloVerificar =
+                pa_Curso_x_Cuatrimestre_Id_Cuatrimestre_Result modeloSoloId_Cuatrimestre =
                     this.matriculaBD.pa_Curso_x_Cuatrimestre_Id_Cuatrimestre(OtroModelo.Numero_Cuatrimestre,
                                                                              modeloVista.Anio_Cuatrimestre,
                                                                              modeloVista.Id_Sedes_universitarias).FirstOrDefault();
-                //if ("Aqui va el modelo a verficar" != null)
-                //{
+
+                ///Se verifica que no hayan registros similiares
+                List<pa_Curso_x_CuatrimestreVerificar_Result> modeloVerificar 
+                    = this.matriculaBD.pa_Curso_x_CuatrimestreVerificar(modeloVista.Id_Curso,
+                                                                        OtroModelo.Numero_Cuatrimestre,
+                                                                        modeloVista.Anio_Cuatrimestre,
+                                                                        modeloSoloId_Cuatrimestre.Id_Cuatrimeste,
+                                                                        modeloEstudiante.Id_Estudiante,
+                                                                        modeloVista.Id_Sedes_universitarias).ToList();
+
+                foreach (pa_Curso_x_CuatrimestreVerificar_Result Id_EstudianteVerificar in modeloVerificar)
+                {
+                   // if (modeloEstudiante.Id_Estudiante = modeloVerificar.Contains(Id_EstudianteVerificar)
+                   // {
+
+                    //}
+                }
+                ///Preguntar al profe que como se puede verificar si un estudiante está ya registrado por sede, año, cuatrimestre, en el mismo curso
+                if (modeloVerificar.Count >= 1)///Esa parte hay que cambiarla
+                {
+                    mensaje = "No puede haber estudiantes matriculados dos o más veces en un mismo curso por cuatrimestre en alguna de las sedes universitarias.";
+                }
+                else
+                {
                     RegistrosAfectados = this.matriculaBD.pa_Curso_x_Cuatrimestre_Insert(modeloVista.Id_Curso,
                                                                                          OtroModelo.Numero_Cuatrimestre,
                                                                                          modeloVista.Anio_Cuatrimestre,
-                                                                                         OtroModelo.,
+                                                                                         modeloSoloId_Cuatrimestre.Id_Cuatrimeste,
                                                                                          modeloEstudiante.Id_Estudiante,
                                                                                          modeloVista.Id_Sedes_universitarias);
-                //}
+                }
             }
             catch (Exception error)
             {
@@ -272,7 +294,7 @@ namespace ProyectoMatricula.Controllers
             this.CargarCursosViewBag();
             this.CargaListaEstudianteViewBag();
             this.cargaCursosSCA(OtroModelo.Numero_Cuatrimestre,modeloVista.Id_Sedes_universitarias,modeloVista.Anio_Cuatrimestre);
-            return View();
+            return View(OtroModelo);
         }
         #endregion
 
