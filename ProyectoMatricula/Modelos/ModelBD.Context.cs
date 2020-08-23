@@ -1307,5 +1307,14 @@ namespace ProyectoMatricula.Modelos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Cursos_x_Estudiante_Insert", id_CursoParameter, id_EstudianteParameter);
         }
+    
+        public virtual ObjectResult<pa_CuatrimesteVerificarInicio_Result> pa_CuatrimesteVerificarInicio(Nullable<int> id_Cuatrimestre)
+        {
+            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
+                new ObjectParameter("Id_Cuatrimestre", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CuatrimesteVerificarInicio_Result>("pa_CuatrimesteVerificarInicio", id_CuatrimestreParameter);
+        }
     }
 }

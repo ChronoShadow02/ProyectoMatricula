@@ -224,6 +224,9 @@
     <Compile Include="Modelos\pa_Carreras_VerificarNombreCodigo_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_CuatrimesteVerificarInicio_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\pa_CuatrimestreDiferenteSedes_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>

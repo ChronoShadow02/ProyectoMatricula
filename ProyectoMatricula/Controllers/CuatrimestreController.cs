@@ -26,9 +26,9 @@ namespace ProyectoMatricula.Controllers
             {
                 List<pa_Cuatrimestre_Select_Result> modeloVista = this.matriculaBD.pa_Cuatrimestre_Select(null).ToList();
 
-            this.Lista_Num_CuatrimestreViewBag();
-            this.CargarSedesUniversitariasViewbag();
-            return View(modeloVista);
+                this.Lista_Num_CuatrimestreViewBag();
+                this.CargarSedesUniversitariasViewbag();
+                return View(modeloVista);
             }
         [HttpPost]
         public ActionResult CuatrimestreLista(pa_Cuatrimestre_Select_Result modeloBusqueda)
@@ -307,10 +307,24 @@ namespace ProyectoMatricula.Controllers
         #endregion
 
         #region IniciarCuatrimestre
-            public ActionResult IniciarCuatrimestre(int Id_Curso_x_Cuatrimestre)
+            public ActionResult IniciarCuatrimestre(int Id_Cuatrimeste)
             {
-                
-                return 
+                string mensaje = "";
+                ///Verifica si el cuatrimestre ya se ha iniciado
+                ///
+                pa_CuatrimesteVerificarInicio_Result VerificarInicio = this.matriculaBD.pa_CuatrimesteVerificarInicio(Id_Cuatrimeste).FirstOrDefault();
+
+                if (VerificarInicio.Inicio_Cuatrimestre == "S")
+                {
+                    mensaje = "El cuatrimestre ya ha sido iniciado.";
+                    Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+                }
+                else
+                {
+                    this.matriculaBD.pa_CuatrimestreInicio(Id_Cuatrimeste);
+                }
+                ///HAY QUE ARREGLAR ESTA PARTE, HACE EL UPDATE PERO NO TIENE LA VISTA
+                return View();
             }
         #endregion
 

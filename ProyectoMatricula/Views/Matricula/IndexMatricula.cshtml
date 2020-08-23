@@ -14,8 +14,8 @@
     <div class="form-group">
         <label class="control-label col-sm-1"></label>
         <div class="col-sm-12">
-            <h1>Bienvenido(a) @Html.DisplayFor(model => model.Primer_Apellido) @Html.DisplayFor(model => model.Segundo_Apellido) @Html.DisplayFor(model => model.Primer_Nombre),
-            última vez: @Html.DisplayFor(model => model.Fecha_Ultimo_Ingreso)</h1>
+            <h1 class="text-center">Bienvenido(a) @Html.DisplayFor(model => model.Primer_Apellido) @Html.DisplayFor(model => model.Segundo_Apellido) @Html.DisplayFor(model => model.Primer_Nombre),
+            última vez: @Html.DisplayFor(model => model.Fecha_Ultimo_Ingreso.Day)-@Html.DisplayFor(model => model.Fecha_Ultimo_Ingreso.Month)-@Html.DisplayFor(model=>model.Fecha_Ultimo_Ingreso.Year)</h1>
         </div>
     </div>
 </form>

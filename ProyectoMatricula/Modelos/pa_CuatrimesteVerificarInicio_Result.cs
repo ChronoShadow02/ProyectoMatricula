@@ -10,17 +10,15 @@
 namespace ProyectoMatricula.Modelos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class CursosXEstudiante
+    public partial class pa_CuatrimesteVerificarInicio_Result
     {
-        public int Id_CursosXEstudiantes { get; set; }
-        public int Id_Estudiante { get; set; }
-        public int Id_Curso { get; set; }
-        public double Nota { get; set; }
-        public string Estado_Nota { get; set; }
-    
-        public virtual Cursos Cursos { get; set; }
-        public virtual Estudiantes Estudiantes { get; set; }
+        public int Id_Cuatrimeste { get; set; }
+        public int Numero_Cuatrimestre { get; set; }
+        public int Anio_Cuatrimestre { get; set; }
+        public int Id_Sedes_universitarias { get; set; }
+        public string Nombre_Sede { get; set; }
+        public string Inicio_Cuatrimestre { get; set; }
+        public string Fin_Cuatrimestre { get; set; }
     }
 }
