@@ -1,0 +1,87 @@
+﻿@model ProyectoMatricula.Modelos.pa_Curso_x_Sede_RetornaID_Select_Result
+@{
+    ViewBag.Title = "Matrícula UMCA | Registro de notas por curso";
+
+    Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
+}
+
+<h1 class="text-center">Registro de notas por curso</h1>
+
+<div class="row justify-content-center align-items-center">
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <form method="post" id="frmRegistroNotas">
+            <div class="form-group">
+                <label>Curso</label>
+                <select id="Id_Curso" name="Id_Curso" class="form-control">
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Estudiante</label>
+                <select id="ddlEstudiante" name="Id_Estudiante" class="form-control">
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Nota:</label>
+                <input type="text" value="" id="Nota" class="form-control" name="Nota" />
+            </div>
+            <div class="form-group">
+                <label>Cuatrimestre</label>
+                <select name="Id_Num_Cuatrimestre" id="Id_Num_Cuatrimestre" class="form-control" disabled>
+                    <option value="">Seleccione una opción</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result posicionCuatri in this.ViewBag.Lista_Num_Cuatrimestre)
+                        {
+                            ///variable que indica si la sede está en el modelo
+                            bool esIdCuatriModelo = posicionCuatri.Id_Num_Cuatrimestre == Model.Numero_Cuatrimestre;
+
+                            if (esIdCuatriModelo)
+                            {
+                                <option value="@posicionCuatri.Id_Num_Cuatrimestre" selected>@posicionCuatri.Numero_Cuatrimestre</option>
+                            }
+                            else
+                            {
+                                <option value="@posicionCuatri.Id_Num_Cuatrimestre">@posicionCuatri.Numero_Cuatrimestre</option>
+                            }
+
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Sede</label>
+                <select name="Id_Sedes_universitarias" id="Id_Sede" class="form-control" disabled>
+                    <option value="">Seleccione una opción</option>
+                    @{
+                        foreach (ProyectoMatricula.Modelos.pa_Sedes_UniversitariasID_Select_Result posicionSede in this.ViewBag.ListaSedes)
+                        {
+                            ///variable que indica si la sede está en el modelo
+                            bool esIdSedesModelo = posicionSede.Id_Sedes_universitarias == Model.Id_Sedes_universitarias;
+
+                            if (esIdSedesModelo)
+                            {
+                                <option value="@posicionSede.Id_Sedes_universitarias" selected>@posicionSede.Nombre_Sede</option>
+                            }
+                            else
+                            {
+                                <option value="@posicionSede.Id_Sedes_universitarias">@posicionSede.Nombre_Sede</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label id="lblAnio">Año:</label>
+                <input type="text" value="@Model.Anio_Cuatrimestre" id="Anio_Cuatrimestre" name="Anio_Cuatrimestre" class="form-control" disabled />
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Ingresar</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/validacionesGenericas/validacionesGenericas.js"></script>
+    <script src="~/Scripts/Cuatrimestre/validarRegistroNotasCurso.js"></script>
+    <script src="~/Scripts/ajaxGenerico.js"></script>
+    <script src="~/Scripts/Cuatrimestre/cargarDatosCursosEstudiantes.js"></script>
+}

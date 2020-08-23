@@ -236,6 +236,9 @@
     <Compile Include="Modelos\pa_Cuatrimestre_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\pa_Cuatrimestre_VerificaCursosEstudiante_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\pa_Cuatrimestre_VerificaSoloCuatrimestre_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -279,6 +282,9 @@
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Curso_x_Cuatrimestre_ListaEstudiantes_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\pa_Curso_x_Cuatrimetre_Select_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\pa_Curso_x_Sede_RetornaID_Select_Result.cs">
@@ -427,6 +433,7 @@
       <DependentUpon>ModelBD.edmx</DependentUpon>
       <LastGenOutput>ModelBD.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\ajaxGenerico.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -442,9 +449,11 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Scripts\Carreras\validarCarreras.js" />
+    <Content Include="Scripts\Cuatrimestre\cargarDatosCursosEstudiantes.js" />
     <Content Include="Scripts\Cuatrimestre\validarCuatrimestre.js" />
     <Content Include="Scripts\Cuatrimestre\validarMatricula.js" />
     <Content Include="Scripts\Cuatrimestre\validarOferta.js" />
+    <Content Include="Scripts\Cuatrimestre\validarRegistroNotasCurso.js" />
     <Content Include="Scripts\CursosCarrera\validarCursoCarrera.js" />
     <Content Include="Scripts\Cursos\validaCurso.js" />
     <Content Include="Scripts\Direcciones\validarDireccion.js" />
@@ -622,6 +631,7 @@
     <Content Include="Views\Cuatrimestre\CuatrimestreLista.cshtml" />
     <Content Include="Views\Cuatrimestre\OfertaCursosPorSede.cshtml" />
     <Content Include="Views\Cuatrimestre\MatriculaEstudianteCurso.cshtml" />
+    <Content Include="Views\Cuatrimestre\RegistroNotasCurso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
