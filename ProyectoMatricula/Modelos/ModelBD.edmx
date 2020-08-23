@@ -645,6 +645,9 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
           <Parameter Name="Id_Sede_Universitaria" Type="int" Mode="In" />
         </Function>
+        <Function Name="pa_CuatrimestreInicio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Cuatrimestre" Type="int" Mode="In" />
+        </Function>
         <Function Name="pa_Curso_x_Cuatrimestre_Id_Cuatrimestre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Num_Cuatrimestre" Type="int" Mode="In" />
           <Parameter Name="Anio_Cuatrimestre" Type="int" Mode="In" />
@@ -735,6 +738,10 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Parameter Name="Id_Curso" Type="int" Mode="In" />
           <Parameter Name="Nombre_Curso" Type="varchar" Mode="In" />
           <Parameter Name="Codigo_Curso" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="pa_Cursos_x_Estudiante_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Curso" Type="int" Mode="In" />
+          <Parameter Name="Id_Estudiante" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_CursosCodigos_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_CursosRetornaSelectID_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -2244,6 +2251,13 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="Id_Estudiante" Mode="In" Type="Int32" />
             <Parameter Name="Id_Sede_universitaria" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pa_CuatrimestreInicio">
+          <Parameter Name="Id_Cuatrimestre" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_Cursos_x_Estudiante_Insert">
+            <Parameter Name="Id_Curso" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Estudiante" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Cursos_ValidarNombreCodigo_Select_Result">
           <Property Type="Int32" Name="Id_Curso" Nullable="false" />
@@ -3611,6 +3625,8 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_CuatrimestreInicio" FunctionName="matriculaBDModel.Store.pa_CuatrimestreInicio" />
+          <FunctionImportMapping FunctionImportName="pa_Cursos_x_Estudiante_Insert" FunctionName="matriculaBDModel.Store.pa_Cursos_x_Estudiante_Insert" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1285,5 +1285,27 @@ namespace ProyectoMatricula.Modelos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Curso_x_CuatrimestreVerificar_Result>("pa_Curso_x_CuatrimestreVerificar", id_CursoParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_CuatrimestreParameter, id_EstudianteParameter, id_Sede_universitariaParameter);
         }
+    
+        public virtual int pa_CuatrimestreInicio(Nullable<int> id_Cuatrimestre)
+        {
+            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
+                new ObjectParameter("Id_Cuatrimestre", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_CuatrimestreInicio", id_CuatrimestreParameter);
+        }
+    
+        public virtual int pa_Cursos_x_Estudiante_Insert(Nullable<int> id_Curso, Nullable<int> id_Estudiante)
+        {
+            var id_CursoParameter = id_Curso.HasValue ?
+                new ObjectParameter("Id_Curso", id_Curso) :
+                new ObjectParameter("Id_Curso", typeof(int));
+    
+            var id_EstudianteParameter = id_Estudiante.HasValue ?
+                new ObjectParameter("Id_Estudiante", id_Estudiante) :
+                new ObjectParameter("Id_Estudiante", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Cursos_x_Estudiante_Insert", id_CursoParameter, id_EstudianteParameter);
+        }
     }
 }

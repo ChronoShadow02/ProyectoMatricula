@@ -231,6 +231,7 @@ namespace ProyectoMatricula.Controllers
         public ActionResult MatriculaEstudianteCurso(pa_Curso_x_Sede_SoloID_Select_Result modeloVista, pa_Curso_x_Sede_RetornaID_Select_Result OtroModelo, pa_Curso_x_Cuatrimestre_ListaEstudiantes_Result modeloEstudiante)
         {
             int RegistrosAfectados = 0;
+            bool VerificaID_Est = true;
             string mensaje = "";
             try
             {
@@ -243,7 +244,7 @@ namespace ProyectoMatricula.Controllers
                                                                              modeloVista.Id_Sedes_universitarias).FirstOrDefault();
 
                 ///Se verifica que no hayan registros similiares
-                List<pa_Curso_x_CuatrimestreVerificar_Result> modeloVerificar 
+               List<pa_Curso_x_CuatrimestreVerificar_Result> modeloVerificar
                     = this.matriculaBD.pa_Curso_x_CuatrimestreVerificar(modeloVista.Id_Curso,
                                                                         OtroModelo.Numero_Cuatrimestre,
                                                                         modeloVista.Anio_Cuatrimestre,
@@ -251,26 +252,33 @@ namespace ProyectoMatricula.Controllers
                                                                         modeloEstudiante.Id_Estudiante,
                                                                         modeloVista.Id_Sedes_universitarias).ToList();
 
-                foreach (pa_Curso_x_CuatrimestreVerificar_Result Id_EstudianteVerificar in modeloVerificar)
+                ///Busca en el resultado del procedimiento esta el Id estudiante
+                foreach (pa_Curso_x_CuatrimestreVerificar_Result modeloEst in modeloVerificar)
                 {
-                   // if (modeloEstudiante.Id_Estudiante = modeloVerificar.Contains(Id_EstudianteVerificar)
-                   // {
-
-                    //}
+                    if (modeloEst.Id_Estudiante == modeloEstudiante.Id_Estudiante)
+                    {
+                        mensaje = "No puede haber estudiantes matriculados dos o más veces en un mismo curso por cuatrimestre en alguna de las sedes universitarias.";
+                        VerificaID_Est = true;
+                    }
+                    else
+                    {
+                        VerificaID_Est = false;
+                    }
                 }
-                ///Preguntar al profe que como se puede verificar si un estudiante está ya registrado por sede, año, cuatrimestre, en el mismo curso
-                if (modeloVerificar.Count >= 1)///Esa parte hay que cambiarla
-                {
-                    mensaje = "No puede haber estudiantes matriculados dos o más veces en un mismo curso por cuatrimestre en alguna de las sedes universitarias.";
-                }
-                else
+                if (VerificaID_Est == false)
                 {
                     RegistrosAfectados = this.matriculaBD.pa_Curso_x_Cuatrimestre_Insert(modeloVista.Id_Curso,
-                                                                                         OtroModelo.Numero_Cuatrimestre,
-                                                                                         modeloVista.Anio_Cuatrimestre,
-                                                                                         modeloSoloId_Cuatrimestre.Id_Cuatrimeste,
-                                                                                         modeloEstudiante.Id_Estudiante,
-                                                                                         modeloVista.Id_Sedes_universitarias);
+                                                                                                OtroModelo.Numero_Cuatrimestre,
+                                                                                                modeloVista.Anio_Cuatrimestre,
+                                                                                                modeloSoloId_Cuatrimestre.Id_Cuatrimeste,
+                                                                                                modeloEstudiante.Id_Estudiante,
+                                                                                                modeloVista.Id_Sedes_universitarias);
+
+                    ///Se hace un insert aqui por la relacion que existe entre el curso y el estudiante
+                    this.matriculaBD.pa_Cursos_x_Estudiante_Insert(modeloVista.Id_Curso,modeloEstudiante.Id_Estudiante);
+
+                    ///Se hace un insert aqui por la relacion que existe entre el curso y el estudiante
+                    
                 }
             }
             catch (Exception error)
@@ -296,6 +304,14 @@ namespace ProyectoMatricula.Controllers
             this.cargaCursosSCA(OtroModelo.Numero_Cuatrimestre,modeloVista.Id_Sedes_universitarias,modeloVista.Anio_Cuatrimestre);
             return View(OtroModelo);
         }
+        #endregion
+
+        #region IniciarCuatrimestre
+            public ActionResult IniciarCuatrimestre(int Id_Curso_x_Cuatrimestre)
+            {
+                
+                return 
+            }
         #endregion
 
         #region Número de cuatrimestre viewbag
