@@ -306,6 +306,13 @@ namespace ProyectoMatricula.Controllers
         #endregion
 
         #region RegistroNotasCurso
+        /// <summary>
+        /// Metodo que retorna la vista RegistroNotasCurso dependiendo del cuatrimestre,año y sede
+        /// </summary>
+        /// <param name="Numero_Cuatrimestre"></param>
+        /// <param name="Id_Sedes_universitarias"></param>
+        /// <param name="Anio_Cuatrimestre"></param>
+        /// <returns></returns>
         public ActionResult RegistroNotasCurso(int Numero_Cuatrimestre, int Id_Sedes_universitarias, int Anio_Cuatrimestre)
         {
             pa_Curso_x_Sede_RetornaID_Select_Result modeloVista = new pa_Curso_x_Sede_RetornaID_Select_Result();
@@ -325,8 +332,36 @@ namespace ProyectoMatricula.Controllers
             return View(modeloVista);
         }
         [HttpPost]
-        public ActionResult RegistroNotasCurso(pa_Curso_x_Sede_RetornaID_Select_Result modeloVista)
+        ///Metodo que manda todos los datos obtenidos hacia la base de datos
+        public ActionResult RegistroNotasCurso(pa_Curso_x_Sede_RetornaID_Select_Result modeloVista, pa_CursosXEstudiante_Modelo_Result modeloEstudiante)
         {
+            int RegistrosAfectados = 0;
+            string mensaje = "";
+            try
+            {
+                RegistrosAfectados = this.matriculaBD.pa_CursosXEstudiante_Insert(modeloEstudiante.Id_Estudiante,
+                                                                                  modeloEstudiante.Id_Curso,
+                                                                                  Convert.ToDouble(modeloEstudiante.Estado_Nota),
+                                                                                  "En curso");
+            }
+            catch (Exception error)
+            {
+                mensaje = "Hubo un error." +error.Message;
+            }
+            finally
+            {
+                if (RegistrosAfectados > 0)
+                {
+                    mensaje = "Regitro ingresado.";
+                }
+                else
+                {
+                    mensaje += "No se pudo ingresar";
+                }   
+            }
+            Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+            this.Lista_Num_CuatrimestreViewBag();
+            this.CargarSedesUniversitariasViewbag();
             return View(modeloVista);
         }
         #endregion

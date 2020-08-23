@@ -119,6 +119,7 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
           <Property Name="Id_Curso" Type="int" Nullable="false" />
           <Property Name="Nota" Type="float" Nullable="false" />
           <Property Name="Estado_Nota" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Finaliza_Curso" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="Direcciones_de_carrera">
           <Key>
@@ -759,6 +760,13 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
         <Function Name="pa_CursosViewBag_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Curso" Type="int" Mode="In" />
         </Function>
+        <Function Name="pa_CursosXEstudiante_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_Estudiante" Type="int" Mode="In" />
+          <Parameter Name="Id_Curso" Type="int" Mode="In" />
+          <Parameter Name="Nota" Type="float" Mode="In" />
+          <Parameter Name="Estado_Nota" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="pa_CursosXEstudiante_Modelo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_Direcciones_de_Carrera_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Direccion_Carrera" Type="int" Mode="In" />
         </Function>
@@ -1243,6 +1251,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <NavigationProperty Name="Estudiantes" Relationship="Self.FK_CursosXEstudiante_Estudiantes" FromRole="CursosXEstudiante" ToRole="Estudiantes" />
           <Property Name="Nota" Type="Double" Nullable="false" />
           <Property Name="Estado_Nota" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Finaliza_Curso" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="Direcciones_de_carrera">
           <Key>
@@ -2280,6 +2289,13 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="Anio_Cuatrimestre" Mode="In" Type="Int32" />
             <Parameter Name="Id_Sede_Universitaria" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pa_CursosXEstudiante_Modelo" ReturnType="Collection(matriculaBDModel.pa_CursosXEstudiante_Modelo_Result)" />
+          <FunctionImport Name="pa_CursosXEstudiante_Insert">
+            <Parameter Name="Id_Estudiante" Mode="In" Type="Int32" />
+            <Parameter Name="Id_Curso" Mode="In" Type="Int32" />
+            <Parameter Name="Nota" Mode="In" Type="Double" />
+            <Parameter Name="Estado_Nota" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Cursos_ValidarNombreCodigo_Select_Result">
           <Property Type="Int32" Name="Id_Curso" Nullable="false" />
@@ -2751,6 +2767,13 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <Property Type="String" Name="Nombre_Estudiante" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="Id_Sede_Universitaria" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="pa_CursosXEstudiante_Modelo_Result">
+          <Property Type="Int32" Name="Id_CursosXEstudiantes" Nullable="false" />
+          <Property Type="Int32" Name="Id_Estudiante" Nullable="false" />
+          <Property Type="Int32" Name="Id_Curso" Nullable="false" />
+          <Property Type="Double" Name="Nota" Nullable="false" />
+          <Property Type="String" Name="Estado_Nota" Nullable="false" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2851,6 +2874,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <EntitySetMapping Name="CursosXEstudiante">
             <EntityTypeMapping TypeName="matriculaBDModel.CursosXEstudiante">
               <MappingFragment StoreEntitySet="CursosXEstudiante">
+                <ScalarProperty Name="Finaliza_Curso" ColumnName="Finaliza_Curso" />
                 <ScalarProperty Name="Estado_Nota" ColumnName="Estado_Nota" />
                 <ScalarProperty Name="Nota" ColumnName="Nota" />
                 <ScalarProperty Name="Id_CursosXEstudiantes" ColumnName="Id_CursosXEstudiantes" />
@@ -3714,6 +3738,18 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_CursosXEstudiante_Modelo" FunctionName="matriculaBDModel.Store.pa_CursosXEstudiante_Modelo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.pa_CursosXEstudiante_Modelo_Result">
+                <ScalarProperty Name="Id_CursosXEstudiantes" ColumnName="Id_CursosXEstudiantes" />
+                <ScalarProperty Name="Id_Estudiante" ColumnName="Id_Estudiante" />
+                <ScalarProperty Name="Id_Curso" ColumnName="Id_Curso" />
+                <ScalarProperty Name="Nota" ColumnName="Nota" />
+                <ScalarProperty Name="Estado_Nota" ColumnName="Estado_Nota" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_CursosXEstudiante_Insert" FunctionName="matriculaBDModel.Store.pa_CursosXEstudiante_Insert" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

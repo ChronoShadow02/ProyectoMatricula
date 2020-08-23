@@ -10,18 +10,13 @@
 namespace ProyectoMatricula.Modelos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class CursosXEstudiante
+    public partial class pa_CursosXEstudiante_Modelo_Result
     {
         public int Id_CursosXEstudiantes { get; set; }
         public int Id_Estudiante { get; set; }
         public int Id_Curso { get; set; }
         public double Nota { get; set; }
         public string Estado_Nota { get; set; }
-        public string Finaliza_Curso { get; set; }
-    
-        public virtual Cursos Cursos { get; set; }
-        public virtual Estudiantes Estudiantes { get; set; }
     }
 }

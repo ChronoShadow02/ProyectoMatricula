@@ -1337,5 +1337,31 @@ namespace ProyectoMatricula.Modelos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Cuatrimestre_VerificaCursosEstudiante_Result>("pa_Cuatrimestre_VerificaCursosEstudiante", id_CursoParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_Sede_UniversitariaParameter);
         }
+    
+        public virtual ObjectResult<pa_CursosXEstudiante_Modelo_Result> pa_CursosXEstudiante_Modelo()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CursosXEstudiante_Modelo_Result>("pa_CursosXEstudiante_Modelo");
+        }
+    
+        public virtual int pa_CursosXEstudiante_Insert(Nullable<int> id_Estudiante, Nullable<int> id_Curso, Nullable<double> nota, string estado_Nota)
+        {
+            var id_EstudianteParameter = id_Estudiante.HasValue ?
+                new ObjectParameter("Id_Estudiante", id_Estudiante) :
+                new ObjectParameter("Id_Estudiante", typeof(int));
+    
+            var id_CursoParameter = id_Curso.HasValue ?
+                new ObjectParameter("Id_Curso", id_Curso) :
+                new ObjectParameter("Id_Curso", typeof(int));
+    
+            var notaParameter = nota.HasValue ?
+                new ObjectParameter("Nota", nota) :
+                new ObjectParameter("Nota", typeof(double));
+    
+            var estado_NotaParameter = estado_Nota != null ?
+                new ObjectParameter("Estado_Nota", estado_Nota) :
+                new ObjectParameter("Estado_Nota", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_CursosXEstudiante_Insert", id_EstudianteParameter, id_CursoParameter, notaParameter, estado_NotaParameter);
+        }
     }
 }
