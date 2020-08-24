@@ -174,6 +174,15 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CarrerasViewBag_Select_Result>("pa_CarrerasViewBag_Select", id_CarreraParameter);
         }
     
+        public virtual ObjectResult<pa_CuatrimesteVerificarInicio_Result> pa_CuatrimesteVerificarInicio(Nullable<int> id_Cuatrimestre)
+        {
+            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
+                new ObjectParameter("Id_Cuatrimestre", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CuatrimesteVerificarInicio_Result>("pa_CuatrimesteVerificarInicio", id_CuatrimestreParameter);
+        }
+    
         public virtual int pa_Cuatrimestre_Insert(Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre, Nullable<int> id_Sede_Universitaria)
         {
             var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
@@ -230,6 +239,27 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Cuatrimestre_Select_Result>("pa_Cuatrimestre_Select", nombre_SedeParameter);
         }
     
+        public virtual ObjectResult<pa_Cuatrimestre_VerificaCursosEstudiante_Result> pa_Cuatrimestre_VerificaCursosEstudiante(Nullable<int> id_Curso, Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre, Nullable<int> id_Sede_Universitaria)
+        {
+            var id_CursoParameter = id_Curso.HasValue ?
+                new ObjectParameter("Id_Curso", id_Curso) :
+                new ObjectParameter("Id_Curso", typeof(int));
+    
+            var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Num_Cuatrimestre", id_Num_Cuatrimestre) :
+                new ObjectParameter("Id_Num_Cuatrimestre", typeof(int));
+    
+            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
+                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
+                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
+    
+            var id_Sede_UniversitariaParameter = id_Sede_Universitaria.HasValue ?
+                new ObjectParameter("Id_Sede_Universitaria", id_Sede_Universitaria) :
+                new ObjectParameter("Id_Sede_Universitaria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Cuatrimestre_VerificaCursosEstudiante_Result>("pa_Cuatrimestre_VerificaCursosEstudiante", id_CursoParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_Sede_UniversitariaParameter);
+        }
+    
         public virtual ObjectResult<pa_Cuatrimestre_VerificaSoloCuatrimestre_Result> pa_Cuatrimestre_VerificaSoloCuatrimestre(Nullable<int> anio_Cuatrimestre, Nullable<int> id_Sede_Universitaria)
         {
             var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
@@ -258,6 +288,171 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Id_Sede_Universitaria", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CuatrimestreDiferenteSedes_Result>("pa_CuatrimestreDiferenteSedes", id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_Sede_UniversitariaParameter);
+        }
+    
+        public virtual int pa_CuatrimestreInicio(Nullable<int> id_Cuatrimestre)
+        {
+            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
+                new ObjectParameter("Id_Cuatrimestre", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_CuatrimestreInicio", id_CuatrimestreParameter);
+        }
+    
+        public virtual int pa_Curso_x_Cuatrimestre_FinalizaCurso(Nullable<int> id_Curso, Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre, Nullable<int> id_Sede_Universitaria)
+        {
+            var id_CursoParameter = id_Curso.HasValue ?
+                new ObjectParameter("Id_Curso", id_Curso) :
+                new ObjectParameter("Id_Curso", typeof(int));
+    
+            var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Num_Cuatrimestre", id_Num_Cuatrimestre) :
+                new ObjectParameter("Id_Num_Cuatrimestre", typeof(int));
+    
+            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
+                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
+                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
+    
+            var id_Sede_UniversitariaParameter = id_Sede_Universitaria.HasValue ?
+                new ObjectParameter("Id_Sede_Universitaria", id_Sede_Universitaria) :
+                new ObjectParameter("Id_Sede_Universitaria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Curso_x_Cuatrimestre_FinalizaCurso", id_CursoParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_Sede_UniversitariaParameter);
+        }
+    
+        public virtual ObjectResult<pa_Curso_x_Cuatrimestre_Id_Cuatrimestre_Result> pa_Curso_x_Cuatrimestre_Id_Cuatrimestre(Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre, Nullable<int> id_Sede_Universitaria)
+        {
+            var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Num_Cuatrimestre", id_Num_Cuatrimestre) :
+                new ObjectParameter("Id_Num_Cuatrimestre", typeof(int));
+    
+            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
+                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
+                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
+    
+            var id_Sede_UniversitariaParameter = id_Sede_Universitaria.HasValue ?
+                new ObjectParameter("Id_Sede_Universitaria", id_Sede_Universitaria) :
+                new ObjectParameter("Id_Sede_Universitaria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Curso_x_Cuatrimestre_Id_Cuatrimestre_Result>("pa_Curso_x_Cuatrimestre_Id_Cuatrimestre", id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_Sede_UniversitariaParameter);
+        }
+    
+        public virtual int pa_Curso_x_Cuatrimestre_Insert(Nullable<int> id_Curso, Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre, Nullable<int> id_Cuatrimestre, Nullable<int> id_Estudiante, Nullable<int> id_Sede_Universitaria)
+        {
+            var id_CursoParameter = id_Curso.HasValue ?
+                new ObjectParameter("Id_Curso", id_Curso) :
+                new ObjectParameter("Id_Curso", typeof(int));
+    
+            var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Num_Cuatrimestre", id_Num_Cuatrimestre) :
+                new ObjectParameter("Id_Num_Cuatrimestre", typeof(int));
+    
+            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
+                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
+                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
+    
+            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
+                new ObjectParameter("Id_Cuatrimestre", typeof(int));
+    
+            var id_EstudianteParameter = id_Estudiante.HasValue ?
+                new ObjectParameter("Id_Estudiante", id_Estudiante) :
+                new ObjectParameter("Id_Estudiante", typeof(int));
+    
+            var id_Sede_UniversitariaParameter = id_Sede_Universitaria.HasValue ?
+                new ObjectParameter("Id_Sede_Universitaria", id_Sede_Universitaria) :
+                new ObjectParameter("Id_Sede_Universitaria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Curso_x_Cuatrimestre_Insert", id_CursoParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_CuatrimestreParameter, id_EstudianteParameter, id_Sede_UniversitariaParameter);
+        }
+    
+        public virtual ObjectResult<pa_Curso_x_Cuatrimestre_ListaEstudiantes_Result> pa_Curso_x_Cuatrimestre_ListaEstudiantes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Curso_x_Cuatrimestre_ListaEstudiantes_Result>("pa_Curso_x_Cuatrimestre_ListaEstudiantes");
+        }
+    
+        public virtual ObjectResult<pa_Curso_x_Cuatrimestre_VerificarFinCurso_Result> pa_Curso_x_Cuatrimestre_VerificarFinCurso(Nullable<int> id_Curso, Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre, Nullable<int> id_Sede_Universitaria, Nullable<int> id_Cuatrimestre)
+        {
+            var id_CursoParameter = id_Curso.HasValue ?
+                new ObjectParameter("Id_Curso", id_Curso) :
+                new ObjectParameter("Id_Curso", typeof(int));
+    
+            var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Num_Cuatrimestre", id_Num_Cuatrimestre) :
+                new ObjectParameter("Id_Num_Cuatrimestre", typeof(int));
+    
+            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
+                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
+                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
+    
+            var id_Sede_UniversitariaParameter = id_Sede_Universitaria.HasValue ?
+                new ObjectParameter("Id_Sede_Universitaria", id_Sede_Universitaria) :
+                new ObjectParameter("Id_Sede_Universitaria", typeof(int));
+    
+            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
+                new ObjectParameter("Id_Cuatrimestre", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Curso_x_Cuatrimestre_VerificarFinCurso_Result>("pa_Curso_x_Cuatrimestre_VerificarFinCurso", id_CursoParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_Sede_UniversitariaParameter, id_CuatrimestreParameter);
+        }
+    
+        public virtual ObjectResult<pa_Curso_x_CuatrimestreListaCursos_Result> pa_Curso_x_CuatrimestreListaCursos(Nullable<int> id_Sedes_Universitarias, Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre)
+        {
+            var id_Sedes_UniversitariasParameter = id_Sedes_Universitarias.HasValue ?
+                new ObjectParameter("Id_Sedes_Universitarias", id_Sedes_Universitarias) :
+                new ObjectParameter("Id_Sedes_Universitarias", typeof(int));
+    
+            var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Num_Cuatrimestre", id_Num_Cuatrimestre) :
+                new ObjectParameter("Id_Num_Cuatrimestre", typeof(int));
+    
+            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
+                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
+                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Curso_x_CuatrimestreListaCursos_Result>("pa_Curso_x_CuatrimestreListaCursos", id_Sedes_UniversitariasParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter);
+        }
+    
+        public virtual ObjectResult<pa_Curso_x_CuatrimestreVerificar_Result> pa_Curso_x_CuatrimestreVerificar(Nullable<int> id_Curso, Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre, Nullable<int> id_Cuatrimestre, Nullable<int> id_Estudiante, Nullable<int> id_Sede_universitaria)
+        {
+            var id_CursoParameter = id_Curso.HasValue ?
+                new ObjectParameter("Id_Curso", id_Curso) :
+                new ObjectParameter("Id_Curso", typeof(int));
+    
+            var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Num_Cuatrimestre", id_Num_Cuatrimestre) :
+                new ObjectParameter("Id_Num_Cuatrimestre", typeof(int));
+    
+            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
+                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
+                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
+    
+            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
+                new ObjectParameter("Id_Cuatrimestre", typeof(int));
+    
+            var id_EstudianteParameter = id_Estudiante.HasValue ?
+                new ObjectParameter("Id_Estudiante", id_Estudiante) :
+                new ObjectParameter("Id_Estudiante", typeof(int));
+    
+            var id_Sede_universitariaParameter = id_Sede_universitaria.HasValue ?
+                new ObjectParameter("Id_Sede_universitaria", id_Sede_universitaria) :
+                new ObjectParameter("Id_Sede_universitaria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Curso_x_CuatrimestreVerificar_Result>("pa_Curso_x_CuatrimestreVerificar", id_CursoParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_CuatrimestreParameter, id_EstudianteParameter, id_Sede_universitariaParameter);
+        }
+    
+        public virtual ObjectResult<pa_Curso_x_Cuatrimetre_Select_Result> pa_Curso_x_Cuatrimetre_Select(string nombre_Curso, Nullable<int> cuatrimestre)
+        {
+            var nombre_CursoParameter = nombre_Curso != null ?
+                new ObjectParameter("Nombre_Curso", nombre_Curso) :
+                new ObjectParameter("Nombre_Curso", typeof(string));
+    
+            var cuatrimestreParameter = cuatrimestre.HasValue ?
+                new ObjectParameter("Cuatrimestre", cuatrimestre) :
+                new ObjectParameter("Cuatrimestre", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Curso_x_Cuatrimetre_Select_Result>("pa_Curso_x_Cuatrimetre_Select", nombre_CursoParameter, cuatrimestreParameter);
         }
     
         public virtual ObjectResult<pa_Curso_x_Sede_RetornaID_Select_Result> pa_Curso_x_Sede_RetornaID_Select(Nullable<int> numero_Cuatrimestre, Nullable<int> id_Sedes_universitarias, Nullable<int> anio_Cuatrimestre)
@@ -464,6 +659,19 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Cursos_x_Carrera_Select_Result>("pa_Cursos_x_Carrera_Select", id_CursoParameter, nombre_CursoParameter, codigo_CursoParameter);
         }
     
+        public virtual int pa_Cursos_x_Estudiante_Insert(Nullable<int> id_Curso, Nullable<int> id_Estudiante)
+        {
+            var id_CursoParameter = id_Curso.HasValue ?
+                new ObjectParameter("Id_Curso", id_Curso) :
+                new ObjectParameter("Id_Curso", typeof(int));
+    
+            var id_EstudianteParameter = id_Estudiante.HasValue ?
+                new ObjectParameter("Id_Estudiante", id_Estudiante) :
+                new ObjectParameter("Id_Estudiante", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Cursos_x_Estudiante_Insert", id_CursoParameter, id_EstudianteParameter);
+        }
+    
         public virtual ObjectResult<pa_CursosCodigos_Select_Result> pa_CursosCodigos_Select()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CursosCodigos_Select_Result>("pa_CursosCodigos_Select");
@@ -481,6 +689,69 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Id_Curso", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CursosViewBag_Select_Result>("pa_CursosViewBag_Select", id_CursoParameter);
+        }
+    
+        public virtual int pa_CursosXEstudiante_Estado(string estado_Nota, Nullable<int> id_Estudiante, Nullable<int> id_Curso)
+        {
+            var estado_NotaParameter = estado_Nota != null ?
+                new ObjectParameter("Estado_Nota", estado_Nota) :
+                new ObjectParameter("Estado_Nota", typeof(string));
+    
+            var id_EstudianteParameter = id_Estudiante.HasValue ?
+                new ObjectParameter("Id_Estudiante", id_Estudiante) :
+                new ObjectParameter("Id_Estudiante", typeof(int));
+    
+            var id_CursoParameter = id_Curso.HasValue ?
+                new ObjectParameter("Id_Curso", id_Curso) :
+                new ObjectParameter("Id_Curso", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_CursosXEstudiante_Estado", estado_NotaParameter, id_EstudianteParameter, id_CursoParameter);
+        }
+    
+        public virtual int pa_CursosXEstudiante_Insert(Nullable<int> id_Estudiante, Nullable<int> id_Curso, Nullable<double> nota, string estado_Nota)
+        {
+            var id_EstudianteParameter = id_Estudiante.HasValue ?
+                new ObjectParameter("Id_Estudiante", id_Estudiante) :
+                new ObjectParameter("Id_Estudiante", typeof(int));
+    
+            var id_CursoParameter = id_Curso.HasValue ?
+                new ObjectParameter("Id_Curso", id_Curso) :
+                new ObjectParameter("Id_Curso", typeof(int));
+    
+            var notaParameter = nota.HasValue ?
+                new ObjectParameter("Nota", nota) :
+                new ObjectParameter("Nota", typeof(double));
+    
+            var estado_NotaParameter = estado_Nota != null ?
+                new ObjectParameter("Estado_Nota", estado_Nota) :
+                new ObjectParameter("Estado_Nota", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_CursosXEstudiante_Insert", id_EstudianteParameter, id_CursoParameter, notaParameter, estado_NotaParameter);
+        }
+    
+        public virtual ObjectResult<pa_CursosXEstudiante_Modelo_Result> pa_CursosXEstudiante_Modelo(Nullable<int> id_Curso, Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre, Nullable<int> id_Cuatrimestre, Nullable<int> id_Sede_Universitaria)
+        {
+            var id_CursoParameter = id_Curso.HasValue ?
+                new ObjectParameter("Id_Curso", id_Curso) :
+                new ObjectParameter("Id_Curso", typeof(int));
+    
+            var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Num_Cuatrimestre", id_Num_Cuatrimestre) :
+                new ObjectParameter("Id_Num_Cuatrimestre", typeof(int));
+    
+            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
+                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
+                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
+    
+            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
+                new ObjectParameter("Id_Cuatrimestre", typeof(int));
+    
+            var id_Sede_UniversitariaParameter = id_Sede_Universitaria.HasValue ?
+                new ObjectParameter("Id_Sede_Universitaria", id_Sede_Universitaria) :
+                new ObjectParameter("Id_Sede_Universitaria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CursosXEstudiante_Modelo_Result>("pa_CursosXEstudiante_Modelo", id_CursoParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_CuatrimestreParameter, id_Sede_UniversitariaParameter);
         }
     
         public virtual int pa_Direcciones_de_Carrera_Delete(Nullable<int> id_Direccion_Carrera)
@@ -1176,192 +1447,21 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
-        public virtual ObjectResult<pa_Curso_x_Cuatrimestre_ListaEstudiantes_Result> pa_Curso_x_Cuatrimestre_ListaEstudiantes()
+        public virtual ObjectResult<Reporte_Notas_Por_Estudiante_Result> Reporte_Notas_Por_Estudiante(string nombre_Estudiante, Nullable<int> num_Cuatrimestre, string nombre_Curso)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Curso_x_Cuatrimestre_ListaEstudiantes_Result>("pa_Curso_x_Cuatrimestre_ListaEstudiantes");
-        }
+            var nombre_EstudianteParameter = nombre_Estudiante != null ?
+                new ObjectParameter("Nombre_Estudiante", nombre_Estudiante) :
+                new ObjectParameter("Nombre_Estudiante", typeof(string));
     
-        public virtual ObjectResult<pa_Curso_x_CuatrimestreListaCursos_Result> pa_Curso_x_CuatrimestreListaCursos(Nullable<int> id_Sedes_Universitarias, Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre)
-        {
-            var id_Sedes_UniversitariasParameter = id_Sedes_Universitarias.HasValue ?
-                new ObjectParameter("Id_Sedes_Universitarias", id_Sedes_Universitarias) :
-                new ObjectParameter("Id_Sedes_Universitarias", typeof(int));
+            var num_CuatrimestreParameter = num_Cuatrimestre.HasValue ?
+                new ObjectParameter("Num_Cuatrimestre", num_Cuatrimestre) :
+                new ObjectParameter("Num_Cuatrimestre", typeof(int));
     
-            var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
-                new ObjectParameter("Id_Num_Cuatrimestre", id_Num_Cuatrimestre) :
-                new ObjectParameter("Id_Num_Cuatrimestre", typeof(int));
-    
-            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
-                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
-                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Curso_x_CuatrimestreListaCursos_Result>("pa_Curso_x_CuatrimestreListaCursos", id_Sedes_UniversitariasParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter);
-        }
-    
-        public virtual int pa_Curso_x_Cuatrimestre_Insert(Nullable<int> id_Curso, Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre, Nullable<int> id_Cuatrimestre, Nullable<int> id_Estudiante, Nullable<int> id_Sede_Universitaria)
-        {
-            var id_CursoParameter = id_Curso.HasValue ?
-                new ObjectParameter("Id_Curso", id_Curso) :
-                new ObjectParameter("Id_Curso", typeof(int));
-    
-            var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
-                new ObjectParameter("Id_Num_Cuatrimestre", id_Num_Cuatrimestre) :
-                new ObjectParameter("Id_Num_Cuatrimestre", typeof(int));
-    
-            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
-                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
-                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
-    
-            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
-                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
-                new ObjectParameter("Id_Cuatrimestre", typeof(int));
-    
-            var id_EstudianteParameter = id_Estudiante.HasValue ?
-                new ObjectParameter("Id_Estudiante", id_Estudiante) :
-                new ObjectParameter("Id_Estudiante", typeof(int));
-    
-            var id_Sede_UniversitariaParameter = id_Sede_Universitaria.HasValue ?
-                new ObjectParameter("Id_Sede_Universitaria", id_Sede_Universitaria) :
-                new ObjectParameter("Id_Sede_Universitaria", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Curso_x_Cuatrimestre_Insert", id_CursoParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_CuatrimestreParameter, id_EstudianteParameter, id_Sede_UniversitariaParameter);
-        }
-    
-        public virtual ObjectResult<pa_Curso_x_Cuatrimestre_Id_Cuatrimestre_Result> pa_Curso_x_Cuatrimestre_Id_Cuatrimestre(Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre, Nullable<int> id_Sede_Universitaria)
-        {
-            var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
-                new ObjectParameter("Id_Num_Cuatrimestre", id_Num_Cuatrimestre) :
-                new ObjectParameter("Id_Num_Cuatrimestre", typeof(int));
-    
-            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
-                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
-                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
-    
-            var id_Sede_UniversitariaParameter = id_Sede_Universitaria.HasValue ?
-                new ObjectParameter("Id_Sede_Universitaria", id_Sede_Universitaria) :
-                new ObjectParameter("Id_Sede_Universitaria", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Curso_x_Cuatrimestre_Id_Cuatrimestre_Result>("pa_Curso_x_Cuatrimestre_Id_Cuatrimestre", id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_Sede_UniversitariaParameter);
-        }
-    
-        public virtual ObjectResult<pa_Curso_x_CuatrimestreVerificar_Result> pa_Curso_x_CuatrimestreVerificar(Nullable<int> id_Curso, Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre, Nullable<int> id_Cuatrimestre, Nullable<int> id_Estudiante, Nullable<int> id_Sede_universitaria)
-        {
-            var id_CursoParameter = id_Curso.HasValue ?
-                new ObjectParameter("Id_Curso", id_Curso) :
-                new ObjectParameter("Id_Curso", typeof(int));
-    
-            var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
-                new ObjectParameter("Id_Num_Cuatrimestre", id_Num_Cuatrimestre) :
-                new ObjectParameter("Id_Num_Cuatrimestre", typeof(int));
-    
-            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
-                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
-                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
-    
-            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
-                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
-                new ObjectParameter("Id_Cuatrimestre", typeof(int));
-    
-            var id_EstudianteParameter = id_Estudiante.HasValue ?
-                new ObjectParameter("Id_Estudiante", id_Estudiante) :
-                new ObjectParameter("Id_Estudiante", typeof(int));
-    
-            var id_Sede_universitariaParameter = id_Sede_universitaria.HasValue ?
-                new ObjectParameter("Id_Sede_universitaria", id_Sede_universitaria) :
-                new ObjectParameter("Id_Sede_universitaria", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Curso_x_CuatrimestreVerificar_Result>("pa_Curso_x_CuatrimestreVerificar", id_CursoParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_CuatrimestreParameter, id_EstudianteParameter, id_Sede_universitariaParameter);
-        }
-    
-        public virtual int pa_CuatrimestreInicio(Nullable<int> id_Cuatrimestre)
-        {
-            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
-                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
-                new ObjectParameter("Id_Cuatrimestre", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_CuatrimestreInicio", id_CuatrimestreParameter);
-        }
-    
-        public virtual int pa_Cursos_x_Estudiante_Insert(Nullable<int> id_Curso, Nullable<int> id_Estudiante)
-        {
-            var id_CursoParameter = id_Curso.HasValue ?
-                new ObjectParameter("Id_Curso", id_Curso) :
-                new ObjectParameter("Id_Curso", typeof(int));
-    
-            var id_EstudianteParameter = id_Estudiante.HasValue ?
-                new ObjectParameter("Id_Estudiante", id_Estudiante) :
-                new ObjectParameter("Id_Estudiante", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Cursos_x_Estudiante_Insert", id_CursoParameter, id_EstudianteParameter);
-        }
-    
-        public virtual ObjectResult<pa_CuatrimesteVerificarInicio_Result> pa_CuatrimesteVerificarInicio(Nullable<int> id_Cuatrimestre)
-        {
-            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
-                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
-                new ObjectParameter("Id_Cuatrimestre", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CuatrimesteVerificarInicio_Result>("pa_CuatrimesteVerificarInicio", id_CuatrimestreParameter);
-        }
-    
-        public virtual ObjectResult<pa_Curso_x_Cuatrimetre_Select_Result> pa_Curso_x_Cuatrimetre_Select(string nombre_Curso, Nullable<int> cuatrimestre)
-        {
             var nombre_CursoParameter = nombre_Curso != null ?
                 new ObjectParameter("Nombre_Curso", nombre_Curso) :
                 new ObjectParameter("Nombre_Curso", typeof(string));
     
-            var cuatrimestreParameter = cuatrimestre.HasValue ?
-                new ObjectParameter("Cuatrimestre", cuatrimestre) :
-                new ObjectParameter("Cuatrimestre", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Curso_x_Cuatrimetre_Select_Result>("pa_Curso_x_Cuatrimetre_Select", nombre_CursoParameter, cuatrimestreParameter);
-        }
-    
-        public virtual ObjectResult<pa_Cuatrimestre_VerificaCursosEstudiante_Result> pa_Cuatrimestre_VerificaCursosEstudiante(Nullable<int> id_Curso, Nullable<int> id_Num_Cuatrimestre, Nullable<int> anio_Cuatrimestre, Nullable<int> id_Sede_Universitaria)
-        {
-            var id_CursoParameter = id_Curso.HasValue ?
-                new ObjectParameter("Id_Curso", id_Curso) :
-                new ObjectParameter("Id_Curso", typeof(int));
-    
-            var id_Num_CuatrimestreParameter = id_Num_Cuatrimestre.HasValue ?
-                new ObjectParameter("Id_Num_Cuatrimestre", id_Num_Cuatrimestre) :
-                new ObjectParameter("Id_Num_Cuatrimestre", typeof(int));
-    
-            var anio_CuatrimestreParameter = anio_Cuatrimestre.HasValue ?
-                new ObjectParameter("Anio_Cuatrimestre", anio_Cuatrimestre) :
-                new ObjectParameter("Anio_Cuatrimestre", typeof(int));
-    
-            var id_Sede_UniversitariaParameter = id_Sede_Universitaria.HasValue ?
-                new ObjectParameter("Id_Sede_Universitaria", id_Sede_Universitaria) :
-                new ObjectParameter("Id_Sede_Universitaria", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Cuatrimestre_VerificaCursosEstudiante_Result>("pa_Cuatrimestre_VerificaCursosEstudiante", id_CursoParameter, id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_Sede_UniversitariaParameter);
-        }
-    
-        public virtual ObjectResult<pa_CursosXEstudiante_Modelo_Result> pa_CursosXEstudiante_Modelo()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CursosXEstudiante_Modelo_Result>("pa_CursosXEstudiante_Modelo");
-        }
-    
-        public virtual int pa_CursosXEstudiante_Insert(Nullable<int> id_Estudiante, Nullable<int> id_Curso, Nullable<double> nota, string estado_Nota)
-        {
-            var id_EstudianteParameter = id_Estudiante.HasValue ?
-                new ObjectParameter("Id_Estudiante", id_Estudiante) :
-                new ObjectParameter("Id_Estudiante", typeof(int));
-    
-            var id_CursoParameter = id_Curso.HasValue ?
-                new ObjectParameter("Id_Curso", id_Curso) :
-                new ObjectParameter("Id_Curso", typeof(int));
-    
-            var notaParameter = nota.HasValue ?
-                new ObjectParameter("Nota", nota) :
-                new ObjectParameter("Nota", typeof(double));
-    
-            var estado_NotaParameter = estado_Nota != null ?
-                new ObjectParameter("Estado_Nota", estado_Nota) :
-                new ObjectParameter("Estado_Nota", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_CursosXEstudiante_Insert", id_EstudianteParameter, id_CursoParameter, notaParameter, estado_NotaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Reporte_Notas_Por_Estudiante_Result>("Reporte_Notas_Por_Estudiante", nombre_EstudianteParameter, num_CuatrimestreParameter, nombre_CursoParameter);
         }
     }
 }

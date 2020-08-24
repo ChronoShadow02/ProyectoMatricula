@@ -17,9 +17,8 @@ namespace ProyectoMatricula.Modelos
         public int Id_CursosXEstudiantes { get; set; }
         public int Id_Estudiante { get; set; }
         public int Id_Curso { get; set; }
-        public double Nota { get; set; }
+        public int Nota { get; set; }
         public string Estado_Nota { get; set; }
-        public string Finaliza_Curso { get; set; }
     
         public virtual Cursos Cursos { get; set; }
         public virtual Estudiantes Estudiantes { get; set; }

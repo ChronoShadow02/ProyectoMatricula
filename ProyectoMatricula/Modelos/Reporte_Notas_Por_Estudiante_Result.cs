@@ -11,17 +11,15 @@ namespace ProyectoMatricula.Modelos
 {
     using System;
     
-    public partial class pa_CursosXEstudiante_Modelo_Result
+    public partial class Reporte_Notas_Por_Estudiante_Result
     {
-        public int Id_CursosXEstudiantes { get; set; }
         public int Id_Estudiante { get; set; }
-        public int Id_Curso { get; set; }
+        public string Nombre_Estudiante { get; set; }
         public int Nota { get; set; }
         public string Estado_Nota { get; set; }
+        public string Nombre_Curso { get; set; }
         public int Id_Num_Cuatrimestre { get; set; }
+        public string Nombre_Sede { get; set; }
         public int Año_Cuatrimestre { get; set; }
-        public int Id_Cuatrimestre { get; set; }
-        public int Id_Sede_Universitaria { get; set; }
-        public string Finaliza_Curso { get; set; }
     }
 }

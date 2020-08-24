@@ -21,6 +21,7 @@ namespace ProyectoMatricula.Modelos
         public int Id_Cuatrimestre { get; set; }
         public int Id_Estudiante { get; set; }
         public int Id_Sede_Universitaria { get; set; }
+        public string Finaliza_Curso { get; set; }
     
         public virtual Cuatrimestre Cuatrimestre { get; set; }
         public virtual Cursos Cursos { get; set; }
