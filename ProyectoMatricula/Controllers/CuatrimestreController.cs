@@ -276,7 +276,7 @@ namespace ProyectoMatricula.Controllers
                     ///Se hace un insert aqui por la relacion que existe entre el curso y el estudiante
                     this.matriculaBD.pa_Cursos_x_Estudiante_Insert(modeloVista.Id_Curso, modeloEstudiante.Id_Estudiante);
 
-                    ///Se hace un insert aqui por la relacion que existe entre el curso y el estudiante
+                    ////FALTA HACER EL INSERT DE CURSOSXCARRARAXSEDE
 
                 }
             }
@@ -363,6 +363,25 @@ namespace ProyectoMatricula.Controllers
             this.Lista_Num_CuatrimestreViewBag();
             this.CargarSedesUniversitariasViewbag();
             return View(modeloVista);
+        }
+        #endregion
+
+        #region Finalización de curso
+        public ActionResult FinalizarCurso(int Numero_Cuatrimestre, int Id_Sedes_universitarias, int Anio_Cuatrimestre)
+        {
+            pa_Curso_x_Sede_RetornaID_Select_Result modeloVista = new pa_Curso_x_Sede_RetornaID_Select_Result();
+
+            modeloVista = this.matriculaBD.pa_Curso_x_Sede_RetornaID_Select(Numero_Cuatrimestre, Id_Sedes_universitarias, Anio_Cuatrimestre).FirstOrDefault();
+
+            this.Lista_Num_CuatrimestreViewBag();
+            this.CargarSedesUniversitariasViewbag();
+            this.cargaCursosSCA(Numero_Cuatrimestre, Id_Sedes_universitarias, Anio_Cuatrimestre);
+            return View(modeloVista);
+        }
+        [HttpPost]
+        public ActionResult FinalizarCurso(pa_Curso_x_Sede_RetornaID_Select_Result modeloVista)
+        {
+            return View();
         }
         #endregion
 

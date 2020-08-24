@@ -454,6 +454,7 @@
     <Content Include="Scripts\Carreras\validarCarreras.js" />
     <Content Include="Scripts\Cuatrimestre\cargarDatosCursosEstudiantes.js" />
     <Content Include="Scripts\Cuatrimestre\validarCuatrimestre.js" />
+    <Content Include="Scripts\Cuatrimestre\validarFinalizarCurso.js" />
     <Content Include="Scripts\Cuatrimestre\validarMatricula.js" />
     <Content Include="Scripts\Cuatrimestre\validarOferta.js" />
     <Content Include="Scripts\Cuatrimestre\validarRegistroNotasCurso.js" />
@@ -635,6 +636,7 @@
     <Content Include="Views\Cuatrimestre\OfertaCursosPorSede.cshtml" />
     <Content Include="Views\Cuatrimestre\MatriculaEstudianteCurso.cshtml" />
     <Content Include="Views\Cuatrimestre\RegistroNotasCurso.cshtml" />
+    <Content Include="Views\Cuatrimestre\FinalizarCurso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
