@@ -24,13 +24,13 @@ namespace ProyectoMatricula.Controllers
         /// Método que muestra el reporte de notas por estudiante
         /// </summary>
         /// <returns></returns>
-        /* public ActionResult ReporteNotasEstudiante()
+         public ActionResult ReporteNotasEstudiante()
          {
          ///crear la variable que contiene los registros al 
          ///invocar el procedimiento
-             //List<Reporte_Notas_Por_Estudiante_Result> modeloVistaReporte = matriculaBD.Reporte_Notas_Por_Estudiante(null, null, null).ToList();
-
-             //return View(modeloVistaReporte);
+             List<Reporte_Notas_Por_Estudiante_Result> modeloVistaReporte = matriculaBD.Reporte_Notas_Por_Estudiante(null, null, null).ToList();
+             this.Lista_Num_CuatrimestreViewBag();
+             return View(modeloVistaReporte);
          }
          /// <summary>
          /// Metodo que muestra el reporte de notas por estudiante haciendo las búsquedas
@@ -40,11 +40,25 @@ namespace ProyectoMatricula.Controllers
          [HttpPost]
          public ActionResult ReporteNotasEstudiante(Reporte_Notas_Por_Estudiante_Result modeloBusqueda)
          {
-             List<Reporte_Notas_Por_Estudiante_Result> modeloVista =
-                 this.matriculaBD.Reporte_Notas_Por_Estudiante(modeloBusqueda.Nombre_Estudiante, modeloBusqueda.Anio_Cuatrimestre, modeloBusqueda.Nombre_Curso).ToList();
-             return View(modeloBusqueda);
+            if (modeloBusqueda.Id_Num_Cuatrimestre == 0)
+            {
+                List<Reporte_Notas_Por_Estudiante_Result> modeloVista =
+                 this.matriculaBD.Reporte_Notas_Por_Estudiante(modeloBusqueda.Nombre_Estudiante,null, modeloBusqueda.Nombre_Curso).ToList();
+                this.Lista_Num_CuatrimestreViewBag();
+                return View(modeloVista);
+            }
+            else
+            {
+                List<Reporte_Notas_Por_Estudiante_Result> modeloVista =
+                 this.matriculaBD.Reporte_Notas_Por_Estudiante(modeloBusqueda.Nombre_Estudiante, Convert.ToString(modeloBusqueda.Id_Num_Cuatrimestre), modeloBusqueda.Nombre_Curso).ToList();
+                this.Lista_Num_CuatrimestreViewBag();
+                return View(modeloVista);
+            }
+             
+
          }
-     #endregion
+        #endregion
+        /*
 
      #region Reporte de Notas por curso
          /// <summary>
@@ -73,6 +87,16 @@ namespace ProyectoMatricula.Controllers
              return View(modeloVista);
          }
         */
+        //#endregion
+
+        #region Número de cuatrimestre viewbag
+        /// <summary>
+        /// Metodo que muestra el número de cuatrimestre
+        /// </summary>
+        void Lista_Num_CuatrimestreViewBag()
+        {
+            this.ViewBag.Lista_Num_Cuatrimestre = this.matriculaBD.pa_Cuatrimestre_Num_CuatrimiestreViewBag().ToList();
+        }
         #endregion
     }
 }

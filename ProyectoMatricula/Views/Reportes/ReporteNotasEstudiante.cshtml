@@ -8,8 +8,16 @@
 <form class="d-flex align-content-center justify-content-center" method="post">
     <label for="Estudiante">Estudiante:</label>&nbsp;
     <input type="text" value="" id="Estudiante" class="form-control" name="Nombre_Estudiante" /> &nbsp;
-    <label>Año del cuatrimestre:</label>&nbsp;
-    <input type="text" value="" class="form-control" name="Anio_Cuatrimestre" id="Anio_Cuatrimestre"/>&nbsp;
+    <label>Cuatrimestre:</label>&nbsp;
+    <select name="Id_Num_Cuatrimestre" id="Id_Num_Cuatrimestre" class="form-control">
+        <option value="">Seleccione una opcion</option>
+        @{ 
+            foreach (ProyectoMatricula.Modelos.pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result ListaCuatri in this.ViewBag.Lista_Num_Cuatrimestre)
+            {
+                <option value="@ListaCuatri.Id_Num_Cuatrimestre">@ListaCuatri.Numero_Cuatrimestre</option>
+            }
+        }
+    </select>
     <label>Nombre del curso:</label>&nbsp;
     <input type="text" value="" class="form-control" name="Nombre_Curso" id="Nombre_Curso"/>&nbsp;
     <button type="submit" class="btn btn-primary">Buscar</button>
@@ -32,8 +40,8 @@
                 <td>@posicionModelo.Nombre_Estudiante</td>
                 <td>@posicionModelo.Nombre_Curso</td>
                 <td>@posicionModelo.Nota</td>
-                <td>@posicionModelo.Num_Cuatrimestre</td>
-                <td>@posicionModelo.Anio_Cuatrimestre</td>
+                <td>@posicionModelo.Id_Num_Cuatrimestre</td>
+                <td>@posicionModelo.Año_Cuatrimestre</td>
             </tr>
         }
     }

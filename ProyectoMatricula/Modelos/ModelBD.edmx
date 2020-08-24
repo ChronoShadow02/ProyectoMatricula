@@ -935,7 +935,7 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
         </Function>
         <Function Name="Reporte_Notas_Por_Estudiante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre_Estudiante" Type="varchar" Mode="In" />
-          <Parameter Name="Num_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Num_Cuatrimestre" Type="varchar" Mode="In" />
           <Parameter Name="Nombre_Curso" Type="varchar" Mode="In" />
         </Function>
         <Function Name="RetornaCantones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -2351,7 +2351,7 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="Reporte_Notas_Por_Estudiante" ReturnType="Collection(matriculaBDModel.Reporte_Notas_Por_Estudiante_Result)">
             <Parameter Name="Nombre_Estudiante" Mode="In" Type="String" />
-            <Parameter Name="Num_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Num_Cuatrimestre" Mode="In" Type="String" />
             <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>

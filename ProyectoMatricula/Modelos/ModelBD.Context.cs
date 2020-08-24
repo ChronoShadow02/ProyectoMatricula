@@ -1447,15 +1447,15 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
-        public virtual ObjectResult<Reporte_Notas_Por_Estudiante_Result> Reporte_Notas_Por_Estudiante(string nombre_Estudiante, Nullable<int> num_Cuatrimestre, string nombre_Curso)
+        public virtual ObjectResult<Reporte_Notas_Por_Estudiante_Result> Reporte_Notas_Por_Estudiante(string nombre_Estudiante, string num_Cuatrimestre, string nombre_Curso)
         {
             var nombre_EstudianteParameter = nombre_Estudiante != null ?
                 new ObjectParameter("Nombre_Estudiante", nombre_Estudiante) :
                 new ObjectParameter("Nombre_Estudiante", typeof(string));
     
-            var num_CuatrimestreParameter = num_Cuatrimestre.HasValue ?
+            var num_CuatrimestreParameter = num_Cuatrimestre != null ?
                 new ObjectParameter("Num_Cuatrimestre", num_Cuatrimestre) :
-                new ObjectParameter("Num_Cuatrimestre", typeof(int));
+                new ObjectParameter("Num_Cuatrimestre", typeof(string));
     
             var nombre_CursoParameter = nombre_Curso != null ?
                 new ObjectParameter("Nombre_Curso", nombre_Curso) :
