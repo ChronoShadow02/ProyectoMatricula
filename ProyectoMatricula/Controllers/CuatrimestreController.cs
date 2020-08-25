@@ -499,6 +499,7 @@ namespace ProyectoMatricula.Controllers
             return RedirectToAction( "CuatrimestreLista","Cuatrimestre");
         }
         #endregion
+
         #region Número de cuatrimestre viewbag
         /// <summary>
         /// Metodo que muestra el número de cuatrimestre

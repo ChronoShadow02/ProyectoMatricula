@@ -933,6 +933,11 @@ advertencia 6002: La tabla o vista 'matriculaBD.dbo.Administadores' no tiene def
         <Function Name="pa_Sedes_UniversitariasViewBag_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Sede" Type="int" Mode="In" />
         </Function>
+        <Function Name="Reporte_Notas_Por_Curso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre_Sede" Type="varchar" Mode="In" />
+          <Parameter Name="Num_Cuatrimestre" Type="int" Mode="In" />
+          <Parameter Name="Nombre_Curso" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="Reporte_Notas_Por_Estudiante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre_Estudiante" Type="varchar" Mode="In" />
           <Parameter Name="Num_Cuatrimestre" Type="varchar" Mode="In" />
@@ -2354,6 +2359,11 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
             <Parameter Name="Num_Cuatrimestre" Mode="In" Type="String" />
             <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Reporte_Notas_Por_Curso" ReturnType="Collection(matriculaBDModel.Reporte_Notas_Por_Curso_Result)">
+            <Parameter Name="Nombre_Sede" Mode="In" Type="String" />
+            <Parameter Name="Num_Cuatrimestre" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre_Curso" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Cursos_ValidarNombreCodigo_Select_Result">
           <Property Type="Int32" Name="Id_Curso" Nullable="false" />
@@ -2850,6 +2860,14 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
         <ComplexType Name="Reporte_Notas_Por_Estudiante_Result">
           <Property Type="Int32" Name="Id_Estudiante" Nullable="false" />
           <Property Type="String" Name="Nombre_Estudiante" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Nota" Nullable="false" />
+          <Property Type="String" Name="Estado_Nota" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre_Curso" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Num_Cuatrimestre" Nullable="false" />
+          <Property Type="String" Name="Nombre_Sede" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Año_Cuatrimestre" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Reporte_Notas_Por_Curso_Result">
           <Property Type="Int32" Name="Nota" Nullable="false" />
           <Property Type="String" Name="Estado_Nota" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Nombre_Curso" Nullable="false" MaxLength="50" />
@@ -3859,6 +3877,18 @@ FROM [dbo].[Administadores] AS [Administadores]</DefiningQuery>
               <ComplexTypeMapping TypeName="matriculaBDModel.Reporte_Notas_Por_Estudiante_Result">
                 <ScalarProperty Name="Id_Estudiante" ColumnName="Id_Estudiante" />
                 <ScalarProperty Name="Nombre_Estudiante" ColumnName="Nombre_Estudiante" />
+                <ScalarProperty Name="Nota" ColumnName="Nota" />
+                <ScalarProperty Name="Estado_Nota" ColumnName="Estado_Nota" />
+                <ScalarProperty Name="Nombre_Curso" ColumnName="Nombre_Curso" />
+                <ScalarProperty Name="Id_Num_Cuatrimestre" ColumnName="Id_Num_Cuatrimestre" />
+                <ScalarProperty Name="Nombre_Sede" ColumnName="Nombre_Sede" />
+                <ScalarProperty Name="Año_Cuatrimestre" ColumnName="Año_Cuatrimestre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Reporte_Notas_Por_Curso" FunctionName="matriculaBDModel.Store.Reporte_Notas_Por_Curso">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="matriculaBDModel.Reporte_Notas_Por_Curso_Result">
                 <ScalarProperty Name="Nota" ColumnName="Nota" />
                 <ScalarProperty Name="Estado_Nota" ColumnName="Estado_Nota" />
                 <ScalarProperty Name="Nombre_Curso" ColumnName="Nombre_Curso" />

@@ -58,7 +58,7 @@ namespace ProyectoMatricula.Controllers
 
          }
         #endregion
-        /*
+
 
      #region Reporte de Notas por curso
          /// <summary>
@@ -67,9 +67,11 @@ namespace ProyectoMatricula.Controllers
          /// <returns></returns>
          public ActionResult ReporteNotasCurso()
          {
-             List<Reporte_Notas_Por_Curso_Result> modeloVista =
-                 this.matriculaBD.Reporte_Notas_Por_Curso(null, null, null, null).ToList();
-             return View(modeloVista);
+             List<Reporte_Notas_Por_Curso_Result> modeloVistaReporte =
+                 this.matriculaBD.Reporte_Notas_Por_Curso(null, null, null).ToList();
+
+             this.Lista_Num_CuatrimestreViewBag();
+             return View(modeloVistaReporte);
          }
          /// <summary>
          /// Metodo que muestra el reporte de notas por curso haciendo las búsquedas
@@ -79,15 +81,28 @@ namespace ProyectoMatricula.Controllers
          [HttpPost]
          public ActionResult ReporteNotasCurso(Reporte_Notas_Por_Curso_Result modeloBusqueda)
          {
-             List<Reporte_Notas_Por_Curso_Result > modeloVista =
-                 this.matriculaBD.Reporte_Notas_Por_Curso(modeloBusqueda.Nombre_Curso, 
-                                                          modeloBusqueda.Num_Cuatrimestre, 
-                                                          modeloBusqueda.Anio_Cuatrimestre, 
-                                                          modeloBusqueda.Nombre_Sede).ToList();
-             return View(modeloVista);
+            if (modeloBusqueda.Id_Num_Cuatrimestre ==0)
+            {
+                List<Reporte_Notas_Por_Curso_Result> modeloVista =
+                 this.matriculaBD.Reporte_Notas_Por_Curso(modeloBusqueda.Nombre_Sede,
+                                                          null,
+                                                          modeloBusqueda.Nombre_Curso).ToList();
+
+                this.Lista_Num_CuatrimestreViewBag();
+                return View(modeloVista);
+            }
+            else
+            {
+                List<Reporte_Notas_Por_Curso_Result> modeloVista =
+                 this.matriculaBD.Reporte_Notas_Por_Curso(modeloBusqueda.Nombre_Sede,
+                                                          modeloBusqueda.Id_Num_Cuatrimestre,
+                                                          modeloBusqueda.Nombre_Curso).ToList();
+                this.Lista_Num_CuatrimestreViewBag();
+                return View(modeloVista);
+            } 
          }
-        */
-        //#endregion
+        
+        #endregion
 
         #region Número de cuatrimestre viewbag
         /// <summary>

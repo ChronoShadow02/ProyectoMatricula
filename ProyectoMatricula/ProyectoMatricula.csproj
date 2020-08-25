@@ -368,6 +368,9 @@
     <Compile Include="Modelos\Provincia.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\Reporte_Notas_Por_Curso_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\Reporte_Notas_Por_Estudiante_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>

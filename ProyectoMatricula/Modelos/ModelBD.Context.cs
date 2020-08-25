@@ -1463,5 +1463,22 @@ namespace ProyectoMatricula.Modelos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Reporte_Notas_Por_Estudiante_Result>("Reporte_Notas_Por_Estudiante", nombre_EstudianteParameter, num_CuatrimestreParameter, nombre_CursoParameter);
         }
+    
+        public virtual ObjectResult<Reporte_Notas_Por_Curso_Result> Reporte_Notas_Por_Curso(string nombre_Sede, Nullable<int> num_Cuatrimestre, string nombre_Curso)
+        {
+            var nombre_SedeParameter = nombre_Sede != null ?
+                new ObjectParameter("Nombre_Sede", nombre_Sede) :
+                new ObjectParameter("Nombre_Sede", typeof(string));
+    
+            var num_CuatrimestreParameter = num_Cuatrimestre.HasValue ?
+                new ObjectParameter("Num_Cuatrimestre", num_Cuatrimestre) :
+                new ObjectParameter("Num_Cuatrimestre", typeof(int));
+    
+            var nombre_CursoParameter = nombre_Curso != null ?
+                new ObjectParameter("Nombre_Curso", nombre_Curso) :
+                new ObjectParameter("Nombre_Curso", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Reporte_Notas_Por_Curso_Result>("Reporte_Notas_Por_Curso", nombre_SedeParameter, num_CuatrimestreParameter, nombre_CursoParameter);
+        }
     }
 }
