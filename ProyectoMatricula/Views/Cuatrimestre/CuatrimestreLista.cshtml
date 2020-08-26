@@ -21,7 +21,7 @@
         <td>Sede</td>
         <td>Inicio de cuatrimestre</td>
         <td>Fin de cuatrimestre</td>
-        <td colspan="5"></td>
+        <td colspan="6"></td>
     </tr>
     @{
         foreach (ProyectoMatricula.Modelos.pa_Cuatrimestre_Select_Result posicionModelo in this.Model)
@@ -33,7 +33,8 @@
             <td>@posicionModelo.Nombre_Sede</td>
             <td>@posicionModelo.Inicio_Cuatrimestre</td>
             <td>@posicionModelo.Fin_Cuatrimestre</td>
-            <td><a href="/Cuatrimestre/IniciarCuatrimestre?Id_Cuatrimeste=@posicionModelo.Id_Cuatrimeste">Iniciar cuatrimestre</a></td>
+            <td><a href="~/Cuatrimestre/IniciarCuatrimestre?Id_Cuatrimeste=@posicionModelo.Id_Cuatrimeste&Numero_Cuatrimestre=@posicionModelo.Numero_Cuatrimestre&Id_Sedes_universitarias=@posicionModelo.Id_Sedes_universitarias&Anio_Cuatrimestre=@posicionModelo.Anio_Cuatrimestre">Iniciar cuatrimestre</a></td>
+            <td><a href="~/Cuatrimestre/FinCuatrimestre?Id_Cuatrimeste=@posicionModelo.Id_Cuatrimeste&Numero_Cuatrimestre=@posicionModelo.Numero_Cuatrimestre&Id_Sedes_universitarias=@posicionModelo.Id_Sedes_universitarias&Anio_Cuatrimestre=@posicionModelo.Anio_Cuatrimestre">Fin de cuatrimestre</a></td>
             <td><a href="~/Cuatrimestre/OfertaCursosPorSede?Numero_Cuatrimestre=@posicionModelo.Numero_Cuatrimestre&Id_Sedes_universitarias=@posicionModelo.Id_Sedes_universitarias&Anio_Cuatrimestre=@posicionModelo.Anio_Cuatrimestre">Ofertar cursos</a></td>
             <td><a href="~/Cuatrimestre/MatriculaEstudianteCurso?Numero_Cuatrimestre=@posicionModelo.Numero_Cuatrimestre&Id_Sedes_universitarias=@posicionModelo.Id_Sedes_universitarias&Anio_Cuatrimestre=@posicionModelo.Anio_Cuatrimestre">Matrícula</a></td>
             <td><a href="~/Cuatrimestre/RegistroNotasCurso?Numero_Cuatrimestre=@posicionModelo.Numero_Cuatrimestre&Id_Sedes_universitarias=@posicionModelo.Id_Sedes_universitarias&Anio_Cuatrimestre=@posicionModelo.Anio_Cuatrimestre">Registro notas</a></td>

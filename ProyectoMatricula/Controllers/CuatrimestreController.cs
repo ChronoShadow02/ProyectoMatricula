@@ -277,7 +277,6 @@ namespace ProyectoMatricula.Controllers
                     ///Se hace un insert aqui por la relacion que existe entre el curso y el estudiante
                     this.matriculaBD.pa_Cursos_x_Estudiante_Insert(modeloVista.Id_Curso, modeloEstudiante.Id_Estudiante);
 
-                    ////FALTA HACER EL INSERT DE CURSOSXCARRARAXSEDE
 
                 }
             }
@@ -407,49 +406,59 @@ namespace ProyectoMatricula.Controllers
                                                                              modeloVista.Anio_Cuatrimestre,
                                                                              modeloVista.Id_Sedes_universitarias).FirstOrDefault();
 
-                ///Se obtiene la lista de estudiantes que estan en un curso en especifico
-
-                List<pa_CursosXEstudiante_Modelo_Result> modeloNotas = 
-                    this.matriculaBD.pa_CursosXEstudiante_Modelo(ModeloVistaId_Curso.Id_Curso,
-                                                                 modeloSoloId_Cuatrimestre.Id_Num_Cuatrimestre,
-                                                                 modeloVista.Anio_Cuatrimestre,
-                                                                 modeloSoloId_Cuatrimestre.Id_Cuatrimeste,
-                                                                 modeloVista.Id_Sedes_universitarias
-                                                                 ).ToList();
-
-                ///Se recorre los a los estudiantes para consultar por la nota y asi asignarles un estado de nota
-
-                foreach (pa_CursosXEstudiante_Modelo_Result modelo in modeloNotas)
+                if (modeloSoloId_Cuatrimestre.Fin_Cuatrimestre == "S")
                 {
-                    ///Consulta si cada estudiante tiene una nota mayor o igual a 70, si 
-                    ///es asi actualiza el estado de la nota usando el estado, el id del curso y el del estudiante
-                    if (modelo.Nota >= 70)
-                    {   
-                        EstadoAprobado = "Aprobado";
-                        this.matriculaBD.pa_CursosXEstudiante_Estado(EstadoAprobado,modelo.Id_Estudiante,modelo.Id_Curso);
-                        estadoNota = true;
-                    }else if (modelo.Nota <= 69)
+                    mensaje = "El cuatrimestre ya terminó.No se pueden modificar notas";
+                }
+                else
+                {
+                    ///Se obtiene la lista de estudiantes que estan en un curso en especifico
+
+                    List<pa_CursosXEstudiante_Modelo_Result> modeloNotas =
+                        this.matriculaBD.pa_CursosXEstudiante_Modelo(ModeloVistaId_Curso.Id_Curso,
+                                                                     modeloSoloId_Cuatrimestre.Id_Num_Cuatrimestre,
+                                                                     modeloVista.Anio_Cuatrimestre,
+                                                                     modeloSoloId_Cuatrimestre.Id_Cuatrimeste,
+                                                                     modeloVista.Id_Sedes_universitarias
+                                                                     ).ToList();
+
+                    ///Se recorre los a los estudiantes para consultar por la nota y asi asignarles un estado de nota
+
+                    foreach (pa_CursosXEstudiante_Modelo_Result modelo in modeloNotas)
                     {
-                        EstadoReprobado = "Reprobado";
-                        this.matriculaBD.pa_CursosXEstudiante_Estado(EstadoReprobado, modelo.Id_Estudiante, modelo.Id_Curso);
-                        estadoNota = true;
-                    }else if (modelo.Nota == 0)
+                        ///Consulta si cada estudiante tiene una nota mayor o igual a 70, si 
+                        ///es asi actualiza el estado de la nota usando el estado, el id del curso y el del estudiante
+                        if (modelo.Nota >= 70)
+                        {
+                            EstadoAprobado = "Aprobado";
+                            this.matriculaBD.pa_CursosXEstudiante_Estado(EstadoAprobado, modelo.Id_Estudiante, modelo.Id_Curso);
+                            estadoNota = true;
+                        }
+                        else if (modelo.Nota <= 69)
+                        {
+                            EstadoReprobado = "Reprobado";
+                            this.matriculaBD.pa_CursosXEstudiante_Estado(EstadoReprobado, modelo.Id_Estudiante, modelo.Id_Curso);
+                            estadoNota = true;
+                        }
+                        else if (modelo.Nota == 0)
+                        {
+                            mensaje = "No puede haber estudiantes sin nota.";
+                            estadoNota = false;
+                            break;
+                        }
+                    }
+                    ///Se consulta si el estadonota sigue siendo true cuando se actualizaron las notas de 
+                    ///los estudiantes y no hubo ninguno sin nota
+                    if (estadoNota)
                     {
-                        mensaje = "No puede haber estudiantes sin nota.";
-                        estadoNota = false;
-                        break;
+                        ///actualiza el campo de finalizar curso en ese curso en especifico
+                        RegistrosAfectados = this.matriculaBD.pa_Curso_x_Cuatrimestre_FinalizaCurso(ModeloVistaId_Curso.Id_Curso,
+                                                                                           modeloVista.Numero_Cuatrimestre,
+                                                                                           modeloVista.Anio_Cuatrimestre,
+                                                                                           modeloVista.Id_Sedes_universitarias);
                     }
                 }
-                ///Se consulta si el estadonota sigue siendo true cuando se actualizaron las notas de 
-                ///los estudiantes y no hubo ninguno sin nota
-                if (estadoNota)
-                {
-                    ///actualiza el campo de finalizar curso en ese curso en especifico
-                    RegistrosAfectados = this.matriculaBD.pa_Curso_x_Cuatrimestre_FinalizaCurso(ModeloVistaId_Curso.Id_Curso,
-                                                                                       modeloVista.Numero_Cuatrimestre,
-                                                                                       modeloVista.Anio_Cuatrimestre,
-                                                                                       modeloVista.Id_Sedes_universitarias);
-                }
+                
 
             }
             catch (Exception error)
@@ -497,6 +506,48 @@ namespace ProyectoMatricula.Controllers
             Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
             
             return RedirectToAction( "CuatrimestreLista","Cuatrimestre");
+        }
+        #endregion
+
+        #region CierreCuatrimestre
+        public ActionResult FinCuatrimestre(int Numero_Cuatrimestre, int Id_Sedes_universitarias, int Anio_Cuatrimestre)
+        {
+            pa_Curso_x_Sede_RetornaID_Select_Result modeloVista = new pa_Curso_x_Sede_RetornaID_Select_Result();
+
+            modeloVista = this.matriculaBD.pa_Curso_x_Sede_RetornaID_Select(Numero_Cuatrimestre, Id_Sedes_universitarias, Anio_Cuatrimestre).FirstOrDefault();
+
+            this.Lista_Num_CuatrimestreViewBag();
+            this.CargarSedesUniversitariasViewbag();
+            return View(modeloVista);
+        }
+        [HttpPost]
+        public ActionResult FinCuatrimestre(pa_Curso_x_Sede_RetornaID_Select_Result modeloVista)
+        {
+            string mensaje = "";
+            int RegistrosAfectados = 0;
+            try
+            {
+                RegistrosAfectados = this.matriculaBD.pa_CuatrimestreFin(modeloVista.Id_Cuatrimeste);
+            }
+            catch (Exception error)
+            {
+                mensaje = "Hubo un error." + error.Message;
+            }
+            finally
+            {
+                if (RegistrosAfectados > 0)
+                {
+                    mensaje = "Cuatrimestre cerrado.";
+                }
+                else
+                {
+                    mensaje = "Nse pudo cerrar el cuatrimestre.";
+                }
+            }
+            Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+            this.Lista_Num_CuatrimestreViewBag();
+            this.CargarSedesUniversitariasViewbag();
+            return View(modeloVista);
         }
         #endregion
 
