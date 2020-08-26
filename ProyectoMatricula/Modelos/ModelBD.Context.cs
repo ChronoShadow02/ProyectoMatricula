@@ -290,6 +290,15 @@ namespace ProyectoMatricula.Modelos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_CuatrimestreDiferenteSedes_Result>("pa_CuatrimestreDiferenteSedes", id_Num_CuatrimestreParameter, anio_CuatrimestreParameter, id_Sede_UniversitariaParameter);
         }
     
+        public virtual int pa_CuatrimestreFin(Nullable<int> id_Cuatrimestre)
+        {
+            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
+                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
+                new ObjectParameter("Id_Cuatrimestre", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_CuatrimestreFin", id_CuatrimestreParameter);
+        }
+    
         public virtual int pa_CuatrimestreInicio(Nullable<int> id_Cuatrimestre)
         {
             var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
@@ -657,19 +666,6 @@ namespace ProyectoMatricula.Modelos
                 new ObjectParameter("Codigo_Curso", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Cursos_x_Carrera_Select_Result>("pa_Cursos_x_Carrera_Select", id_CursoParameter, nombre_CursoParameter, codigo_CursoParameter);
-        }
-    
-        public virtual int pa_Cursos_x_Estudiante_Insert(Nullable<int> id_Curso, Nullable<int> id_Estudiante)
-        {
-            var id_CursoParameter = id_Curso.HasValue ?
-                new ObjectParameter("Id_Curso", id_Curso) :
-                new ObjectParameter("Id_Curso", typeof(int));
-    
-            var id_EstudianteParameter = id_Estudiante.HasValue ?
-                new ObjectParameter("Id_Estudiante", id_Estudiante) :
-                new ObjectParameter("Id_Estudiante", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_Cursos_x_Estudiante_Insert", id_CursoParameter, id_EstudianteParameter);
         }
     
         public virtual ObjectResult<pa_CursosCodigos_Select_Result> pa_CursosCodigos_Select()
@@ -1479,15 +1475,6 @@ namespace ProyectoMatricula.Modelos
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
-        public virtual int pa_CuatrimestreFin(Nullable<int> id_Cuatrimestre)
-        {
-            var id_CuatrimestreParameter = id_Cuatrimestre.HasValue ?
-                new ObjectParameter("Id_Cuatrimestre", id_Cuatrimestre) :
-                new ObjectParameter("Id_Cuatrimestre", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_CuatrimestreFin", id_CuatrimestreParameter);
         }
     }
 }

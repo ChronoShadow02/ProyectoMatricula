@@ -231,7 +231,7 @@ namespace ProyectoMatricula.Controllers
         public ActionResult MatriculaEstudianteCurso(pa_Curso_x_Sede_SoloID_Select_Result modeloVista, pa_Curso_x_Sede_RetornaID_Select_Result OtroModelo, pa_Curso_x_Cuatrimestre_ListaEstudiantes_Result modeloEstudiante)
         {
             int RegistrosAfectados = 0;
-            bool VerificaID_Est = true;
+            bool VerificaID_Est = false;
             string mensaje = "";
             try
             {
@@ -265,7 +265,7 @@ namespace ProyectoMatricula.Controllers
                         VerificaID_Est = false;
                     }
                 }
-                if (VerificaID_Est == false)
+                if (VerificaID_Est == false )
                 {
                     RegistrosAfectados = this.matriculaBD.pa_Curso_x_Cuatrimestre_Insert(modeloVista.Id_Curso,
                                                                                                 OtroModelo.Numero_Cuatrimestre,
@@ -273,10 +273,6 @@ namespace ProyectoMatricula.Controllers
                                                                                                 modeloSoloId_Cuatrimestre.Id_Cuatrimeste,
                                                                                                 modeloEstudiante.Id_Estudiante,
                                                                                                 modeloVista.Id_Sedes_universitarias);
-
-                    ///Se hace un insert aqui por la relacion que existe entre el curso y el estudiante
-                    this.matriculaBD.pa_Cursos_x_Estudiante_Insert(modeloVista.Id_Curso, modeloEstudiante.Id_Estudiante);
-
 
                 }
             }
@@ -352,7 +348,7 @@ namespace ProyectoMatricula.Controllers
             {
                 if (RegistrosAfectados > 0)
                 {
-                    mensaje = "Regitro ingresado.";
+                    mensaje = "Nota ingresada.";
                 }
                 else
                 {
