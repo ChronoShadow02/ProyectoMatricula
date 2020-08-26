@@ -465,6 +465,7 @@
     <Content Include="Scripts\Cuatrimestre\validarCuatrimestre.js" />
     <Content Include="Scripts\Cuatrimestre\validarFinalizarCurso.js" />
     <Content Include="Scripts\Cuatrimestre\validarFinCuatrimestre.js" />
+    <Content Include="Scripts\Cuatrimestre\validarInicioCuatrimestre.js" />
     <Content Include="Scripts\Cuatrimestre\validarMatricula.js" />
     <Content Include="Scripts\Cuatrimestre\validarOferta.js" />
     <Content Include="Scripts\Cuatrimestre\validarRegistroNotasCurso.js" />
@@ -648,6 +649,7 @@
     <Content Include="Views\Cuatrimestre\RegistroNotasCurso.cshtml" />
     <Content Include="Views\Cuatrimestre\FinalizarCurso.cshtml" />
     <Content Include="Views\Cuatrimestre\FinCuatrimestre.cshtml" />
+    <Content Include="Views\Cuatrimestre\IniciarCuatrimestre.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

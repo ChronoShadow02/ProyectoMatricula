@@ -486,26 +486,56 @@ namespace ProyectoMatricula.Controllers
         #endregion
 
         #region IniciarCuatrimestre
-        public ActionResult IniciarCuatrimestre(int Id_Cuatrimeste)
+        public ActionResult IniciarCuatrimestre(int Numero_Cuatrimestre, int Id_Sedes_universitarias, int Anio_Cuatrimestre)
+        {
+            pa_Curso_x_Sede_RetornaID_Select_Result modeloVista = new pa_Curso_x_Sede_RetornaID_Select_Result();
+
+            modeloVista = this.matriculaBD.pa_Curso_x_Sede_RetornaID_Select(Numero_Cuatrimestre, Id_Sedes_universitarias, Anio_Cuatrimestre).FirstOrDefault();
+
+            this.Lista_Num_CuatrimestreViewBag();
+            this.CargarSedesUniversitariasViewbag();
+            return View(modeloVista);
+        }
+        [HttpPost]
+        public ActionResult IniciarCuatrimestre(pa_Curso_x_Sede_RetornaID_Select_Result modeloVista)
         {
             string mensaje = "";
-            ///Verifica si el cuatrimestre ya se ha iniciado
-            ///
-            pa_CuatrimesteVerificarInicio_Result VerificarInicio = this.matriculaBD.pa_CuatrimesteVerificarInicio(Id_Cuatrimeste).FirstOrDefault();
+            int RegistrosAfectados = 0;
 
-            if (VerificarInicio.Inicio_Cuatrimestre == "S")
+            try
             {
-                mensaje = "El cuatrimestre ya ha sido iniciado.";
+                ///Verifica si el cuatrimestre ya se ha iniciado
+                pa_CuatrimesteVerificarInicio_Result VerificarInicio = this.matriculaBD.pa_CuatrimesteVerificarInicio(modeloVista.Id_Cuatrimeste).FirstOrDefault();
 
+                if (VerificarInicio.Inicio_Cuatrimestre == "S")
+                {
+                    mensaje = "El cuatrimestre ya ha sido iniciado.";
+                }
+                else
+                {
+                    RegistrosAfectados =  this.matriculaBD.pa_CuatrimestreInicio(modeloVista.Id_Cuatrimeste);
+                }
             }
-            else
+            catch (Exception error)
             {
-                mensaje = "Cuatrimestre iniciado";
-                this.matriculaBD.pa_CuatrimestreInicio(Id_Cuatrimeste);
+
+                mensaje = "Hubo un error." + error.Message;
+            }
+            finally
+            {
+                if (RegistrosAfectados >0)
+                {
+                    mensaje = "Cuatrimestre iniciado";
+                }
+                else
+                {
+                    mensaje = "No se pudo iniciar";
+                }
             }
             Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
-            
-            return RedirectToAction( "CuatrimestreLista","Cuatrimestre");
+            this.Lista_Num_CuatrimestreViewBag();
+            this.CargarSedesUniversitariasViewbag();
+            return View(modeloVista);
         }
         #endregion
 

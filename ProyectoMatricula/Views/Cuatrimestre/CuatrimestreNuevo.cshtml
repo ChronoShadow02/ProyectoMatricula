@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutMatricula.cshtml";
 }
 
-    <h1 class="text-center">Creación  de cuatrimestre</h1>
+<h1 class="text-center">Creación  de cuatrimestre</h1>
 <div class="row justify-content-center align-items-center">
     <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
         <form method="post" id="frmCuatrimestreNuevo">
@@ -12,7 +12,7 @@
                 <label class="form-check-label" id="txtCuatrimestre">Cuatrimestre</label>
                 <select name="Id_Num_Cuatrimestre" id="Id_Cuatrimestre" class="form-control">
                     <option value="">Seleccione una opción</option>
-                    @{ 
+                    @{
                         foreach (ProyectoMatricula.Modelos.pa_Cuatrimestre_Num_CuatrimiestreViewBag_Result posicionNum_Cuatrimestre in this.ViewBag.Lista_Num_Cuatrimestre)
                         {
                             <option value="@posicionNum_Cuatrimestre.Id_Num_Cuatrimestre">@posicionNum_Cuatrimestre.Numero_Cuatrimestre</option>
@@ -24,7 +24,7 @@
                 <label class="form-check-label" id="lblSedeUniversitaria">Sede universitaria</label>
                 <select class="form-control" name="Id_Sede_Universitarias" id="Id_Sede_Universitaria">
                     <option value="">Seleccione una opción</option>
-                    @{ 
+                    @{
                         foreach (ProyectoMatricula.Modelos.pa_Sedes_UniversitariasID_Select_Result posicionSede in this.ViewBag.ListaSedes)
                         {
                             <option value="@posicionSede.Id_Sedes_universitarias">@posicionSede.Nombre_Sede</option>
@@ -34,7 +34,7 @@
             </div>
             <div class="form-group">
                 <label class="form-check-label" id="anio">Año de cuatrimestre</label>
-                <input type="text" value="" class="form-control" name="Anio_Cuatrimestre" id="Anio_Cuatrimestre"/>
+                <input type="text" value="" class="form-control" name="Anio_Cuatrimestre" id="Anio_Cuatrimestre" />
             </div>
             <div class="form-group text-center">
                 <button class="btn btn-primary" type="submit"><i class="fa fa-plus" aria-hidden="true"></i> Ingresar</button>
@@ -43,9 +43,12 @@
     </div>
 </div>
 <br />
-<div>
-       
+<div class="d-flex align-content-center justify-content-center">
+    <a href="~/Matricula/IndexMatricula" class="btn btn-outline-secondary"><i class="fa fa-home" aria-hidden="true"></i> Menú principal</a> &nbsp;
+    <a href="~/Cuatrimestre/CuatrimestreLista" class="btn btn-outline-primary"><i class="fa fa-list" aria-hidden="true"></i> Lista de cuatrimestres</a>
 </div>
+<br />
+
 @section scripts{
     <script src="~/Scripts/validacionesGenericas/validacionesGenericas.js"></script>
     <script src="~/Scripts/Cuatrimestre/validarCuatrimestre.js"></script>
